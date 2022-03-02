@@ -59,9 +59,10 @@ class Color(models.Model):
     def __str__(self):
         return f'{self.name}'
     
-class Score(models.Model):
+class Scores(models.Model):
     product = models.ForeignKey(Products, on_delete=models.CASCADE, verbose_name='Prodcut ID', related_name='product')
-    total_score = models.IntegerField(max_length=10, blank=False,verbose_name='"Total Score')
+    total_score = models.IntegerField(blank=False,verbose_name='"Total Score')
 
     def __str__(self):
         return f'{self.total_score}'
+

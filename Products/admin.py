@@ -1,5 +1,5 @@
-from .models import ProductsComments,ProductCategories,Products, TrackingCode, Score
 from django.contrib import admin
+from .models import *
 
 
 @admin.register(ProductsComments)
@@ -20,7 +20,7 @@ class ProductsAdmin(admin.ModelAdmin):
 class TrackingCodeAdmin(admin.ModelAdmin):
     list_dislplay = ['tracking_code', 'product', 'code_status','product_status']
 
-@admin.register(Score)
-class ScoreAdmin(admin.ModelAdmin):
+@admin.register(Scores)
+class ScoresAdmin(admin.ModelAdmin):
     list_display = ('product', 'total_score',)
 
