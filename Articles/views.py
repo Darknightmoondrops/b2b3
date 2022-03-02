@@ -24,7 +24,6 @@ def articles_list_page(request):
         'articles': articles,
         'pages': pages,
     }
-    
     return render(request,'Articles/articles_list_page/articles_list_page.html',context)
 
 def article_detail_page(request,id):
