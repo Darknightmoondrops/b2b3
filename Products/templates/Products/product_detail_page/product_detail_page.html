@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <h2>{( product.title )}
+    {{ product.description }}s
+    {{ product.price }}
+    {{ product.score }}</h2>
+    {% if comments %}
+    {% for comment in comments %}
+    {{ comments.comment }}
+    {% endfor %}
+    {% else %}
+        No comment
+    {% endif %}
+ 
+    <form method="post">
+        <h3>add a new comment</h3>
+        {% csrf_token %}
+    <p><input type="text" name = "new_comment" value="Add comment"></p>
+    <input type="submit">
+</form>
+</body>
+</html>

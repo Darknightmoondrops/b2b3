@@ -1,0 +1,17 @@
+<!-- {% load static %} -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}products{% endblock %}</title>
+    </head>
+    <body>  
+    {% block content %}
+        {% for product  in products %}
+            <h2>{{ product.name}}</h2>
+            <p>{{ product.description}}</p>
+            <p>{{ product.seller}}</p>
+            <p>{{ product.score }}</p>
+        {% endfor %}
+    {% endblock %}
+</body>
+    
