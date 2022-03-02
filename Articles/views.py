@@ -1,7 +1,13 @@
+from asyncore import write
+from audioop import error
+from msilib.schema import Error
+from multiprocessing import AuthenticationError
 from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator
 from django.shortcuts import render
 from .models import Articles
+from CustomizedUserModel.models import Userperson
+from django.core.exceptions import ValidationError
 
 
 """
@@ -32,3 +38,23 @@ def article_detail_page(request,id):
         'article': article,
     }
     return render(request,'Articles/article_detail_page/article_detail_page.html',context)
+
+def add_article_page(request):
+    user_object = Userperson.objects.filter(phone=request.user,is_superuser=True).first()
+    if not user_object.is_superuser:
+        raise ValidationError('user is not admin')
+    if request.method == 'POST':
+        title = request.POST['title']
+        writer = user_object
+        keywords = request.POST['keywords'] 
+        description = request.POST['description']
+
+        article = Articles.objects.create(
+            title=title,
+            writer=writer,
+            keywords=keywords,
+            description=description
+        )
+        article.save()
+    return render(request,'Articles/add_article_page/add_article_page.html', )
+

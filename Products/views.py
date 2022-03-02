@@ -90,12 +90,3 @@ def product_detail_page(request, slug):
 #     return render(request, 'Products/remove_product_page/remove_product_page.html')
 
 
-
-# def invalid_user_page(request):
-#     return render(request, 'Products/invalid_user_page/invalid_user_page.html')
-
-# def product_not_found_page(request):
-#     return render(request,'Product/product_not_found_page/product_not_found.html')
-
-# def product_deleted_successfully_page(request):
-#     return render(request, 'Products/product_deleted_successfully_page/product_deleted_successfully_page.html')
