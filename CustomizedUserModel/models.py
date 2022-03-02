@@ -1,30 +1,37 @@
 from django.contrib.auth.base_user import BaseUserManager
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
 class manager(BaseUserManager):
-    use_in_migration = True
-    def create_user(self, phone, password=None):
+    def _create_user(self, phone, password, **extra_fields):
         if not phone:
-            raise ValueError('you must have phone')
-        user = self.model(phone=phone)
+            raise ValueError('The given phone must be set')
+        user = self.model(phone=phone, **extra_fields)
+
         user.set_password(password)
         user.save(using=self._db)
         return user
-    
-    def create_superuser(self,phone,password):
-        user = self.create_user(phone, password)
-        user.is_superuser = True
-        # extra.setdefault('is_staff', True)
-        # extra.setdefault('is_superuser', True)
-        user.save(using=self._db)
+
+    def create_user(self, phone=None, password=None, **extra_fields):
+        extra_fields.setdefault('is_superuser', False)
+        return self._create_user(phone, password, **extra_fields)
+
+    def create_superuser(self, phone, password, **extra_fields):
+        extra_fields.setdefault('is_superuser', True)
+        extra_fields.setdefault('is_active', True)
+
+
+        if extra_fields.get('is_superuser') is not True:
+            raise ValueError('Superuser must have is_superuser=True.')
+
+        user = self._create_user(phone, password, **extra_fields)
         return user
 
     
 
 #  user model with 'phone' as username
-class Userperson(AbstractBaseUser):
+class Userperson(AbstractUser):
 
     gender_choice = [
         ('M', 'male'),

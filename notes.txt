@@ -1,1 +1,0 @@
-1. AbsractUser --> in order to work add AUTH_USER_MODEL into setting.
