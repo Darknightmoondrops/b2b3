@@ -48,56 +48,54 @@ def product_detail_page(request, slug):
 
 
 
-def add_product(request):
-    seller_user = Sellers.objects.filter(business_owner=request.user).filter(business_status=True)
-    if not seller_user:
-        return redirect('http://127.0.0.1:8000/product/invalid-user')
-    p_category = ProductCategories.objects.all()
-    if request.method == 'POST':
-        title = request.POST['title']
-        description = request.POST['description']  
-        price = request.POST['price']  
-        inventory = request.POST['inventory']
-        category = p_category.object.get(name = request.POST['category'])
-        seller = seller_user
-        p_data = Products.objects.create(
-                        title=title, 
-                        description=description, 
-                        price=price, 
-                        inventory=inventory, 
-                        category=category, 
-                        seller = seller
-                        )
-        p_data.save()
-    else : 
-        HttpResponse(request)
-    return render(request, 'Products/add_product/add_product.html')
+# def add_product_page(request):
+#     seller_user = Sellers.objects.filter(business_status=True ,business_owner=request.user).first()
+#     if not seller_user:
+#         return redirect('http://127.0.0.1:8000/product/invalid-user')
+#     if request.method == 'POST':
+#         title = request.POST['title']
+#         description = request.POST['description']  
+#         price = request.POST['price']  
+#         inventory = request.POST['inventory']
+#         category = ProductCategories.objects.filter(name=request.POST['category'])
+#         seller = seller_user
+#         p_data = Products.objects.create(
+#                         title=title, 
+#                         description=description, 
+#                         price=price, 
+#                         inventory=inventory, 
+#                         seller = seller
+#                         )
+#         p_data.category.add(category)
+#         p_data.save()
+#     # else : 
+#         # return redirect('not-save-template')
+#     return render(request, 'Products/add_product_page/add_product_page.html')
     
 
 
-def remove_product(request, title):
-    seller_user = Sellers.objects.get(business_owner=request.user).filter(business_status=True)
-    if not seller_user:
-        return redirect('http://127.0.0.1:8000/product/invalid-user')
-    product = Products.objects.get(title=title)
-    if product: 
-        product.delete()
-        # return HttpResponseRedirect('detelet_template') # if redirect is needed
-        # return redirect('success template')
-    # else : 
-    #     return redirect('not success template')
-
-
-def invalid_user(request):
-    return render(request, 'Products/add_product/invalid_user.html')
-    
-
-    
+# def remove_product_page(request):
+#     seller_user = Sellers.objects.filter(business_owner=request.user,business_status=True).first()
+#     if not seller_user:
+#         return redirect('http://127.0.0.1:8000/product/invalid-user')
+#     if request.method == 'POST':
+#         product = Products.objects.filter(title=request.POST['title']).first()
+#         if product: 
+#           product.delete()
+#           return redirect('http://127.0.0.1:8000/product/delete-successful')
+#         else : 
+#             return redirect('http://127.0.0.1:8000/product/not-Found')
+#     # else : 
+#     #     return redirect('not success template')
+#     return render(request, 'Products/remove_product_page/remove_product_page.html')
 
 
 
+# def invalid_user_page(request):
+#     return render(request, 'Products/invalid_user_page/invalid_user_page.html')
 
-    
+# def product_not_found_page(request):
+#     return render(request,'Product/product_not_found_page/product_not_found.html')
 
-
-
+# def product_deleted_successfully_page(request):
+#     return render(request, 'Products/product_deleted_successfully_page/product_deleted_successfully_page.html')
