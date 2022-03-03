@@ -3,6 +3,7 @@ from tabnanny import verbose
 from CustomizedUserModel.models import Userperson
 from Sellers.models import Sellers
 from django.db import models
+from django.utils.text import slugify
 
 # Products category model
 class ProductCategories(models.Model):
@@ -27,6 +28,10 @@ class Products(models.Model):
     
     def __str__(self):
         return f'{self.title}'
+    
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super(Products, self).save(*args, **kwargs)
 
 class ProductsComments(models.Model):
     user = models.ForeignKey(Userperson,on_delete=models.CASCADE,verbose_name='User')

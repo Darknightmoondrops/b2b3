@@ -1,9 +1,9 @@
-from http.client import HTTPResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from .models import Products, ProductsComments, ProductCategories
 from django.core.paginator import Paginator
-from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from Sellers.models import Sellers 
+from django.core.exceptions import PermissionDenied
+from django.http import HttpResponse
 
 """
 Views :
@@ -29,7 +29,8 @@ def products_list_page(request):
 
 
 def product_detail_page(request, slug):
-    product = get_object_or_404(Products, slug = slug)
+    product = Products.objects.filter(slug=slug).first()
+    # product = get_object_or_404(Products, title = title)
     # comments = ProductsComments.objects.filter(product__in= product.id, status=True).all()
     try : 
         comments = ProductsComments.objects.get(product=product.title)
@@ -48,45 +49,43 @@ def product_detail_page(request, slug):
 
 
 
-# def add_product_page(request):
-#     seller_user = Sellers.objects.filter(business_status=True ,business_owner=request.user).first()
-#     if not seller_user:
-#         return redirect('http://127.0.0.1:8000/product/invalid-user')
-#     if request.method == 'POST':
-#         title = request.POST['title']
-#         description = request.POST['description']  
-#         price = request.POST['price']  
-#         inventory = request.POST['inventory']
-#         category = ProductCategories.objects.filter(name=request.POST['category'])
-#         seller = seller_user
-#         p_data = Products.objects.create(
-#                         title=title, 
-#                         description=description, 
-#                         price=price, 
-#                         inventory=inventory, 
-#                         seller = seller
-#                         )
-#         p_data.category.add(category)
-#         p_data.save()
-#     # else : 
-#         # return redirect('not-save-template')
-#     return render(request, 'Products/add_product_page/add_product_page.html')
+def add_product_page(request):
+    seller_user = Sellers.objects.filter(business_status=True ,business_owner=request.user).first()
+    if not seller_user:
+        raise PermissionDenied('user is not seller')
+    if request.method == 'POST':
+        title = request.POST['title']
+        description = request.POST['description']  
+        price = request.POST['price']  
+        inventory = request.POST['inventory']
+        category = ProductCategories.objects.get(name=request.POST['category'])
+        seller = seller_user
+        p_data = Products.objects.create(
+                        title=title, 
+                        description=description, 
+                        price=price, 
+                        inventory=inventory, 
+                        seller = seller
+                        )
+        p_data.category.add(category)
+        p_data.save()
+    return render(request, 'Products/add_product_page/add_product_page.html')
     
 
 
-# def remove_product_page(request):
-#     seller_user = Sellers.objects.filter(business_owner=request.user,business_status=True).first()
-#     if not seller_user:
-#         return redirect('http://127.0.0.1:8000/product/invalid-user')
-#     if request.method == 'POST':
-#         product = Products.objects.filter(title=request.POST['title']).first()
-#         if product: 
-#           product.delete()
-#           return redirect('http://127.0.0.1:8000/product/delete-successful')
-#         else : 
-#             return redirect('http://127.0.0.1:8000/product/not-Found')
-#     # else : 
-#     #     return redirect('not success template')
-#     return render(request, 'Products/remove_product_page/remove_product_page.html')
+def remove_product_page(request):
+    seller_user = Sellers.objects.filter(business_owner=request.user,business_status=True).first()
+    if not seller_user:
+        raise PermissionDenied
+    if request.method == 'POST':
+        product = Products.objects.filter(title=request.POST['title']).first()
+        if product: 
+          product.delete()
+          return HttpResponse('delet success')
+        else : 
+            return HttpResponse('not found')
+    # else : 
+    #     return redirect('not success template')
+    return render(request, 'Products/remove_product_page/remove_product_page.html')
 
 

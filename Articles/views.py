@@ -7,7 +7,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import render
 from .models import Articles
 from CustomizedUserModel.models import Userperson
-from django.core.exceptions import ValidationError
+from django.core.exceptions import PermissionDenied
 
 
 """
@@ -41,8 +41,10 @@ def article_detail_page(request,id):
 
 def add_article_page(request):
     user_object = Userperson.objects.filter(phone=request.user,is_superuser=True).first()
+
     if not user_object.is_superuser:
-        raise ValidationError('user is not admin')
+        raise PermissionDenied('user is not admin')
+
     if request.method == 'POST':
         title = request.POST['title']
         writer = user_object
@@ -53,8 +55,7 @@ def add_article_page(request):
             title=title,
             writer=writer,
             keywords=keywords,
-            description=description
-        )
+            description=description)
         article.save()
     return render(request,'Articles/add_article_page/add_article_page.html', )
 
