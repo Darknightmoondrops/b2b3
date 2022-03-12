@@ -1,0 +1,201 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="keywords" content="{% block keywords %}{% endblock %}">
+    <meta name="description" content="{% block  description %}{% endblock %}">
+    <!--styles-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{% static 'home/style/new_style.css' %}" />
+    <link rel="stylesheet" href="{% static 'home/plugins/fontawesome/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'home/style/products.css' %}">
+    <link rel="stylesheet" href="{% static 'home/style/articles.css' %}">
+    <link rel="stylesheet" href="{% static 'home/style/about_style.css' %}">
+    <link rel="stylesheet" href="{% static 'home/style/contact_style.css' %}">
+    <!--/styles-->
+</head>
+
+<body>
+    <!--header-->
+    <section id="">
+        <!--  MENU -->
+
+        <nav style="direction: rtl;width: 100%; height: 80px; background-color: white; " class=" ">
+            <div class="" style="width: 100% ;height: 80px ;margin: 5px; direction: rtl; margin-right: 20px; display: flex; border-radius: 2px;">
+                <div onclick="menufunc()" style="display: inline-block;margin:25px 5% 25px 5%;">
+                    <a href="#" aria-expanded="false">
+                        <img style="width: 35px; height: 35px;" src="{% static 'home/icons/menu-icon' %}" alt="">
+                        <em class="droopmenu-topanim"></em>
+                    </a>
+                </div>
+                <div style="display: inline-block;margin: -25px 30% 0px 20% ;">
+                    <a href="./index.html">
+                        <img style="width: 220px; height: 140px;" src="{% static 'home/img/main-logo.png' %}" alt="">
+                    </a>
+                </div>
+
+                <div style="
+                        display: flex;
+                        margin-top:25px  ;
+                        margin-left: 20;
+                        flex-direction: row-reverse;float: left;">
+
+                    <div onclick="myFunction()" style="width:40px; height: 40px; margin: 0px 8%;">
+                        <a href="#"><img style="width:30px; height: 30px;" src="{% static 'home/icons/icon-19.png' %}" alt=""></a>
+                    </div>
+                    <div style="width:40px; height: 40px;margin: 0px 8%;" class="tooltip ">
+                        <a href="#"><img style=" width: 30px;
+                                    height: 30px;
+                                    " src="{% static 'home/icons/icon-21.png' %}" alt=""></a>
+
+                        <div class="tooltiptext" style="margin-top: 25px;">
+                            <a class="" href="#">ورود</a>/
+                            <a class="" href="#">ثبت نام</a>
+                        </div>
+                    </div>
+                    <div style="width:40px; height: 40px;margin: 0px 8%;">
+                        <a href="./cart.html">
+                            <img style="width: 30px; height: 30px;" src="{% static 'home/icons/icon-20.png' %}" alt="">
+                        </a>
+                    </div>
+                    <div style="width:40px; height: 40px;margin: 0px 8%;">
+                        <a href="./cart.html">
+                            <img style="width: 30px; height: 30px;" src="{% static 'home/icons/icon-22.png' %}" alt="">
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+ 
+    </section>
+    <!--header-->
+
+    {% block content %}
+    {% endblock %}
+    {% if messages %}
+        <div>
+            {% for message in messages %}
+            <div{% if message.tags %} class="massage {{ message.tags }}"{% endif %}>
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <footer class="footer">
+        <div class="footer-box">
+            <br>
+            <br>
+            <br>
+            <div class="main-logo-footer">
+                <a class="main-logo-footer-a" href="./index.html">
+                    <img class="main-logo-footer-img" src="{% static 'home/img/logo-removebg-preview.png' %}" alt="" />
+                </a>
+            </div>
+            <div class="loremtxt">
+
+                <h3 class="lorem">
+                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون<br> بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
+                </h3>
+            </div>
+            <div class="links">
+                <div class="company-name">
+                    <ol>
+                        <li class="head title"><a href="#"> همراه با نام شرکت</a></li>
+                        <li class="links-kid"><a href="{% url 'AboutUs:aboutus_page' %}"> درباره ما</a></li>
+                        <li class="links-kid"><a href="{% url 'ContactUs:contactus_page' %}"> تماس با ما</a></li>
+                        <li class="links-kid"><a href="#"> قوانین و مقررات</a></li>
+                        <li class="media">
+                            <div class="medialogo">
+                                <a href="#"><img src="{% static 'home/icons/icon-10.png' %}" alt=""></a>
+                            </div>
+                            <div class="medialogo">
+                                <a href="#"><img src="{% static 'home/icons/icon-11.png' %}" alt=""></a>
+                            </div>
+                            <div class="medialogo">
+                                <a href="#"><img src="{% static 'home/icons/icon-12.png' %}" alt=""></a>
+                            </div>
+                            <div class="medialogo">
+                                <a href="#"><img src="{% static 'home/icons/icon-13.png' %}" alt=""></a>
+                            </div>
+                            <div class="medialogo">
+                                <a href="#"><img src="{% static 'home/icons/icon-14.png' %}" alt=""></a>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+                <div class="sell-web">
+                    <ol>
+                        <li class="head title"><a class="bot-title" href="#"> فروش در سایت</a></li>
+                        <li class="links-kid"><a href="#"> ثبت نام تامین کننده</a></li>
+                        <li class="links-kid"><a href="#"> ورود تامین کننده</a></li>
+                        <li class="links-kid"><a href="#"> سوالات متداول تامین کننده</a></li>
+                        <li class="links-kid"><a href="#"> آموزش فروش</a></li>
+                    </ol>
+                </div>
+                <div class="buy-web">
+                    <ol>
+                        <li class="head title"><a class="bot-title" href="#"> خرید از سایت</a></li>
+                        <li class="links-kid"><a href="#"> روش استفاده از خدمات</a></li>
+                        <li class="links-kid"><a href="#"> روش خرید محصولات</a></li>
+                        <li class="links-kid"><a href="#"> سوالات متداول خریدار</a></li>
+                        <li class="links-kid"><a href="#"> محصول1</a></li>
+                    </ol>
+                </div>
+                <div class="last_article">
+                    <ol>
+                        <li class="head title"><a class="bot-title" href="#"> آخرین مقالات</a></li>
+                        <li class="links-kid"><a href="#"> مقاله 1</a></li>
+                        <li class="links-kid"><a href="#"> مقاله 2</a></li>
+                        <li class="links-kid"><a href="#"> مقاله 3</a></li>
+                        <li class="links-kid"><a href="#"> مقاله 4</a></li>
+                    </ol>
+                </div>
+            </div>
+            <div class="red-line">
+                <div class="div call"><img class="phone" src="{% static 'home/icons/icon-8.png' %}" alt="">
+                    <p class="div-p">021-234324</p>
+                </div>
+                <div class="div loc"><img class="location" src="{% static 'home/icons/icon-7.png' %}" alt="">
+                    <p class="div-p">تهران -خیابان - کوچه</p>
+                </div>
+                <div class="div"><img class="message" src="{% static 'home/icons/icon-6.png' %}" alt="">
+                    <p class="div-p">test@test.com</p>
+                </div>
+
+            </div>
+            <div class="botlane">
+                <div class="application ">
+                    <h3 class="application-text" id="h3">دانلود اپلیکیشن</h3>
+                    <div class="app-img">
+                        <a href="#"><img class="applogo" src="{% static 'home/img/appstore.png' %}" alt=""></a>
+                        <a href="#"><img class="applogo" src="{% static 'home/img/googleplay.png' %}" alt=""></a>
+                    </div>
+
+                </div>
+                <div class="validation-logo">
+                    <a href="#"><img class="valid-logo" src="{% static 'home/img/pic-15.png' %}" alt=""></a>
+                    <a href="#"><img class="valid-logo" src="{% static 'home/img/pic-16.png' %}" alt=""></a>
+                    <a href="#"><img class="valid-logo" src="{% static 'home/img/pic-17.png' %}" alt=""></a>
+                </div>
+            </div>
+            <div class="botlane-txt">
+                <p class="text-center">حق چاپ © 2022 . تمامی حقوق محفوظ است.</p>
+            </div>
+        </div>
+    </footer>
+    <!--script-->
+    <script src="{% static 'home/js/index.js' %}"></script>
+    <script src="{% static 'home/js/products.js' %}"></script>
+    <script src="{% static 'home/js/fixed.js' %}"></script>
+    <!-- <script src="{% static 'home/js/slider-mainPage.js' %}"></script> -->
+
+</body>
+
+
+</html>

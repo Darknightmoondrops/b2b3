@@ -6,21 +6,31 @@ from .models import *
 class ProductsCommentsAdmin(admin.ModelAdmin):
     list_display = ['user','status']
 
-@admin.register(ProductCategories)
-class ProductCategoriesAdmin(admin.ModelAdmin):
+@admin.register(ProductMainCategories)
+class ProductMainCategoriesAdmin(admin.ModelAdmin):
     list_display = ['name','status']
 
 
+@admin.register(ProductSubCategories_1)
+class ProductSubCategories_1Admin(admin.ModelAdmin):
+    list_display = ['name','status']
+
+@admin.register(ProductSubCategories_2)
+class ProductSubCategories_2Admin(admin.ModelAdmin):
+    list_display = ['name','status']
+    
+    
+    
 @admin.register(Products)
 class ProductsAdmin(admin.ModelAdmin):
     list_display = ['title','price','date','score', 'slug','inventory']
     prepopulated_fields = {'slug': ('title',)}
 
-@admin.register(TrackingCode)
-class TrackingCodeAdmin(admin.ModelAdmin):
+@admin.register(ProductsTrackingCode)
+class ProductsTrackingCodeAdmin(admin.ModelAdmin):
     list_dislplay = ['tracking_code', 'product', 'code_status','product_status']
 
-@admin.register(Scores)
+@admin.register(ProductsScores)
 class ScoresAdmin(admin.ModelAdmin):
     list_display = ('product', 'total_score',)
 

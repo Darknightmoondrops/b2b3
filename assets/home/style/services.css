@@ -1,0 +1,237 @@
+.sugg-page {
+    overflow-y: scroll;
+    transition: right 1s;
+    scrollbar-color: #F99687 #C6C6C6;
+    scrollbar-width: thin;
+}
+
+.prs-page {
+    overflow-y: scroll;
+    transition: right 1s;
+    scrollbar-color: #F99687 #C6C6C6;
+    scrollbar-width: thin;
+}
+
+.sugg-page-on {
+    background-color: #fff;
+    position: fixed;
+    width: 90%;
+    height: 90%;
+    right: 5%;
+    top: 20%;
+    bottom: 15%;
+    left: 5%;
+    z-index: 15;
+    margin: auto;
+}
+
+.prs-page-on {
+    background-color: #fff;
+    position: fixed;
+    width: 90%;
+    height: 90%;
+    right: 5%;
+    top: 20%;
+    bottom: 15%;
+    left: 5%;
+    z-index: 15;
+    margin: auto;
+}
+
+.sugg-page-off {
+    background-color: #fff;
+    position: fixed;
+    width: 90%;
+    height: 90%;
+    right: -200%;
+    top: 20%;
+    bottom: 15%;
+    left: 5%;
+    z-index: 15;
+}
+
+.prs-page-off {
+    background-color: #fff;
+    position: fixed;
+    width: 90%;
+    height: 90%;
+    right: -200%;
+    top: 20%;
+    bottom: 15%;
+    left: 5%;
+    z-index: 15;
+}
+
+.sugg-background {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: .4;
+    z-index: 10;
+}
+
+.prs-background {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: .4;
+    z-index: 10;
+}
+
+.service-title-page-txt {
+    width: 92%;
+    height: 70px;
+    font-size: 30px;
+    text-align: center;
+}
+
+.service-title-img-parent {
+    display: inline-block;
+    width: 4%;
+    height: 45px;
+}
+
+.service-title-img {
+    width: 40px;
+    height: 40px;
+    display: block;
+    margin: auto;
+}
+
+.sugg-selector {
+    display: block;
+    width: 90%;
+    height: 100px;
+    margin: auto;
+}
+
+.sugg-selector input {
+    width: 600px;
+    height: 60px;
+}
+
+.select1 {
+    display: inline-block;
+    position: relative;
+    min-width: 1300px;
+}
+
+.select1 svg {
+    position: absolute;
+    left: 2%;
+    top: calc(50% - 3px);
+    width: 10px;
+    height: 6px;
+    stroke-width: 2px;
+    stroke: #000000;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    pointer-events: none;
+}
+
+.select1 select {
+    -webkit-appearance: none;
+    padding: 7px 40px 7px 12px;
+    width: 100%;
+    border: 1px solid #e8eaed;
+    border-radius: 5px;
+    background: #fff;
+    box-shadow: 0 1px 3px -2px #9098a9;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 16px;
+    transition: all 150ms ease;
+}
+
+.select1 select:required:invalid {
+    color: #5a667f;
+}
+
+.select1 select option {
+    color: #223254;
+}
+
+.select1 select option[value=""][disabled] {
+    display: none;
+}
+
+.select1 select:focus {
+    outline: none;
+    border-color: #F26A4F;
+    box-shadow: 0 0 0 2px #F26A4F;
+}
+
+.select1 select:hover+svg {
+    stroke: #F26A4F;
+}
+
+.title-space-selector1 {
+    display: inline-block;
+    font-size: 25px;
+    color: #F26A4F;
+    width: 700px;
+}
+
+.sugg-btn {
+    width: 670px;
+    height: 90px;
+    display: block;
+    margin: auto;
+    background-color: #2ACB34;
+    color: #fff;
+    font-size: 30px;
+    text-align: center;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.prs-btn {
+    width: 670px;
+    height: 90px;
+    display: block;
+    margin: auto;
+    background-color: #2ACB34;
+    color: #fff;
+    font-size: 30px;
+    text-align: center;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.slide-text {
+    position: absolute;
+    width: 650px;
+    height: 380px;
+    background-color: #FFFFFF;
+    color: #F26A4F;
+    font-size: 69px;
+    text-align: center;
+    border-radius: 15px;
+    top: 27%;
+    left: 10%;
+}
+
+.slide-btn {
+    width: 583px;
+    height: 90px;
+    position: absolute;
+    background-color: #2ACB34;
+    color: #fff;
+    font-size: 30px;
+    text-align: center;
+    border-radius: 50px;
+    cursor: pointer;
+    cursor: pointer;
+    top: 64%;
+    left: 11%;
+    font-weight: bold;
+}

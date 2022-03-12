@@ -1,0 +1,23 @@
+body{
+    direction: rtl  ;
+}
+.content{
+    width: 100%;
+    height: auto;
+}
+.content-box{
+    background-image: url('../img/pic-18.png');
+    background-repeat: no-repeat;
+}
+.content-title{
+    padding: 50px;
+    color: darkblue;
+}
+.content-text{
+    padding: 50px;
+
+}
+.content-img{   
+    text-align: center;
+    margin: 100px 0 0 0  
+}

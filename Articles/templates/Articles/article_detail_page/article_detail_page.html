@@ -1,14 +1,130 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    {{ article.title }}
-    {{ article.desription }}
+{% extends 'base/base.html' %}
+{% load static %}
 
-</body>
-</html>
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block keywords %}
+    {{ article.keywords }}
+{% endblock %}
+
+{% block description %}
+    {{ article.short_description }}
+{% endblock %}
+
+{% block content %}
+      <div class="header-article">
+        <img class="header-article-img" src="{{ article.image.url }}" alt="{{ article.title }}">
+        <div class="header-article-details">
+            <h2>{{ article.title }}</h2>
+            <p class="header-article-details-p">{{ article.short_description }}</p>
+            <div class="header-text">
+                <div class="header-text-d"><img class="article-icon" src="{% static 'home/icons/icon-36.png' %}" alt="{{ article.writer }}">
+                    <p>{{ article.writer }}</p>
+                </div>
+                <div class="header-text-d"><img class="article-icon" src="{% static 'home/icons/icon-33.png' %}" alt="{{ article.jdate }}">
+                    <p>{{ article.jdate }}</p>
+                </div>
+                <div class="header-text-d"><img class="article-icon" src="{% static 'home/icons/icon-37.png' %}" alt="{{ article_hits }}">
+                    <p>{{ article_hits }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="all-article">
+        <div>
+            {{ article.description | safe }}
+        </div>
+
+        <div class="article-bott">
+            <div class="article-tags">
+                <div class="tags-title">
+                    <p>برچسب ها :</p>
+                </div>
+                {% for label in article.labels.all %}
+                <div class="tags">
+                    <a href="{% url 'articles:search_articles_page' %}?q={{ label.name }}">{{ label.name }} </a>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="article-likes">
+                <div class="likes">
+                    <img class="icon-bot" src="{% static 'home/icons/icon-38.png' %}" alt="اشتراک گذاری">
+                </div>
+
+                {% if like %}
+                    <div class="likes">
+                        <p class="likes-number">{{ like_count }}</p>
+                        <img style="margin: auto;display: block;" src="https://img.icons8.com/metro/90/000000/filled-like.png"/>
+                    </div>
+                {% else %}
+                <div class="likes">
+                    <a href="{% url 'articles:add_article_like' article.id %}">
+                    <p class="likes-number">{{ like_count }}</p>
+                    <img class="icon-bot" src="{% static 'home/icons/icon-39.png' %}" alt="پسندیدن">
+                    </a>
+                </div>
+                {% endif %}
+
+                <div class="likes">
+                    <p class="likes-number">{{ comment_count }}</p>
+                    <img class="icon-bot" src="{% static 'home/icons/icon-40.png' %}" alt="">
+                </div>
+            </div>
+        </div>
+        <div>
+            {% if request.user.is_authenticated %}
+                <h3>ثبت دیدگاه جدید</h3>
+                <p>شما هم درباره این کالا دیدگاه ثبت کنید</p>
+                <div class="all-name">
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <div class="all-name">
+                        <div class="name-comm">
+                            {{ form.first_name }}
+                        </div>
+                        <div class="name-comm">
+                            {{ form.last_name }}
+                        </div>
+                    </div>
+                    <div class="name-comm2">
+                        {{ form.comment }}
+                    </div>
+                    <input name="article_id" type="hidden" value="{{ article.id }}">
+                    <button class="comments-btn" type="submit">ارسال نظر</button>
+                </form>
+                </div>
+            {% else %}
+                <h3>ثبت دیدگاه جدید</h3>
+                <p>  با وارد شدن به حساب کاربری خود درباره این کالا دیدگاه ثبت کنید</p>
+            {% endif %}
+        </div>
+
+
+        <div class="comments">
+            <!--1-->
+            {% for comment in comments %}
+            <div class="comment1">
+                <div class="top-comment">
+                    <div class="profile">
+                        <div>
+                            <img class="prof-pic" src="{{ comment.user.image.url }}" alt="{{ comment.first_name }}">
+                        </div>
+                        <div class="name-prof">
+                            <p>{{ comment.first_name }} {{ comment.last_name }}</p>
+                        </div>
+                    </div>
+                    <div class="date">
+                        <p>{{ comment.jdate }}</p>
+                    </div>
+                </div>
+                <div>
+                    <p>{{ comment.comment }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+{% endblock %}

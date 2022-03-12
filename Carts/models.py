@@ -1,5 +1,5 @@
 from CustomizedUserModel.models import Userperson
-from Products.models import ProductCategories
+from Products.models import ProductSubCategories_1
 from Sellers.models import Sellers
 from django.db import models
 
@@ -19,7 +19,7 @@ class Orders(models.Model):
     price = models.IntegerField(blank=True,null=True,verbose_name='Price')
     discounted_price = models.IntegerField(blank=True,null=True,verbose_name='Discounted Price')
     seller = models.ForeignKey(Sellers,on_delete=models.CASCADE,verbose_name='Seller')
-    category = models.ManyToManyField(ProductCategories,verbose_name='Category')
+    category = models.ManyToManyField(ProductSubCategories_1,verbose_name='Category')
     score = models.IntegerField(default=1,verbose_name='Score')
     payment_date = models.DateTimeField(auto_created=True,verbose_name='Payment Date')
     payment_status = models.BooleanField(default=True,verbose_name='Payment Status')

@@ -27,7 +27,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 'rest_framework',
-    'CustomizedUserModel', # Customized User Model
+    'extensions',
+    'CustomizedUserModel.apps.CustomizedUserModelConfig', # Customized User Model
+    'Home.apps.HomeConfig', # Home
     'SiteSettings.apps.SitesettingsConfig', # Site Settings 
     'Articles.apps.ArticlesConfig', # Articles
     'AboutUs.apps.AboutusConfig', # About us

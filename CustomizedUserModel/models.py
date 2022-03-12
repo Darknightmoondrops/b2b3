@@ -53,7 +53,7 @@ class Userperson(AbstractUser):
     is_superuser = models.BooleanField(default=False,blank=True,null=True,verbose_name='Is Super User')
     objects = manager()
     USERNAME_FIELD = 'phone'
-    # REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['fullname']
 
     def is_staff(self):
         return self.is_superuser
