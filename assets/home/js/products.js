@@ -51,35 +51,35 @@ function pagechenger(n) {
 }
 
 
-//============================== change page vert ================
-var pagenumber8 = 1;
-pagechengers(pagenumber8);
-
-
-function pluspages(n) {
-    pagechengers(pagenumber8 += n)
-}
-
-function pageslides(n) {
-    pagechengers(pagenumber8 = n);
-}
-
-function pagechengers(n) {
-    var i;
-    var pageVert = document.getElementsByClassName("products-page-one");
-
-    var number1 = document.getElementsByClassName("pages");
-    if (n > pageVert.length) { pagenumber8 = 1 }
-    if (n < 1) { pagenumber8 = pageVert.length }
-    for (i = 0; i < pageVert.length; i++) {
-        pageVert[i].style.display = "none";
-    }
-    for (i = 0; i < number1.length; i++) {
-        number1[i].classList.remove("pageActive");
-    }
-    pageVert[pagenumber8 - 1].style.display = "block";
-    number1[pagenumber8 - 1].classList.add("pageActive");
-}
+// //============================== change page vert ================
+// var pagenumber8 = 1;
+// pagechengers(pagenumber8);
+//
+//
+// function pluspages(n) {
+//     pagechengers(pagenumber8 += n)
+// }
+//
+// function pageslides(n) {
+//     pagechengers(pagenumber8 = n);
+// }
+//
+// function pagechengers(n) {
+//     var i;
+//     var pageVert = document.getElementsByClassName("products-page-one");
+//
+//     var number1 = document.getElementsByClassName("pages");
+//     if (n > pageVert.length) { pagenumber8 = 1 }
+//     if (n < 1) { pagenumber8 = pageVert.length }
+//     for (i = 0; i < pageVert.length; i++) {
+//         pageVert[i].style.display = "none";
+//     }
+//     for (i = 0; i < number1.length; i++) {
+//         number1[i].classList.remove("pageActive");
+//     }
+//     pageVert[pagenumber8 - 1].style.display = "block";
+//     number1[pagenumber8 - 1].classList.add("pageActive");
+// }
 //========================================= filter ================================
 function filterbox(n) {
     var filterboxEl = document.getElementsByClassName("filter-products-box");

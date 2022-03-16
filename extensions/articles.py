@@ -29,7 +29,7 @@ def visitor_ip_address(request,article_id):
         ip = request.META.get('REMOTE_ADDR')
     check_article_hit = ArticlesHits.objects.filter(ip=ip,article_id=article_id).first()
     if check_article_hit is None:
-        article_hit_create = ArticlesHits.objects.filter(ip=ip,article_id=article_id)
-
+        article_hit_create = ArticlesHits.objects.create(ip=ip,article_id=article_id)
+ 
 
     return ip

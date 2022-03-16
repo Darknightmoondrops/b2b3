@@ -38,8 +38,9 @@ class Userperson(AbstractUser):
         ('F', "female")
     ]
     roles = [
+        ('user', 'User'),
         ('seller', 'Seller'),
-        ('shopper', 'Shopper'), 
+        ('shopper', 'Shopper'),
         ('serviceman', 'Serviceman')
     ]
     username = None
@@ -54,6 +55,9 @@ class Userperson(AbstractUser):
     objects = manager()
     USERNAME_FIELD = 'phone'
     REQUIRED_FIELDS = ['fullname']
+
+    def __str__(self):
+        return f'{self.fullname}'
 
     def is_staff(self):
         return self.is_superuser

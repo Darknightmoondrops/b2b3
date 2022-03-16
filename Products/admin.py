@@ -18,13 +18,24 @@ class ProductSubCategories_1Admin(admin.ModelAdmin):
 @admin.register(ProductSubCategories_2)
 class ProductSubCategories_2Admin(admin.ModelAdmin):
     list_display = ['name','status']
-    
-    
-    
+
+
+@admin.register(ProductsColor)
+class ProductsColorAdmin(admin.ModelAdmin):
+    list_display = ['name','code']
+
+@admin.register(ProductsSizes)
+class ProductsSizesAdmin(admin.ModelAdmin):
+    list_display = ['name']
+
 @admin.register(Products)
 class ProductsAdmin(admin.ModelAdmin):
     list_display = ['title','price','date','score', 'slug','inventory']
-    prepopulated_fields = {'slug': ('title',)}
+    prepopulated_fields = {'slug': ('title',)}\
+
+@admin.register(ProductsPhotos)
+class ProductsPhotosAdmin(admin.ModelAdmin):
+    list_display = ['product','image']
 
 @admin.register(ProductsTrackingCode)
 class ProductsTrackingCodeAdmin(admin.ModelAdmin):
@@ -32,5 +43,9 @@ class ProductsTrackingCodeAdmin(admin.ModelAdmin):
 
 @admin.register(ProductsScores)
 class ScoresAdmin(admin.ModelAdmin):
-    list_display = ('product', 'total_score',)
+    list_display = ['product', 'total_score']
+
+@admin.register(ProductsSlides)
+class ProductsSlidesAdmin(admin.ModelAdmin):
+    list_display = ['url']
 

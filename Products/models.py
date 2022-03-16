@@ -7,6 +7,7 @@ from django.db import models
 # Products category model
 class ProductMainCategories(models.Model):
     name = models.CharField(max_length=999,verbose_name='Name')
+    image = models.ImageField(upload_to='ProductMainCategoriesImage',blank=True,null=True,verbose_name='Image')
     status = models.BooleanField(default=False,verbose_name='Status')
     
     
@@ -30,26 +31,60 @@ class ProductSubCategories_2(models.Model):
     def __str__(self):
         return f'{self.name}'
 
+
+class ProductsColor(models.Model):
+    name = models.CharField(max_length=150, blank=False)
+    code = models.CharField(max_length=300)
+
+    def __str__(self):
+        return f'{self.name}'
+
+
+class ProductsSizes(models.Model):
+    name = models.CharField(max_length=150, blank=False)
+
+    def __str__(self):
+        return f'{self.name}'
+
 # Products models
 class Products(models.Model):
     title = models.CharField(max_length=999,blank=True,null=True,verbose_name='Title')
     slug = models.TextField(max_length=999)
+    image = models.ImageField(upload_to='productsImage',blank=True,null=True,verbose_name='Image')
     description = models.TextField(verbose_name='Description')
+    short_description = models.TextField(blank=True,null=True,verbose_name='Short Description')
     price = models.IntegerField(blank=True,null=True,verbose_name='Price')
-    discounted_price = models.IntegerField(blank=True,null=True,verbose_name='Discounted Price')
+    discounted_price = models.IntegerField(default=0,blank=True,null=True,verbose_name='Discounted Price')
     seller = models.ForeignKey(Sellers,on_delete=models.CASCADE,verbose_name='Seller')
     category = models.ManyToManyField(ProductSubCategories_1,verbose_name='Category')
+    colors = models.ManyToManyField(ProductsColor,blank=True,verbose_name='Colors')
+    sizes = models.ManyToManyField(ProductsSizes,blank=True,verbose_name='Sizes')
     score = models.IntegerField(default=1,verbose_name='Score')
     date = models.DateTimeField(auto_now_add=True,blank=True,null=True,verbose_name='Date')
-    inventory = models.IntegerField(blank=False,verbose_name='Inventory')
+    inventory = models.IntegerField(default=0,blank=False,verbose_name='Inventory')
     
     def __str__(self):
         return f'{self.title}'
 
     def jdate(self):
         return django_jalali(self.date)
+
+    def percentage(self):
+        if self.discounted_price !=0:
+            number3 = self.discounted_price / self.price
+            number3 = number3 * 100
+            number4 = 100 - number3
+
+            return f'{round(number4)}%'
+        else:
+            return 0
     
-    
+class ProductsPhotos(models.Model):
+    product = models.ForeignKey(Products,on_delete=models.CASCADE,verbose_name='Product')
+    image = models.ImageField(upload_to='ProductsPhotos',verbose_name='Image')
+
+    def __str__(self):
+        return f'{self.product} - {self.image}'
 
 class ProductsComments(models.Model):
     user = models.ForeignKey(Userperson,on_delete=models.CASCADE,verbose_name='User')
@@ -75,12 +110,7 @@ class ProductsTrackingCode(models.Model):
     def __str__(self):
         return f'{self.tracking_code}'
     
-class ProductsColor(models.Model):
-    name = models.CharField(max_length=150, blank=False)
-    color_code = models.CharField(max_length=300)
 
-    def __str__(self):
-        return f'{self.name}'
     
 class ProductsScores(models.Model):
     product = models.ForeignKey(Products, on_delete=models.CASCADE, verbose_name='Prodcut ID', related_name='product')
@@ -89,3 +119,10 @@ class ProductsScores(models.Model):
     def __str__(self):
         return f'{self.total_score}'
 
+
+class ProductsSlides(models.Model):
+    image = models.ImageField(upload_to='ProductsSlides',verbose_name='Image')
+    url = models.URLField(verbose_name='Url')
+
+    def __str__(self):
+        return f"{self.url}"

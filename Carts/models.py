@@ -21,6 +21,7 @@ class Orders(models.Model):
     seller = models.ForeignKey(Sellers,on_delete=models.CASCADE,verbose_name='Seller')
     category = models.ManyToManyField(ProductSubCategories_1,verbose_name='Category')
     score = models.IntegerField(default=1,verbose_name='Score')
+    product_id = models.IntegerField(blank=True,null=True,verbose_name='Product id')
     payment_date = models.DateTimeField(auto_created=True,verbose_name='Payment Date')
     payment_status = models.BooleanField(default=True,verbose_name='Payment Status')
     

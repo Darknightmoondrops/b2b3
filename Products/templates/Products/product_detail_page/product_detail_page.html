@@ -1,27 +1,648 @@
+{% extends 'base/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Document</title>
-</head>
-<body>
-    <h2>{( product.title )}
-    {{ product.description }}s
-    {{ product.price }}
-    {{ product.score }}</h2>
-    {% if comments %}
-    {% for comment in comments %}
-    {{ comments.comment }}
-    {% endfor %}
-    {% else %}
-        No comment
-    {% endif %}
- 
-    <form method="post">
-        <h3>add a new comment</h3>
-        {% csrf_token %}
-    <p><input type="text" name = "new_comment" value="Add comment"></p>
-    <input type="submit">
-</form>
-</body>
-</html>
+
+
+{% block content %}
+
+    <div style="width: 100%;background-color: #f7f7f7;">
+        <div style="display: flex; width: 80%;margin: 10px auto; background-color: #f7f7f7;">
+            <div  style="width: 60%;display: flex; direction: ltr;" >
+                <div style=" width: 100%;display: flex;">
+
+                    {% if next_product %}
+                         <div class="forward-linkss">
+                             <a style="width: 80%; margin: 25px -30px ; display: flex;" href="{% url 'Products:product_detail_page' next_product.slug %}">بعد
+                                 <div class="go-forward-icon ">  </div>  </a>
+                             <div class="go-forward" style=" width: 200px;height: 80px;display: flex;direction: rtl;">
+                                 <div class="" style="display: block; width: 120px; justify-content: center;background-color: #f7f7f7;">
+                                     <p style="font-size: 10px;">{{ next_product.title }}</p>
+                                     {% if next_product.discounted_price %}
+                                        <p  style="font-size: 10px;color:#F26A4F ;">{{ next_product.discounted_price }} تومان</p>
+                                    {% else %}
+                                        <p  style="font-size: 10px;color:#F26A4F ;">{{ next_product.price }} تومان </p>
+                                    {% endif %}
+                                 </div>
+                                 <div style=" ">
+                                    <div class=""></div>
+                                     <img style="width: 80px; height: 80px;" src="{{ next_product.image.url }}" alt="{{ next_product.title }}">
+                                 </div>
+                             </div>
+                         </div>
+                {% endif %}
+
+                    {% if previous_product %}
+                         <div class="back-linkss">
+                             <a  style="width: 80%; margin: 10px 10px ; display: flex;"  href="{% url 'Products:product_detail_page' previous_product.slug %}">
+                                <p style="margin-right: 50px;">قبل</p>
+                                <div class="go-back-icon "></div></a>
+                             <div class="go-backs" style=" width: 200px;height: 80px;display: flex;direction: rtl;">
+                                 <div style=" ">
+                                     <img style="width: 80px; height: 80px;" src="{{ previous_product.image.url }}" alt="{{ previous_product.title }}">
+                                 </div>
+                                 <div class="" style="display: block; width: 120px; justify-content: center;background-color: #f7f7f7;">
+                                     <p style="font-size: 10px;">{{ previous_product.title }}</p>
+                                     {% if previous_product.discounted_price %}
+                                        <p  style="font-size: 10px;color:#F26A4F ;">{{ previous_product.discounted_price }} تومان</p>
+                                    {% else %}
+                                        <p  style="font-size: 10px;color:#F26A4F ;">{{ previous_product.price }} تومان </p>
+                                    {% endif %}
+                                 </div>
+
+                             </div>
+                         </div>
+                    {% endif %}
+                </div>
+
+             </div>`
+        </div>
+        <section id="slider" class="" style="width: 80%;justify-content: center; display: flex;margin: auto auto; background-color: #f7f7f7;">
+
+
+
+            <div class="containerdetails">
+                <div class="all-dot-btnditails">
+
+
+
+                        {% for ProductsPhoto  in products_photos %}
+
+                             <button type="button" class="dot-btndetails slide-activedetails" onclick="currentpic({{ forloop.counter }})">
+                             <img class="slidedetails" src="{{ product.image.url }}" alt="...">
+                             <img class="slidedetails" src="{{ ProductsPhoto.image.url }}" alt="...">
+                        {% endfor %}
+                </button>
+
+                </div>
+
+                <div style="display: flex;" class="">
+                    <div class="nxt-btnditails" onclick="addSlides(1)">
+                        <div class="nxt-btnditails-img"></div>
+                    </div>
+
+                    <div class="carousel-item fade">
+                        <img class="slide-imgditils" src="{{ product.image.url }}" alt="...">
+                    </div>
+                    <div class="carousel-item fade">
+                        <img class="slide-imgditils" src="{% static 'home/img/pic-30.png' %}" alt="...">
+                    </div>
+
+                    <div class="pre-btnditails" onclick="addSlides(-1)">
+                        <div class="pre-btnditails-img"></div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="form-left-box">
+                <ol>
+                    <li class="form-item " style="display: flex; width: 100%;">
+                        <div class="div-style">
+                            <h2 style=" color: #F26A4F;" class=""> {{ product.title }}</h2>
+                        </div>
+                        <div style="direction: ltr; margin-top: 25px;" class="detailsrate div-style">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <p style="color: black;margin-left: 5px; margin-top: -10px;">({{ product.score }})</p>
+                        </div>
+                    </li>
+                    <li style="display: flex; width: 100%;">
+                        <p style="margin-top: -8px; margin-right: -1px;" class="form-title">
+                           {{ product.short_description }}
+                        </p>
+                    </li>
+
+                    <li class="form-item " style="display: flex; width: 100%;">
+                        <div class="div-style">
+                            <h4 class=""> رنگ :</h4>
+                            {% for color in product.colors.all %}
+                                <div class="div-color {{ color.code }} "></div>
+                            {% endfor %}
+
+                        </div>
+
+                        <div style="margin-right: 53px;" class="div-style">
+                            <h4 class=""> سایز :</h4>
+                            {% for size in product.sizes.all %}
+                                <p class="div-text">{{ size }}</p>
+                            {% endfor %}
+
+                        </div>
+                    </li>
+
+                    <li class="form-item " style="display: flex; width: 100%;">
+                        <div class="div-style" style="border-radius: 10px 10px  ;">
+                            <div style="display: flex;border-radius: 10px 10px; margin-top: 20px;">
+                                <div>
+                                    <p class="cunt-div">+</p>
+                                </div>
+                                <div>
+                                    <p class="cunt-div">1</p>
+                                </div>
+                                <div>
+                                    <p class="cunt-div">-</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="direction: ltr;" class="div-style">
+                            {% if product.discounted_price %}
+                                <div class="sec-price" dir="rtl">{{ product.discounted_price }} تومان</div>
+                                <div class="main-price" dir="rtl">{{ product.price }} تومان</div>
+                            {% else %}
+                                    <div class="sec-price" >{{ product.price }} تومان </div>
+                            {% endif %}
+
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="pro-btn2">
+                            <button class="form-btn2" type="button">افزودن به سبد خرید</button>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+            <!-- <div class="detailstext">
+            <div class="ditailstextcontent">
+                <h3></h3>
+
+            </div>
+            <div>
+                <p class="ditailstextcontent">
+                  </p>
+            </div>
+
+        </div> -->
+        </section>
+    </div>
+
+    <!--   slider   -->
+
+
+    <section class="product">
+
+
+    </section>
+
+    <section id="detailswrapper">
+        <div class="detailscontent">
+            <!-- Tab links -->
+            <div class="detailstabs">
+                <button class="detailstablinks detailsactive" data-valuetxt="firstdetails"><p data-title="معرفی "> معرفی</p></button>
+                <button class="detailstablinks" data-valuetxt="seconddetails"><p data-title=" جزئیات">جزئیات </p></button>
+                <button class="detailstablinks" data-valuetxt="thirddetails"><p data-title="فروشنده ">فروشنده </p></button>
+                <button class="detailstablinks" data-valuetxt="fourthdetails"><p data-title=" نظرات">نظرات </p></button>
+            </div>
+
+            <!-- Tab content -->
+            <div class="detailswrapper_tabcontent">
+                <div id="firstdetails" class="detailstabcontent detailsactive">
+                    <!-- <h3> معرفی</h3> -->
+                    <p>
+                        {{ product.description }}
+                    </p>
+                </div>
+
+                <div id="seconddetails" class="detailstabcontent">
+                    <!-- <h3> جزئیات</h3> -->
+                    <div class="detailstabdiv">
+                        <p class="detailstabp">ابعاد</p>
+                        <p class="detailstabp">سانتی متر 14×12×12</p>
+                    </div>
+                    <div class="detailstabdiv">
+                        <p class="detailstabp">وزن</p>
+                        <p class="detailstabp"> گرم 25</p>
+                    </div>
+                    <div class="detailstabdiv">
+                        <p class="detailstabp">تعداد</p>
+                        <p class="detailstabp"> یک عدد </p>
+                    </div>
+                    <div class="detailstabdiv">
+                        <p class="detailstabp">جنس بدنه</p>
+                        <p class="detailstabp"> چوب</p>
+                    </div>
+                    <div class="detailstabdiv">
+                        <p class="detailstabp">جنس در</p>
+                        <p class="detailstabp"> چوب</p>
+                    </div>
+                </div>
+
+                <div id="thirddetails" class="detailstabcontent">
+                    <!-- <h3> فرشنده</h3> -->
+                    <div class="detailstabdiv2">
+                        <h4>فروشگاه گالری قرتی</h4>
+                        <h2>80%</h2>
+                        <h3>رضایت مشتری ها از کالاهای این فروشگاه</h3>
+                        <p>آدرس : ایران - تهران - سلام</p>
+                        <p>آدرس : ایران - تهران - سلام</p>
+                        <p>آدرس : ایران - تهران - سلام</p>
+                    </div>
+                </div>
+
+                <div id="fourthdetails" class="detailstabcontent">
+                    <!-- <h3> نظرات</h3> -->
+                    <div class="detailstabdiv3">
+                        <img class="profileimg" src="{% static 'home/img/profile.jpeg' %}" />
+                        <div class="detailstabdiv22">
+                            <p>علی علیزاده</p>
+                            <p>تیر 22</p>
+                            <p style="margin: 50px -50px 0 0 ;">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
+                        </div>
+                        <div class="detailsrate">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                    </div>
+                    <div style="display: block; width: 100%;">
+                        <h4 style="color: #F26A4F;">ثبت دیدگاه جدید</h4>
+                        <p>شما هم درباره این کالا دیدگاه ثب کنید</p>
+                        <div class="form-details">
+                            <!-- <ol> -->
+
+                            <li class="form-item-details " style="display: flex;">
+                                <input type="text" class="form-input2" placeholder="نام" />
+                                <input type="text" class="form-input2" placeholder="نام خانوادگی" />
+                            </li>
+
+                            <li class="form-item-details  " style="display: flex; width: 94%;">
+                                <div style=" width: 100%;">
+                                    <textarea class="form-input-textarea2" placeholder="متن پیام" name="textarea-input" rows="5" cols="50"></textarea>
+
+                                </div>
+                            </li>
+                            <div class="detailstabdiv3">
+                                <p>ثبت امتیاز شما :</p>
+                                <div class="detailsrate2">
+
+                                    <i class=""><img src="{% static 'home/icons/starr.png' %}"/></i>
+                                    <i class=""><img src="{% static 'home/icons/starr.png' %}"/></i>
+                                    <i class=""><img src="{% static 'home/icons/starr.png' %}"/></i>
+                                    <i class=""><img src="{% static 'home/icons/starr.png' %}"/></i>
+                                    <i class=""><img src="{% static 'home/icons/starr.png' %}"/></i>
+
+                                </div>
+                            </div>
+                            <!-- <li> -->
+                            <div class="pro-btn22">
+                                <button class="form-btn" type="button">ارسال نظر</button>
+                            </div>
+                            <!-- </li> -->
+
+                            <!-- </ol> -->
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="product-slider">
+        <h1 class="title1">محصولات مشابه</h1>
+        <section class="product">
+            <div class="nxt-btn" onclick="plusslides1(1)">
+                <div class="nxt-btn-img"></div>
+            </div>
+
+            <div class="p1-page">
+                <div id="product-container-id" class="product-container">
+                    <div class="product-box">
+                        <div class="image-parent">
+                            <a href="#">
+                                <img class="image" src="{% static 'home/img/pic-12.png' %}" alt="">
+                            </a>
+                            <div>
+                                <a href="#">
+                                    <img class="icon1" src="{% static 'home/icons/icon-9.png' %}" alt="">
+                                </a>
+                            </div>
+                            <div>
+                                <a href="#">
+                                    <img class="icon2" src="{% static 'home/icons/icon-23.png' %}" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="details">
+
+                            <a href="#">
+                                <h2>میز چوبی</h2>
+                            </a>
+                            <div class="rate">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="price">2.000.000T</div>
+                        </div>
+                    </div>
+
+                    <div class="product-box">
+                        <a href="#">
+                            <img class="image" src="{% static 'home/img/pic-13.png' %}" alt="">
+                        </a>
+                        <div class="details">
+
+                            <a href="#">
+                                <h2>میز چوبی</h2>
+                            </a>
+                            <div class="rate">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="price">2.000.000T</div>
+
+
+                        </div>
+                    </div>
+                    <div class="product-box">
+                        <a href="#">
+                            <img class="image" src="{% static 'home/img/pic-14.png' %}" alt="">
+                        </a>
+                        <div class="details">
+
+                            <a href="#">
+                                <h2>میز چوبی</h2>
+                            </a>
+                            <div class="rate">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="price">2.000.000T</div>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="p1-page">
+                <div id="product-container-id" class="product-container">
+                    <div class="product-box">
+                        <div class="image-parent">
+                            <a href="#">
+                                <img class="image" src="{% static 'home/img/pic-12.png' %}" alt="">
+                            </a>
+                            <div>
+                                <a href="#">
+                                    <img class="icon1" src="{% static 'home/icons/icon-9.png' %}" alt="">
+                                </a>
+                            </div>
+                            <div>
+                                <a href="#">
+                                    <img class="icon2" src="{% static 'home/icons/icon-23.png' %}" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="details">
+
+                            <a href="#">
+                                <h2>میز چوبی</h2>
+                            </a>
+                            <div class="rate">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="price">2.000.000T</div>
+                        </div>
+                    </div>
+
+                    <div class="product-box">
+                        <a href="#">
+                            <img class="image" src="{% static 'home/img/pic-13.png' %}" alt="">
+                        </a>
+                        <div class="details">
+
+                            <a href="#">
+                                <h2>میز چوبی</h2>
+                            </a>
+                            <div class="rate">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="price">2.000.000T</div>
+
+
+                        </div>
+                    </div>
+                    <div class="product-box">
+                        <a href="#">
+                            <img class="image" src="{% static 'home/img/pic-14.png' %}" alt="">
+                        </a>
+                        <div class="details">
+
+                            <a href="#">
+                                <h2>میز چوبی</h2>
+                            </a>
+                            <div class="rate">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="price">2.000.000T</div>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="p1-page">
+                <div id="product-container-id" class="product-container">
+                    <div class="product-box">
+                        <div class="image-parent">
+                            <a href="#">
+                                <img class="image" src="{% static 'home/img/pic-12.png' %}" alt="">
+                            </a>
+                            <div>
+                                <a href="#">
+                                    <img class="icon1" src="{% static 'home/icons/icon-9.png' %}" alt="">
+                                </a>
+                            </div>
+                            <div>
+                                <a href="#">
+                                    <img class="icon2" src="{% static 'home/icons/icon-23.png' %}" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="details">
+
+                            <a href="#">
+                                <h2>میز چوبی</h2>
+                            </a>
+                            <div class="rate">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="price">2.000.000T</div>
+                        </div>
+                    </div>
+
+                    <div class="product-box">
+                        <a href="#">
+                            <img class="image" src="{% static 'home/img/pic-13.png' %}" alt="">
+                        </a>
+                        <div class="details">
+
+                            <a href="#">
+                                <h2>میز چوبی</h2>
+                            </a>
+                            <div class="rate">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="price">2.000.000T</div>
+
+
+                        </div>
+                    </div>
+                    <div class="product-box">
+                        <a href="#">
+                            <img class="image" src="{% static 'home/img/pic-14.png' %}" alt="">
+                        </a>
+                        <div class="details">
+
+                            <a href="#">
+                                <h2>میز چوبی</h2>
+                            </a>
+                            <div class="rate">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="price">2.000.000T</div>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="p1-page">
+                <div id="product-container-id" class="product-container">
+                    <div class="product-box">
+                        <div class="image-parent">
+                            <a href="#">
+                                <img class="image" src="{% static 'home/img/pic-12.png' %}" alt="">
+                            </a>
+                            <div>
+                                <a href="#">
+                                    <img class="icon1" src="{% static 'home/icons/icon-9.png' %}" alt="">
+                                </a>
+                            </div>
+                            <div>
+                                <a href="#">
+                                    <img class="icon2" src="{% static 'home/icons/icon-23.png' %}" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="details">
+
+                            <a href="#">
+                                <h2>میز چوبی</h2>
+                            </a>
+                            <div class="rate">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="price">2.000.000T</div>
+                        </div>
+                    </div>
+
+                    <div class="product-box">
+                        <a href="#">
+                            <img class="image" src="{% static 'home/img/pic-13.png' %}" alt="">
+                        </a>
+                        <div class="details">
+
+                            <a href="#">
+                                <h2>میز چوبی</h2>
+                            </a>
+                            <div class="rate">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="price">2.000.000T</div>
+
+
+                        </div>
+                    </div>
+                    <div class="product-box">
+                        <a href="#">
+                            <img class="image" src="{% static 'home/img/pic-14.png' %}" alt="">
+                        </a>
+                        <div class="details">
+
+                            <a href="#">
+                                <h2>میز چوبی</h2>
+                            </a>
+                            <div class="rate">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="price">2.000.000T</div>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="pre-btn" onclick="plusslides1(-1)">
+                <div class="pre-btn-img"></div>
+            </div>
+        </section>
+        <div class="all-dot" style="text-align: center" dir="ltr">
+            <button onclick="currentslide1(1)" class="dot1 dot-active"></button>
+            <button onclick="currentslide1(2)" class="dot1"></button>
+            <button onclick="currentslide1(3)" class="dot1"></button>
+            <button onclick="currentslide1(4)" class="dot1"></button>
+        </div>
+    </div>
+{% endblock %}

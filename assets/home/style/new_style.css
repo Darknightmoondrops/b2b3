@@ -1,6 +1,6 @@
 @font-face {
     font-family: "sansfont";
-    src: url("../../asset/fonts/Sans\ a4fran3/Sans a4fran3.woff");
+    src: url("../fonts/Sans-a4fran3/Sans-a4fran3.woff");
 }
 
 body {
@@ -2075,23 +2075,23 @@ input[type="range"]::-moz-range-thumb {
     grid-template-columns: auto auto auto;
 }
 
-.products-page-one {
-    display: none;
-}
+
 
 .hori-list {
     display: block;
 }
 
 .page-slider {
-    display: flex;
-    justify-content: space-evenly;
+
     width: 370px;
     height: 60px;
     margin: auto;
     margin-top: 7%;
 }
-
+.page-number {
+     display: flex;
+    justify-content: space-evenly;
+}
 .page-icon {
     cursor: pointer;
 }
@@ -2136,7 +2136,7 @@ input[type="range"]::-moz-range-thumb {
 /********************************* vertical product ***********************/
 
 .vert-list {
-    display: none;
+    display: block;
     margin-top: 4%;
 }
 

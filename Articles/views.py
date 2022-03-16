@@ -20,7 +20,7 @@ Views :
 
 
 def articles_list_page(request):
-    articles = Articles.objects.all()
+    articles = Articles.objects.get_queryset().order_by('id')
     paginator = Paginator(articles, 12)
     page_number = request.GET.get('page')
     pages = paginator.get_page(page_number)
@@ -81,7 +81,7 @@ def search_articles_page(request):
     except:
         return redirect('Articles:articles_list_page')
 
-    articles = Articles.objects.filter(Q(title=search) | Q(labels__name__icontains=search) | Q(description=search) | Q(short_description=search)).distinct()
+    articles = Articles.objects.filter(Q(title=search) | Q(labels__name__icontains=search) | Q(description=search) | Q(short_description=search)).order_by('id').all()
     paginator = Paginator(articles, 12)
     page_number = request.GET.get('page')
     pages = paginator.get_page(page_number)

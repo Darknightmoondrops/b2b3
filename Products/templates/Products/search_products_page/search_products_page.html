@@ -1,0 +1,533 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+    <!-----------------------------------------------      body       ---------------------------------------------->
+       <!--   slider   -->
+       <section id="slider" class="">
+        <div class="container">
+            <div class="carousel-inner">
+                {% for slide in products_slides %}
+                <div class="carousel-item fade">
+                    <a class="slide" href="{{ slide.url }}"><img class="slide-img" src="{{ slide.image.url }}" alt="اسلاید"></a>
+                </div>
+                {% endfor %}
+
+
+            </div>
+            <div class="all-dot-btn">
+                {% for slide in products_slides %}
+                    <button type="button" class="dot-btn slide-active" onclick="currentSlide({{ forloop.counter }})"></button>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+
+    <section class="products">
+        <div class="category-bar">
+            <div class="category">
+                <a href="{% url 'Products:product_list_page' %}"> محصولات  / {{ order_by }}</a>
+            </div>
+            <div class="show-mode">
+                <div class="show-mode-p1" onclick="changepage(1)">
+                    <img class="show-mode-p1-img" src="{% static 'home/icons/icon-25.png' %}" alt="">
+                </div>
+                <div class="show-mode-p2 show-mode-border" onclick="changepage(2)">
+                    <img class="show-mode-p2-img" src="{% static 'home/icons/icon-24.png' %}" alt="">
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="filter-bar">
+            <div class="filter-part1 filter">
+                <span class="filter-part1-txt">محصول مرتبط یافت شد {{ count }}</span>
+            </div>
+            <div class="filter-part2 filter">
+                <span class="filter-part2-btn">مرتب سازی<img src="{% static 'home/icons/icon-28.png' %}" alt=""></span>
+                <div class="filter-part2-dropdown">
+                    <span class="filter-dropdown-txt"><a href="{% url 'products:order_by_page' %}?q=mostexpensive">گرانترین</a></span>
+                    <span class="filter-dropdown-txt"><a href="{% url 'products:order_by_page' %}?q=cheapest">ارزان ترین</a></span>
+                    <span class="filter-dropdown-txt"><a href="{% url 'products:order_by_page' %}?q=bestselling">پرفروش ترین</a></span>
+                    <span class="filter-dropdown-txt"><a href="{% url 'products:order_by_page' %}?q=newest">جدید ترین</a></span>
+                </div>
+            </div>
+            <div class="filter-part3 filter">
+                <div>
+                    <span class="filter-part2-btn" onclick="filterbox(1)">فیلتر محصولات</span>
+                </div>
+            </div>
+            <div class="filter-box">
+                <div class="background" onclick="filterbox(2)"></div>
+                <div class=" filter-products-box filter-products-off">
+                    <div class="filter-products-titles-all">
+                        <p class="filter-products-title">فیلتر محصولات</p>
+                        <img class="filter-products-img" src="{% static 'home/icons/icon-29.png' %}" alt="" onclick="filterbox(2)">
+                    </div>
+                    <div class="price-filter">
+                        <div class="filter-titles">
+                            <p>محدوده قیمت</p>
+                            <img src="{% static 'home/icons/icon-30.png' %}" alt="">
+                        </div>
+                        <div class="center">
+                            <div class="price text-violet">
+                                <p>از</p><input class="show-price" type="number" value="2500">
+                                <p>تا</p><input class="show-price" type="number" value="7500">
+                            </div>
+                            <div class="slider">
+                                <div class="progress"></div>
+                            </div>
+                            <div class="multi-range">
+                                <input class="range-min" id="min" type="range" min="0" max="7500000" value="0" step="10000" />
+                                <input class="range-max" id="max" type="range" min="0" max="7500000" value="7500000" step="10000" />
+                            </div>
+                        </div>
+                        <div class="brand">
+                            <div class="filter-titles">
+                                <p>برند</p>
+                                <img src="{% static 'home/icons/icon-30.png' %}" alt="">
+                            </div>
+                            <div class="brand-searchbox">
+                                <form class="brand-searchbox-all" action="">
+                                    <input class="brand-searchbox-in" type="text" placeholder="جستوجو">
+                                    <button class="brand-searchbox-btn" type="submit"><img src="{% static 'home/icons/icon-27.png' %}" alt=""></button>
+                                </form>
+                                <div>
+                                    <div class="brand-checkbox">
+                                        <input class="checkbox-inp" type="checkbox" id="brand1">
+                                        <label for="brand1"><p class="brand-checkbox-p1">لیمون</p><p class="brand-checkbox-p2">limon</p></label>
+                                    </div>
+                                    <div class="brand-checkbox">
+                                        <input class="checkbox-inp" type="checkbox" id="brand2">
+                                        <label for="brand2"><p class="brand-checkbox-p1">ایکیا</p><p class="brand-checkbox-p2">limoka</p></label>
+                                    </div>
+                                    <div class="brand-checkbox">
+                                        <input class="checkbox-inp" type="checkbox" id="brand3">
+                                        <label for="brand3"><p class="brand-checkbox-p1">هوم کت</p><p class="brand-checkbox-p2">homeket</p></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="color-selector">
+                            <p class="color-selector-title">رنگ</p>
+                            <div class="color-select-all">
+                                <div class="color-select">
+                                    <div class="colors">
+                                        <p>صورتی</p><span class="pink color-back"></span></div>
+                                    <div class="colors">
+                                        <p>آبی</p><span class="blue color-back"></span></div>
+                                    <div class="colors">
+                                        <p>زرد</p><span class="yellow color-back"></span></div>
+                                    <div class="colors">
+                                        <p>سبز</p><span class="green color-back"></span></div>
+                                    <div class="colors">
+                                        <p>بنفش</p><span class="purple color-back"></span></div>
+                                    <div class="colors">
+                                        <p>قرمز</p><span class="red color-back"></span></div>
+                                </div>
+                                <div class="all-colors">
+                                    <div class="color" onclick="pink()">
+                                        <p>صورتی</p><span class="pink color-back"></span></div>
+                                    <div class="color" onclick="blue()">
+                                        <p>آبی</p><span class="blue color-back"></span></div>
+                                    <div class="color" onclick="yellow()">
+                                        <p>زرد</p><span class="yellow color-back"></span></div>
+                                    <div class="color" onclick="green()">
+                                        <p>سبز</p><span class="green color-back"></span></div>
+                                    <div class="color" onclick="purple()">
+                                        <p>بنفش</p><span class="purple color-back"></span></div>
+                                    <div class="color" onclick="red()">
+                                        <p>قرمز</p><span class="red color-back"></span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="filter-titles">
+                        <li>
+                            <input type="checkbox" checked>
+                            <i></i>
+                            <h4>نوع فروشنده</h4>
+                            <p style="display: grid ">
+                            </p>
+                        </li>
+                    </ul>
+                    <ul class="filter-titles">
+                        <li>
+                            <input type="checkbox" checked>
+                            <i></i>
+                            <h4>نوع فروشنده</h4>
+                            <p style="display: grid ">
+                            </p>
+                        </li>
+                    </ul>
+                    <ul class="filter-titles">
+                        <li>
+                            <input type="checkbox" checked>
+                            <i></i>
+                            <h4>نوع فروشنده</h4>
+                            <p style="display: grid ">
+                            </p>
+                        </li>
+                    </ul>
+                    <ul class="filter-titles">
+                        <li>
+                            <input type="checkbox" checked>
+                            <i></i>
+                            <h4>نوع فروشنده</h4>
+                            <p style="display: grid ">
+                            </p>
+                        </li>
+                    </ul>
+                    <ul class="filter-titles">
+                        <li>
+                            <input type="checkbox" checked>
+                            <i></i>
+                            <h4>نوع فروشنده</h4>
+                            <p style="display: grid ">
+                            </p>
+                        </li>
+                    </ul>
+                    <ul class="filter-titles">
+                        <li>
+                            <input type="checkbox" checked>
+                            <i></i>
+                            <h4>نوع فروشنده</h4>
+                            <p style="display: grid ">
+                            </p>
+                        </li>
+                    </ul>
+                    <div class="filter-btn-all">
+                        <button class="filter-btn" type="submit">اعمال فیلتر</button>
+                    </div>
+
+                </div>
+
+                <div class="filter-part4 filter">
+                    <form action="" method="get">
+                        <input class="filter-part4-btn-input" type="text" placeholder="جستوجو" name="q">
+                        <button class="filter-part4-btn" type="submit"><img src="{% static 'home/icons/icon-27.png' %}" alt=""></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+<!-------- horiz list  ---------->
+<div class="hori-list">
+    <div class="products-page">
+        <div class="products-all-box">
+            {% for product in pages %}
+                <div class="product-box">
+                            <div class="image-parent">
+                                <a href="{% url 'Products:product_detail_page' product.slug %}">
+                                    <img class="image" src="{{ product.image.url }}" alt="{{ product.title }}">
+                                </a>
+                                <div>
+                                    <a href="#">
+                                        <img class="icon1" src="{% static 'home/icons/icon-9.png' %}" alt="">
+                                    </a>
+                                </div>
+                                <div>
+                                    <a href="#">
+                                        <img class="icon2" src="{% static 'home/icons/icon-23.png' %}" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="details">
+
+                                <a href="{% url 'Products:product_detail_page' product.slug %}">
+                                    <h2>{{ product.title }}</h2>
+                                </a>
+                                <div class="rate">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                           <div class="all-price">
+                                {% if product.discounted_price %}
+                                <div class="sec-price" >{{ product.discounted_price }} تومان</div>
+                                <div class="main-price" >{{ product.price }} تومان</div>
+                                {% else %}
+                                    <div class="sec-price" >{{ product.price }} تومان </div>
+                                {% endif %}
+                                </div>
+                            </div>
+                        </div>
+            {% endfor %}
+
+        </div>
+    </div>
+    </div>
+
+
+
+</div>
+        
+        <div class="vert-list">
+
+                {% for product in pages %}
+                    {% if product.inventory %}
+                        <div class="product-box-vert">
+                            <div class="image-parent-vert">
+                                <a href="{% url 'Products:product_detail_page' product.slug %}">
+                                    <img class="image-vert" src="{{ product.image.url }}" alt="{{ product.title }}">
+                                    {% if product.percentage %}
+                                        <span class="token-vert">{{ product.percentage }}</span>
+                                    {% endif %}
+                                </a>
+                                <div>
+                                    <a href="#">
+                                        <img class="icon1" src="{% static 'home/icons/icon-9.png' %}" alt="">
+                                    </a>
+                                </div>
+                                <div>
+                                    <a href="#">
+                                        <img class="icon2" src="{% static 'home/icons/icon-23.png' %}" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="details-vert">
+                                <div class="details-vert-title">
+                                    <a href="{% url 'Products:product_detail_page' product.slug %}">
+                                        <h2>{{ product.title }}</h2>
+                                    </a>
+                                    <div class="rate-vert">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                </div>
+                                <div class="details-vert-text">
+                                    <p>{{ product.description | truncatechars:400 }}</p>
+                                </div>
+                                <div class="details-vert-bot">
+                                    <div class="remaining-number">تنها {{ product.inventory }} عدد باقی مانده</div>
+                                    {% if product.discounted_price %}
+                                        <div class="price-vert" >{{ product.discounted_price }} تومان </div>
+                                    {% else %}
+                                        <div class="price-vert" >{{ product.price }} تومان </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+            {% endfor %}
+
+
+
+
+        </div>
+
+        <div class="page-slider">
+
+        <div class="page-number" dir="ltr">
+                {% if pages.has_previous %}
+                    <a  href="?q={{ search }}&page={{ pages.previous_page_number }}"><div class="page-icon"><img class="page-icon-img" src="{% static 'home/icons/icon-34.png' %}" alt=""></div></a>
+                    <a  href="?q={{ search }}&page={{ pages.previous_page_number }}"><span class="page1 page " style="color: black;background-color: #fff">{{ pages.previous_page_number }}</span></a>
+
+                {% endif %}
+                <a  href="?q={{ search }}&page={{ pages.number }}"><span class="page1 page" style="color: #fff;background-color: #F26A4F;">{{ pages.number }}</span></a>
+                {% if pages.has_next %}
+                    <a href="?q={{ search }}&page={{ pages.next_page_number }}"><span class="page1 page " >{{ pages.next_page_number }}</span></a>
+                    <a href="?q={{ search }}&page={{ pages.next_page_number }}"><div class="page-icon"><img class="page-icon-img" src="{% static 'home/icons/icon-35.png' %}" alt=""></div></a>
+                {% endif %}
+        </div>
+
+    </div>
+
+    </section>
+    <!------------------------------------------------------  /body  ------------------------------------------------>
+    <!-------------------------------------------      product slider 1     ---------------------------------------->
+    <div class="product-slider">
+        <h1 class="title1">محصولات پرفروش</h1>
+        <section class="product">
+            <div class="nxt-btn" onclick="plusslides5(1)">
+                <img src="{% static 'home/icons/icon-15.png' %}" alt="arrow" />
+            </div>
+
+            <div class="p5-page">
+                <div id="product-container-id" class="product-container">
+
+                    {% for BestSellingProducts in best_selling_products %}
+                        <div class="product-box">
+                        <div class="image-parent">
+                            <a href="{% url 'Products:product_detail_page' BestSellingProducts.slug %}">
+                                <img class="image" src="{{ BestSellingProducts.image.url }}" alt="{{ BestSellingProducts.title }}">
+                            </a>
+                            <div>
+                                <a href="#">
+                                    <img class="icon1" src="{% static 'home/icons/icon-9.png' %}" alt="">
+                                </a>
+                            </div>
+                            <div>
+                                <a href="#">
+                                    <img class="icon2" src="{% static 'home/icons/icon-23.png' %}" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="details">
+
+                            <a href="{% url 'Products:product_detail_page' BestSellingProducts.slug %}">
+                                <h2>{{ BestSellingProducts.title }}</h2>
+                            </a>
+                            <div class="rate">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            {% if BestSellingProducts.discounted_price %}
+                                <div class="price">{{ BestSellingProducts.discounted_price }} تومان </div>
+                            {% else %}
+                                <div class="price">{{ BestSellingProducts.price }} تومان </div>
+                            {% endif %}
+
+
+                        </div>
+
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+
+
+            <div class="pre-btn" onclick="plusslides5(-1)">
+                <img src="{% static 'home/icons/icon-16.png' %}" alt="arrow" />
+            </div>
+        </section>
+        <div class="all-dot" style="text-align: center" dir="ltr">
+            <button onclick="currentslide5(1)" class="dot5 dot-active"></button>
+            <button onclick="currentslide5(2)" class="dot5"></button>
+            <button onclick="currentslide5(3)" class="dot5"></button>
+            <button onclick="currentslide5(4)" class="dot5"></button>
+        </div>
+    </div>
+    <!------------------------------------------     /product slider 1      ---------------------------------------->
+    <!-------------------------------------------      product slider 2     ---------------------------------------->
+    <div class="product-slider">
+        <h1 class="title1">پیشنهاد ویژه</h1>
+        <section class="product">
+            <div class="nxt-btn" onclick="plusslides6(1)">
+                <img src="{% static 'home/icons/icon-15.png' %}" alt="arrow" />
+            </div>
+
+
+            <div class="p6-page">
+                <div id="product-container-id" class="product-container">
+                    {% for specialProducts in special_products %}
+                        {% if specialProducts.inventory %}
+                            <div class="product-box">
+                                <div class="image-parent">
+                                    <a href="{% url 'Products:product_detail_page' specialProducts.slug %}">
+                                        <img class="image" src="{{ specialProducts.image.url }}" alt="">
+                                    </a>
+                                    <div>
+                                        <a href="#">
+                                            <img class="icon1" src="{% static 'home/icons/icon-9.png' %}" alt="">
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a href="#">
+                                            <img class="icon2" src="{% static 'home/icons/icon-23.png' %}" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="details">
+
+                                    <a href="{% url 'Products:product_detail_page' specialProducts.slug %}">
+                                        <h2>{{ specialProducts.title }}</h2>
+                                    </a>
+                                    <div class="rate">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    {% if  specialProducts.discounted_price %}
+                                        <div class="price">{{ specialProducts.discounted_price }} تومان </div>
+                                    {% else %}
+                                        <div class="price">{{ specialProducts.discounted_price }} تومان </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+
+
+                </div>
+            </div>
+
+
+            <div class="pre-btn" onclick="plusslides6(-1)">
+                <img src="{% static 'home/icons/icon-16.png' %}" alt="arrow" />
+            </div>
+        </section>
+        <div class="all-dot" style="text-align: center" dir="ltr">
+            <button onclick="currentslide6(1)" class="dot6 dot-active"></button>
+            <button onclick="currentslide6(2)" class="dot6"></button>
+            <button onclick="currentslide6(3)" class="dot6"></button>
+            <button onclick="currentslide6(4)" class="dot6"></button>
+        </div>
+    </div>
+    <!------------------------------------------     /product slider 2      ---------------------------------------->
+    <!-------------------------------------------      product slider 3     ---------------------------------------->
+    <div class="product-slider">
+        <h1 class="title1">پرفروش ترین دسته بندی ها</h1>
+        <section class="product">
+            <div class="nxt-btn" onclick="plusslides7(1)">
+                <img src="{% static 'home/icons/icon-15.png' %}" alt="arrow" />
+            </div>
+
+            <div class="p7-page">
+                <div id="product-container-id" class="product-container">
+                    {% for BestSellingCategories in best_selling_categories %}
+                        <div class="product-box">
+                        <div class="image-parent">
+                            <a href="">
+                                <img class="image" src="{{ BestSellingCategories.image.url }}" alt="{{ BestSellingCategories.name }}">
+                            </a>
+                            <div>
+                                <a href="#">
+                                    <img class="icon1" src="{% static 'home/icons/icon-9.png' %}" alt="">
+                                </a>
+                            </div>
+                            <div>
+                                <a href="#">
+                                    <img class="icon2" src="{% static 'home/icons/icon-23.png' %}" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="details">
+
+                            <a href="#">
+                                <h2>{{ BestSellingCategories.name }}</h2>
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+
+
+                </div>
+            </div>
+
+
+            <div class="pre-btn" onclick="plusslides7(-1)">
+                <img src="{% static 'home/icons/icon-16.png' %}" alt="arrow" />
+            </div>
+        </section>
+        <div class="all-dot" style="text-align: center" dir="ltr">
+            <button onclick="currentslide7(1)" class="dot7 dot-active"></button>
+            <button onclick="currentslide7(2)" class="dot7"></button>
+            <button onclick="currentslide7(3)" class="dot7"></button>
+            <button onclick="currentslide7(4)" class="dot7"></button>
+        </div>
+    </div>
+
+{% endblock %}
