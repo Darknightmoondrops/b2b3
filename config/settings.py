@@ -26,7 +26,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'rest_framework',
+    'rest_framework',
+     'rest_framework.authtoken',
     'extensions',
     'CustomizedUserModel.apps.CustomizedUserModelConfig', # Customized User Model
     'Home.apps.HomeConfig', # Home
@@ -102,6 +103,20 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 1,
+
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+
+
+
+
+
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
