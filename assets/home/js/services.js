@@ -252,22 +252,94 @@ rangeInput.forEach(input => {
 });
 
 //======================================= change mode ======================================
-function changepage(n) {
-    var mode2 = document.getElementsByClassName("hori-list");
-    var mode1 = document.getElementsByClassName("vert-list");
-    var bordshow1 = document.getElementsByClassName("show-mode-p1");
-    var bordshow2 = document.getElementsByClassName("show-mode-p2");
-
+//========================================= filter ================================
+function filterbox(n) {
+    var filterboxEl = document.getElementsByClassName("filter-products-box");
+    var blackback = document.getElementsByClassName("background");
     if (n == 1) {
-        mode1[0].style.display = "block";
-        mode2[0].style.display = "none";
-        bordshow2[0].classList.remove("show-mode-border");
-        bordshow1[0].classList.add("show-mode-border");
+        filterboxEl[0].classList.remove("filter-products-off");
+        filterboxEl[0].classList.add("filter-products");
+        blackback[0].style.display = "block";
     }
     if (n == 2) {
-        mode1[0].style.display = "none";
-        mode2[0].style.display = "block";
-        bordshow1[0].classList.remove("show-mode-border");
-        bordshow2[0].classList.add("show-mode-border");
+        filterboxEl[0].classList.remove("filter-products");
+        filterboxEl[0].classList.add("filter-products-off");
+        blackback[0].style.display = "none";
+    }
+}
+//==================================== filter box ============================
+let indexnumber = 0;
+
+function numberplus(n) {
+    boxcover(indexnumber += n)
+}
+
+function boxcover(n) {
+    var detailBox = document.getElementsByClassName("brand-searchbox");
+    var img = document.getElementsByClassName("filter-title-img");
+    if (n == 1) {
+        detailBox[0].classList.remove("brand-off");
+        img[1].classList.add("rotate-img");
+    }
+    if (n == 2) {
+        detailBox[0].classList.add("brand-off");
+        img[1].classList.remove("rotate-img");
+        indexnumber = 0;
+    }
+}
+
+let indexnumberS = 0;
+
+function clickme(n) {
+    boxcover1(indexnumberS += n)
+}
+
+function boxcover1(n) {
+    var detailBox1 = document.getElementsByClassName("center");
+    var img = document.getElementsByClassName("filter-title-img");
+    if (n == 1) {
+        detailBox1[0].classList.remove("brand-off");
+        img[0].classList.add("rotate-img");
+    }
+    if (n == 2) {
+        detailBox1[0].classList.add("brand-off");
+        img[0].classList.remove("rotate-img");
+        indexnumberS = 0;
+    }
+}
+let indexnumberSS = 0;
+
+function clickmepls(n) {
+    boxcover2(indexnumberSS += n)
+}
+
+function boxcover2(n) {
+    var detailBox2 = document.getElementsByClassName("type-seller");
+    var img = document.getElementsByClassName("filter-title-img");
+    if (n == 1) {
+        detailBox2[0].classList.remove("brand-off");
+        img[2].classList.add("rotate-img");
+    }
+    if (n == 2) {
+        detailBox2[0].classList.add("brand-off");
+        img[2].classList.remove("rotate-img");
+        indexnumberSS = 0;
+    }
+}
+//================================= search brand =====================
+function searchBrand() {
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("p")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
     }
 }

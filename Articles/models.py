@@ -20,12 +20,20 @@ class Articles(models.Model):
     description = models.TextField(verbose_name='Description', default='a  description')
     short_description = models.TextField(blank=True,null=True,verbose_name='Short description', default='a short description')
     labels = models.ManyToManyField(ArticlesLabels,verbose_name='Labels')
+
+    @property
+    def writer_fullname(self):
+        return self.writer.fullname
+
+    @property
+    def jdate(self):
+        return django_jalali(self.date)
     
     def __str__(self):
         return f'{self.title}'
 
-    def jdate(self):
-        return django_jalali(self.date)
+
+
 
 
 class ArticlesHits(models.Model):

@@ -283,23 +283,11 @@
     z-index: 15;
 }
 
-.background {
-    display: none;
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: black;
-    opacity: .4;
-    z-index: 10;
-}
-
 .multi-range {
     position: relative;
     height: 40px;
     direction: ltr;
-    width: 80%;
+    width: 82%;
     margin: auto;
 }
 
@@ -338,12 +326,14 @@ input[type="range"]::-moz-range-thumb {
 .text-violet {
     display: flex;
     justify-content: space-evenly;
-    width: 100%;
+    width: 82%;
     font-size: 27px;
+    margin: auto;
 }
 
 .text-violet p {
-    margin-top: 5px;
+    margin-top: 15px;
+    color: #585858;
 }
 
 .show-price {
@@ -374,8 +364,8 @@ input[type="range"]::-moz-range-thumb {
 
 .slider .progress {
     height: 100%;
-    left: 25%;
-    right: 25%;
+    left: 0;
+    right: 0;
     position: absolute;
     border-radius: 5px;
     background: #F26A4F;
@@ -383,10 +373,12 @@ input[type="range"]::-moz-range-thumb {
 
 .filter-titles {
     display: block;
+    cursor: pointer;
+    transition: height .5s
 }
 
-.filter-titles {
-    display: block;
+.filter-titles:hover {
+    background-color: #eeeeee;
 }
 
 .filter-titles h4,
@@ -408,6 +400,16 @@ p {
     display: inline-block;
     width: 25px;
     height: 25px;
+}
+
+.brand-off {
+    display: none;
+    height: 0;
+    transition: height .5s;
+}
+
+.rotate-img {
+    transform: rotate(180deg);
 }
 
 .color-back {
@@ -491,8 +493,9 @@ p {
 }
 
 .brand-checkbox {
-    display: block;
-    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    width: 95%;
     margin: auto;
 }
 
@@ -505,18 +508,21 @@ p {
 .brand-checkbox-p1 {
     width: 69%;
     text-align: right;
+    color: black;
 }
 
 .brand-checkbox-p2 {
     width: 20%;
     text-align: left;
+    color: black;
 }
 
 .color-selector {
     position: relative;
     display: flex;
     justify-content: space-around;
-    width: 100%;
+    width: 96%;
+    margin-top: 4%;
 }
 
 .color-selector-title {
@@ -524,8 +530,8 @@ p {
     display: inline-block;
     font-size: 25px;
     margin: auto;
-    margin-left: 4%;
-    margin-top: 2%;
+    margin-top: 1%;
+    margin-right: 3%;
 }
 
 .color-select-all {
@@ -534,10 +540,24 @@ p {
 }
 
 .checkbox-inp {
-    margin-right: 5px;
-    width: 25px;
-    height: 25px;
-    border-radius: 5px 5px;
+    margin-right: 5px !important;
+    width: 50px !important;
+    height: 50px !important;
+    border-radius: 5px 5px !important;
+    position: relative !important;
+    z-index: 0 !important;
+    opacity: 1 !important;
+}
+
+.textBar-search {
+    width: 90%;
+    padding: 3%;
+    font-size: 25px;
+    color: black !important;
+}
+
+.tik-box {
+    padding-top: 7%;
 }
 
 .color-select {
@@ -557,8 +577,12 @@ p {
     border-radius: 5px;
     position: absolute;
     width: 600px;
-    height: 400px;
+    height: 390px;
     z-index: 16;
+    margin-top: -8px;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: #F99687 #C6C6C6;
 }
 
 .color-select-all:hover .all-colors {
@@ -579,7 +603,19 @@ p {
     cursor: pointer;
 }
 
+.current-color {
+    display: none;
+    cursor: pointer;
+}
+
 .color p {
+    display: inline-block;
+    width: 88%;
+    font-size: 25px;
+    line-height: 15px;
+}
+
+.current-color p {
     display: inline-block;
     width: 88%;
     font-size: 25px;
@@ -759,4 +795,29 @@ p {
     border-radius: 30px 0%;
     text-align: center;
     font-size: 27px;
+}
+
+.ul-search {
+    display: block;
+    margin: auto;
+}
+
+.slider-product {
+    width: 80%;
+    display: block;
+    margin: auto;
+    height: 50%;
+}
+
+.splide__slide img {
+    width: 100%;
+    height: auto;
+}
+
+.brand-searchbox {
+    margin-top: 4%;
+}
+
+.center {
+    margin-top: 4%;
 }

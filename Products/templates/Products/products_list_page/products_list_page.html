@@ -47,10 +47,10 @@
             <div class="filter-part2 filter">
                 <span class="filter-part2-btn">مرتب سازی<img src="{% static 'home/icons/icon-28.png' %}" alt=""></span>
                 <div class="filter-part2-dropdown">
-                    <span class="filter-dropdown-txt"><a href="{% url 'products:order_by_page' %}?q=mostexpensive">گرانترین</a></span>
-                    <span class="filter-dropdown-txt"><a href="{% url 'products:order_by_page' %}?q=cheapest">ارزان ترین</a></span>
-                    <span class="filter-dropdown-txt"><a href="{% url 'products:order_by_page' %}?q=bestselling">پرفروش ترین</a></span>
-                    <span class="filter-dropdown-txt"><a href="{% url 'products:order_by_page' %}?q=newest">جدید ترین</a></span>
+                    <span class="filter-dropdown-txt"><a href="{% url 'Products:order_by_page' %}?q=mostexpensive">گرانترین</a></span>
+                    <span class="filter-dropdown-txt"><a href="{% url 'Products:order_by_page' %}?q=cheapest">ارزان ترین</a></span>
+                    <span class="filter-dropdown-txt"><a href="{% url 'Products:order_by_page' %}?q=bestselling">پرفروش ترین</a></span>
+                    <span class="filter-dropdown-txt"><a href="{% url 'Products:order_by_page' %}?q=newest">جدید ترین</a></span>
                 </div>
             </div>
             <div class="filter-part3 filter">
@@ -204,7 +204,7 @@
                 </div>
 
                 <div class="filter-part4 filter">
-                    <form action="{% url 'products:search_products_page' %}?page={{ pages.number }}" method="get">
+                    <form action="{% url 'Products:search_products_page' %}?page={{ pages.number }}" method="get">
                         <input class="filter-part4-btn-input" type="text" placeholder="جستوجو" name="q">
                         <button class="filter-part4-btn" type="submit"><img src="{% static 'home/icons/icon-27.png' %}" alt=""></button>
                     </form>

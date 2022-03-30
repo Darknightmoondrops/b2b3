@@ -3,8 +3,10 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
+from extensions.products import *
 from .serializers import *
 from .models import *
+
 
 
 @api_view(['GET'])
@@ -22,8 +24,10 @@ def products_comments_list(request):
     paginator.page_size = 12
     products_comments = ProductsComments.objects.all()
     result_page = paginator.paginate_queryset(products_comments, request)
-    data = ProductsCommentsSerializers(products_comments,many=True).data
+    data = ProductsCommentsSerializers(result_page,many=True).data
     return paginator.get_paginated_response(data)
+
+
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
@@ -36,3 +40,62 @@ def products_comments_add(request):
         return Response({"message": "Could not create, information is incorrect"})
 
 
+@api_view(["GET"])
+def products_discounts(request):
+    LatestDiscountsProducts = Products.objects.filter(id__in=latest_discounts_products()).order_by('id')
+    paginator = PageNumberPagination()
+    paginator.page_size = 12
+    result_page = paginator.paginate_queryset(LatestDiscountsProducts, request)
+    data = ProductsCommentsSerializers(result_page,many=True).data
+    return paginator.get_paginated_response(data)
+
+@api_view(["GET"])
+def products_offers(request):
+    special_products = Products.objects.filter(id__in=specialProducts()).order_by('id')
+    paginator = PageNumberPagination()
+    paginator.page_size = 12
+    result_page = paginator.paginate_queryset(special_products, request)
+    data = ProductsCommentsSerializers(result_page,many=True).data
+    return paginator.get_paginated_response(data)
+
+
+@api_view(["GET"])
+def products_mostexpensive(request):
+    MostExpensiveProdcuts = Products.objects.filter(id__in=most_expensive_prodcuts()).order_by('id')
+    paginator = PageNumberPagination()
+    paginator.page_size = 12
+    result_page = paginator.paginate_queryset(MostExpensiveProdcuts, request)
+    data = ProductsCommentsSerializers(result_page,many=True).data
+    return paginator.get_paginated_response(data)
+
+
+@api_view(["GET"])
+def products_cheapest(request):
+    cheapestProducts = Products.objects.filter(id__in=cheapest_products()).order_by('id')
+    paginator = PageNumberPagination()
+    paginator.page_size = 12
+    result_page = paginator.paginate_queryset(cheapestProducts, request)
+    data = ProductsCommentsSerializers(result_page,many=True).data
+    return paginator.get_paginated_response(data)
+
+
+
+@api_view(["GET"])
+def products_bestselling(request):
+    best_selling_products = Products.objects.filter(id__in=BestSelling_products()).order_by('id')
+    paginator = PageNumberPagination()
+    paginator.page_size = 12
+    result_page = paginator.paginate_queryset(best_selling_products, request)
+    data = ProductsCommentsSerializers(result_page,many=True).data
+    return paginator.get_paginated_response(data)
+
+
+
+@api_view(["GET"])
+def products_newest(request):
+    products = Products.objects.order_by('-id').all()
+    paginator = PageNumberPagination()
+    paginator.page_size = 12
+    result_page = paginator.paginate_queryset(products, request)
+    data = ProductsCommentsSerializers(result_page,many=True).data
+    return paginator.get_paginated_response(data)

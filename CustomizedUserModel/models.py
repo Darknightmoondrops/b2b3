@@ -58,6 +58,8 @@ class Userperson(AbstractUser):
 
     def __str__(self):
         return f'{self.fullname}'
+    def __call__(self):
+        return f'{self.fullname}'
 
     def is_staff(self):
         return self.is_superuser

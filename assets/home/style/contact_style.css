@@ -1,6 +1,6 @@
 @font-face {
     font-family: "sansfont";
-    src: url("../fonts/Sans-a4fran3/Sans-a4fran3.woff");
+    src: url("../../asset/fonts/Sans\ a4fran3/Sans a4fran3.woff");
 }
 
 body {
@@ -25,13 +25,15 @@ body {
     direction: rtl;
 }
 
-.form-link a,
-.form-link a:active {
-    width: 50%;
+.form-link p {
+    width: 100%;
     color: #444444;
-    text-decoration: none;
-    cursor: pointer;
-    transition: .6 linear;
+    margin-right: 0;
+}
+
+.form-link img {
+    width: 50px;
+    height: 50px;
 }
 
 .head-div {
@@ -51,7 +53,7 @@ body {
     padding: 10px;
     width: 30%;
     text-align: right;
-    /* display: block; */
+    display: block;
 }
 
 .form-right-box ol {
@@ -66,7 +68,7 @@ body {
 }
 
 .form-item {
-    /* display:block ; */
+    display:flex  ;
     width: 90%;
     height: auto;
 }
@@ -115,3 +117,137 @@ body {
     border: none;
     cursor: pointer;
 }
+
+.contact-details {
+    display: block;
+    width: 100%;
+}
+
+.contact-detail {
+    display: flex;
+    width: 100%;
+<<<<<<< HEAD
+    justify-content: right;
+}
+
+.contact-detail p {
+    width: 51%;
+    height: 50px;
+    margin-right: 9%;
+    line-height: 28px;
+    font-size: 20px;
+}
+
+.mobile-number {
+    width: 51%;
+    margin-right: 9%;
+}
+
+.mobile-number p {
+    width: 100%;
+    margin-right: 0;
+}
+
+.media-contact {
+    margin-right: 5%;
+}
+=======
+}
+.tablet-res{
+    display: block;
+    /* width: 50%; */
+}
+.li-tablet-res{
+
+}
+.ol-style p{
+    padding-right: 10px;
+}
+.ol-style{
+    line-height: unset;
+}
+
+@media screen and (max-width: 600px) {
+    .form-link {
+        display: block;
+    }
+    .form-right-box{
+        width: 100%;
+    }
+    .form-left-box{
+        width: 100%;
+
+    }
+    .form-left-box{
+        display: block;
+    }
+    .form-input{
+        width: 100%;
+    }
+    .form-item{
+        display: block;
+        width: 100%;
+    }
+}
+@media screen and (min-width: 600px) and (max-width:900px){
+    /* .media-logo-ic{
+        display: none;
+    }
+    .media-logo{
+        display: block;
+    } */
+    
+.contact-details {
+    display: block;
+    width: 85%;
+}
+
+    .form-link {
+        display: block;
+    }
+    .form-right-box{
+        width: 100%;
+    }
+    .form-left-box{
+        width: 90%;
+        display: block;
+
+    }
+    .form-input{
+        width: 100%;
+    }
+    .form-item{
+        display: block;
+        width: 100%;
+    }
+    .li-tablet-res{
+        display: flex ;
+    }
+    .media-logo-ic{
+        width: 30px !important;
+        height: 30px !important;
+    }
+    .media-logo{
+        margin: -90px 268px -2px -170px;
+
+    }
+}
+@media screen and (min-width: 900px) {
+   .form-item{
+       display: flex;
+
+   }
+   .form-input{
+    width: 50%;
+}
+.li-tablet-res{
+    display: block ;
+}
+   /* .media-logo-ic{
+    display: block;
+}
+   .media-logo{
+    display: none
+} */
+  }
+>>>>>>> 94ed53988d4f674a17fb242990af14b8588d09d2

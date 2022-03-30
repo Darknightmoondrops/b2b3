@@ -26,11 +26,62 @@ function openTabs(el) {
     btnTarget.classList.add("active");
 }
 
-function menufunc() {
-    var toggeler = document.getElementById("menu-list").style.display
-    if (toggeler == "none") document.getElementById("menu-list").style.display = "flex";
-    if (toggeler == "flex") document.getElementById("menu-list").style.display = "none";
+// function resMenuMobile (){
+//     var toggeler = document.getElementById("menu-list").style.display
+//     if (toggeler == "block") document.getElementById("menu-list").style.display = "none";
+//     if (toggeler == "none") document.getElementById("menu-list").style.display = "block";
+  
+// }
+// function resMenuTablet(){
+   
 
+// }
+function menufunc() {
+        var toggeler = document.getElementById("menu-list").style.display
+
+    // var mediaQuery = window.matchMedia("(max-width: 600px)")
+    var mediaQuery2 = window.matchMedia("(max-width:900px)")
+    if (mediaQuery2.matches) {
+        if (toggeler == "block") document.getElementById("menu-list").style.display = "none";
+        if (toggeler == "none") document.getElementById("menu-list").style.display = "block";
+      
+      }
+      else {
+        if (toggeler == "none") document.getElementById("menu-list").style.display = "flex";
+        if (toggeler == "flex") document.getElementById("menu-list").style.display = "none";
+          }
+    
+    // if (mediaQuery.matches) resMenuMobile()
+       
+    //   else{
+    // if (toggeler == "none") document.getElementById("menu-list").style.display = "flex";
+    // if (toggeler == "flex") document.getElementById("menu-list").style.display = "none";
+    //   }
+
+}
+window.addEventListener('resize',function(){
+    var toggeler = document.getElementById("menu-list").style.display
+
+    // var mediaQuery = window.matchMedia("(max-width: 600px)")
+        if (toggeler == "block") document.getElementById("menu-list").style.display = "none";
+        if (toggeler == "flex") document.getElementById("menu-list").style.display = "none";
+      
+      
+    //   else {
+    //     if (toggeler == "none") document.getElementById("menu-list").style.display = "flex";
+    //     if (toggeler == "flex") document.getElementById("menu-list").style.display = "none";
+    //       }
+
+})
+
+// =====================Responsive Menu===========
+function myResFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
 }
 // ======================MENU=====================
 // ======================SEARCH_MENU==============
@@ -74,3 +125,14 @@ setInterval(function() {
 }, 3000);
 
 //===================================== sliders =========================
+//=============================================== sliders ==========================================
+
+var elms = document.getElementsByClassName('splide');
+
+for (var i = 0; i < elms.length; i++) {
+    new Splide(elms[i], {
+        type: 'loop',
+        perPage: 3,
+        perMove: 1,
+    }).mount();
+}

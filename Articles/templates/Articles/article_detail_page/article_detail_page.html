@@ -44,7 +44,7 @@
                 </div>
                 {% for label in article.labels.all %}
                 <div class="tags">
-                    <a href="{% url 'articles:search_articles_page' %}?q={{ label.name }}">{{ label.name }} </a>
+                    <a href="{% url 'Articles:search_articles_page' %}?q={{ label.name }}">{{ label.name }} </a>
                 </div>
                 {% endfor %}
             </div>
@@ -60,7 +60,7 @@
                     </div>
                 {% else %}
                 <div class="likes">
-                    <a href="{% url 'articles:add_article_like' article.id %}">
+                    <a href="">
                     <p class="likes-number">{{ like_count }}</p>
                     <img class="icon-bot" src="{% static 'home/icons/icon-39.png' %}" alt="پسندیدن">
                     </a>

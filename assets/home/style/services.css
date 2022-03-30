@@ -166,13 +166,9 @@
 
 .select1 select:focus {
     outline: none;
-    border-color: #F26A4F;
-    box-shadow: 0 0 0 2px #F26A4F;
 }
 
-.select1 select:hover+svg {
-    stroke: #F26A4F;
-}
+.select1 select:hover+svg {}
 
 .title-space-selector1 {
     display: inline-block;
@@ -235,3 +231,91 @@
     left: 11%;
     font-weight: bold;
 }
+
+.center {
+    margin-top: 4%;
+}
+
+.brand-off {
+    display: none;
+    height: 0;
+    transition: height .5s;
+}
+
+.text-violet {
+    display: flex;
+    justify-content: space-evenly;
+    width: 82%;
+    font-size: 27px;
+    margin: auto;
+}
+
+.text-violet p {
+    margin-top: 15px;
+    color: #585858;
+}
+
+.show-price {
+    display: inline-block;
+    width: 264px;
+    height: 55px;
+    border: 1px solid #707070;
+    border-radius: 15px;
+    font-size: 25px;
+    padding: 7px;
+    direction: ltr;
+}
+
+.text-violet input[type="number"]::-webkit-outer-spin-button,
+.text-violet input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.slider {
+    height: 5px;
+    position: relative;
+    background: #C6C6C6;
+    border-radius: 5px;
+    width: 80%;
+    margin: auto;
+    margin-top: 54px;
+}
+
+.slider .progress {
+    height: 100%;
+    left: 0;
+    right: 0;
+    position: absolute;
+    border-radius: 5px;
+    background: #F26A4F;
+}
+
+.multi-range {
+    position: relative;
+    height: 40px;
+    direction: ltr;
+    width: 82%;
+    margin: auto;
+}
+
+.multi-range input {
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    top: -5px;
+    background: none;
+    pointer-events: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.ul-search {
+    display: block;
+    margin: auto;
+}
+
+.ul-search li {
+    list-style: none;
+}
+
+.type-seller {}
