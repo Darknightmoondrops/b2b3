@@ -1,4 +1,5 @@
 from django.contrib.auth.base_user import BaseUserManager
+from extensions.optimization import photo_optimization
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
@@ -46,7 +47,7 @@ class Userperson(AbstractUser):
     username = None
     fullname = models.CharField(max_length=100, verbose_name="Full Name")
     phone = models.CharField(max_length=20,verbose_name="Phone", unique=True)
-    image = models.ImageField(upload_to="userphoto/fullname", blank=True, null=True, verbose_name="User Photo")
+    image = models.ImageField(upload_to="userphoto/", blank=True, null=True, verbose_name="User Photo")
     address = models.TextField(null=True,blank=True,verbose_name='Address')
     phone_auth = models.BooleanField(default=False,verbose_name='Phone Auth')
     gender = models.CharField(choices=gender_choice, blank=False, null=False, max_length=50,verbose_name='Gender')
@@ -56,8 +57,13 @@ class Userperson(AbstractUser):
     USERNAME_FIELD = 'phone'
     REQUIRED_FIELDS = ['fullname']
 
-    def __str__(self):
-        return f'{self.fullname}'
+    def save(self, *args, **kwargs):
+        super(Userperson, self).save(*args, **kwargs)
+        if self.image:
+            photo_optimization(self.image)
+            super(Userperson, self).save(*args, **kwargs)
+
+
     def __call__(self):
         return f'{self.fullname}'
 
@@ -69,3 +75,6 @@ class Userperson(AbstractUser):
     
     def has_module_perms(self, app_label):
         return self.is_superuser
+
+    def __str__(self):
+        return f'{self.fullname}'

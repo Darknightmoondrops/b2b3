@@ -1,3 +1,4 @@
+from extensions.optimization import photo_optimization
 from CustomizedUserModel.models import Userperson
 from django.db import models
 
@@ -6,6 +7,7 @@ from django.db import models
 class VendorCategories(models.Model):
     name = models.CharField(max_length=999,verbose_name='Name')
     status = models.BooleanField(default=False,verbose_name='Status')
+
     def __str__(self):
         return f'{self.name}'
         
@@ -20,7 +22,14 @@ class Sellers(models.Model):
     registration_date = models.DateTimeField(auto_now_add=True,verbose_name='Registration Date')
     business_status = models.BooleanField(default=False,verbose_name='business Status')
     business_categories = models.ManyToManyField(VendorCategories,verbose_name='business Categories')
-    
+
+    def save(self, *args, **kwargs):
+        super(Sellers, self).save(*args, **kwargs)
+        if self.business_image:
+            photo_optimization(self.business_image)
+            photo_optimization(self.business_license)
+            super(Sellers, self).save(*args, **kwargs)
+
     def __str__(self):
         return f'{self.business_name}'
         

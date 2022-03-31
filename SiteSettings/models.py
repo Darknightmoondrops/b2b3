@@ -11,6 +11,9 @@ class SiteSettings(models.Model):
     email = models.EmailField(default='django@mail.com',verbose_name='Email')
     instagram_link = models.URLField(default='instalink',verbose_name="Instagram")
     android_application_link = models.URLField(default="some string",verbose_name="Android Application")
+    melipayamak_username = models.CharField(max_length=100,blank=True,null=True,verbose_name='Melipayamak Username')
+    melipayamak_password = models.CharField(max_length=100,blank=True,null=True,verbose_name='Melipayamak Password')
+    melipayamak_phone = models.CharField(max_length=100,blank=True,null=True,verbose_name='Melipayamak Phone')
 
     def __str__(self):
         return f'{self.site_name}'

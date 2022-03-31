@@ -26,7 +26,7 @@ def search_articles(request):
         q = request.GET['q']
         articles = Articles.objects.filter(Q(title__icontains=q)).all().order_by('id')
         paginator = PageNumberPagination()
-        paginator.page_size = 1
+        paginator.page_size = 12
         result_page = paginator.paginate_queryset(articles, request)
         data = ArticlesSerializers(result_page, many=True).data
         return paginator.get_paginated_response(data)

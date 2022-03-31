@@ -27,11 +27,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-     'rest_framework.authtoken',
-    'extensions',
+    'rest_framework.authtoken',
+    # Application plugins
+    'extensions', # Extensions
+    # Related to site settings
     'CustomizedUserModel.apps.CustomizedUserModelConfig', # Customized User Model
     'Home.apps.HomeConfig', # Home
-    'SiteSettings.apps.SitesettingsConfig', # Site Settings 
+    'SiteSettings.apps.SitesettingsConfig', # Site Settings
+    # َApps
     'Articles.apps.ArticlesConfig', # Articles
     'AboutUs.apps.AboutusConfig', # About us
     'ContactUs.apps.ContactusConfig', # Contact us
@@ -39,7 +42,13 @@ INSTALLED_APPS = [
     'Sellers.apps.SellersConfig',  # Sellers
     'Services.apps.ServicesConfig', # Services
     'Carts.apps.CartsConfig', # Carts
-    'SocialNetworks.apps.SocialnetworksConfig' # Social Networks
+    'SocialNetworks.apps.SocialnetworksConfig', # Social Networks
+    # Panels
+    'AdminPanel.apps.AdminpanelConfig', # Admin Panel
+    'UserPanel.apps.UserpanelConfig', # User Panel
+    'VendorsPanel.apps.VendorspanelConfig', # Vendeors Panel
+    'ServicesPanel.apps.ServicespanelConfig', # Services Panel
+
 ]
 
 MIDDLEWARE = [
@@ -105,9 +114,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 1,
-
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
     ],
@@ -123,7 +129,7 @@ REST_FRAMEWORK = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tehran'
 
 USE_I18N = True
 

@@ -5,12 +5,20 @@ from django.urls import path,include
 
 urlpatterns = [
     path('',include('Home.urls',namespace='home')),
+    # Articles Url
     path('articles/', include('Articles.urls')),
     path('api/articles/', include('Articles.api_urls')),
-    path('contact-us/', include('ContactUs.urls')),
-    path('about-us/', include('AboutUs.urls')),
+    # Products Url
     path('products/', include('Products.urls')),
     path('api/products/', include('Products.api_urls')),
+    # UserPanel Url
+    path('user-panel/',include('UserPanel.urls')),
+    # ContactUs Url
+    path('contact-us/', include('ContactUs.urls')),
+    # AboutUs Url
+    path('about-us/', include('AboutUs.urls')),
+
+    # Admin
     path('admin/', admin.site.urls),
 ]
 

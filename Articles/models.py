@@ -1,3 +1,4 @@
+from extensions.optimization import photo_optimization
 from CustomizedUserModel.models import Userperson
 from extensions.DateJalali import django_jalali
 from django.db import models
@@ -21,6 +22,12 @@ class Articles(models.Model):
     short_description = models.TextField(blank=True,null=True,verbose_name='Short description', default='a short description')
     labels = models.ManyToManyField(ArticlesLabels,verbose_name='Labels')
 
+    def save(self, *args, **kwargs):
+        super(Articles, self).save(*args, **kwargs)
+        if self.image:
+            photo_optimization(self.image)
+            super(Articles, self).save(*args, **kwargs)
+
     @property
     def writer_fullname(self):
         return self.writer.fullname
@@ -28,10 +35,11 @@ class Articles(models.Model):
     @property
     def jdate(self):
         return django_jalali(self.date)
+
+
     
     def __str__(self):
         return f'{self.title}'
-
 
 
 

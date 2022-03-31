@@ -1,3 +1,4 @@
+from extensions.optimization import photo_optimization
 from CustomizedUserModel.models import Userperson
 from extensions.DateJalali import django_jalali
 from Sellers.models import Sellers
@@ -62,9 +63,13 @@ class Products(models.Model):
     score = models.IntegerField(default=1,verbose_name='Score')
     date = models.DateTimeField(auto_now_add=True,blank=True,null=True,verbose_name='Date')
     inventory = models.IntegerField(default=0,blank=False,verbose_name='Inventory')
-    
-    def __str__(self):
-        return f'{self.title}'
+
+    def save(self, *args, **kwargs):
+        super(Products, self).save(*args, **kwargs)
+        if self.image:
+            photo_optimization(self.image)
+            super(Products, self).save(*args, **kwargs)
+
 
     def jdate(self):
         return django_jalali(self.date)
@@ -78,10 +83,19 @@ class Products(models.Model):
             return f'{round(number4)}%'
         else:
             return 0
+
+    def __str__(self):
+        return f'{self.title}'
     
 class ProductsPhotos(models.Model):
     product = models.ForeignKey(Products,on_delete=models.CASCADE,verbose_name='Product')
     image = models.ImageField(upload_to='ProductsPhotos',verbose_name='Image')
+
+    def save(self, *args, **kwargs):
+        super(ProductsPhotos, self).save(*args, **kwargs)
+        if self.image:
+            photo_optimization(self.image)
+            super(ProductsPhotos, self).save(*args, **kwargs)
 
     def __str__(self):
         return f'{self.product} - {self.image}'
@@ -89,9 +103,23 @@ class ProductsPhotos(models.Model):
 class ProductsComments(models.Model):
     user = models.ForeignKey(Userperson,on_delete=models.CASCADE,verbose_name='User')
     status = models.BooleanField(default=False,verbose_name='Status')
+    product_image = models.ImageField(upload_to='ProductsCommentsImage',blank=True,null=True,verbose_name='Image')
+    product_title = models.TextField(blank=True,null=True,verbose_name='Title')
+    product_short_description = models.TextField(blank=True,null=True,verbose_name='Short description')
     comment = models.TextField(verbose_name='Comment')
     product = models.ForeignKey(Products, on_delete=models.CASCADE, null=False, blank=False ,verbose_name='Prodcut Id') # to be fxed
-    
+    date = models.DateTimeField(auto_now_add=True, blank=True, null=True, verbose_name='Date')
+
+    def save(self, *args, **kwargs):
+        super(ProductsComments, self).save(*args, **kwargs)
+        if self.product_image:
+            photo_optimization(self.product_image)
+            super(ProductsComments, self).save(*args, **kwargs)
+
+    def jdate(self):
+        return django_jalali(self.date)
+
+
     def __str__(self):
         return f'{self.user}'
 
@@ -123,6 +151,12 @@ class ProductsScores(models.Model):
 class ProductsSlides(models.Model):
     image = models.ImageField(upload_to='ProductsSlides',verbose_name='Image')
     url = models.URLField(verbose_name='Url')
+
+    def save(self, *args, **kwargs):
+        super(ProductsSlides, self).save(*args, **kwargs)
+        if self.image:
+            photo_optimization(self.image)
+            super(ProductsSlides, self).save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.url}"

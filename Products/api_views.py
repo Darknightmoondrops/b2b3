@@ -4,6 +4,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
 from extensions.products import *
+from django.db.models import Q
 from .serializers import *
 from .models import *
 
@@ -17,6 +18,22 @@ def products_list(request):
     result_page = paginator.paginate_queryset(products, request)
     data = ProdcutsSerializers(result_page,many=True).data
     return paginator.get_paginated_response(data)
+
+
+@api_view(['GET'])
+def search_products(request):
+    try:
+        q = request.GET['q']
+        articles = Products.objects.filter(Q(title__icontains=q)).all().order_by('id')
+        paginator = PageNumberPagination()
+        paginator.page_size = 12
+        result_page = paginator.paginate_queryset(articles, request)
+        data = ProdcutsSerializers(result_page, many=True).data
+        return paginator.get_paginated_response(data)
+    except:
+        return Response({'message': 'error'},status=status.HTTP_400_BAD_REQUEST)
+
+
 
 @api_view(['GET'])
 def products_comments_list(request):
@@ -32,12 +49,21 @@ def products_comments_list(request):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def products_comments_add(request):
-    data = ProductsCommentsSerializers(data=request.data)
-    if data.is_valid():
-        ProductsComments(user_id=data.validated_data['user'].id,product_id=data.validated_data['product'].id,comment=data.validated_data['comment'],status=data.validated_data['status']).save()
-        return Response({'message': 'Created successfully'})
-    else:
-        return Response({"message": "Could not create, information is incorrect"})
+    try:
+        data = ProductsCommentsSerializers(data=request.data)
+        if data.is_valid():
+            productComments_check = ProductsComments.objects.filter(user_id=data.validated_data['user'].id,product_id=data.validated_data['product'].id,status=False).first()
+            if productComments_check is None:
+                product = Products.objects.filter(id=data.validated_data['product'].id).first()
+                ProductsComments(user_id=data.validated_data['user'].id, product_id=data.validated_data['product'].id,comment=data.validated_data['comment'], status=data.validated_data['status'],product_image=data.validated_data['product_image'], product_title=product.title,product_short_description=product.short_description).save()
+                return Response({'message': 'Created successfully'})
+            else:
+                return Response({"message": "has been created"})
+        else:
+            return Response({"message": "Could not create, information is incorrect"})
+    except:
+        return Response({"message": "error"},status=status.HTTP_400_BAD_REQUEST)
+
 
 
 @api_view(["GET"])
