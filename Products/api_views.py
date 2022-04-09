@@ -31,6 +31,20 @@ def search_products(request):
         data = ProdcutsSerializers(result_page, many=True).data
         return paginator.get_paginated_response(data)
     except:
+        return Response({'message': 'error'},status=status.HTTP_400_BAD_REQUEST)\
+
+
+@api_view(['GET'])
+def products_filter(request):
+    try:
+        q = request.GET['q']
+        articles = Products.objects.filter(Q(title__icontains=q)).all().order_by('id')
+        paginator = PageNumberPagination()
+        paginator.page_size = 12
+        result_page = paginator.paginate_queryset(articles, request)
+        data = ProdcutsSerializers(result_page, many=True).data
+        return paginator.get_paginated_response(data)
+    except:
         return Response({'message': 'error'},status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -72,7 +86,7 @@ def products_discounts(request):
     paginator = PageNumberPagination()
     paginator.page_size = 12
     result_page = paginator.paginate_queryset(LatestDiscountsProducts, request)
-    data = ProductsCommentsSerializers(result_page,many=True).data
+    data = ProdcutsSerializers(result_page,many=True).data
     return paginator.get_paginated_response(data)
 
 @api_view(["GET"])

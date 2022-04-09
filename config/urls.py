@@ -13,10 +13,18 @@ urlpatterns = [
     path('api/products/', include('Products.api_urls')),
     # UserPanel Url
     path('user-panel/',include('UserPanel.urls')),
+
+    # Site Settings Url
+    path('api/site-settings/', include('SiteSettings.api_urls')),
     # ContactUs Url
     path('contact-us/', include('ContactUs.urls')),
+    path('api/contact-us/', include('ContactUs.api_urls')),
     # AboutUs Url
     path('about-us/', include('AboutUs.urls')),
+    path('api/about-us/', include('AboutUs.api_urls')),
+
+    # SocialNetworks Url
+    path('api/social-networks/',include('SocialNetworks.api_urls')),
 
     # Admin
     path('admin/', admin.site.urls),

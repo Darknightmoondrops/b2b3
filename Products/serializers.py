@@ -7,7 +7,7 @@ class ProdcutsSerializers(serializers.ModelSerializer):
     colors = serializers.SlugRelatedField(many=True,read_only=True,slug_field='name')
     category = serializers.SlugRelatedField(many=True,read_only=True,slug_field='name')
     sizes = serializers.SlugRelatedField(many=True,read_only=True,slug_field='name')
-
+    percentage = serializers.ReadOnlyField()
     class Meta:
         model = Products
         fields = '__all__'

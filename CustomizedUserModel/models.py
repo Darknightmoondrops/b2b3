@@ -41,7 +41,6 @@ class Userperson(AbstractUser):
     roles = [
         ('user', 'User'),
         ('seller', 'Seller'),
-        ('shopper', 'Shopper'),
         ('serviceman', 'Serviceman')
     ]
     username = None
@@ -75,6 +74,7 @@ class Userperson(AbstractUser):
     
     def has_module_perms(self, app_label):
         return self.is_superuser
+
 
     def __str__(self):
         return f'{self.fullname}'

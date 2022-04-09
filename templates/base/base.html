@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="{% static 'style/about_style.css' %}">
     <link rel="stylesheet" href="{% static 'style/contact_style.css' %}">
     <link rel="stylesheet" href="{% static 'style/product_details_style.css' %}">
+    <link rel="stylesheet" href="{% static 'js/splide-3.6.12/dist/css/splide.min.css' %}">
+    <link rel="stylesheet" href="{% static 'plugins/fontawesome/css/all.min.css' %}">
     <!--/styles-->
 </head>
 
@@ -33,7 +35,7 @@
     {% if messages %}
         <div>
             {% for message in messages %}
-            <div{% if message.tags %} class="massage {{ message.tags }}"{% endif %}>
+            <div{% if message.tags %} onclick="message({{ message.tags }},{{ message }})" class="massage {{ message.tags }}"{% endif %}>
                 {{ message }}
             </div>
             {% endfor %}
@@ -43,9 +45,12 @@
     {% include 'base/footer/footer.html' %}
     <!--script-->
     <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/splide-3.6.12/dist/js/splide.min.js' %}"></script>
     <script src="{% static 'js/products.js' %}"></script>
     <script src="{% static 'js/slider-mainPage.js' %}"></script>
     <script src="{% static 'js/details-product.js' %}"></script>
+    <script src="{% static 'js/quick-product.js' %}"></script>
+    <script src="https://kit.fontawesome.com/c2e98ef1bc.js" crossorigin="anonymous"></script>
 
 </body>
 

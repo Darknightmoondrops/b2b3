@@ -28,13 +28,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
-    # Application plugins
     'extensions', # Extensions
-    # Related to site settings
+    'VerificationCodes.apps.VerificationcodesConfig', # VerificationCodes
     'CustomizedUserModel.apps.CustomizedUserModelConfig', # Customized User Model
     'Home.apps.HomeConfig', # Home
     'SiteSettings.apps.SitesettingsConfig', # Site Settings
-    # َApps
     'Articles.apps.ArticlesConfig', # Articles
     'AboutUs.apps.AboutusConfig', # About us
     'ContactUs.apps.ContactusConfig', # Contact us
@@ -43,10 +41,9 @@ INSTALLED_APPS = [
     'Services.apps.ServicesConfig', # Services
     'Carts.apps.CartsConfig', # Carts
     'SocialNetworks.apps.SocialnetworksConfig', # Social Networks
-    # Panels
     'AdminPanel.apps.AdminpanelConfig', # Admin Panel
     'UserPanel.apps.UserpanelConfig', # User Panel
-    'VendorsPanel.apps.VendorspanelConfig', # Vendeors Panel
+    'SellersPanel.apps.SellerspanelConfig', # Sellers  Panel
     'ServicesPanel.apps.ServicespanelConfig', # Services Panel
 
 ]
