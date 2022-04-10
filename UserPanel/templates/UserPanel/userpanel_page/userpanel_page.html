@@ -1,0 +1,374 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--styles-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{% static 'style/new_style.css' %}" />
+    <link rel="stylesheet" href="{% static 'style/user_panel_style.css' %}" />
+    <link rel="stylesheet" href="{% static 'plugins/fontawesome/css/all.min.css' %}">
+
+    <!--/styles-->
+    <title>{{ title }}</title>
+</head>
+
+<body>
+    <!--header-->
+    {% include 'base/menu/menu.html' %}
+    <!--header-->
+
+
+    <!--script-->
+    <div class="main-content-userpanel">
+        <div class="panel">
+            <div class="panels">
+
+                <p>پنل کاربری</p>
+                <div class="panels-icon"></div>
+
+            </div>
+            <div class="panels-details" onclick="SelectPanel(1)">
+                <div class="edit-prof-icon"></div>
+                <p>ویرایش حساب کاربری</p>
+            </div>
+            <div class="panels-details" onclick="SelectPanel(2)">
+                <div class="order-history-icon"></div>
+                <p>سابقه سفارش </p>
+            </div>
+            <div class="panels-details" onclick="SelectPanel(3)">
+                <div class="services-received-icon"></div>
+                <p> خدمات دریافت شده</p>
+            </div>
+            <div class="panels-details" onclick="SelectPanel(4)">
+                <div class="discount-icon"></div>
+                <p>تخفیفات</p>
+            </div>
+            <div class="panels-details" onclick="SelectPanel(5)">
+                <div class="score-icon"></div>
+                <p>امتیاز</p>
+            </div>
+            <div class="panels-details" onclick="SelectPanel(6)">
+                <div class="comments-icon"></div>
+                <p>نظرات</p>
+            </div>
+            <div class="panels-details" onclick="exit(1)">
+                <div class="exit-icon"></div>
+                <p>خروج</p>
+            </div>
+        </div>
+
+        <div class="panel-details">
+
+            <div id="edit-acount" class="user-panel-tab panel-page">
+                <h3 class="user-panel-title">ویرایش حساب کاربری</h3>
+                <input class="user-panel-input" type="text" placeholder="نام و نام خانوادگی">
+                <input class="user-panel-input" type="text" placeholder="شماره تماس">
+                <input class="user-panel-input" type="text" placeholder=" شماره تماس">
+                <input class="user-panel-input" type="text" placeholder="ایمیل">
+                <input class="user-panel-input" type="text" placeholder="رمز عبور فعلی">
+                <input class="user-panel-input" type="text" placeholder="رمز عبور جدید">
+                <button type="button" class="user-panel-btn">ویرایش</button>
+            </div>
+
+            <div id="order-history" class="order-history panel-page">
+                <h3 class="user-panel-title">سابقه سفارش</h3>
+                <div class="user-history-mainbox">
+                    <div class="user-history-box">
+                        <div class=" user-history-box-right">
+                            <img src="{% static 'img/pic-29.png' %}" class="user-history-img">
+                            <img src="{% static 'img/pic-32.png' %}" class="user-history-img">
+                            <img src="{% static 'img/pic-13.png' %}" class="user-history-img">
+                            <h3 class="user-history-text">سفارش 1</h3>
+                        </div>
+                        <div class="  user-history-box-left">
+                            <div class="user-history-lefticon"></div>
+                            <h3 class="user-history-text"> 990,000 </h3>
+                        </div>
+                    </div>
+                    <div class="div-line"></div>
+                </div>
+
+                <div class="user-history-mainbox">
+                    <div class="user-history-box">
+                        <div class=" user-history-box-right">
+                            <img src="{% static 'img/pic-29.png' %}" class="user-history-img">
+                            <img src="{% static 'img/pic-32.png' %}" class="user-history-img">
+                            <img src="{% static 'img/pic-13.png' %}" class="user-history-img">
+                            <h3 class="user-history-text">سفارش 1</h3>
+                        </div>
+                        <div class="  user-history-box-left">
+                            <div class="user-history-lefticon"></div>
+                            <h3 class="user-history-text"> 990,000 </h3>
+                        </div>
+                    </div>
+                    <div class="div-line"></div>
+                </div>
+                <div class="user-history-mainbox">
+                    <div class="user-history-box">
+                        <div class=" user-history-box-right">
+                            <img src="{% static 'img/pic-29.png' %}" class="user-history-img">
+                            <img src="{% static 'img/pic-32.png' %}" class="user-history-img">
+                            <img src="{% static 'img/pic-13.png' %}" class="user-history-img">
+                            <h3 class="user-history-text">سفارش 1</h3>
+                        </div>
+                        <div class="  user-history-box-left">
+                            <div class="user-history-lefticon"></div>
+                            <h3 class="user-history-text"> 990,000 </h3>
+                        </div>
+                    </div>
+                    <div class="div-line"></div>
+                </div>
+                <div class="user-history-mainbox">
+                    <div class="user-history-box">
+                        <div class=" user-history-box-right">
+                            <img src="{% static 'img/pic-29.png' %}" class="user-history-img">
+                            <img src="{% static 'img/pic-32.png' %}" class="user-history-img">
+                            <img src="{% static 'img/pic-13.png' %}" class="user-history-img">
+                            <h3 class="user-history-text">سفارش 1</h3>
+                        </div>
+                        <div class="  user-history-box-left">
+                            <div class="user-history-lefticon"></div>
+                            <h3 class="user-history-text"> 990,000 </h3>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div id="services-received" class="services-received panel-page">
+                <h3 class="user-panel-title"> خدمات دریافت شده</h3>
+                <div class="user-history-mainbox">
+                    <div class="user-history-box">
+                        <div class=" user-history-box-right">
+                            <img src="{% static 'img/pic-25.png' %}" class="user-history-img">
+
+                            <h3 class="user-history-text"> نظافت اتومبیل(روشویی و توشویی)</h3>
+                        </div>
+                        <div class="  user-history-box-left">
+                            <div class="user-history-lefticon"></div>
+                            <h3 class="user-history-text"> 990,000 </h3>
+                        </div>
+                    </div>
+                    <div class="div-line"></div>
+                </div>
+                <div class="user-history-mainbox">
+                    <div class="user-history-box">
+                        <div class=" user-history-box-right">
+                            <img src="{% static 'img/pic-25.png' %}" class="user-history-img">
+
+                            <h3 class="user-history-text"> نظافت اتومبیل(روشویی و توشویی)</h3>
+                        </div>
+                        <div class="  user-history-box-left">
+                            <div class="user-history-lefticon"></div>
+                            <h3 class="user-history-text"> 990,000 </h3>
+                        </div>
+                    </div>
+                    <div class="div-line"></div>
+                </div>
+                <div class="user-history-mainbox">
+                    <div class="user-history-box">
+                        <div class=" user-history-box-right">
+                            <img src="{% static 'img/pic-25.png' %}" class="user-history-img">
+
+                            <h3 class="user-history-text"> نظافت اتومبیل(روشویی و توشویی)</h3>
+                        </div>
+                        <div class="  user-history-box-left">
+                            <div class="user-history-lefticon"></div>
+                            <h3 class="user-history-text"> 990,000 </h3>
+                        </div>
+                    </div>
+                    <div class="div-line"></div>
+                </div>
+                <div class="user-history-mainbox">
+                    <div class="user-history-box">
+                        <div class=" user-history-box-right">
+                            <img src="{% static 'img/pic-25.png' %}" class="user-history-img">
+
+                            <h3 class="user-history-text"> نظافت اتومبیل(روشویی و توشویی)</h3>
+                        </div>
+                        <div class="  user-history-box-left">
+                            <div class="user-history-lefticon"></div>
+                            <h3 class="user-history-text"> 990,000 </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="discount" class="discount panel-page">
+                <h3 class="user-panel-title"> تخفیفات</h3>
+                <div class="user-history-mainbox">
+                    <div class="user-history-box">
+                        <div class=" user-history-box-right">
+                            <img class="user-discount-img" />
+                            <div class="user-discount-text">
+                                <h3> نظافت اتومبیل(روشویی و توشویی)</h3>
+                                <h4>تا سقف 20 هزار تومن</h4>
+                            </div>
+                        </div>
+                        <div class="  user-history-box-left">
+                            <div class="user-history-lefticon"></div>
+                            <div class="user-discount-btn">
+                                <p>20%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="div-line"></div>
+                </div>
+                <div class="user-history-mainbox">
+                    <div class="user-history-box">
+                        <div class=" user-history-box-right">
+                            <img class="user-discount-img" />
+                            <div class="user-discount-text">
+                                <h3> نظافت اتومبیل(روشویی و توشویی)</h3>
+                                <h4>تا سقف 20 هزار تومن</h4>
+                            </div>
+                        </div>
+                        <div class="  user-history-box-left">
+                            <div class="user-history-lefticon"></div>
+                            <div class="user-discount-btn">
+                                <p>20%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="div-line"></div>
+                </div>
+                <div class="user-history-mainbox">
+                    <div class="user-history-box">
+                        <div class=" user-history-box-right">
+                            <img class="user-discount-img" />
+                            <div class="user-discount-text">
+                                <h3> نظافت اتومبیل(روشویی و توشویی)</h3>
+                                <h4>تا سقف 20 هزار تومن</h4>
+                            </div>
+                        </div>
+                        <div class="  user-history-box-left">
+                            <div class="user-history-lefticon"></div>
+                            <div class="user-discount-btn">
+                                <p>20%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="score" class="score  panel-page">
+                <h3 class="user-panel-title"> امتیازات شما</h3>
+                <div class="user-history-mainbox">
+                    <div class="user-history-box">
+                        <div class=" user-history-box-right">
+                            <img src="{% static 'img/pic-48.png' %}" class="user-discount-img" />
+                            <div class="user-score-text">
+                                <h2>چاپ فوری</h2>
+                            </div>
+                        </div>
+                        <div class="  user-history-box-left">
+                            <div class="rate">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="div-line"></div>
+                </div>
+                <div class="user-history-mainbox">
+                    <div class="user-history-box">
+                        <div class=" user-history-box-right">
+                            <img src="{% static 'img/pic-49.png' %}" class="user-discount-img" />
+                            <div class="user-score-text">
+                                <h2>چاپ فوری</h2>
+                            </div>
+                        </div>
+                        <div class="  user-history-box-left">
+                            <div class="rate">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="div-line"></div>
+                </div>
+                <div class="user-history-mainbox">
+                    <div class="user-history-box">
+                        <div class=" user-history-box-right">
+                            <img src="{% static 'img/pic-25.png' %}" class="user-discount-img" />
+                            <div class="user-score-text">
+                                <h2>خدمات فروش </h2>
+                            </div>
+                        </div>
+                        <div class="  user-history-box-left">
+                            <div class="rate">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="comments" class="comments panel-page">
+                <h3 class="user-panel-title"> نظرات</h3>
+
+                {% for productsComment in products_comments %}
+                <div class="user-history-mainbox">
+                    <div class="user-history-box">
+                        <div class=" user-history-box-right">
+                            <img src="{{ productsComment.product_image.url }}" alt="{{ productsComment.product_title }} " class="user-comments-img" />
+                            <div class="user-comments-text">
+                                <h2> {{ productsComment.product_title }} </h2>
+                                <p>
+                                    {{ productsComment.product_short_description }}
+                                </p>
+                            </div>
+
+                        </div>
+                        <div class="  user-history-box-left">
+                            <div>
+                                <p> {{ productsComment.jdate }} </p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="div-line"></div>
+                </div>
+                {% endfor %}
+
+
+            </div>
+        </div>
+    </div>
+    <div class="background"></div>
+    <div class="question-box-two qu-two-off">
+        <div class="close-icon" onclick="exit(2)"></div>
+        <div class="close-icon-big"></div>
+        <p>آیا مطمئن هستید میخواهید خارج شوید</p>
+        <div class="question-btn">
+            <button class="yes-btn" type="submit">بله</button>
+            <button class="no-btn" type="submit" onclick="exit(2)">خیر</button>
+        </div>
+    </div>
+    <script src="{% static 'js/user-panel.js' %}"></script>
+    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/fixed.js' %}"></script>
+
+</body>
+
+
+</html>

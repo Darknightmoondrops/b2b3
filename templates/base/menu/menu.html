@@ -1,0 +1,286 @@
+{% load static %}
+ <section id="">
+        <!--  MENU -->
+        <!----------------------------------search--------------------------------->
+        <div onclick="" id="search-box" class="">
+            <button onclick="myFunction2()" id="search-btn-close" class="search-btn-close">x</button>
+            <div class="main-div">
+                <input type="search" class="search-input" placeholder="جستجو" />
+                <button class="search-btn"><img style="width:20px; height: 20px;" src="{% static 'icons/icon-19.png' %}" alt=""></button>
+            </div>
+        </div>
+        <!-- ------------------------------------------------------------------------>
+
+        <nav class="header-nav">
+            <!-- responsive top menu -->
+            <div class="responsive-menu-top">
+                <div class="main-div2">
+                    <button class="search-btn2"><div class="search-btn-icon"></div>
+                    </button>
+
+                    <input type="search" class="search-input2" placeholder="جستجو..." />
+                </div>
+                <div class="header-nav-logo-resp">
+                    <a href="./index.html">
+                        <img class="header-nav-logo-img" src="{% static 'img/main-logo.png' %}" alt="">
+                    </a>
+                </div>
+            </div>
+            <!-- responsive top menu -->
+
+            <div class="header-nav-div">
+                <div class="header-nav-icon" onclick="menufunc()">
+
+                    <a href="#" aria-expanded="false">
+
+                        <div class="header-nav-icon-img"></div>
+                        <em class="droopmenu-topanim"></em>
+                    </a>
+                </div>
+                <div class="header-nav-logo">
+                    <a href="./index.html">
+                        <img class="header-nav-logo-img" src="{% static 'img/main-logo.png' %}" alt="">
+                    </a>
+                </div>
+
+                <div class="header-nav-left-icon">
+
+                    <div onclick="myFunction()" class="header-nav-left-icons search-box-responsiv">
+                        <a href="#">
+                            <div class="header-nav-left-icons-ic ic1"></div>
+                        </a>
+                    </div>
+                    <div class="tooltip header-nav-left-icons">
+                        <div class="menu-cover">
+                        </div>
+                        <a href="#">
+                            <div class="header-nav-left-icons-ic ic2"></div>
+                        </a>
+                        <div class="tooltiptext" style="margin-top: 25px;">
+                            <a class="" href="#">ورود</a>/
+                            <a class="" href="#">ثبت نام</a>
+                        </div>
+                    </div>
+                    <div class="header-nav-left-icons">
+                        <div class="menu-cover">
+                        </div>
+                        <a href="./cart.html">
+                            <div class="header-nav-left-icons-ic ic3"></div>
+                            <span class="cart-basket">
+                                0
+                              </span>
+                        </a>
+                    </div>
+                    <div class="header-nav-left-icons">
+                        <div class="menu-cover">
+                        </div>
+                        <a href="./cart.html">
+                            <div class="header-nav-left-icons-ic ic4"></div>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            <!--------------------------------------------list ----------------------->
+            <div id="menu-list" class="menu-list" style="z-index: 10;direction: rtl;margin-top: -5px;width: 100%; height: auto; position: absolute;display: none; ">
+
+                <div class="tabs">
+                    <button class=" tablinks active " data-valuetxt="first">
+                            <div class="menu-titr-icon titr-icon1"></div>
+                            <p  data-title="محصولات">محصولات</p>
+                        </button>
+                    <button class=" tablinks second-menu-btn-f " data-valuetxt="second">
+                            <div class="menu-titr-icon titr-icon2"></div>
+                            <p  data-title="خدمات "> خدمات</p>
+                        </button>
+                </div>
+
+                <div class="wrapper_tabcontent">
+
+                    <div id="first" class=" tabcontent active">
+                        <div class="block-div">
+
+                            <div class="header-nav-lists">
+                                <a href="#" class="header-nav-lists-a">پوشاک</a>
+                                <div class="header-nav-lists-content">
+
+                                    <ul class="nav-ul">
+                                        <li class="nav-ul-li">
+                                            <input type="checkbox" checked>
+                                            <i class="nav-ul-li-i"></i>
+                                            <a href="#">لباس مردانه</a>
+                                            <p></p>
+                                        </li>
+
+                                        <li class="nav-ul-li">
+                                            <input type="checkbox" checked>
+                                            <i class="nav-ul-li-i"></i>
+                                            <a href="#">کفش  مردانه</a>
+                                            <p class="header-nav-lists-content-li">
+                                                <a href="#" class="">کفش  روزمره</a>
+                                                <a href="#" class=" ">کفش رسمی</a>
+                                            </p>
+                                        </li>
+                                        <li class="nav-ul-li">
+                                            <input type="checkbox" checked>
+                                            <i class="nav-ul-li-i"></i>
+                                            <a href="#">اکسسوری مردانه</a>
+                                            <p></p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="header-nav-lists">
+                                <a href="#" class="nav-link alfa header-nav-lists-a">آشپزخانه</a>
+                                <div class="header-nav-lists-content">
+                                    <ul class="nav-ul">
+                                        <li class="nav-ul-li">
+                                            <input type="checkbox" checked>
+                                            <i class="nav-ul-li-i"></i>
+                                            <a href="#">  صوتی تصویری</a>
+                                            <p></p>
+                                        </li>
+
+                                        <li class="nav-ul-li">
+                                            <input type="checkbox" checked>
+                                            <i class="nav-ul-li-i"></i>
+                                            <a href="#"> دکراتیو </a>
+                                            <p class="header-nav-lists-content-li">
+                                                <a href="#" class="">آینه</a>
+                                                <a href="#" class=" ">پرده</a>
+                                            </p>
+                                        </li>
+                                        <li class="nav-ul-li">
+                                            <input type="checkbox" checked>
+                                            <i class="nav-ul-li-i"></i>
+                                            <a href="#">موادشوینده</a>
+                                            <p></p>
+                                        </li>
+                                    </ul>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="block-div">
+                            <div class="header-nav-lists">
+                                <a href="#" class="nav-link alfa header-nav-lists-a">الکترونیک  </a>
+                                <div class="header-nav-lists-content">
+
+
+                                    <ul class="nav-ul">
+                                        <li class="nav-ul-li">
+                                            <input type="checkbox" checked>
+                                            <i class="nav-ul-li-i"></i>
+                                            <a href="#">  لپتاپ</a>
+                                            <p></p>
+                                        </li>
+
+                                        <li class="nav-ul-li">
+                                            <input type="checkbox" checked>
+                                            <i class="nav-ul-li-i"></i>
+                                            <a href="#"> گوشی </a>
+                                            <p class="header-nav-lists-content-li">
+
+                                            </p>
+                                        </li>
+                                        <li class="nav-ul-li">
+                                            <input type="checkbox" checked>
+                                            <i class="nav-ul-li-i"></i>
+                                            <a href="#">دوربین</a>
+                                            <p class="header-nav-lists-content-li">
+                                                <a href="#" class="">دوربین چاپ فوری</a>
+                                                <a href="#" class=" "> دوربین دیجیتال</a>
+                                            </p>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                            <div class="header-nav-lists">
+                                <a href="#" class="nav-link alfa header-nav-lists-a">الکترونیک  </a>
+                                <div class="header-nav-lists-content">
+
+
+                                    <ul class="nav-ul">
+                                        <li class="nav-ul-li">
+                                            <input type="checkbox" checked>
+                                            <i class="nav-ul-li-i"></i>
+                                            <a href="#">  لپتاپ</a>
+                                            <p></p>
+                                        </li>
+
+                                        <li class="nav-ul-li">
+                                            <input type="checkbox" checked>
+                                            <i class="nav-ul-li-i"></i>
+                                            <a href="#"> گوشی </a>
+                                            <p class="header-nav-lists-content-li">
+
+                                            </p>
+                                        </li>
+                                        <li class="nav-ul-li">
+                                            <input type="checkbox" checked>
+                                            <i class="nav-ul-li-i"></i>
+                                            <a href="#">دوربین</a>
+                                            <p class="header-nav-lists-content-li">
+                                                <a href="#" class="">دوربین چاپ فوری</a>
+                                                <a href="#" class=" "> دوربین دیجیتال</a>
+                                            </p>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tabs">
+                        <button class=" tablinks second-menu-btn " data-valuetxt="second">
+                            <div class="menu-titr-icon titr-icon2"></div>
+                            <p  data-title="خدمات "> خدمات</p>
+                        </button>
+                    </div>
+
+
+
+                    <div id="second" class="tabcontent">
+                        <div class=" header-nav-lists  right-one">
+                            <a href="#" class="nav-link alfa header-nav-lists-a">الکترونیک  </a>
+                            <div class="header-nav-lists-content">
+                                <ul class="nav-ul">
+                                    <li class="nav-ul-li">
+                                        <input type="checkbox" checked>
+                                        <i class="nav-ul-li-i"></i>
+                                        <a href="#">  لپتاپ</a>
+                                        <p></p>
+                                    </li>
+                                    <li class="nav-ul-li">
+                                        <input type="checkbox" checked>
+                                        <i class="nav-ul-li-i"></i>
+                                        <a href="#"> گوشی </a>
+                                        <p class="header-nav-lists-content-li">
+
+                                        </p>
+                                    </li>
+                                    <li class="nav-ul-li">
+                                        <input type="checkbox" checked>
+                                        <i class="nav-ul-li-i"></i>
+                                        <a href="#">دوربین</a>
+                                        <p class="header-nav-lists-content-li">
+                                            <a href="#" class="">دوربین چاپ فوری</a>
+                                            <a href="#" class=" "> دوربین دیجیتال</a>
+                                        </p>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+        <!--  MENU -->
+
+    </section>
