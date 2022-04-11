@@ -14,7 +14,7 @@ from .models import *
 def products_list(request):
     paginator = PageNumberPagination()
     paginator.page_size = 12
-    products = Products.objects.all()
+    products = Products.objects.all().order_by('id')
     result_page = paginator.paginate_queryset(products, request)
     data = ProdcutsSerializers(result_page,many=True).data
     return paginator.get_paginated_response(data)
@@ -37,8 +37,11 @@ def search_products(request):
 @api_view(['GET'])
 def products_filter(request):
     try:
-        q = request.GET['q']
-        articles = Products.objects.filter(Q(title__icontains=q)).all().order_by('id')
+        price = request.GET['price']
+        categories = request.GET['categories']
+        colors = request.GET['color']
+        sller_type = request.GET['sller_type']
+        articles = Products.objects.filter(Q(category__products=categories) | Q(colors__products=colors) | Q(price=price) | Q(seller__business_categories=sller_type)).all().order_by('id')
         paginator = PageNumberPagination()
         paginator.page_size = 12
         result_page = paginator.paginate_queryset(articles, request)

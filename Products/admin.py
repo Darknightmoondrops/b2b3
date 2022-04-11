@@ -33,9 +33,6 @@ class ProductsAdmin(admin.ModelAdmin):
     list_display = ['title','price','date','score', 'slug','inventory']
     prepopulated_fields = {'slug': ('title',)}\
 
-@admin.register(ProductsPhotos)
-class ProductsPhotosAdmin(admin.ModelAdmin):
-    list_display = ['product','image']
 
 @admin.register(ProductsTrackingCode)
 class ProductsTrackingCodeAdmin(admin.ModelAdmin):

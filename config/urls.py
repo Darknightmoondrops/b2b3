@@ -11,6 +11,11 @@ urlpatterns = [
     # Products Url
     path('products/', include('Products.urls')),
     path('api/products/', include('Products.api_urls')),
+    # Services Url
+    path('services/', include('Services.urls')),
+    path('api/services/', include('Services.api_urls')),
+
+
     # UserPanel Url
     path('user-panel/',include('UserPanel.urls')),
 

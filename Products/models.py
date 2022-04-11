@@ -5,32 +5,31 @@ from Sellers.models import Sellers
 from django.db import models
 
 
-# Products category model
+class ProductSubCategories_2(models.Model):
+    name = models.CharField(max_length=999, verbose_name='Name')
+    status = models.BooleanField(default=False, verbose_name='Status')
+
+    def __str__(self):
+        return f'{self.name}'
+
+class ProductSubCategories_1(models.Model):
+    name = models.CharField(max_length=999, verbose_name='Name')
+    status = models.BooleanField(default=False, verbose_name='Status')
+
+    def __str__(self):
+        return f'{self.name}'
+
+
 class ProductMainCategories(models.Model):
     name = models.CharField(max_length=999,verbose_name='Name')
     image = models.ImageField(upload_to='ProductMainCategoriesImage',blank=True,null=True,verbose_name='Image')
     status = models.BooleanField(default=False,verbose_name='Status')
-    
-    
-    def __str__(self):
-        return f'{self.name}'
-    
-    
-class ProductSubCategories_1(models.Model):
-    name = models.CharField(max_length=999,verbose_name='Name')
-    product_main_categories = models.ForeignKey(ProductMainCategories,on_delete=models.CASCADE,verbose_name='Product Main Categories')
-    status = models.BooleanField(default=False,verbose_name='Status')
+    subCategories_1 = models.ManyToManyField(ProductSubCategories_1,blank=True,verbose_name='ProductSubCategories_1')
     
     def __str__(self):
         return f'{self.name}'
     
 
-class ProductSubCategories_2(models.Model):
-    name = models.CharField(max_length=999,verbose_name='Name')
-    status = models.BooleanField(default=False,verbose_name='Status')
-    
-    def __str__(self):
-        return f'{self.name}'
 
 
 class ProductsColor(models.Model):
@@ -51,13 +50,18 @@ class ProductsSizes(models.Model):
 class Products(models.Model):
     title = models.CharField(max_length=999,blank=True,null=True,verbose_name='Title')
     slug = models.TextField(max_length=999)
-    image = models.ImageField(upload_to='productsImage',blank=True,null=True,verbose_name='Image')
+    main_image = models.ImageField(upload_to='productsImage',blank=True,null=True,verbose_name='Image')
+    image1 = models.ImageField(upload_to='productsImage',blank=True,null=True,verbose_name='Image1')
+    image2 = models.ImageField(upload_to='productsImage',blank=True,null=True,verbose_name='Image2')
+    image3 = models.ImageField(upload_to='productsImage',blank=True,null=True,verbose_name='Image3')
+    image4 = models.ImageField(upload_to='productsImage',blank=True,null=True,verbose_name='Image4')
+    image5 = models.ImageField(upload_to='productsImage',blank=True,null=True,verbose_name='Image5')
     description = models.TextField(verbose_name='Description')
     short_description = models.TextField(blank=True,null=True,verbose_name='Short Description')
     price = models.IntegerField(blank=True,null=True,verbose_name='Price')
     discounted_price = models.IntegerField(default=0,blank=True,null=True,verbose_name='Discounted Price')
     seller = models.ForeignKey(Sellers,on_delete=models.CASCADE,verbose_name='Seller')
-    category = models.ManyToManyField(ProductSubCategories_1,verbose_name='Category')
+    category = models.ManyToManyField(ProductMainCategories,blank=True,verbose_name='Category')
     colors = models.ManyToManyField(ProductsColor,blank=True,verbose_name='Colors')
     sizes = models.ManyToManyField(ProductsSizes,blank=True,verbose_name='Sizes')
     score = models.IntegerField(default=1,verbose_name='Score')
@@ -66,9 +70,29 @@ class Products(models.Model):
 
     def save(self, *args, **kwargs):
         super(Products, self).save(*args, **kwargs)
-        if self.image:
-            photo_optimization(self.image)
+        if self.main_image:
+            photo_optimization(self.main_image)
             super(Products, self).save(*args, **kwargs)
+        if self.image1:
+            photo_optimization(self.image1)
+            super(Products, self).save(*args, **kwargs)
+
+        if self.image2:
+            photo_optimization(self.image2)
+            super(Products, self).save(*args, **kwargs)
+
+        if self.image3:
+            photo_optimization(self.image3)
+            super(Products, self).save(*args, **kwargs)
+
+        if self.image4:
+            photo_optimization(self.image4)
+            super(Products, self).save(*args, **kwargs)
+
+        if self.image5:
+            photo_optimization(self.image5)
+            super(Products, self).save(*args, **kwargs)
+
 
 
     def jdate(self):
@@ -84,21 +108,16 @@ class Products(models.Model):
         else:
             return 0
 
+    def SubCategories_1(self):
+        categories_id = [i.id for i in self.category.all()]
+        product_mainCategories = ProductMainCategories.objects.filter(id__in=categories_id).first()
+        categories = product_mainCategories.subCategories_1.all()
+        return [category.name for category in categories]
+
     def __str__(self):
         return f'{self.title}'
     
-class ProductsPhotos(models.Model):
-    product = models.ForeignKey(Products,on_delete=models.CASCADE,verbose_name='Product')
-    image = models.ImageField(upload_to='ProductsPhotos',verbose_name='Image')
 
-    def save(self, *args, **kwargs):
-        super(ProductsPhotos, self).save(*args, **kwargs)
-        if self.image:
-            photo_optimization(self.image)
-            super(ProductsPhotos, self).save(*args, **kwargs)
-
-    def __str__(self):
-        return f'{self.product} - {self.image}'
 
 class ProductsComments(models.Model):
     user = models.ForeignKey(Userperson,on_delete=models.CASCADE,verbose_name='User')
@@ -107,7 +126,7 @@ class ProductsComments(models.Model):
     product_title = models.TextField(blank=True,null=True,verbose_name='Title')
     product_short_description = models.TextField(blank=True,null=True,verbose_name='Short description')
     comment = models.TextField(verbose_name='Comment')
-    product = models.ForeignKey(Products, on_delete=models.CASCADE, null=False, blank=False ,verbose_name='Prodcut Id') # to be fxed
+    product = models.ForeignKey(Products, on_delete=models.CASCADE, null=False, blank=False ,verbose_name='Prodcut Id')
     date = models.DateTimeField(auto_now_add=True, blank=True, null=True, verbose_name='Date')
 
     def save(self, *args, **kwargs):

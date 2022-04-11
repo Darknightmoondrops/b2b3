@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{% static 'style/register.css' %}" />
     <!-- <link rel="stylesheet" href="./asset/style/user_panel_style.css" /> -->
     <link rel="stylesheet" href="{% static 'style/new_style.css' %}" />
+    <link rel="stylesheet" href="{% static 'style/message.css' %}" />
 
 
     <!--/styles-->
@@ -38,7 +39,7 @@
         {% if messages %}
             <div>
                 {% for message in messages %}
-                <div{% if message.tags %} onclick="message({{ message.tags }},{{ message }})" class="massage {{ message.tags }}"{% endif %}>
+                <div id="snackbar" {% if message.tags %} onclick="message({{ message.tags }},{{ message }})" class="massage {{ message.tags }}"{% endif %}>
                     {{ message }}
                 </div>
                 {% endfor %}
@@ -52,7 +53,7 @@
         <div class="circle-three"></div>
     </div>
 
-
+    <script src="{% static 'js/message.js' %}"></script>
 </body>
 
 

@@ -1,0 +1,1733 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--styles-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{% static 'style/new_style.css' %}" />
+    <link rel="stylesheet" href="{% static 'style/products.css' %}">
+    <link rel="stylesheet" href="{% static 'style/services.css' %}">
+    <link rel="stylesheet" href="{% static 'js/splide-3.6.12/dist/css/splide.min.css' %}">
+    <link rel="stylesheet" href="{% static 'plugins/fontawesome/css/all.min.css' %}">
+
+    <!--/styles-->
+    <title>wellcome to C2|Home</title>
+</head>
+
+<body>
+    <!--header-->
+
+    {% include 'base/menu/menu.html' %}
+
+    <!--header-->
+
+    <!--------------------------------------------   slider   --------------------------------->
+    <section id="slider" class="">
+        <div class="container">
+            <div class="carousel-inner">
+                <div class="carousel-item fade">
+                    <a class="slide" href="#"><img class="slide-img" src="{% static 'img/pic-33.png' %}" alt="..."></a>
+                    <div class="slide-text">خدمات شستشوی<br>ماشین در محل<br>با نازل ترین قیمت</div>
+                    <button class="slide-btn" onclick="prsbox(1)">همین حالا اقدام کنید</button>
+
+                </div>
+                <div class="carousel-item fade">
+                    <a class="slide" href="#"><img class="slide-img" src="{% static 'img/pic-33.png' %}" alt="..."></a>
+                    <div class="slide-text">خدمات شستشوی<br>ماشین در محل<br>با نازل ترین قیمت</div>
+                    <button class="slide-btn" onclick="prsbox(1)">همین حالا اقدام کنید</button>
+
+                </div>
+                <div class="carousel-item fade">
+                    <a class="slide" href="#"><img class="slide-img" src="{% static 'img/pic-33.png' %}" alt="..."></a>
+                    <div class="slide-text">خدمات شستشوی<br>ماشین در محل<br>با نازل ترین قیمت</div>
+                    <button class="slide-btn" onclick="prsbox(1)">همین حالا اقدام کنید</button>
+                </div>
+                <div class="carousel-item fade">
+                    <a class="slide" href="#"><img class="slide-img" src="{% static 'img/pic-33.png' %}" alt="..."></a>
+                    <div class="slide-text">خدمات شستشوی<br>ماشین در محل<br>با نازل ترین قیمت</div>
+                    <button class="slide-btn" onclick="prsbox(1)">همین حالا اقدام کنید</button>
+                </div>
+            </div>
+            <div class="all-dot-btn">
+                <button type="button" class="dot-btn slide-active" onclick="currentSlide(1)"></button>
+                <button type="button" class="dot-btn" onclick="currentSlide(2)"></button>
+                <button type="button" class="dot-btn" onclick="currentSlide(3)"></button>
+                <button type="button" class="dot-btn" onclick="currentSlide(4)"></button>
+            </div>
+        </div>
+    </section>
+    <!--------------------------------------------  /slider -------------------------------------------->
+    <!-----------------------------------------------      body       ---------------------------------------------->
+    <section class="products">
+        <div class="category-bar">
+            <div class="category">
+                <a href="#">محصولات</a>/
+                <a href="#">پوشاک</a>/
+                <a href="#">کیف</a>
+            </div>
+            <div class="show-mode">
+                <div class="show-mode-p1" onclick="changepage(1)">
+                    <img class="show-mode-p1-img" src="{% static 'icons/icon-25.png' %}" alt="">
+                </div>
+                <div class="show-mode-p2 show-mode-border" onclick="changepage(2)">
+                    <img class="show-mode-p2-img" src="{% static 'icons/icon-24.png' %}" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="filter-bar">
+            <div class="filter-part1 filter">
+                <span class="filter-part1-txt">محصول مرتبط یافت شد 1400</span>
+            </div>
+            <div class="filter-part2 filter">
+                <span class="filter-part2-btn">مرتب سازی<img src="{% static 'icons/icon-28.png' %}" alt=""></span>
+                <div class="filter-part2-dropdown">
+                    <span class="filter-dropdown-txt">گرانترین</span>
+                    <span class="filter-dropdown-txt">ارزانترین</span>
+                    <span class="filter-dropdown-txt">پرفروش ترین</span>
+                    <span class="filter-dropdown-txt">پرطرفدارترین</span>
+                    <span class="filter-dropdown-txt">مرتبط ترین</span>
+                    <span class="filter-dropdown-txt">جدید ترین</span>
+                </div>
+            </div>
+            <div class="filter-part3 filter">
+                <div>
+                    <span class="filter-part2-btn" onclick="filterbox(1)">فیلتر محصولات</span>
+                </div>
+            </div>
+            <div class="filter-box">
+                <div class="background" onclick="filterbox(2)"></div>
+                <div class=" filter-products-box filter-products-off">
+                    <div class="filter-products-titles-all">
+                        <p class="filter-products-title">فیلتر محصولات</p>
+                        <img class="filter-products-img" src="{% static 'icons/icon-29.png' %}" alt="" onclick="filterbox(2)">
+                    </div>
+                    <div class="price-filter">
+                        <div class="filter-titles" onclick="clickme(1)">
+                            <p>محدوده قیمت</p>
+                            <img class="filter-title-img" src="{% static 'icons/icon-30.png' %}" alt="">
+                        </div>
+                        <div class="center brand-off">
+                            <div class="price text-violet">
+                                <div class="show-price-all">
+                                    <p>از</p><input class="show-price" type="number" value="0">
+                                </div>
+                                <div class="show-price-all">
+                                    <p>تا</p><input class="show-price" type="number" value="7500000">
+                                </div>
+                            </div>
+                            <div class="slider">
+                                <div class="progress"></div>
+                            </div>
+                            <div class="multi-range">
+                                <input class="range-min" id="min" type="range" min="0" max="7500000" value="0" step="10000" />
+                                <input class="range-max" id="max" type="range" min="0" max="7500000" value="7500000" step="10000" />
+                            </div>
+                        </div>
+                        <div class="brand">
+                            <div class="filter-titles" onclick="numberplus(1)">
+                                <p>شرکت</p>
+                                <img class="filter-title-img" src="{% static 'icons/icon-30.png' %}" alt="">
+                            </div>
+                            <div class="brand-searchbox brand-off">
+                                <form class="brand-searchbox-all" action="">
+                                    <input class="brand-searchbox-in" type="text" id="myInput" placeholder="جستوجو" onkeyup="searchBrand()">
+                                    <button class="brand-searchbox-btn"><img src="{% static 'icons/icon-27.png' %}" alt=""></button>
+                                </form>
+                                <ul class="ul-search" id="myUL">
+                                    <li>
+                                        <div class="brand-checkbox">
+                                            <div class="tik-box"><input class="checkbox-inp" type="checkbox" id="brand1"></div>
+                                            <div class="textBar-search"><label for="brand1"><p class="brand-checkbox-p1">کارواش مهدی</p></label></div>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="brand-checkbox">
+                                            <div class="tik-box"><input class="checkbox-inp" type="checkbox" id="brand1"></div>
+                                            <div class="textBar-search"><label for="brand1"><p class="brand-checkbox-p1">کارواش پسر خوب</p></label></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="brand-checkbox">
+                                            <div class="tik-box"><input class="checkbox-inp" type="checkbox" id="brand1"></div>
+                                            <div class="textBar-search"><label for="brand1"><p class="brand-checkbox-p1">هوم کت</p></label></div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="color-selector">
+                            <div class="title-space-selector">نوع فضای نظافتی</div>
+                            <label class="select" for="slct">
+    <select id="slct" required="required">
+      <option value="" disabled="disabled" selected="selected">نوع فضای نظافتی</option>
+      <option value="#">شرکتی / تجاری</option>
+      <option value="#">مسکونی</option>
+      <option value="#">راه پله</option>
+      <option value="#">تخلیه / نوساز / بازسازی شده</option>
+    </select>
+    <svg>
+      <use xlink:href="#select-arrow-down"></use>
+    </svg>
+  </label>
+                            <!-- SVG Sprites-->
+                            <svg class="sprites">
+    <symbol id="select-arrow-down" viewbox="0 0 10 6">
+      <polyline points="1 1 5 5 9 1"></polyline>
+    </symbol>
+  </svg>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="color-selector">
+                        <div class="title-space-selector">جنسیت نیرو</div>
+                        <label class="select" for="slct">
+                               <select id="slct" required="required">
+                                <option value="" disabled="disabled" selected="selected">جنسیت نیرو</option>
+                                <option value="#">مرد</option>
+                               <option value="#">زن</option>
+                                </select>
+                                <svg>
+                                     <use xlink:href="#select-arrow-down"></use>
+                                   </svg>
+                            </label>
+                        <!-- SVG Sprites-->
+                        <svg class="sprites">
+                            <symbol id="select-arrow-down" viewbox="0 0 10 6">
+                                 <polyline points="1 1 5 5 9 1"></polyline>
+                            </symbol>
+                        </svg>
+                    </div>
+                    <br>
+                    <div class="color-selector">
+                        <div class="title-space-selector">ساعت همکاری</div>
+                        <label class="select" for="slct">
+                               <select id="slct" required="required">
+                                <option value="" disabled="disabled" selected="selected">ساعت همکاری</option>
+                                <option value="#"></option>
+                               <option value="#"></option>
+                                </select>
+                                <svg>
+                                     <use xlink:href="#select-arrow-down"></use>
+                                   </svg>
+                            </label>
+                        <!-- SVG Sprites-->
+                        <svg class="sprites">
+                            <symbol id="select-arrow-down" viewbox="0 0 10 6">
+                                 <polyline points="1 1 5 5 9 1"></polyline>
+                            </symbol>
+                        </svg>
+                    </div>
+                    <div class="brand">
+                        <div class="filter-titles" onclick="clickmepls(1)">
+                            <p>نوع فروشنده</p>
+                            <img class="filter-title-img" src="./asset/icons/icon-30.png" alt="">
+                        </div>
+                        <div class="type-seller brand-off">
+                            <form class="brand-searchbox-all" action="">
+                                <input class="brand-searchbox-in" type="text" id="myInput" placeholder="جستوجو" onkeyup="searchBrand()">
+                                <button class="brand-searchbox-btn"><img src="./asset/icons/icon-27.png" alt=""></button>
+                            </form>
+                            <ul class="ul-search" id="myUL">
+                                <li>
+                                    <div class="brand-checkbox">
+                                        <div class="tik-box"><input class="checkbox-inp" type="checkbox" id="brand1"></div>
+                                        <div class="textBar-search"><label for="brand1"><p class="brand-checkbox-p1">کارواش مهدی</p></label></div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="brand-checkbox">
+                                        <div class="tik-box"><input class="checkbox-inp" type="checkbox" id="brand1"></div>
+                                        <div class="textBar-search"><label for="brand1"><p class="brand-checkbox-p1">کارواش پسر خوب</p></label></div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="brand-checkbox">
+                                        <div class="tik-box"><input class="checkbox-inp" type="checkbox" id="brand1"></div>
+                                        <div class="textBar-search"><label for="brand1"><p class="brand-checkbox-p1">هوم کت</p></label></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="filter-btn-all">
+                        <button class="filter-btn" type="submit">اعمال فیلتر</button>
+                    </div>
+
+                </div>
+
+                <div class="filter-part4 filter">
+                    <form action="">
+                        <input class="filter-part4-btn-input" type="text" placeholder="جستوجو" name="search">
+                        <button class="filter-part4-btn" type="submit"><img src="./asset/icons/icon-27.png" alt=""></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!---------------------------------------- sugg page ---------------------------->
+        <div class="sugg-background" onclick="suggbox(2)"></div>
+
+        <div class="sugg-page sugg-page-off">
+            <div class="service-title-page">
+                <div class="service-title-img-parent">
+                    <img class="service-title-img" src="./asset/icons/icon-29.png" alt="" onclick="suggbox(2)">
+                </div>
+                <p class="service-title-page-txt">دریافت خدمات پیشنهادی</p>
+            </div>
+            <div>
+                <div class="sugg-selector">
+                    <div class="title-space-selector1">نوع فضای نظافتی</div>
+                    <label class="select1" for="slct">
+                     <select id="slct" required="required">
+                            <option value="" disabled="disabled" selected="selected">نوع فضای نظافتی</option>
+                          <option value="#">شرکتی / تجاری</option>
+                              <option value="#">مسکونی</option>
+                              <option value="#">راه پله</option>
+                              <option value="#">تخلیه / نوساز / بازسازی شده</option>
+                    </select>
+                          <svg>
+                           <use xlink:href="#select-arrow-down"></use>
+                        </svg>
+                       </label>
+                    <!-- SVG Sprites-->
+                    <svg class="sprites">
+                    <symbol id="select-arrow-down" viewbox="0 0 10 6">
+                    <polyline points="1 1 5 5 9 1"></polyline>
+                    </symbol>
+                    </svg>
+                </div>
+            </div>
+            <br>
+            <div class="sugg-selector">
+                <div class="title-space-selector1">جنسیت نیرو</div>
+                <label class="select1" for="slct">
+                       <select id="slct" required="required">
+                        <option value="" disabled="disabled" selected="selected">جنسیت نیرو</option>
+                        <option value="#">مرد</option>
+                       <option value="#">زن</option>
+                        </select>
+                        <svg>
+                             <use xlink:href="#select-arrow-down"></use>
+                           </svg>
+                    </label>
+                <!-- SVG Sprites-->
+                <svg class="sprites">
+                    <symbol id="select-arrow-down" viewbox="0 0 10 6">
+                         <polyline points="1 1 5 5 9 1"></polyline>
+                    </symbol>
+                </svg>
+            </div>
+            <br>
+            <div class="sugg-selector">
+                <div class="title-space-selector1">ساعت کار</div>
+                <label class="select1" for="slct">
+                       <select id="slct" required="required">
+                        <option value="" disabled="disabled" selected="selected">ساعت همکاری</option>
+                        <option value="#"></option>
+                       <option value="#"></option>
+                        </select>
+                        <svg>
+                             <use xlink:href="#select-arrow-down"></use>
+                           </svg>
+                    </label>
+                <!-- SVG Sprites-->
+                <svg class="sprites">
+                    <symbol id="select-arrow-down" viewbox="0 0 10 6">
+                         <polyline points="1 1 5 5 9 1"></polyline>
+                    </symbol>
+                </svg>
+            </div>
+            <div class="sugg-selector">
+                <div class="title-space-selector1">آیا دیوارشویی دارید ؟</div>
+                <label class="select1" for="slct">
+                       <select id="slct" required="required">
+                        <option value="" disabled="disabled" selected="selected">جنسیت نیرو</option>
+                        <option value="#">بله</option>
+                       <option value="#">خیر</option>
+                        </select>
+                        <svg>
+                             <use xlink:href="#select-arrow-down"></use>
+                           </svg>
+                    </label>
+                <!-- SVG Sprites-->
+                <svg class="sprites">
+                    <symbol id="select-arrow-down" viewbox="0 0 10 6">
+                         <polyline points="1 1 5 5 9 1"></polyline>
+                    </symbol>
+                </svg>
+            </div>
+            <div class="sugg-selector">
+                <div class="title-space-selector1">خدمات مورد نظر</div>
+                <label class="select1" for="slct">
+                 <select id="slct" required="required">
+                        <option value="" disabled="disabled" selected="selected">خدمات مورد نظر</option>
+                      <option value="#">جارو و گرد گیری</option>
+                          <option value="#">بالکن</option>
+                          <option value="#">انباری</option>
+                          <option value="#">سرویس بهداشتی(شامل کف،دیوارها و سایر سطوح)</option>
+                </select>
+                      <svg>
+                       <use xlink:href="#select-arrow-down"></use>
+                    </svg>
+                   </label>
+                <!-- SVG Sprites-->
+                <svg class="sprites">
+                <symbol id="select-arrow-down" viewbox="0 0 10 6">
+                <polyline points="1 1 5 5 9 1"></polyline>
+                </symbol>
+                </svg>
+            </div>
+            <div class="sugg-selector">
+                <div class="title-space-selector1">متراژ</div>
+                <input type="text">
+            </div>
+            <div class="sugg-selector">
+                <div class="title-space-selector1">برآوردتان از مدت زمان لازم برای انجام کار</div>
+                <input type="textarea">
+            </div>
+            <div class="sugg-selector">
+                <div class="title-space-selector1">خدمات خاص</div>
+                <label class="select1" for="slct">
+                 <select id="slct" required="required">
+                        <option value="" disabled="disabled" selected="selected">خدمات خاص</option>
+                      <option value="#">شستشوی سقف</option>
+                          <option value="#">اسباب کشی</option>
+                          <option value="#">نصب  و باز کردن پرده</option>
+                          <option value="#">اتوکشی لباس</option>
+                </select>
+                      <svg>
+                       <use xlink:href="#select-arrow-down"></use>
+                    </svg>
+                   </label>
+                <!-- SVG Sprites-->
+                <svg class="sprites">
+                <symbol id="select-arrow-down" viewbox="0 0 10 6">
+                <polyline points="1 1 5 5 9 1"></polyline>
+                </symbol>
+                </svg>
+            </div>
+            <div class="sugg-selector">
+                <div class="title-space-selector1">خدمات خاص</div>
+                <label class="select1" for="slct">
+                 <select id="slct" required="required">
+                        <option value="" disabled="disabled" selected="selected">خدمات خاص</option>
+                      <option value="#">شستشوی سقف</option>
+                          <option value="#">اسباب کشی</option>
+                          <option value="#">نصب  و باز کردن پرده</option>
+                          <option value="#">اتوکشی لباس</option>
+                </select>
+                      <svg>
+                       <use xlink:href="#select-arrow-down"></use>
+                    </svg>
+                   </label>
+                <!-- SVG Sprites-->
+                <svg class="sprites">
+                <symbol id="select-arrow-down" viewbox="0 0 10 6">
+                <polyline points="1 1 5 5 9 1"></polyline>
+                </symbol>
+                </svg>
+            </div>
+            <div>
+                <button class="sugg-btn" type="submit">پیشنهاد خدمات</button>
+            </div>
+        </div>
+        </div>
+
+
+        <!---------------------------------------- presented page ---------------------------->
+        <div class="prs-background" onclick="prsbox(2)"></div>
+
+        <div class="prs-page prs-page-off">
+            <div class="service-title-page">
+                <div class="service-title-img-parent">
+                    <img class="service-title-img" src="./asset/icons/icon-29.png" alt="" onclick="prsbox(2)">
+                </div>
+                <p class="service-title-page-txt">دریافت خدمات پیشنهادی</p>
+            </div>
+
+            <div class="products-page2">
+                <!----1---->
+                <div class="product-box-vert">
+                    <div class="image-parent-vert">
+                        <a href="#">
+                            <img class="image-vert" src="./asset/img/pic-25.png" alt="">
+                            <span class="token-vert">20%</span>
+                        </a>
+                        <div>
+                            <a href="#">
+                                <img class="icon1-vart" src="./asset/icons/icon-9.png" alt="">
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#">
+                                <img class="icon2-vert" src="./asset/icons/icon-23.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="details-vert">
+                        <div class="details-vert-title">
+                            <a href="#">
+                                <h2>شستشوی اتومبیل</h2>
+                            </a>
+                            <div class="rate-vert">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="details-vert-text">
+                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
+                        </div>
+                        <div class="details-vert-bot">
+                            <div class="remaining-number"></div>
+                            <div class="price-vert"></div>
+                        </div>
+                    </div>
+                </div>
+                <!----2---->
+                <div class="product-box-vert">
+                    <div class="image-parent-vert">
+                        <a href="#">
+                            <img class="image-vert" src="./asset/img/pic-26.png" alt="">
+                        </a>
+                        <div>
+                            <a href="#">
+                                <img class="icon1-vart" src="./asset/icons/icon-9.png" alt="">
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#">
+                                <img class="icon2-vert" src="./asset/icons/icon-23.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="details-vert">
+                        <div class="details-vert-title">
+                            <a href="#">
+                                <h2>شستشوی اتومبیل</h2>
+                            </a>
+                            <div class="rate-vert">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="details-vert-text">
+                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
+                        </div>
+                        <div class="details-vert-bot">
+                            <div class="remaining-number"></div>
+                            <div class="price-vert"></div>
+                        </div>
+                    </div>
+                </div>
+                <!----3---->
+                <div class="product-box-vert">
+                    <div class="image-parent-vert">
+                        <a href="#">
+                            <img class="image-vert" src="./asset/img/pic-22.png" alt="">
+                            <span class="token-vert">20%</span>
+                        </a>
+                        <div>
+                            <a href="#">
+                                <img class="icon1-vart" src="./asset/icons/icon-9.png" alt="">
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#">
+                                <img class="icon2-vert" src="./asset/icons/icon-23.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="details-vert">
+                        <div class="details-vert-title">
+                            <a href="#">
+                                <h2>شستشوی اتومبیل</h2>
+                            </a>
+                            <div class="rate-vert">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="details-vert-text">
+                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
+                        </div>
+                        <div class="details-vert-bot">
+                            <div class="remaining-number"></div>
+                            <div class="price-vert"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <button class="sugg-btn" type="submit">پیشنهاد خدمات</button>
+            </div>
+        </div>
+        </div>
+        <!--------products----------->
+
+        <div class="hori-list">
+            <div class="products-page">
+                <div class="products-list1">
+                    <div class="product-slider">
+                        <section class="product">
+                            <div id="product-container-id" class="product-container">
+                                <div class="product-box product-fix">
+                                    <div class="image-parent">
+                                        <a href="#">
+                                            <img class="image" src="./asset/img/pic-12.png" alt="">
+                                            <span class="token-hori">20%</span>
+                                        </a>
+                                        <div>
+                                            <a href="#">
+                                                <div class="icon1 fix-icon-vert"></div>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="#">
+                                                <div class="icon2 fix-icon-vert"></div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="details">
+
+                                        <a href="#">
+                                            <h2>میز چوبی</h2>
+                                        </a>
+                                        <div class="rate">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <div class="price">2.000.000T</div>
+                                    </div>
+                                </div>
+
+                                <div class="product-box product-fix">
+                                    <div class="image-parent">
+                                        <a href="#">
+                                            <img class="image" src="./asset/img/pic-12.png" alt="">
+                                            <span class="token-hori">20%</span>
+                                        </a>
+                                        <div>
+                                            <a href="#">
+                                                <div class="icon1 fix-icon-vert"></div>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="#">
+                                                <div class="icon2 fix-icon-vert"></div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="details">
+
+                                        <a href="#">
+                                            <h2>میز چوبی</h2>
+                                        </a>
+                                        <div class="rate">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <div class="price">2.000.000T</div>
+                                    </div>
+                                </div>
+                                <div class="product-box product-fix">
+                                    <div class="image-parent">
+                                        <a href="#">
+                                            <img class="image" src="./asset/img/pic-12.png" alt="">
+                                            <span class="token-hori">20%</span>
+                                        </a>
+                                        <div>
+                                            <a href="#">
+                                                <div class="icon1 fix-icon-vert"></div>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="#">
+                                                <div class="icon2 fix-icon-vert"></div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="details">
+
+                                        <a href="#">
+                                            <h2>میز چوبی</h2>
+                                        </a>
+                                        <div class="rate">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <div class="price">2.000.000T</div>
+                                    </div>
+                                </div>
+                                <div class="product-box product-fix">
+                                    <div class="image-parent">
+                                        <a href="#">
+                                            <img class="image" src="./asset/img/pic-12.png" alt="">
+                                            <span class="token-hori">20%</span>
+                                        </a>
+                                        <div>
+                                            <a href="#">
+                                                <div class="icon1 fix-icon-vert"></div>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="#">
+                                                <div class="icon2 fix-icon-vert"></div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="details">
+
+                                        <a href="#">
+                                            <h2>میز چوبی</h2>
+                                        </a>
+                                        <div class="rate">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <div class="price">2.000.000T</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+            </div>
+            <!------------- page 2 --------------------->
+            <div class="products-page">
+                <div class="products-list1">
+                    <div class="product-slider">
+                        <section class="product">
+                            <div id="product-container-id" class="product-container">
+                                <div class="product-box product-fix">
+                                    <div class="image-parent">
+                                        <a href="#">
+                                            <img class="image" src="./asset/img/pic-12.png" alt="">
+                                            <span class="token-hori">20%</span>
+                                        </a>
+                                        <div>
+                                            <a href="#">
+                                                <div class="icon1 fix-icon-vert"></div>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="#">
+                                                <div class="icon2 fix-icon-vert"></div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="details">
+
+                                        <a href="#">
+                                            <h2>میز چوبی</h2>
+                                        </a>
+                                        <div class="rate">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <div class="price">2.000.000T</div>
+                                    </div>
+                                </div>
+
+                                <div class="product-box product-fix">
+                                    <div class="image-parent">
+                                        <a href="#">
+                                            <img class="image" src="./asset/img/pic-12.png" alt="">
+                                            <span class="token-hori">20%</span>
+                                        </a>
+                                        <div>
+                                            <a href="#">
+                                                <div class="icon1 fix-icon-vert"></div>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="#">
+                                                <div class="icon2 fix-icon-vert"></div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="details">
+
+                                        <a href="#">
+                                            <h2>میز چوبی</h2>
+                                        </a>
+                                        <div class="rate">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <div class="price">2.000.000T</div>
+                                    </div>
+                                </div>
+                                <div class="product-box product-fix">
+                                    <div class="image-parent">
+                                        <a href="#">
+                                            <img class="image" src="./asset/img/pic-12.png" alt="">
+                                            <span class="token-hori">20%</span>
+                                        </a>
+                                        <div>
+                                            <a href="#">
+                                                <div class="icon1 fix-icon-vert"></div>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="#">
+                                                <div class="icon2 fix-icon-vert"></div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="details">
+
+                                        <a href="#">
+                                            <h2>میز چوبی</h2>
+                                        </a>
+                                        <div class="rate">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <div class="price">2.000.000T</div>
+                                    </div>
+                                </div>
+                                <div class="product-box product-fix">
+                                    <div class="image-parent">
+                                        <a href="#">
+                                            <img class="image" src="./asset/img/pic-12.png" alt="">
+                                            <span class="token-hori">20%</span>
+                                        </a>
+                                        <div>
+                                            <a href="#">
+                                                <div class="icon1 fix-icon-vert"></div>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="#">
+                                                <div class="icon2 fix-icon-vert"></div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="details">
+
+                                        <a href="#">
+                                            <h2>میز چوبی</h2>
+                                        </a>
+                                        <div class="rate">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <div class="price">2.000.000T</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <div class="products-list2">
+                    <div class="product-slider">
+                        <section class="product">
+                            <div id="product-container-id" class="product-container">
+                                <div class="product-box product-fix">
+                                    <div class="image-parent">
+                                        <a href="#">
+                                            <img class="image" src="./asset/img/pic-12.png" alt="">
+                                            <span class="token-hori">20%</span>
+                                        </a>
+                                        <div>
+                                            <a href="#">
+                                                <div class="icon1 fix-icon-vert"></div>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="#">
+                                                <div class="icon2 fix-icon-vert"></div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="details">
+
+                                        <a href="#">
+                                            <h2>میز چوبی</h2>
+                                        </a>
+                                        <div class="rate">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <div class="price">2.000.000T</div>
+                                    </div>
+                                </div>
+
+                                <div class="product-box product-fix">
+                                    <div class="image-parent">
+                                        <a href="#">
+                                            <img class="image" src="./asset/img/pic-12.png" alt="">
+                                            <span class="token-hori">20%</span>
+                                        </a>
+                                        <div>
+                                            <a href="#">
+                                                <div class="icon1 fix-icon-vert"></div>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="#">
+                                                <div class="icon2 fix-icon-vert"></div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="details">
+
+                                        <a href="#">
+                                            <h2>میز چوبی</h2>
+                                        </a>
+                                        <div class="rate">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <div class="price">2.000.000T</div>
+                                    </div>
+                                </div>
+                                <div class="product-box product-fix">
+                                    <div class="image-parent">
+                                        <a href="#">
+                                            <img class="image" src="./asset/img/pic-12.png" alt="">
+                                            <span class="token-hori">20%</span>
+                                        </a>
+                                        <div>
+                                            <a href="#">
+                                                <div class="icon1 fix-icon-vert"></div>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="#">
+                                                <div class="icon2 fix-icon-vert"></div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="details">
+
+                                        <a href="#">
+                                            <h2>میز چوبی</h2>
+                                        </a>
+                                        <div class="rate">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <div class="price">2.000.000T</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <div class="products-list3">
+                    <div class="product-slider">
+                        <section class="product">
+                            <div id="product-container-id" class="product-container">
+                                <div class="product-box">
+                                    <div class="image-parent">
+                                        <a href="#">
+                                            <img class="image" src="./asset/img/pic-12.png" alt="">
+                                        </a>
+                                        <div>
+                                            <a href="#">
+                                                <img class="icon1" src="./asset/icons/icon-9.png" alt="">
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="#">
+                                                <img class="icon2" src="./asset/icons/icon-23.png" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="details">
+
+                                        <a href="#">
+                                            <h2>میز چوبی</h2>
+                                        </a>
+                                        <div class="rate">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <div class="price">2.000.000T</div>
+                                    </div>
+                                </div>
+                                <div class="product-box">
+                                    <div class="image-parent">
+                                        <a href="#">
+                                            <img class="image" src="./asset/img/pic-12.png" alt="">
+                                        </a>
+                                        <div>
+                                            <a href="#">
+                                                <img class="icon1" src="./asset/icons/icon-9.png" alt="">
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="#">
+                                                <img class="icon2" src="./asset/icons/icon-23.png" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="details">
+
+                                        <a href="#">
+                                            <h2>میز چوبی</h2>
+                                        </a>
+                                        <div class="rate">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <div class="price">2.000.000T</div>
+                                    </div>
+                                </div>
+                                <div class="product-box">
+                                    <div class="image-parent">
+                                        <a href="#">
+                                            <img class="image" src="./asset/img/pic-12.png" alt="">
+                                        </a>
+                                        <div>
+                                            <a href="#">
+                                                <img class="icon1" src="./asset/icons/icon-9.png" alt="">
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="#">
+                                                <img class="icon2" src="./asset/icons/icon-23.png" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="details">
+
+                                        <a href="#">
+                                            <h2>میز چوبی</h2>
+                                        </a>
+                                        <div class="rate">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <div class="price">2.000.000T</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+            </div>
+            <div class="page-slider">
+                <div class="page-icon" onclick="pluspage(1)"><img class="page-icon-img" src="./asset/icons/icon-35.png" alt=""></div>
+                <div class="page-number" dir="ltr">
+                    <span class="page1 page pageActive" onclick="pageslide(1)">1</span>
+                    <span class="page2 page" onclick="pageslide(2)">2</span>
+                </div>
+                <div class="page-icon" onclick="pluspage(-1)"><img class="page-icon-img" src="./asset/icons/icon-34.png" alt=""></div>
+            </div>
+        </div>
+        <!----------     vetical list    ------------------------->
+        <div class="vert-list">
+            <!-------- page 1 -------------->
+            <div class="products-page1">
+                <!----1---->
+                <div class="product-box-vert">
+                    <div class="image-parent-vert">
+                        <a href="#">
+                            <img class="image-vert" src="./asset/img/pic-25.png" alt="">
+                            <span class="token-vert">20%</span>
+                        </a>
+                        <div>
+                            <a href="#">
+                                <img class="icon1-vart" src="./asset/icons/icon-9.png" alt="">
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#">
+                                <img class="icon2-vert" src="./asset/icons/icon-23.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="details-vert">
+                        <div class="details-vert-title">
+                            <a href="#">
+                                <h2>شستشوی اتومبیل</h2>
+                            </a>
+                            <div class="rate-vert">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="details-vert-text">
+                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
+                        </div>
+                        <div class="details-vert-bot">
+                            <div class="remaining-number"></div>
+                            <div class="price-vert"></div>
+                        </div>
+                    </div>
+                </div>
+                <!----2---->
+                <div class="product-box-vert">
+                    <div class="image-parent-vert">
+                        <a href="#">
+                            <img class="image-vert" src="./asset/img/pic-26.png" alt="">
+                        </a>
+                        <div>
+                            <a href="#">
+                                <img class="icon1-vart" src="./asset/icons/icon-9.png" alt="">
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#">
+                                <img class="icon2-vert" src="./asset/icons/icon-23.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="details-vert">
+                        <div class="details-vert-title">
+                            <a href="#">
+                                <h2>شستشوی اتومبیل</h2>
+                            </a>
+                            <div class="rate-vert">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="details-vert-text">
+                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
+                        </div>
+                        <div class="details-vert-bot">
+                            <div class="remaining-number"></div>
+                            <div class="price-vert"></div>
+                        </div>
+                    </div>
+                </div>
+                <!----3---->
+                <div class="product-box-vert">
+                    <div class="image-parent-vert">
+                        <a href="#">
+                            <img class="image-vert" src="./asset/img/pic-22.png" alt="">
+                            <span class="token-vert">20%</span>
+                        </a>
+                        <div>
+                            <a href="#">
+                                <img class="icon1-vart" src="./asset/icons/icon-9.png" alt="">
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#">
+                                <img class="icon2-vert" src="./asset/icons/icon-23.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="details-vert">
+                        <div class="details-vert-title">
+                            <a href="#">
+                                <h2>شستشوی اتومبیل</h2>
+                            </a>
+                            <div class="rate-vert">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="details-vert-text">
+                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
+                        </div>
+                        <div class="details-vert-bot">
+                            <div class="remaining-number"></div>
+                            <div class="price-vert"></div>
+                        </div>
+                    </div>
+                </div>
+                <!----4---->
+                <div class="product-box-vert">
+                    <div class="image-parent-vert">
+                        <a href="#">
+                            <img class="image-vert" src="./asset/img/pic-23.png" alt="">
+                        </a>
+                        <div>
+                            <a href="#">
+                                <img class="icon1-vart" src="./asset/icons/icon-9.png" alt="">
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#">
+                                <img class="icon2-vert" src="./asset/icons/icon-23.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="details-vert">
+                        <div class="details-vert-title">
+                            <a href="#">
+                                <h2>شستشوی اتومبیل</h2>
+                            </a>
+                            <div class="rate-vert">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="details-vert-text">
+                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
+                        </div>
+                        <div class="details-vert-bot">
+                            <div class="remaining-number"></div>
+                            <div class="price-vert"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!----------- page 2 ------------------>
+            <div class="products-page1">
+                <!----1---->
+                <div class="product-box-vert">
+                    <div class="image-parent-vert">
+                        <a href="#">
+                            <img class="image-vert" src="./asset/img/pic-25.png" alt="">
+                            <span class="token-vert">20%</span>
+                        </a>
+                        <div>
+                            <a href="#">
+                                <img class="icon1-vart" src="./asset/icons/icon-9.png" alt="">
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#">
+                                <img class="icon2-vert" src="./asset/icons/icon-23.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="details-vert">
+                        <div class="details-vert-title">
+                            <a href="#">
+                                <h2>شستشوی اتومبیل</h2>
+                            </a>
+                            <div class="rate-vert">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="details-vert-text">
+                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
+                        </div>
+                        <div class="details-vert-bot">
+                            <div class="remaining-number"></div>
+                            <div class="price-vert"></div>
+                        </div>
+                    </div>
+                </div>
+                <!----2---->
+                <div class="product-box-vert">
+                    <div class="image-parent-vert">
+                        <a href="#">
+                            <img class="image-vert" src="./asset/img/pic-26.png" alt="">
+                        </a>
+                        <div>
+                            <a href="#">
+                                <img class="icon1-vart" src="./asset/icons/icon-9.png" alt="">
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#">
+                                <img class="icon2-vert" src="./asset/icons/icon-23.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="details-vert">
+                        <div class="details-vert-title">
+                            <a href="#">
+                                <h2>شستشوی اتومبیل</h2>
+                            </a>
+                            <div class="rate-vert">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="details-vert-text">
+                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
+                        </div>
+                        <div class="details-vert-bot">
+                            <div class="remaining-number"></div>
+                            <div class="price-vert"></div>
+                        </div>
+                    </div>
+                </div>
+                <!----3---->
+                <div class="product-box-vert">
+                    <div class="image-parent-vert">
+                        <a href="#">
+                            <img class="image-vert" src="./asset/img/pic-22.png" alt="">
+                            <span class="token-vert">20%</span>
+                        </a>
+                        <div>
+                            <a href="#">
+                                <img class="icon1-vart" src="./asset/icons/icon-9.png" alt="">
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#">
+                                <img class="icon2-vert" src="./asset/icons/icon-23.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="details-vert">
+                        <div class="details-vert-title">
+                            <a href="#">
+                                <h2>شستشوی اتومبیل</h2>
+                            </a>
+                            <div class="rate-vert">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="details-vert-text">
+                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
+                        </div>
+                        <div class="details-vert-bot">
+                            <div class="remaining-number"></div>
+                            <div class="price-vert"></div>
+                        </div>
+                    </div>
+                </div>
+                <!----4---->
+                <div class="product-box-vert">
+                    <div class="image-parent-vert">
+                        <a href="#">
+                            <img class="image-vert" src="./asset/img/pic-23.png" alt="">
+                        </a>
+                        <div>
+                            <a href="#">
+                                <img class="icon1-vart" src="./asset/icons/icon-9.png" alt="">
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#">
+                                <img class="icon2-vert" src="./asset/icons/icon-23.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="details-vert">
+                        <div class="details-vert-title">
+                            <a href="#">
+                                <h2>شستشوی اتومبیل</h2>
+                            </a>
+                            <div class="rate-vert">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="details-vert-text">
+                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
+                        </div>
+                        <div class="details-vert-bot">
+                            <div class="remaining-number"></div>
+                            <div class="price-vert"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-slider">
+                <div class="page-icon" onclick="pluspages(1)"><img class="page-icon-img" src="./asset/icons/icon-35.png" alt=""></div>
+                <div class="page-number" dir="ltr">
+                    <span class="page1 pages pageActive" onclick="pageslides(1)">1</span>
+                    <span class="page2 pages" onclick="pageslides(2)">2</span>
+                </div>
+                <div class="page-icon" onclick="pluspages(-1)"><img class="page-icon-img" src="./asset/icons/icon-34.png" alt=""></div>
+            </div>
+        </div>
+
+    </section>
+    <!------------------------------------------------------  /body  ------------------------------------------------>
+    <div class="section-p1-service">
+        <img src="./asset/img/pic-24.png" alt="">
+        <div>
+            <div class="section-p1-txt-service">پیشنهاد خدمات بر اساس نیاز شما</div>
+            <br>
+            <button type="button" class="" onclick="suggbox(1)">همین حالا امتحان کن!</button>
+        </div>
+    </div>
+    <!-------------------------------------------      product slider 1     ---------------------------------------->
+
+    <h1 class="title1">خدمات مشابه</h1>
+    <div class="splide" dir="ltr">
+        <div class="splide__track">
+            <ul class="splide__list">
+                <li class="splide__slide">
+                    <div class="product-box">
+                        <div class="image-parent">
+                            <a href="#">
+                                <img class="image" src="./asset/img/pic-12.png" alt="">
+                                <span class="token-hori">20%</span>
+                            </a>
+                            <div>
+                                <a href="#">
+                                    <div class="icon1 fix-icon-vert"></div>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="#">
+                                    <div class="icon2 fix-icon-vert"></div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="details">
+
+                            <a href="#">
+                                <h2>میز چوبی</h2>
+                            </a>
+                            <div class="rate">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="price">2.000.000T</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="splide__slide">
+                    <div class="product-box">
+                        <div class="image-parent">
+                            <a href="#">
+                                <img class="image" src="./asset/img/pic-12.png" alt="">
+                                <span class="token-hori">20%</span>
+                            </a>
+                            <div>
+                                <a href="#">
+                                    <div class="icon1 fix-icon-vert"></div>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="#">
+                                    <div class="icon2 fix-icon-vert"></div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="details">
+
+                            <a href="#">
+                                <h2>میز چوبی</h2>
+                            </a>
+                            <div class="rate">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="price">2.000.000T</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="splide__slide">
+                    <div class="product-box">
+                        <div class="image-parent">
+                            <a href="#">
+                                <img class="image" src="./asset/img/pic-12.png" alt="">
+                                <span class="token-hori">20%</span>
+                            </a>
+                            <div>
+                                <a href="#">
+                                    <div class="icon1 fix-icon-vert"></div>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="#">
+                                    <div class="icon2 fix-icon-vert"></div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="details">
+
+                            <a href="#">
+                                <h2>میز چوبی</h2>
+                            </a>
+                            <div class="rate">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="price">2.000.000T</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="splide__slide">
+                    <div class="product-box">
+                        <div class="image-parent">
+                            <a href="#">
+                                <img class="image" src="./asset/img/pic-12.png" alt="">
+                                <span class="token-hori">20%</span>
+                            </a>
+                            <div>
+                                <a href="#">
+                                    <div class="icon1 fix-icon-vert"></div>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="#">
+                                    <div class="icon2 fix-icon-vert"></div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="details">
+
+                            <a href="#">
+                                <h2>میز چوبی</h2>
+                            </a>
+                            <div class="rate">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="price">2.000.000T</div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!------------------------------------------     /product slider 1      ---------------------------------------->
+    <!-------------------------------------------      product slider 2     ---------------------------------------->
+
+    <h1 class="title1">بهترین خدمات</h1>
+    <div class="splide" dir="ltr">
+        <div class="splide__track">
+            <ul class="splide__list">
+                <li class="splide__slide">
+                    <div class="product-box">
+                        <div class="image-parent">
+                            <a href="#">
+                                <img class="image" src="./asset/img/pic-12.png" alt="">
+                                <span class="token-hori">20%</span>
+                            </a>
+                            <div>
+                                <a href="#">
+                                    <div class="icon1 fix-icon-vert"></div>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="#">
+                                    <div class="icon2 fix-icon-vert"></div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="details">
+
+                            <a href="#">
+                                <h2>میز چوبی</h2>
+                            </a>
+                            <div class="rate">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="price">2.000.000T</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="splide__slide">
+                    <div class="product-box">
+                        <div class="image-parent">
+                            <a href="#">
+                                <img class="image" src="./asset/img/pic-12.png" alt="">
+                                <span class="token-hori">20%</span>
+                            </a>
+                            <div>
+                                <a href="#">
+                                    <div class="icon1 fix-icon-vert"></div>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="#">
+                                    <div class="icon2 fix-icon-vert"></div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="details">
+
+                            <a href="#">
+                                <h2>میز چوبی</h2>
+                            </a>
+                            <div class="rate">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="price">2.000.000T</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="splide__slide">
+                    <div class="product-box">
+                        <div class="image-parent">
+                            <a href="#">
+                                <img class="image" src="./asset/img/pic-12.png" alt="">
+                                <span class="token-hori">20%</span>
+                            </a>
+                            <div>
+                                <a href="#">
+                                    <div class="icon1 fix-icon-vert"></div>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="#">
+                                    <div class="icon2 fix-icon-vert"></div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="details">
+
+                            <a href="#">
+                                <h2>میز چوبی</h2>
+                            </a>
+                            <div class="rate">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="price">2.000.000T</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="splide__slide">
+                    <div class="product-box">
+                        <div class="image-parent">
+                            <a href="#">
+                                <img class="image" src="./asset/img/pic-12.png" alt="">
+                                <span class="token-hori">20%</span>
+                            </a>
+                            <div>
+                                <a href="#">
+                                    <div class="icon1 fix-icon-vert"></div>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="#">
+                                    <div class="icon2 fix-icon-vert"></div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="details">
+
+                            <a href="#">
+                                <h2>میز چوبی</h2>
+                            </a>
+                            <div class="rate">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="price">2.000.000T</div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!------------------------------------------     /product slider 2      ---------------------------------------->
+
+    <!-------------------------------footer ----------------------------------------->
+    {% include 'base/footer/footer.html' %}
+    <!--script-->
+    <script src="{% static 'js/splide-3.6.12/dist/js/splide.min.js' %}"></script>
+    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/services.js' %}"></script>
+    <script src="https://kit.fontawesome.com/c2e98ef1bc.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

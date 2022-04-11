@@ -25,6 +25,41 @@ def userpanel_page(request):
     else: return redirect('/')
 
 
+def userpanel_register_page(request):
+    if not request.user.is_authenticated:
+
+        site_settings = SiteSettings.objects.last()
+        title = site_settings.site_name + " - " + "ورود کاربران"
+        context = {
+            'title': title,
+        }
+        if request.method == "POST":
+            phone = str(request.POST['phone'])
+            if phone.isdigit() and len(phone) == 11:
+                user = Userperson.objects.filter(phone=phone).first()
+                if user is not None:
+                    code_check = Codes.objects.filter(user=user,status=False).count()
+                    if code_check == 6:
+                        return redirect('ContactUs:contactus_page')
+                    else:
+                        code = randint(10000,50000)
+                        save_code = Codes.objects.create(user=user,code=code).save()
+                        send_sms(phone,f' کد تایید شما : {code}')
+                        return redirect('UserPanel:code_authentication_page',phone=phone)
+                else:
+                    messages.error(request,'لطفا شماره تلفن را درست وارد کنید')
+                    return render(request, 'UserPanel/userpanel_login_page/userpanel_login_page.html',context)
+            else:
+                messages.error(request,'لطفا شماره تلفن را درست وارد کنید')
+                return render(request, 'UserPanel/userpanel_login_page/userpanel_login_page.html',context)
+
+
+
+        return render(request,'UserPanel/userpanel_login_page/userpanel_login_page.html',context)
+
+    return redirect('/')
+
+
 def userpanel_login_page(request):
     if not request.user.is_authenticated:
 
@@ -58,6 +93,9 @@ def userpanel_login_page(request):
         return render(request,'UserPanel/userpanel_login_page/userpanel_login_page.html',context)
 
     return redirect('/')
+
+
+
 
 
 def userpanel_logout_page(request):
