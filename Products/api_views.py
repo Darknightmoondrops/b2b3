@@ -1,6 +1,7 @@
 from rest_framework.decorators import api_view,permission_classes
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework import status
 from extensions.products import *
@@ -24,10 +25,10 @@ def products_list(request):
 def search_products(request):
     try:
         q = request.GET['q']
-        articles = Products.objects.filter(Q(title__icontains=q)).all().order_by('id')
+        products = Products.objects.filter(Q(title__icontains=q)).all().order_by('id')
         paginator = PageNumberPagination()
         paginator.page_size = 12
-        result_page = paginator.paginate_queryset(articles, request)
+        result_page = paginator.paginate_queryset(products, request)
         data = ProdcutsSerializers(result_page, many=True).data
         return paginator.get_paginated_response(data)
     except:
@@ -66,20 +67,19 @@ def products_comments_list(request):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def products_comments_add(request):
-    try:
-        data = ProductsCommentsSerializers(data=request.data)
-        if data.is_valid():
-            productComments_check = ProductsComments.objects.filter(user_id=data.validated_data['user'].id,product_id=data.validated_data['product'].id,status=False).first()
-            if productComments_check is None:
-                product = Products.objects.filter(id=data.validated_data['product'].id).first()
-                ProductsComments(user_id=data.validated_data['user'].id, product_id=data.validated_data['product'].id,comment=data.validated_data['comment'], status=data.validated_data['status'],product_image=data.validated_data['product_image'], product_title=product.title,product_short_description=product.short_description).save()
-                return Response({'message': 'Created successfully'})
-            else:
-                return Response({"message": "has been created"})
+    data = ProductsCommentsSerializers(data=request.data)
+    if data.is_valid():
+        user_token = str(request.headers['Authorization']).split('Token')[1].strip()
+        token_info = Token.objects.filter(key=user_token).first()
+        productComments_check = ProductsComments.objects.filter(user_id=token_info.user.id,product_id=data.validated_data['product'].id,status=False).first()
+        if productComments_check is None:
+            ProductsComments(user_id=token_info.user.id, product_id=data.validated_data['product'].id,comment=data.validated_data['comment'], status=data.validated_data['status']).save()
+            return Response({'message': 'Created successfully'})
         else:
-            return Response({"message": "Could not create, information is incorrect"})
-    except:
-        return Response({"message": "error"},status=status.HTTP_400_BAD_REQUEST)
+            return Response({"message": "has been created"})
+    else:
+        return Response(data.errors)
+
 
 
 
@@ -98,7 +98,7 @@ def products_offers(request):
     paginator = PageNumberPagination()
     paginator.page_size = 12
     result_page = paginator.paginate_queryset(special_products, request)
-    data = ProductsCommentsSerializers(result_page,many=True).data
+    data = ProdcutsSerializers(result_page,many=True).data
     return paginator.get_paginated_response(data)
 
 
@@ -108,7 +108,7 @@ def products_mostexpensive(request):
     paginator = PageNumberPagination()
     paginator.page_size = 12
     result_page = paginator.paginate_queryset(MostExpensiveProdcuts, request)
-    data = ProductsCommentsSerializers(result_page,many=True).data
+    data = ProdcutsSerializers(result_page,many=True).data
     return paginator.get_paginated_response(data)
 
 
@@ -118,7 +118,7 @@ def products_cheapest(request):
     paginator = PageNumberPagination()
     paginator.page_size = 12
     result_page = paginator.paginate_queryset(cheapestProducts, request)
-    data = ProductsCommentsSerializers(result_page,many=True).data
+    data = ProdcutsSerializers(result_page,many=True).data
     return paginator.get_paginated_response(data)
 
 
@@ -129,7 +129,7 @@ def products_bestselling(request):
     paginator = PageNumberPagination()
     paginator.page_size = 12
     result_page = paginator.paginate_queryset(best_selling_products, request)
-    data = ProductsCommentsSerializers(result_page,many=True).data
+    data = ProdcutsSerializers(result_page,many=True).data
     return paginator.get_paginated_response(data)
 
 
@@ -140,5 +140,5 @@ def products_newest(request):
     paginator = PageNumberPagination()
     paginator.page_size = 12
     result_page = paginator.paginate_queryset(products, request)
-    data = ProductsCommentsSerializers(result_page,many=True).data
+    data = ProdcutsSerializers(result_page,many=True).data
     return paginator.get_paginated_response(data)

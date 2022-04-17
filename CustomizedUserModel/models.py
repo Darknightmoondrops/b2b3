@@ -35,22 +35,23 @@ class manager(BaseUserManager):
 class Userperson(AbstractUser):
 
     gender_choice = [
-        ('M', 'male'),
-        ('F', "female")
+        ('male', 'male'),
+        ('female', "female")
     ]
     roles = [
-        ('user', 'User'),
-        ('seller', 'Seller'),
-        ('serviceman', 'Serviceman')
+        ('user', 'user'),
+        ('seller', 'seller'),
+        ('service', 'service'),
+        ('admin', 'admin'),
     ]
     username = None
-    fullname = models.CharField(max_length=100, verbose_name="Full Name")
-    phone = models.CharField(max_length=20,verbose_name="Phone", unique=True)
-    image = models.ImageField(upload_to="userphoto/", blank=True, null=True, verbose_name="User Photo")
+    fullname = models.CharField(blank=False, null=False,max_length=100, verbose_name="Full Name")
+    phone = models.CharField(blank=False, null=False,max_length=20,verbose_name="Phone", unique=True)
+    image = models.ImageField(blank=False, null=False,upload_to="userphoto/",verbose_name="User Photo")
     address = models.TextField(null=True,blank=True,verbose_name='Address')
     phone_auth = models.BooleanField(default=False,verbose_name='Phone Auth')
     gender = models.CharField(choices=gender_choice, blank=False, null=False, max_length=50,verbose_name='Gender')
-    role = models.CharField(choices=roles, max_length=50,verbose_name='Rols')
+    role = models.CharField(choices=roles,blank=False, null=False, max_length=50,verbose_name='Rols')
     is_superuser = models.BooleanField(default=False,blank=True,null=True,verbose_name='Is Super User')
     objects = manager()
     USERNAME_FIELD = 'phone'
@@ -61,6 +62,8 @@ class Userperson(AbstractUser):
         if self.image:
             photo_optimization(self.image)
             super(Userperson, self).save(*args, **kwargs)
+
+
 
 
     def __call__(self):

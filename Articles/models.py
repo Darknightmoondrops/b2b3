@@ -60,11 +60,9 @@ class ArticlesLikes(models.Model):
 
 
 class ArticlesComments(models.Model):
-    user = models.ForeignKey(Userperson,on_delete=models.CASCADE,verbose_name='User')
-    article = models.ForeignKey(Articles, on_delete=models.CASCADE, blank=True, null=True, verbose_name='Article')
-    first_name = models.CharField(max_length=999,blank=True,null=True,verbose_name='First Name')
-    last_name = models.CharField(max_length=999,blank=True,null=True,verbose_name='last_name')
-    comment = models.TextField(verbose_name='Comment')
+    user = models.ForeignKey(Userperson,blank=True,null=True,on_delete=models.CASCADE,verbose_name='User')
+    article = models.ForeignKey(Articles, on_delete=models.CASCADE,blank=False,null=False, verbose_name='Article')
+    comment = models.TextField(blank=False,null=False,verbose_name='Comment')
     status = models.BooleanField(default=False,blank=True,null=True,verbose_name='Status')
     date = models.DateField(auto_now_add=True,blank=True,null=True, verbose_name='Date')
 

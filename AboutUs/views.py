@@ -13,6 +13,7 @@ Views :
 
 
 def aboutus_page(request):
+
     site_settings = SiteSettings.objects.last()
     aboutus = AboutUs.objects.last()
     title = site_settings.site_name + " - " + "درباره ما"

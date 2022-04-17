@@ -134,7 +134,7 @@ def code_authentication_page(request,phone):
                         return redirect('servicemanpanel:servicemanpanel_page')
 
                     elif user.is_superuser:
-                        return redirect('AdminPanel:adminpanel_page')
+                        return redirect('AboutUs:aboutus_page')
                 else:
                     return redirect('/')
 

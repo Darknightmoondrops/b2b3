@@ -10,7 +10,6 @@ def django_jalali(time):
             time_to_list[1] = month
             break
 
-
     result = '{},{},{}'.format(time_to_list[0],time_to_list[1],time_to_list[2])
     return result
 

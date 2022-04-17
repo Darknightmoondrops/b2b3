@@ -40,20 +40,20 @@ def search_articles(request):
 @api_view(["POST"])
 @permission_classes([IsAuthenticated])
 def add_articles_comment(request):
-    try:
-        data = ArticlesCommentsSerializers(data=request.data)
-        if data.is_valid():
-            article_comment_check = ArticlesComments.objects.filter(user_id=data.validated_data['user'].id,article_id=data.validated_data['article'].id,status=False).first()
-            if article_comment_check is None:
-                ArticlesComments.objects.create(article_id=data.validated_data['article'].id,user_id=data.validated_data['user'].id,first_name=data.validated_data['first_name'],last_name=data.validated_data['last_name'],comment=data.validated_data['comment'],status=False)
-                return Response({"message": "created"})
-            else:
-                return Response({"message": "has been created"})
-
+    data = ArticlesCommentsSerializers(data=request.data)
+    if data.is_valid():
+        user_token = str(request.headers['Authorization']).split('Token')[1].strip()
+        token_info = Token.objects.filter(key=user_token).first()
+        article_comment_check = ArticlesComments.objects.filter(user_id=token_info.user.id,article_id=data.validated_data['article'].id,status=False).first()
+        if article_comment_check is None:
+            ArticlesComments.objects.create(article_id=data.validated_data['article'].id,user_id=token_info.user.id,comment=data.validated_data['comment'],status=False)
+            return Response({"message": "created"})
         else:
-            return Response({"message": "the information entered is incorrect"})
-    except:
-        return Response({"message": "error"})
+            return Response({"message": "has been created"})
+
+    else:
+        return Response(data.errors)
+
 
 
 

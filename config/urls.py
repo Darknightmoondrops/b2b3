@@ -15,9 +15,12 @@ urlpatterns = [
     path('services/', include('Services.urls')),
     path('api/services/', include('Services.api_urls')),
 
+    # Admin Panel Url
+    path('api/admin-panel/',include('AdminPanel.api_urls')),
 
     # UserPanel Url
     path('user-panel/',include('UserPanel.urls')),
+    path('api/user-panel/',include('UserPanel.api_urls')),
 
     # Site Settings Url
     path('api/site-settings/', include('SiteSettings.api_urls')),
