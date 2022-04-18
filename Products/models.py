@@ -45,52 +45,35 @@ class ProductsSizes(models.Model):
         return f'{self.name}'
 
 class Products(models.Model):
-    title = models.CharField(max_length=999,blank=True,null=True,verbose_name='Title')
-    slug = models.TextField(max_length=999)
-    main_image = models.ImageField(upload_to='productsImage',blank=True,null=True,verbose_name='Image')
-    image1 = models.ImageField(upload_to='productsImage',blank=True,null=True,verbose_name='Image1')
-    image2 = models.ImageField(upload_to='productsImage',blank=True,null=True,verbose_name='Image2')
-    image3 = models.ImageField(upload_to='productsImage',blank=True,null=True,verbose_name='Image3')
-    image4 = models.ImageField(upload_to='productsImage',blank=True,null=True,verbose_name='Image4')
-    image5 = models.ImageField(upload_to='productsImage',blank=True,null=True,verbose_name='Image5')
-    description = models.TextField(verbose_name='Description')
-    short_description = models.TextField(blank=True,null=True,verbose_name='Short Description')
-    price = models.IntegerField(blank=True,null=True,verbose_name='Price')
-    discounted_price = models.IntegerField(default=0,blank=True,null=True,verbose_name='Discounted Price')
-    seller = models.ForeignKey(Sellers,on_delete=models.CASCADE,verbose_name='Seller')
+    title = models.CharField(max_length=999,blank=False,null=False,verbose_name='Title')
+    slug = models.TextField(blank=False,null=False)
+    main_image = models.ImageField(upload_to='productsImage',blank=False,null=False,verbose_name='Image')
+    image1 = models.ImageField(upload_to='productsImage',blank=False,null=False,verbose_name='Image1')
+    image2 = models.ImageField(upload_to='productsImage',blank=False,null=False,verbose_name='Image2')
+    image3 = models.ImageField(upload_to='productsImage',blank=False,null=False,verbose_name='Image3')
+    image4 = models.ImageField(upload_to='productsImage',blank=False,null=False,verbose_name='Image4')
+    description = models.TextField(blank=False,null=False,verbose_name='Description')
+    short_description = models.TextField(blank=False,null=False,verbose_name='Short Description')
+    price = models.IntegerField(blank=False,null=False,verbose_name='Price')
+    discounted_price = models.IntegerField(blank=False,null=False,verbose_name='Discounted Price')
+    seller = models.ForeignKey(Sellers,blank=True,null=True,on_delete=models.CASCADE,verbose_name='Seller')
     maincategories = models.ManyToManyField(ProductMainCategories,blank=True,verbose_name='Main Category')
     subCategories1 = models.ManyToManyField(ProductSubCategories_1,blank=True,verbose_name='Sub Category 1')
     subCategories2 = models.ManyToManyField(ProductSubCategories_2,blank=True,verbose_name='Sub Category 2')
     colors = models.ManyToManyField(ProductsColor,blank=True,verbose_name='Colors')
-    sizes = models.ManyToManyField(ProductsSizes,blank=True,verbose_name='Sizes')
+    sizes = models.ManyToManyField(ProductsSizes,blank=False,verbose_name='Sizes')
     score = models.IntegerField(default=1,verbose_name='Score')
     date = models.DateTimeField(auto_now_add=True,blank=True,null=True,verbose_name='Date')
-    inventory = models.IntegerField(default=0,blank=False,verbose_name='Inventory')
+    inventory = models.IntegerField(blank=False,null=False,verbose_name='Inventory')
 
     def save(self, *args, **kwargs):
+        self.slug = str(self.slug).replace(' ','-')
+        photo_optimization(self.main_image)
+        photo_optimization(self.image1)
+        photo_optimization(self.image2)
+        photo_optimization(self.image3)
+        photo_optimization(self.image4)
         super(Products, self).save(*args, **kwargs)
-        if self.main_image:
-            photo_optimization(self.main_image)
-            super(Products, self).save(*args, **kwargs)
-        if self.image1:
-            photo_optimization(self.image1)
-            super(Products, self).save(*args, **kwargs)
-
-        if self.image2:
-            photo_optimization(self.image2)
-            super(Products, self).save(*args, **kwargs)
-
-        if self.image3:
-            photo_optimization(self.image3)
-            super(Products, self).save(*args, **kwargs)
-
-        if self.image4:
-            photo_optimization(self.image4)
-            super(Products, self).save(*args, **kwargs)
-
-        if self.image5:
-            photo_optimization(self.image5)
-            super(Products, self).save(*args, **kwargs)
 
 
 

@@ -58,10 +58,8 @@ class Userperson(AbstractUser):
     REQUIRED_FIELDS = ['fullname']
 
     def save(self, *args, **kwargs):
+        photo_optimization(self.image)
         super(Userperson, self).save(*args, **kwargs)
-        if self.image:
-            photo_optimization(self.image)
-            super(Userperson, self).save(*args, **kwargs)
 
 
 

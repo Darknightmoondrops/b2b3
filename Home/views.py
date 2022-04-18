@@ -12,6 +12,8 @@ def home_page(request):
     LatestDiscountsProducts = Products.objects.filter(id__in=latest_discounts_products())
 
 
+
+
     context = {
         'latest_articles': latest_articles,
         'special_products': special_products,

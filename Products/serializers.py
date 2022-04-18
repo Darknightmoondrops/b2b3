@@ -13,9 +13,25 @@ class ProdcutsSerializers(serializers.ModelSerializer):
     percentage = serializers.ReadOnlyField()
     jdate = serializers.ReadOnlyField()
 
+    def validate(self, data):
+        print(data)
+        try:
+            d = data['sizes']
+            return data
+
+        except:
+            raise serializers.ValidationError({'sizes': ['این مقدار لازم است.']})
+
+
+
+
+
     class Meta:
         model = Products
         fields = '__all__'
+
+
+
 
 
 

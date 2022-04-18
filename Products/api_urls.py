@@ -15,4 +15,5 @@ urlpatterns = [
     path('products-cheapest/',api_views.products_cheapest,name='products_cheapest'),
     path('products-bestselling/',api_views.products_bestselling,name='products_bestselling'),
     path('products-newest/',api_views.products_newest,name='products_newest'),
+    path('add-product/',api_views.add_product,name='add_product'),
 ]

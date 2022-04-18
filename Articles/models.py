@@ -23,10 +23,8 @@ class Articles(models.Model):
     labels = models.ManyToManyField(ArticlesLabels,verbose_name='Labels')
 
     def save(self, *args, **kwargs):
+        photo_optimization(self.image)
         super(Articles, self).save(*args, **kwargs)
-        if self.image:
-            photo_optimization(self.image)
-            super(Articles, self).save(*args, **kwargs)
 
     @property
     def writer_fullname(self):

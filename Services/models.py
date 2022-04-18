@@ -56,13 +56,13 @@ class ServicesReservation(models.Model):
     status = models.BooleanField(default=False,verbose_name='Status')
 
 
-    def save(self, *args, **kwargs):
-        date_now = str(datetime.datetime.now()).split(' ')
-        date_hour = str(date_now[1]).split('.')
-        hour_split = str(date_hour[0]).split(':')
-        hour = f'{hour_split[0]}:{hour_split[1]}'
-        self.hour = hour
-        super(ServicesReservation, self).save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     date_now = str(datetime.datetime.now()).split(' ')
+    #     date_hour = str(date_now[1]).split('.')
+    #     hour_split = str(date_hour[0]).split(':')
+    #     hour = f'{hour_split[0]}:{hour_split[1]}'
+    #     self.hour = hour
+    #     super(ServicesReservation, self).save(*args, **kwargs)
 
 
     def __str__(self):
