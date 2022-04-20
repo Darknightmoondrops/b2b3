@@ -1,11 +1,10 @@
-from rest_framework.response import Response
-from rest_framework.decorators import api_view
 from .serializers import AboutUsSerializers
+from rest_framework import generics
 from .models import AboutUs
 
 
-@api_view(["GET"])
-def about_us(request):
-    aboutus = AboutUs.objects.first()
-    data = AboutUsSerializers(aboutus).data
-    return Response(data)
+class about_us(generics.ListAPIView):
+    serializer_class = AboutUsSerializers
+
+    def get_queryset(self):
+        return AboutUs.objects.first()

@@ -15,7 +15,7 @@ class ArticlesLabelsAdmin(admin.ModelAdmin):
 
 @admin.register(ArticlesLikes)
 class ArticlesLikesAdmin(admin.ModelAdmin):
-    list_display = ['like']
+    list_display = ['user']
 
 @admin.register(ArticlesComments)
 class ArticlesCommentsAdmin(admin.ModelAdmin):

@@ -1,4 +1,4 @@
-from .models import Articles,ArticlesComments
+from .models import Articles,ArticlesComments,ArticlesLikes
 from rest_framework import serializers
 
 
@@ -21,3 +21,9 @@ class ArticlesCommentsSerializers(serializers.ModelSerializer):
         extra_kwargs = {
             'status': {'read_only': True}
         }
+
+
+class ArticlesLikesializers(serializers.ModelSerializer):
+    class Meta:
+        model = ArticlesLikes
+        fields = '__all__'

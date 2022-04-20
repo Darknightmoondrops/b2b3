@@ -1,8 +1,8 @@
-from rest_framework.decorators import api_view,permission_classes
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAdminUser
 from CustomizedUserModel.models import Userperson
 from rest_framework.response import Response
+from rest_framework import generics
 from rest_framework import status
 from django.db.models import Q
 from .serializers import *
@@ -11,79 +11,90 @@ from .models import *
 
 
 
-@api_view(['GET'])
-@permission_classes([IsAdminUser])
-def adminpanel_users(request):
-    paginator = PageNumberPagination()
-    paginator.page_size = 12
-    users = Userperson.objects.filter(role='user').all().order_by('id')
-    result_page = paginator.paginate_queryset(users, request)
-    data = UsersSerializers(result_page,many=True).data
-    return paginator.get_paginated_response(data)
 
+class adminpanel_users(generics.ListAPIView):
+    serializer_class = UsersSerializers
+    pagination_class = PageNumberPagination
+    permission_classes = [IsAdminUser]
 
-@api_view(['GET'])
-@permission_classes([IsAdminUser])
-def adminpanel_admins(request):
-    paginator = PageNumberPagination()
-    paginator.page_size = 12
-    admins = Userperson.objects.filter(role='admins').all().order_by('id')
-    result_page = paginator.paginate_queryset(admins, request)
-    data = UsersSerializers(result_page,many=True).data
-    return paginator.get_paginated_response(data)
-
-@api_view(['GET'])
-@permission_classes([IsAdminUser])
-def adminpanel_sellers(request):
-    paginator = PageNumberPagination()
-    paginator.page_size = 12
-    seller = Userperson.objects.filter(role='seller').all().order_by('id')
-    result_page = paginator.paginate_queryset(seller, request)
-    data = UsersSerializers(result_page,many=True).data
-    return paginator.get_paginated_response(data)
+    def get_queryset(self):
+        return Userperson.objects.filter(role='user').all().order_by('id')
 
 
 
-@api_view(['GET'])
+class adminpanel_admins(generics.ListAPIView):
+    serializer_class = UsersSerializers
+    pagination_class = PageNumberPagination
+    permission_classes = [IsAdminUser]
 
-def adminpanel_services(request):
-    paginator = PageNumberPagination()
-    paginator.page_size = 12
-    services = Userperson.objects.filter(role='service').all().order_by('id')
-    result_page = paginator.paginate_queryset(services, request)
-    data = UsersSerializers(result_page,many=True).data
-    return paginator.get_paginated_response(data)
+    def get_queryset(self):
+        return Userperson.objects.filter(role='admins').all().order_by('id')
 
 
-@api_view(['POST'])
-@permission_classes([IsAdminUser])
-def adminpanel_add_user(request):
-    data = UsersSerializers(data=request.data)
-    if data.is_valid():
-        if data.validated_data['role'] == 'admin':
-            create_admin = Userperson.objects.create_superuser(fullname=data.validated_data['fullname'],phone=data.validated_data['phone'],role=data.validated_data['role'],gender=data.validated_data['gender'],image=data.validated_data['image'])
-            create_admin.set_password(data.validated_data['password'])
-            create_admin.save()
-            return Response({'message': 'Admin was created'})
+class adminpanel_sellers(generics.ListAPIView):
+    serializer_class = UsersSerializers
+    pagination_class = PageNumberPagination
+    permission_classes = [IsAdminUser]
+
+    def get_queryset(self):
+        return Userperson.objects.filter(role='seller').all().order_by('id')
+
+
+
+
+class adminpanel_services(generics.ListAPIView):
+    serializer_class = UsersSerializers
+    pagination_class = PageNumberPagination
+    permission_classes = [IsAdminUser]
+
+    def get_queryset(self):
+        return Userperson.objects.filter(role='service').all().order_by('id')
+
+
+
+
+
+class adminpanel_add_user(generics.CreateAPIView):
+    serializer_class = UsersSerializers
+    pagination_class = PageNumberPagination
+    permission_classes = [IsAdminUser]
+
+    def post(self, request):
+        data = UsersSerializers(data=request.data)
+        if data.is_valid():
+            if data.validated_data['role'] == 'admin':
+                create_admin = Userperson.objects.create_superuser(fullname=data.validated_data['fullname'],phone=data.validated_data['phone'],role=data.validated_data['role'],gender=data.validated_data['gender'],image=data.validated_data['image'])
+                create_admin.set_password(data.validated_data['password'])
+                create_admin.is_staff = True
+                create_admin.save()
+                return Response({'message': 'Admin was created'})
+            else:
+                create_user = Userperson.objects.create_user(fullname=data.validated_data['fullname'],phone=data.validated_data['phone'],role=data.validated_data['role'],gender=data.validated_data['gender'],image=data.validated_data['image'])
+                create_user.set_password(data.validated_data['password'])
+                create_user.is_staff = True
+                create_user.save()
+                return Response({'message': 'User created'})
         else:
-            create_user = Userperson.objects.create_user(fullname=data.validated_data['fullname'],phone=data.validated_data['phone'],role=data.validated_data['role'],gender=data.validated_data['gender'],image=data.validated_data['image'])
-            create_user.set_password(data.validated_data['password'])
-            create_user.is_staff = False
-            create_user.save()
-            return Response({'message': 'User created'})
-    else:
-        return Response(data.errors)
+            return Response(data.errors)
 
 
-@api_view(['POST'])
-@permission_classes([IsAdminUser])
-def adminpanel_delete_user(request):
-    try:
-        user: Userperson = Userperson.objects.filter(id=request.POST['id']).first()
-        user.delete()
-        return Response({'message': 'User deleted'})
-    except:
-        return Response({'message': 'Error'})
+
+class adminpanel_delete_user(generics.CreateAPIView):
+    pagination_class = PageNumberPagination
+    permission_classes = [IsAdminUser]
+
+    def post(self, request):
+        user_id = request.data.get('id')
+        if user_id:
+            user = Userperson.objects.filter(id=user_id).first()
+            if user is not None:
+                user.delete()
+                return Response({'message': 'User deleted'})
+            else:
+                return Response({'message': 'کاربر وجود ندارد'})
+        else:
+            return Response({'id': 'این مقدار الزامی است'})
+
 
 
 

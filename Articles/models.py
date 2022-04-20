@@ -50,11 +50,11 @@ class ArticlesHits(models.Model):
         return f'{self.ip}'
 
 class ArticlesLikes(models.Model):
-    like = models.ForeignKey(Userperson,on_delete=models.CASCADE,verbose_name='Like')
+    user = models.ForeignKey(Userperson,null=True,on_delete=models.CASCADE,verbose_name='Like')
     article = models.ForeignKey(Articles,on_delete=models.CASCADE,blank=True,null=True,verbose_name='Article')
 
     def __str__(self):
-        return f'{self.like}'
+        return f'{self.user}'
 
 
 class ArticlesComments(models.Model):

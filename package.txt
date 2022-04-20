@@ -1,3 +1,6 @@
-Django==4.0
-djangorestframework==3.13.1
-Pillow==8.4.0
+Django
+djangorestframework
+Pillow
+requests
+zeep
+aiohttp

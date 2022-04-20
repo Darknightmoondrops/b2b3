@@ -1,12 +1,13 @@
-from rest_framework.decorators import api_view,permission_classes
 from rest_framework.permissions import IsAdminUser
 from .serializers import SiteSettingsSerializers
-from rest_framework.response import Response
+from rest_framework import generics
 from .models import SiteSettings
 
-@api_view(['GET'])
-@permission_classes([IsAdminUser])
-def site_settings(request):
-    sitesettings = SiteSettings.objects.first()
-    data = SiteSettingsSerializers(sitesettings).data
-    return Response(data)
+
+
+class site_settings(generics.ListAPIView):
+    serializer_class = SiteSettingsSerializers
+    permission_classes = [IsAdminUser]
+
+    def get_queryset(self):
+        return SiteSettings.objects.first()
