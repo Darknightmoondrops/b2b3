@@ -8,4 +8,7 @@ class ContactUs(models.Model):
     company_name = models.CharField(max_length=100)
     subject = models.CharField(max_length=99)
     message = models.TextField()
-    status = models.BooleanField(default=False)
+    status = models.BooleanField(default=False,null=True)
+
+    def __str__(self):
+        return f'{self.firstName}'

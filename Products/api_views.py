@@ -39,11 +39,12 @@ class products_filter(generics.ListAPIView):
 
 
     def get_queryset(self):
-        price = self.request.query_params.get('price')
+        price1 = self.request.query_params.get('price1')
+        price2 = self.request.query_params.get('price2')
         categories = self.request.query_params.get('categories')
         colors = self.request.query_params.get('colors')
         sller_type = self.request.query_params.get('sller_type')
-        return Products.objects.filter(Q(maincategories__name=categories) | Q(colors__products=colors) | Q(price=price) | Q(seller__business_categories=sller_type)).all().order_by('id')
+        return Products.objects.filter(Q(maincategories__name=categories) | Q(colors__products=colors) | Q(price=price1) | Q(price=price2) | Q(discounted_price=price1) | Q(discounted_price=price2) | Q(seller__business_categories=sller_type)).distinct().order_by('id')
 
 
 

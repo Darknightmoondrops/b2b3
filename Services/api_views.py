@@ -34,5 +34,5 @@ class services_filter(generics.ListAPIView):
         gender = self.request.query_params.get('gender')
         TypeOfCleaningSpace = self.request.query_params.get('TypeOfCleaningSpace')
         company = self.request.query_params.get('company')
-        return Services.objects.filter(type_of_cleaning_space__name=TypeOfCleaningSpace,service_user__gender=gender,company__icontains=company,service_reservation__hour__iexact=hour,service_reservation__status=False).all().order_by('id')
+        return Services.objects.filter(type_of_cleaning_space__name=TypeOfCleaningSpace,service_user__gender=gender,company__icontains=company,service_reservation__hour__iexact=hour,service_reservation__status=False).distinct().order_by('id')
 
