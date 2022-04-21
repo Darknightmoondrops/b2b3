@@ -18,18 +18,12 @@ Views :
 
 
 def articles_list_page(request):
-    articles = Articles.objects.get_queryset().order_by('id')
-    paginator = Paginator(articles, 12)
-    page_number = request.GET.get('page')
-    pages = paginator.get_page(page_number)
-    latest_articles = Articles.objects.all().order_by('-id')[:5]
-    top_articles = Articles.objects.filter(id__in=topArticles())
+    site_settings = SiteSettings.objects.last()
+    title = site_settings.site_name + " - " + "مقالات"
 
 
     context = {
-        'latest_articles': latest_articles,
-        'top_articles': top_articles,
-        'pages': pages,
+        'title': title,
     }
     return render(request,'Articles/articles_list_page/articles_list_page.html',context)
 
