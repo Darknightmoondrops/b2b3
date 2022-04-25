@@ -1,10 +1,12 @@
-from .models import Products,ProductsComments
+from .models import Products,ProductsComments,ProductsSliders,ProductsScores
 from rest_framework import serializers
 
 
 
 class ProdcutsSerializers(serializers.ModelSerializer):
     seller_info = serializers.ReadOnlyField()
+    colors_info = serializers.ReadOnlyField()
+    sizes_info = serializers.ReadOnlyField()
     percentage = serializers.ReadOnlyField()
     jdate = serializers.ReadOnlyField()
 
@@ -24,9 +26,23 @@ class ProdcutsSerializers(serializers.ModelSerializer):
 
 
 
+
 class ProductsCommentsSerializers(serializers.ModelSerializer):
     jdate = serializers.ReadOnlyField()
     class Meta:
         model = ProductsComments
         fields = '__all__'
+
+
+class ProductsSlidersSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = ProductsSliders
+        fields = '__all__'
+
+
+class ProductsScoresSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = ProductsScores
+        fields = '__all__'
+
 

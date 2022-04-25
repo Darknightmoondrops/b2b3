@@ -1,5 +1,6 @@
 from rest_framework.permissions import IsAuthenticated,IsSeller
 from rest_framework.authtoken.models import Token
+from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework import generics
 from rest_framework import status
@@ -14,16 +15,65 @@ class products_list(generics.ListAPIView):
     serializer_class = ProdcutsSerializers
 
 
-
-
-class search_products(generics.ListAPIView):
+class products_similar(generics.ListAPIView):
     serializer_class = ProdcutsSerializers
+
+    def get_queryset(self):
+        id = self.request.query_params.get('id')
+        product = Products.objects.filter(id=id).first()
+        return Products.objects.filter(maincategories__id__in=[ mainC.id for mainC in product.maincategories.all()]).all().order_by('id')
+
+
+class product_next(generics.ListAPIView):
+    serializer_class = ProdcutsSerializers
+
+    def get_queryset(self):
+        id = int(self.request.query_params.get('id'))
+        return [get_object_or_404(Products,id=id+1)]
+
+
+class product_previous(generics.ListAPIView):
+    serializer_class = ProdcutsSerializers
+
+    def get_queryset(self):
+        id = int(self.request.query_params.get('id'))
+        return [get_object_or_404(Products,id=id-1)]
+
+
+
+class products_search(generics.ListAPIView):
+    serializer_class = ProdcutsSerializers
+
     def get_queryset(self):
         q = self.request.query_params.get('q')
-        print(q)
         return Products.objects.filter(title__icontains=q).all().order_by('id')
 
 
+class products_sliders(generics.ListAPIView):
+    queryset = ProductsSliders.objects.all().order_by('id')
+    serializer_class = ProductsSlidersSerializers
+
+
+class product_score(generics.CreateAPIView):
+    serializer_class = ProductsScoresSerializers
+    permission_classes = [IsAuthenticated]
+
+    def post(self,request):
+        data = ProductsScoresSerializers(data=request.data)
+        if data.is_valid():
+            if data.validated_data['score'] <=5 and  not(data.validated_data['score'] < 1) :
+                user_token = str(request.headers['Authorization']).split('Token')[1].strip()
+                token_info = Token.objects.filter(key=user_token).first()
+                ProductsScores_check = ProductsScores.objects.filter(user_id=token_info.user.id,product_id=data.validated_data['product'].id).first()
+                if ProductsScores_check is None:
+                    ProductsScores(user_id=token_info.user.id, product_id=data.validated_data['product'].id,score=data.validated_data['score']).save()
+                    return Response({'message': 'امتیاز ثبت شد'})
+                else:
+                    return Response({"message": "کاربر قبلا برای این محصول امتیاز ثبت کرده است"})
+            else:
+                return Response({'message': 'حداکثر امتیاز 5 است'})
+        else:
+            return Response(data.errors)
 
 
 class products_filter(generics.ListAPIView):
@@ -44,7 +94,6 @@ class products_filter(generics.ListAPIView):
 
 class products_comments_list(generics.ListAPIView):
     serializer_class = ProductsCommentsSerializers
-    pagination_class = PageNumberPagination
 
     def get_queryset(self):
         product_id = self.request.query_params.get('id')
@@ -122,7 +171,7 @@ class products_newest(generics.ListAPIView):
 
 
 
-class add_product(generics.CreateAPIView):
+class product_add(generics.CreateAPIView):
     serializer_class = ProdcutsSerializers
     permission_classes = [IsSeller]
 

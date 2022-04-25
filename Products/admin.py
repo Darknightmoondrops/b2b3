@@ -40,9 +40,9 @@ class ProductsTrackingCodeAdmin(admin.ModelAdmin):
 
 @admin.register(ProductsScores)
 class ScoresAdmin(admin.ModelAdmin):
-    list_display = ['product', 'total_score']
+    list_display = ['product', 'score']
 
-@admin.register(ProductsSlides)
+@admin.register(ProductsSliders)
 class ProductsSlidesAdmin(admin.ModelAdmin):
     list_display = ['url']
 

@@ -5,7 +5,12 @@ app_name = 'productApi'
 
 urlpatterns = [
     path('products-list/',api_views.products_list.as_view(),name='products_list'),
-    path('search-products/',api_views.search_products.as_view(),name='search_products'),
+    path('products-similar/',api_views.products_similar.as_view(),name='products_similar'),
+    path('products-next/',api_views.product_next.as_view(),name='product_next'),
+    path('products-previous/',api_views.product_previous.as_view(),name='product_previous'),
+    path('products-sliders/',api_views.products_sliders.as_view(),name='products_sliders'),
+    path('products-score/',api_views.product_score.as_view(),name='product_score'),
+    path('products-search/',api_views.products_search.as_view(),name='products_search'),
     path('products-filter/',api_views.products_filter.as_view(),name='products_filter'),
     path('products-comments-list/',api_views.products_comments_list.as_view(),name='products_comments_list'),
     path('products-comments-add/',api_views.products_comments_add.as_view(),name='products_comments_add'),
@@ -15,5 +20,5 @@ urlpatterns = [
     path('products-cheapest/',api_views.products_cheapest.as_view(),name='products_cheapest'),
     path('products-bestselling/',api_views.products_bestselling.as_view(),name='products_bestselling'),
     path('products-newest/',api_views.products_newest.as_view(),name='products_newest'),
-    path('add-product/',api_views.add_product.as_view(),name='add_product'),
+    path('products-add/',api_views.product_add.as_view(),name='product_add'),
 ]

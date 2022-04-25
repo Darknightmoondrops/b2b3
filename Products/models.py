@@ -92,6 +92,12 @@ class Products(models.Model):
         else:
             return 0
 
+    def colors_info(self):
+        return [{color.id:color.code} for color in self.colors.all()]
+
+    def sizes_info(self):
+        return [{size.id:size.name} for size in self.sizes.all()]
+
     def seller_info(self):
         seller = Sellers.objects.filter(id=self.seller.id).first()
         business_name = seller.business_name
@@ -137,22 +143,21 @@ class ProductsTrackingCode(models.Model):
 
     
 class ProductsScores(models.Model):
-    product = models.ForeignKey(Products, on_delete=models.CASCADE, verbose_name='Prodcut ID', related_name='product')
-    total_score = models.IntegerField(blank=False,verbose_name='"Total Score')
+    product = models.ForeignKey(Products,on_delete=models.CASCADE,blank=False,null=False,verbose_name='Prodcut')
+    user = models.ForeignKey(Userperson,on_delete=models.CASCADE,blank=True,null=True,verbose_name='User')
+    score = models.IntegerField(blank=False,null=False,verbose_name='"Total Score')
 
     def __str__(self):
-        return f'{self.total_score}'
+        return f'{self.score}'
 
 
-class ProductsSlides(models.Model):
+class ProductsSliders(models.Model):
     image = models.ImageField(upload_to='ProductsSlides',verbose_name='Image')
     url = models.URLField(verbose_name='Url')
 
     def save(self, *args, **kwargs):
-        super(ProductsSlides, self).save(*args, **kwargs)
-        if self.image:
-            photo_optimization(self.image)
-            super(ProductsSlides, self).save(*args, **kwargs)
+        photo_optimization(self.image)
+        super(ProductsSliders, self).save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.url}"
