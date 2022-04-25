@@ -1,6 +1,6 @@
-from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
+from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from extensions.articles import topArticles
 from .models import Articles,ArticlesLikes
@@ -14,14 +14,23 @@ from .serializers import *
 
 class articles_list(generics.ListAPIView):
     serializer_class = ArticlesSerializers
-    pagination_class = PageNumberPagination
 
     def get_queryset(self):
         return Articles.objects.all().order_by('id')
 
+
+
+class article_detail(generics.ListAPIView):
+    serializer_class = ArticlesSerializers
+
+    def get_queryset(self):
+        id = self.request.query_params.get('id')
+        slug = self.request.query_params.get('slug')
+        return [get_object_or_404(Articles,id=id,slug=slug)]
+
+
 class search_articles(generics.ListAPIView):
     serializer_class = ArticlesSerializers
-    pagination_class = PageNumberPagination
 
     def get_queryset(self):
         q = self.request.query_params.get('q')
@@ -48,7 +57,6 @@ class top_articles(generics.ListAPIView):
 
 class add_articles_comment(generics.CreateAPIView):
     serializer_class = ArticlesCommentsSerializers
-    pagination_class = PageNumberPagination
     permission_classes = [IsAuthenticated]
 
     def post(self, request):
@@ -73,7 +81,6 @@ class add_articles_comment(generics.CreateAPIView):
 
 class add_article_like(generics.CreateAPIView):
     serializer_class = ArticlesLikesializers
-    pagination_class = PageNumberPagination
     permission_classes = [IsAuthenticated]
 
     def post(self, request):

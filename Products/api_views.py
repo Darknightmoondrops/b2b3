@@ -1,7 +1,4 @@
-from rest_framework.decorators import api_view,permission_classes
-from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated,IsSeller
-from django.core.exceptions import ValidationError
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework import generics
@@ -15,16 +12,12 @@ from .models import *
 class products_list(generics.ListAPIView):
     queryset = Products.objects.all().order_by('id')
     serializer_class = ProdcutsSerializers
-    pagination_class = PageNumberPagination
-
 
 
 
 
 class search_products(generics.ListAPIView):
     serializer_class = ProdcutsSerializers
-    pagination_class = PageNumberPagination
-
     def get_queryset(self):
         q = self.request.query_params.get('q')
         print(q)
@@ -35,7 +28,6 @@ class search_products(generics.ListAPIView):
 
 class products_filter(generics.ListAPIView):
     serializer_class = ProdcutsSerializers
-    pagination_class = PageNumberPagination
 
 
     def get_queryset(self):
@@ -62,7 +54,6 @@ class products_comments_list(generics.ListAPIView):
 class products_comments_add(generics.CreateAPIView):
     queryset = ProductsComments
     serializer_class = ProductsCommentsSerializers
-    pagination_class = PageNumberPagination
     permission_classes = [IsAuthenticated]
 
     def post(self,request):
@@ -82,7 +73,6 @@ class products_comments_add(generics.CreateAPIView):
 
 class products_discounts(generics.ListAPIView):
     serializer_class = Products
-    pagination_class = PageNumberPagination
 
     def get_queryset(self):
 
@@ -92,7 +82,6 @@ class products_discounts(generics.ListAPIView):
 
 class products_offers(generics.ListAPIView):
     serializer_class = Products
-    pagination_class = PageNumberPagination
 
     def get_queryset(self):
         return Products.objects.filter(id__in=specialProducts()).order_by('id')
@@ -100,7 +89,6 @@ class products_offers(generics.ListAPIView):
 
 class products_mostexpensive(generics.ListAPIView):
     serializer_class = Products
-    pagination_class = PageNumberPagination
 
     def get_queryset(self):
         return Products.objects.filter(id__in=most_expensive_prodcuts()).order_by('id')
@@ -109,7 +97,6 @@ class products_mostexpensive(generics.ListAPIView):
 
 class products_cheapest(generics.ListAPIView):
     serializer_class = Products
-    pagination_class = PageNumberPagination
 
     def get_queryset(self):
         return Products.objects.filter(id__in=cheapest_products()).order_by('id')
@@ -118,7 +105,6 @@ class products_cheapest(generics.ListAPIView):
 
 class products_bestselling(generics.ListAPIView):
     serializer_class = Products
-    pagination_class = PageNumberPagination
 
     def get_queryset(self):
         return Products.objects.filter(id__in=BestSelling_products()).order_by('id')
@@ -129,7 +115,6 @@ class products_bestselling(generics.ListAPIView):
 class products_newest(generics.ListAPIView):
 
     serializer_class = Products
-    pagination_class = PageNumberPagination
 
     def get_queryset(self):
         return Products.objects.order_by('-id').all()
