@@ -43,8 +43,8 @@ class Articles(models.Model):
 
 
 class ArticlesHits(models.Model):
-    article = models.ForeignKey(Articles,on_delete=models.CASCADE,blank=True,null=True,verbose_name='Article')
-    ip = models.CharField(max_length=30,verbose_name='IP')
+    article = models.ForeignKey(Articles,on_delete=models.CASCADE,blank=False,null=False,verbose_name='Article')
+    ip = models.CharField(null=False,blank=False,max_length=30,verbose_name='IP')
 
     def __str__(self):
         return f'{self.ip}'

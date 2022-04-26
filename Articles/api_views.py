@@ -97,13 +97,31 @@ class articles_like_add(generics.CreateAPIView):
             article_id = data.validated_data['article'].id
             user_token = str(request.headers['Authorization']).split('Token')[1].strip()
             token_info = Token.objects.filter(key=user_token).first()
-            print(article_id)
             check_like = ArticlesLikes.objects.filter(user_id=token_info.user.id, article_id=article_id).first()
             if check_like is None:
                 add_like = ArticlesLikes.objects.create(user_id=token_info.user.id, article_id=article_id)
-                return Response({"message": "created"})
+                return Response({"message": "اضافه شد"})
             else:
-                return Response({"message": "has been created"})
+                return Response({"message": "از قبل اضافه شده بود"})
+        else:
+            return Response(data.errors)
+        
+        
+        
+        
+class articles_hits_add(generics.CreateAPIView):
+    serializer_class = ArticlesHitsSializers
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        data = ArticlesHitsSializers(data=request.data)
+        if data.is_valid():
+            check_hits = ArticlesHits.objects.filter(article=data.validated_data['article'], ip=data.validated_data['ip']).first()
+            if check_like is None:
+                add_hits = ArticlesHits.objects.create(article=data.validated_data['article'], ip=data.validated_data['ip'])
+                return Response({"message": "اضافه شد"})
+            else:
+                return Response({"message": "از قبل اضافه شده بود"})
         else:
             return Response(data.errors)
 

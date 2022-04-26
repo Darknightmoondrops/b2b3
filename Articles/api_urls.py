@@ -12,4 +12,5 @@ urlpatterns = [
     path('articles-comment-add/',api_views.articles_comment_add.as_view(),name='articles_comment_add'),
     path('articles-comment-list/',api_views.articles_comment_list.as_view(),name='articles_comment_list'),
     path('articles-like-add/',api_views.articles_like_add.as_view(),name='articles_like_add'),
+    path('articles-hits-add/',api_views.articles_hits_add.as_view(),name='articles_hits_add'),
 ]

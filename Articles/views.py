@@ -51,26 +51,4 @@ def article_detail_page(request,id,slug):
     return render(request,'Articles/article_detail_page/article_detail_page.html',context)
 
 
-def search_articles_page(request):
-    try:
-        search = request.GET['q']
-    except:
-        return redirect('Articles:articles_list_page')
-
-    articles = Articles.objects.filter(Q(title=search) | Q(labels__name__icontains=search) | Q(description=search) | Q(short_description=search)).order_by('id').all()
-    paginator = Paginator(articles, 12)
-    page_number = request.GET.get('page')
-    pages = paginator.get_page(page_number)
-    latest_articles = Articles.objects.all().order_by('-id')[:5]
-    top_articles = Articles.objects.filter(id__in=topArticles())
-
-
-    context = {
-        'latest_articles': latest_articles,
-        'top_articles': top_articles,
-        'pages': pages,
-    }
-    return render(request,'Articles/search_articles_page/search_articles_page.html',context)
-
-
 

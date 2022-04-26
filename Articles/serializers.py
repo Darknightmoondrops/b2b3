@@ -1,4 +1,4 @@
-from .models import Articles,ArticlesComments,ArticlesLikes
+from .models import Articles,ArticlesComments,ArticlesLikes,ArticlesHits
 from rest_framework import serializers
 
 
@@ -28,4 +28,10 @@ class ArticlesCommentsSerializers(serializers.ModelSerializer):
 class ArticlesLikesializers(serializers.ModelSerializer):
     class Meta:
         model = ArticlesLikes
+        fields = '__all__'
+        
+        
+class ArticlesHitsSializers(serializers.ModelSerializer):
+    class Meta:
+        model = ArticlesHits
         fields = '__all__'
