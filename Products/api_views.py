@@ -113,7 +113,7 @@ class products_comments_add(generics.CreateAPIView):
             productComments_check = ProductsComments.objects.filter(user_id=token_info.user.id,product_id=data.validated_data['product'].id,status=False).first()
             if productComments_check is None:
                 ProductsComments(user_id=token_info.user.id, product_id=data.validated_data['product'].id,comment=data.validated_data['comment'], status=False).save()
-                return Response({'message': 'دیدگاه اضافه شد'})
+                return Response({'message': 'دیدگاه ثبت شد'})
             else:
                 return Response({"message": "کاربر قبلا برای این محصول دیدگاه ثبت کرده است"})
         else:
@@ -121,7 +121,7 @@ class products_comments_add(generics.CreateAPIView):
 
 
 class products_discounts(generics.ListAPIView):
-    serializer_class = Products
+    serializer_class = ProdcutsSerializers
 
     def get_queryset(self):
 
@@ -137,7 +137,7 @@ class products_offers(generics.ListAPIView):
 
 
 class products_mostexpensive(generics.ListAPIView):
-    serializer_class = Products
+    serializer_class = ProdcutsSerializers
 
     def get_queryset(self):
         return Products.objects.filter(id__in=most_expensive_prodcuts()).order_by('id')
@@ -145,7 +145,7 @@ class products_mostexpensive(generics.ListAPIView):
 
 
 class products_cheapest(generics.ListAPIView):
-    serializer_class = Products
+    serializer_class = ProdcutsSerializers
 
     def get_queryset(self):
         return Products.objects.filter(id__in=cheapest_products()).order_by('id')
@@ -153,7 +153,7 @@ class products_cheapest(generics.ListAPIView):
 
 
 class products_bestselling(generics.ListAPIView):
-    serializer_class = Products
+    serializer_class = ProdcutsSerializers
 
     def get_queryset(self):
         return Products.objects.filter(id__in=BestSelling_products()).order_by('id')
@@ -163,7 +163,7 @@ class products_bestselling(generics.ListAPIView):
 
 class products_newest(generics.ListAPIView):
 
-    serializer_class = Products
+    serializer_class = ProdcutsSerializers
 
     def get_queryset(self):
         return Products.objects.order_by('-id').all()

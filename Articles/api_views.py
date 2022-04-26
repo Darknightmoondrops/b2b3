@@ -20,7 +20,7 @@ class articles_list(generics.ListAPIView):
 
 
 
-class article_detail(generics.ListAPIView):
+class articles_detail(generics.ListAPIView):
     serializer_class = ArticlesSerializers
 
     def get_queryset(self):
@@ -29,7 +29,7 @@ class article_detail(generics.ListAPIView):
         return [get_object_or_404(Articles,id=id,slug=slug)]
 
 
-class search_articles(generics.ListAPIView):
+class articles_search(generics.ListAPIView):
     serializer_class = ArticlesSerializers
 
     def get_queryset(self):
@@ -40,14 +40,14 @@ class search_articles(generics.ListAPIView):
 
 
 
-class latest_articles(generics.ListAPIView):
+class articles_latest(generics.ListAPIView):
     serializer_class = ArticlesSerializers
 
     def get_queryset(self):
         return Articles.objects.all().order_by('-id')[:5]
 
 
-class top_articles(generics.ListAPIView):
+class articles_top(generics.ListAPIView):
     serializer_class = ArticlesSerializers
 
     def get_queryset(self):
@@ -55,7 +55,7 @@ class top_articles(generics.ListAPIView):
 
 
 
-class add_articles_comment(generics.CreateAPIView):
+class articles_comment_add(generics.CreateAPIView):
     serializer_class = ArticlesCommentsSerializers
     permission_classes = [IsAuthenticated]
 
@@ -75,11 +75,19 @@ class add_articles_comment(generics.CreateAPIView):
             return Response(data.errors)
 
 
+class articles_comment_list(generics.ListAPIView):
+    serializer_class = ArticlesCommentsSerializers
+
+
+    def get_queryset(self):
+        id = self.request.query_params.get('id')
+        return ArticlesComments.objects.filter(article_id=id,status=True).all()
 
 
 
 
-class add_article_like(generics.CreateAPIView):
+
+class articles_like_add(generics.CreateAPIView):
     serializer_class = ArticlesLikesializers
     permission_classes = [IsAuthenticated]
 
