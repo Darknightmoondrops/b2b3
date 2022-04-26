@@ -66,6 +66,10 @@ class ArticlesComments(models.Model):
 
     def __str__(self):
         return f'{self.user}'
+    
+    def user_image(self):
+        return self.user.image.url
+   
 
 
     def jdate(self):

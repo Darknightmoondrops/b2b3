@@ -67,9 +67,9 @@ class articles_comment_add(generics.CreateAPIView):
             article_comment_check = ArticlesComments.objects.filter(user_id=token_info.user.id,article_id=data.validated_data['article'].id,status=False).first()
             if article_comment_check is None:
                 ArticlesComments.objects.create(article_id=data.validated_data['article'].id,user_id=token_info.user.id,comment=data.validated_data['comment'],status=False)
-                return Response({"message": "created"})
+                return Response({"message": "دیدگاه ثبت شد"})
             else:
-                return Response({"message": "has been created"},status=status.HTTP_400_BAD_REQUEST)
+                return Response({"message": "کاربر از قبل دیدگاه ثبت کرده است"},status=status.HTTP_400_BAD_REQUEST)
 
         else:
             return Response(data.errors)
