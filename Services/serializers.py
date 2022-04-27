@@ -9,4 +9,4 @@ class ServicesSerizalizers(serializers.ModelSerializer):
     jdate = serializers.ReadOnlyField()
     class Meta:
         model = Services
-        fields = '__all__'
+        fields = ['title','service_user_fullname','image','short_description','type_of_cleaning_space','jdate','service_reservations','service_user_fullname','service_user_gender']

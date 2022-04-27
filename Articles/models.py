@@ -69,8 +69,9 @@ class ArticlesComments(models.Model):
     
     def user_image(self):
         return self.user.image.url
-   
 
+    def user_fullname(self):
+        return self.user.fullname
 
     def jdate(self):
         return django_jalali(self.date)

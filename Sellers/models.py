@@ -1,4 +1,5 @@
 from extensions.optimization import photo_optimization
+from extensions.DateJalali import django_jalali
 from CustomizedUserModel.models import Userperson
 from django.db import models
 
@@ -24,11 +25,19 @@ class Sellers(models.Model):
     business_categories = models.ManyToManyField(VendorCategories,verbose_name='business Categories')
 
     def save(self, *args, **kwargs):
+        photo_optimization(self.business_image)
+        photo_optimization(self.business_license)
         super(Sellers, self).save(*args, **kwargs)
-        if self.business_image:
-            photo_optimization(self.business_image)
-            photo_optimization(self.business_license)
-            super(Sellers, self).save(*args, **kwargs)
+
+
+    def business_owner_info(self):
+        return self.business_owner.fullname
+
+    def business_categories_info(self):
+        return [{category.id:category.name} for category in self.business_categories.all()]
+
+    def jdate(self):
+        return django_jalali(self.registration_date)
 
     def __str__(self):
         return f'{self.business_name}'

@@ -24,8 +24,8 @@ class articles_detail(generics.ListAPIView):
     serializer_class = ArticlesSerializers
 
     def get_queryset(self):
-        id = self.request.query_params.get('id')
-        slug = self.request.query_params.get('slug')
+        id = self.request.query_params.get('id',False)
+        slug = self.request.query_params.get('slug',False)
         return [get_object_or_404(Articles,id=id,slug=slug)]
 
 
@@ -33,9 +33,17 @@ class articles_search(generics.ListAPIView):
     serializer_class = ArticlesSerializers
 
     def get_queryset(self):
-        q = self.request.query_params.get('q')
+        q = self.request.query_params.get('q',False)
         return Articles.objects.filter(title__icontains=q).all().order_by('id')
 
+
+
+class articles_filter_labels(generics.ListAPIView):
+    serializer_class = ArticlesSerializers
+
+    def get_queryset(self):
+        q = self.request.query_params.get('q',False)
+        return Articles.objects.filter(labels__name__icontains=q).all().order_by('id')
 
 
 

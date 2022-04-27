@@ -19,7 +19,7 @@ class products_similar(generics.ListAPIView):
     serializer_class = ProdcutsSerializers
 
     def get_queryset(self):
-        id = self.request.query_params.get('id')
+        id = self.request.query_params.get('id',False)
         product = Products.objects.filter(id=id).first()
         return Products.objects.filter(maincategories__id__in=[ mainC.id for mainC in product.maincategories.all()]).all().order_by('id')
 
@@ -28,7 +28,7 @@ class product_next(generics.ListAPIView):
     serializer_class = ProdcutsSerializers
 
     def get_queryset(self):
-        id = int(self.request.query_params.get('id'))
+        id = int(self.request.query_params.get('id',False))
         return [get_object_or_404(Products,id=id+1)]
 
 
@@ -36,7 +36,7 @@ class product_previous(generics.ListAPIView):
     serializer_class = ProdcutsSerializers
 
     def get_queryset(self):
-        id = int(self.request.query_params.get('id'))
+        id = int(self.request.query_params.get('id',False))
         return [get_object_or_404(Products,id=id-1)]
 
 
@@ -81,11 +81,11 @@ class products_filter(generics.ListAPIView):
 
 
     def get_queryset(self):
-        price1 = self.request.query_params.get('price1')
-        price2 = self.request.query_params.get('price2')
-        categories = self.request.query_params.get('categories')
-        colors = self.request.query_params.get('colors')
-        sller_type = self.request.query_params.get('sller_type')
+        price1 = self.request.query_params.get('price1',False)
+        price2 = self.request.query_params.get('price2',False)
+        categories = self.request.query_params.get('categories',False)
+        colors = self.request.query_params.get('colors',False)
+        sller_type = self.request.query_params.get('sller_type',False)
         return Products.objects.filter(Q(maincategories__name=categories) | Q(colors__products=colors) | Q(price=price1) | Q(price=price2) | Q(discounted_price=price1) | Q(discounted_price=price2) | Q(seller__business_categories=sller_type)).distinct().order_by('id')
 
 
@@ -96,7 +96,7 @@ class products_comments_list(generics.ListAPIView):
     serializer_class = ProductsCommentsSerializers
 
     def get_queryset(self):
-        product_id = self.request.query_params.get('id')
+        product_id = self.request.query_params.get('id',False)
         return ProductsComments.objects.filter(product_id=product_id).all()
 
 

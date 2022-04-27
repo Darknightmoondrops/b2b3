@@ -16,7 +16,9 @@ class ArticlesSerializers(serializers.ModelSerializer):
 
 class ArticlesCommentsSerializers(serializers.ModelSerializer):
     user_image = serializers.ReadOnlyField()
-    
+    user_fullname = serializers.ReadOnlyField()
+    jdate = serializers.ReadOnlyField()
+
     class Meta:
         model = ArticlesComments
         fields = '__all__'
