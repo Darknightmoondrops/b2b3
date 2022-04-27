@@ -27,6 +27,17 @@ def articles_list_page(request):
     }
     return render(request,'Articles/articles_list_page/articles_list_page.html',context)
 
+def articles_list_filter_labels_page(request,label):
+    site_settings = SiteSettings.objects.last()
+    title = site_settings.site_name + " - " + "مقالات"
+
+
+    context = {
+        'title': title,
+        'label': label,
+    }
+    return render(request,'Articles/articles_list_page/articles_list_page.html',context)
+
 
 
 
