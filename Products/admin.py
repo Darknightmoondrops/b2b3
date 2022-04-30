@@ -20,8 +20,8 @@ class ProductSubCategories_2Admin(admin.ModelAdmin):
     list_display = ['name','status']
 
 
-@admin.register(ProductsColor)
-class ProductsColorAdmin(admin.ModelAdmin):
+@admin.register(ProductsColors)
+class ProductsColorsAdmin(admin.ModelAdmin):
     list_display = ['name','code']
 
 @admin.register(ProductsSizes)

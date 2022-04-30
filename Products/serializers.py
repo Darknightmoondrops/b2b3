@@ -1,5 +1,6 @@
-from .models import Products,ProductsComments,ProductsSliders,ProductsScores
+from Sellers.models import SellersCategories
 from rest_framework import serializers
+from .models import *
 
 
 
@@ -21,6 +22,12 @@ class ProdcutsSerializers(serializers.ModelSerializer):
             "colors": {"error_messages": {"required": "This amount is required"}},
         }
 
+
+class ProdcutsMainCategoriesSerializers(serializers.ModelSerializer):
+
+    class Meta:
+        model = ProductMainCategories
+        fields = '__all__'
 
 
 
@@ -44,5 +51,18 @@ class ProductsScoresSerializers(serializers.ModelSerializer):
     class Meta:
         model = ProductsScores
         fields = '__all__'
+
+
+class ProductsColorsSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = ProductsColors
+        fields = ['id','code']
+
+
+class ProductsSellersCategoriesSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = SellersCategories
+        fields = ['id','name']
+
 
 

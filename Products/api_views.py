@@ -3,6 +3,7 @@ from rest_framework.authtoken.models import Token
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework import generics
+from Sellers.models import SellersCategories
 from rest_framework import status
 from extensions.products import *
 from django.db.models import Q
@@ -89,6 +90,30 @@ class products_filter(generics.ListAPIView):
         return Products.objects.filter(Q(maincategories__name=categories) | Q(colors__products=colors) | Q(price=price1) | Q(price=price2) | Q(discounted_price=price1) | Q(discounted_price=price2) | Q(seller__business_categories=sller_type)).distinct().order_by('id')
 
 
+class products_main_categories(generics.ListAPIView):
+    serializer_class = ProdcutsMainCategoriesSerializers
+
+
+    def get_queryset(self):
+        return ProductMainCategories.objects.all()
+
+
+
+class products_colors(generics.ListAPIView):
+    serializer_class = ProductsColorsSerializers
+
+
+    def get_queryset(self):
+        return ProductsColors.objects.all()
+
+
+
+class products_sellers_typs(generics.ListAPIView):
+    serializer_class = ProductsSellersCategoriesSerializers
+
+
+    def get_queryset(self):
+        return SellersCategories.objects.all()
 
 
 

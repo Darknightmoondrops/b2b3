@@ -5,9 +5,8 @@ from django.db import models
 
 
 # Vendor Categories model
-class VendorCategories(models.Model):
+class SellersCategories(models.Model):
     name = models.CharField(max_length=999,verbose_name='Name')
-    status = models.BooleanField(default=False,verbose_name='Status')
 
     def __str__(self):
         return f'{self.name}'
@@ -22,7 +21,7 @@ class Sellers(models.Model):
     business_license = models.ImageField(upload_to='BusinessLicenseImage',blank=True,null=True,verbose_name='Business License')
     registration_date = models.DateTimeField(auto_now_add=True,verbose_name='Registration Date')
     business_status = models.BooleanField(default=False,verbose_name='business Status')
-    business_categories = models.ManyToManyField(VendorCategories,verbose_name='business Categories')
+    business_categories = models.ManyToManyField(SellersCategories,verbose_name='business Categories')
 
     def save(self, *args, **kwargs):
         photo_optimization(self.business_image)

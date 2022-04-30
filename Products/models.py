@@ -31,7 +31,7 @@ class ProductMainCategories(models.Model):
         return f'{self.name}'
 
 
-class ProductsColor(models.Model):
+class ProductsColors(models.Model):
     name = models.CharField(max_length=150, blank=False)
     code = models.CharField(max_length=300)
 
@@ -60,7 +60,7 @@ class Products(models.Model):
     maincategories = models.ManyToManyField(ProductMainCategories,blank=False,verbose_name='Main Category')
     subCategories1 = models.ManyToManyField(ProductSubCategories_1,blank=False,verbose_name='Sub Category 1')
     subCategories2 = models.ManyToManyField(ProductSubCategories_2,blank=False,verbose_name='Sub Category 2')
-    colors = models.ManyToManyField(ProductsColor,blank=False,verbose_name='Colors')
+    colors = models.ManyToManyField(ProductsColors,blank=False,verbose_name='Colors')
     sizes = models.ManyToManyField(ProductsSizes,blank=False,verbose_name='Sizes')
     score = models.IntegerField(default=1,verbose_name='Score')
     date = models.DateTimeField(auto_now_add=True,blank=True,null=True,verbose_name='Date')

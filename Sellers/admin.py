@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import VendorCategories,Sellers
+from .models import SellersCategories,Sellers
 
-@admin.register(VendorCategories)
-class VendorCategoriesAdmin(admin.ModelAdmin):
-    list_display = ['name','status']
+@admin.register(SellersCategories)
+class SellersCategoriesAdmin(admin.ModelAdmin):
+    list_display = ['name']
     search_fields = ['name']
     
 @admin.register(Sellers)
