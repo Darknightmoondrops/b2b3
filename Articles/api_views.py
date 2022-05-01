@@ -1,6 +1,6 @@
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404,get_list_or_404
 from rest_framework.response import Response
 from extensions.articles import topArticles
 from .models import Articles,ArticlesLikes
@@ -63,6 +63,7 @@ class articles_top(generics.ListAPIView):
 
 
 
+
 class articles_comment_add(generics.CreateAPIView):
     serializer_class = ArticlesCommentsSerializers
     permission_classes = [IsAuthenticated]
@@ -92,6 +93,16 @@ class articles_comment_list(generics.ListAPIView):
         return ArticlesComments.objects.filter(article_id=id,status=True).all()
 
 
+class articles_comment_number(generics.ListAPIView):
+    serializer_class = ArticlesCommentsSerializers
+    permission_classes = [IsAuthenticated]
+
+
+    def get(self, request, format=None):
+        id = self.request.query_params.get('id',False)
+        comments = ArticlesComments.objects.filter(article_id=id).count()
+        return Response({'number': comments})
+
 
 
 
@@ -115,7 +126,17 @@ class articles_like_add(generics.CreateAPIView):
             return Response(data.errors)
         
         
-        
+class articles_like_number(generics.ListAPIView):
+    serializer_class = ArticlesLikesializers
+    permission_classes = [IsAuthenticated]
+
+
+    def get(self, request, format=None):
+        id = self.request.query_params.get('id',False)
+        likes = ArticlesLikes.objects.filter(article_id=id).count()
+        return Response({'number': likes})
+
+
         
 class articles_hits_add(generics.CreateAPIView):
     serializer_class = ArticlesHitsSializers
@@ -125,7 +146,7 @@ class articles_hits_add(generics.CreateAPIView):
         data = ArticlesHitsSializers(data=request.data)
         if data.is_valid():
             check_hits = ArticlesHits.objects.filter(article=data.validated_data['article'], ip=data.validated_data['ip']).first()
-            if check_like is None:
+            if check_hits is None:
                 add_hits = ArticlesHits.objects.create(article=data.validated_data['article'], ip=data.validated_data['ip'])
                 return Response({"message": "اضافه شد"})
             else:
@@ -133,5 +154,16 @@ class articles_hits_add(generics.CreateAPIView):
         else:
             return Response(data.errors)
 
+
+
+class articles_hits_number(generics.ListAPIView):
+    serializer_class = ArticlesHitsSializers
+    permission_classes = [IsAuthenticated]
+
+
+    def get(self, request, format=None):
+        id = self.request.query_params.get('id',False)
+        hits = ArticlesHits.objects.filter(article_id=id).count()
+        return Response({'number': hits})
 
 

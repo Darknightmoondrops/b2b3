@@ -7,22 +7,21 @@ from VerificationCodes.models import Codes
 from django.contrib import messages
 from extensions.sms import send_sms
 from random import randint
-from extensions.permission import is_user
+
 
 
 def userpanel_page(request):
-    if is_user(request) == True:
 
-        products_comments = ProductsComments.objects.filter(user_id=request.user.id).all()
-        site_settings = SiteSettings.objects.last()
-        title = site_settings.site_name + " - " + "پنل کاربری"
-        context = {
-            'title': title,
-            'products_comments': products_comments,
-        }
-        return render(request,'UserPanel/userpanel_page/userpanel_page.html',context)
 
-    else: return redirect('/')
+    products_comments = ProductsComments.objects.filter(user_id=request.user.id).all()
+    site_settings = SiteSettings.objects.last()
+    title = site_settings.site_name + " - " + "پنل کاربری"
+    context = {
+        'title': title,
+        'products_comments': products_comments,
+    }
+    return render(request,'UserPanel/userpanel_page/userpanel_page.html',context)
+
 
 
 def userpanel_register_page(request):

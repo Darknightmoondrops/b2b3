@@ -3,7 +3,7 @@ from Carts.models import Orders
 
 def specialProducts():
     scores = ProductsScores.objects.all()
-    List1 = [x.total_score for x in scores]
+    List1 = [x.score for x in scores]
     List2 = []
 
     for _ in range(len(List1)):
@@ -13,7 +13,7 @@ def specialProducts():
         List2.append(result)
         List1.remove(result)
 
-    result = [ProductsScores.objects.filter(total_score=L).first().id for L in List2]
+    result = [ProductsScores.objects.filter(score=L).first().id for L in List2]
     return result
 
 
