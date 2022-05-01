@@ -1,130 +1,202 @@
-{% extends 'base/base.html' %}
-{% load static %}
+{% extends 'base/base.html' %} {% load static %} {% block title %} {{ title }} {% endblock %} {% block keywords %} {{ article.keywords }} {% endblock %} {% block description %} {{ article.short_description }} {% endblock %} {% block content %}
 
-{% block title %}
-    {{ title }}
-{% endblock %}
+<div id="header-article" class="header-article">
 
-{% block keywords %}
-    {{ article.keywords }}
-{% endblock %}
 
-{% block description %}
-    {{ article.short_description }}
-{% endblock %}
+</div>
+<div class="all-article">
+    <div id="discription">
+    </div>
 
-{% block content %}
-      <div class="header-article">
-        <img class="header-article-img" src="{{ article.image.url }}" alt="{{ article.title }}">
-        <div class="header-article-details">
-            <h2>{{ article.title }}</h2>
-            <p class="header-article-details-p">{{ article.short_description }}</p>
-            <div class="header-text">
-                <div class="header-text-d"><img class="article-icon" src="{% static 'home/icons/icon-36.png' %}" alt="{{ article.writer }}">
-                    <p>{{ article.writer }}</p>
+    <div class="article-bott">
+
+
+        <div class="article-likes">
+            <div class="likes">
+                <button class="share-btn">
+                    <i class="fas fa-share-alt sh-btn"></i>
+                </button>
+            </div>
+            <div class="likes">
+                <p class="likes-number">100</p>
+                <div class="container-heart" onclick="likePost()">
+                    <i class=" far fa-heart js-heart heart"></i>
                 </div>
-                <div class="header-text-d"><img class="article-icon" src="{% static 'home/icons/icon-33.png' %}" alt="{{ article.jdate }}">
-                    <p>{{ article.jdate }}</p>
-                </div>
-                <div class="header-text-d"><img class="article-icon" src="{% static 'home/icons/icon-37.png' %}" alt="{{ article_hits }}">
-                    <p>{{ article_hits }}</p>
-                </div>
+            </div>
+            <div class="likes">
+                <p class="likes-number">25</p>
+                <div class="icon-bot"></div>
+            </div>
+        </div>
+
+        <div id="article-tags" class="article-tags">
+            <div class="tags-title">
+                <p class="article-title-p">برچسب ها :</p>
             </div>
         </div>
     </div>
-    <div class="all-article">
-        <div>
-            {{ article.description | safe }}
-        </div>
-
-        <div class="article-bott">
-            <div class="article-tags">
-                <div class="tags-title">
-                    <p>برچسب ها :</p>
-                </div>
-                {% for label in article.labels.all %}
-                <div class="tags">
-                    <a href="{% url 'Articles:search_articles_page' %}?q={{ label.name }}">{{ label.name }} </a>
-                </div>
-                {% endfor %}
+    <div class="container">
+        <div id="share-options" class="share-options">
+            <p class="title">share</p>
+            <div class="social-media">
+                <button class="social-media-btn"><i class="far fa-folder-open"></i></button>
+                <button class="social-media-btn"><i class="fab fa-whatsapp"></i></button>
+                <button class="social-media-btn"><i class="fab fa-instagram"></i></button>
+                <button class="social-media-btn"><i class="fab fa-twitter"></i></button>
+                <button class="social-media-btn"><i class="fab fa-facebook-f"></i></button>
+                <button class="social-media-btn"><i class="fab fa-linkedin-in"></i></button>
             </div>
-            <div class="article-likes">
-                <div class="likes">
-                    <img class="icon-bot" src="{% static 'home/icons/icon-38.png' %}" alt="اشتراک گذاری">
-                </div>
-
-                {% if like %}
-                    <div class="likes">
-                        <p class="likes-number">{{ like_count }}</p>
-                        <img style="margin: auto;display: block;" src="https://img.icons8.com/metro/90/000000/filled-like.png"/>
-                    </div>
-                {% else %}
-                <div class="likes">
-                    <a href="">
-                    <p class="likes-number">{{ like_count }}</p>
-                    <img class="icon-bot" src="{% static 'home/icons/icon-39.png' %}" alt="پسندیدن">
-                    </a>
-                </div>
-                {% endif %}
-
-                <div class="likes">
-                    <p class="likes-number">{{ comment_count }}</p>
-                    <img class="icon-bot" src="{% static 'home/icons/icon-40.png' %}" alt="">
-                </div>
+            <div class="link-container">
+                <p class="link">https://example.com/share</p>
+                <button class="copy-btn" id="copy">copy</button>
             </div>
         </div>
-        <div>
-            {% if request.user.is_authenticated %}
-                <h3>ثبت دیدگاه جدید</h3>
-                <p>شما هم درباره این کالا دیدگاه ثبت کنید</p>
-                <div class="all-name">
-                <form method="post" action="">
-                    {% csrf_token %}
-                    <div class="all-name">
-                        <div class="name-comm">
-                            {{ form.first_name }}
-                        </div>
-                        <div class="name-comm">
-                            {{ form.last_name }}
-                        </div>
-                    </div>
-                    <div class="name-comm2">
-                        {{ form.comment }}
-                    </div>
-                    <input name="article_id" type="hidden" value="{{ article.id }}">
-                    <button class="comments-btn" type="submit">ارسال نظر</button>
-                </form>
-                </div>
-            {% else %}
-                <h3>ثبت دیدگاه جدید</h3>
-                <p>  با وارد شدن به حساب کاربری خود درباره این کالا دیدگاه ثبت کنید</p>
-            {% endif %}
+    </div>
+    <div>
+        <h3>ثبت دیدگاه جدید</h3>
+        <p>شما هم درباره این کالا دیدگاه ثبت کنید</p>
+
+        <div class="name-comm2">
+            <input id="form-text" type="text" placeholder="متن پیام" name="text-msg">
         </div>
+        <button onclick="sendData()" class="comments-btn" type="submit">ارسال نظر</button>
+    </div>
+    <div id="snackbar" class=""></div>
+    <div id="comments" class="comments">
+        <!--1-->
+
+        <!--2-->
+    </div>
+</div>
+<script>
+    //========================= article detail data ====================
+
+    function getDetails() {
+        $.ajax({
+                    url: "http://127.0.0.1:8000/api/articles/articles-detail/?id=1&slug=iiiiiiiiiiiiiiiiiiiiiiiiiiii",
+                    type: "get",
+                    success: (response) => {
+                            $('#header-article').html(`
+                            <img class="header-article-img" src="${response.results[0].image}" alt="">
+                            <div class="header-article-details">
+                                <p class="header-article-details-p-t">${response.results[0].title}</p>
+                                <p class="header-article-details-p">${response.results[0].short_description}</p>
+                                <div class="header-text">
+                                    <div class="header-text-d">
+                                        <div class="article-icon art-ic1" ></div>
+                                        <p class="article-icon-text">${response.results[0].writer_fullname}</p>
+                                    </div>
+                                    <div class="header-text-d">
+                                        <div class="article-icon art-ic2"></div>
+                                        <p class="article-icon-text">${response.results[0].jdate}</p>
+                                    </div>
+                                    <div class="header-text-d">
+                                        <div class="article-icon art-ic3" ></div>
+                                        <p class="article-icon-text">${response.results[0].id}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        `)
+                            $('#discription').html(`<p class="txt-dis">${response.results[0].description}</p>`)
 
 
-        <div class="comments">
-            <!--1-->
-            {% for comment in comments %}
-            <div class="comment1">
-                <div class="top-comment">
-                    <div class="profile">
+
+                            $('#article-tags').append(`
+                        ${response.results[0].labels.map((item)=>{
+                            return (` <div class="tags">
+                                <a href="http://127.0.0.1:8000/articles/${item}/">${item} </a>
+                            </div>`)
+                        })}
+                           
+                            `)
+                },
+
+            error:(err)=>{
+            }
+        })
+    }
+    getDetails()
+
+//========================= article detail data ====================
+
+    setLabels()
+    function sendData(){
+        let txt = $("#form-text").val()
+        $.ajax({
+            url:"http://127.0.0.1:8000/api/articles/articles-comment-add/",
+            type:"post",
+            headers: {'Authorization': 'Token 5048a5a0cc04aeb2dd2c4e995c4eaee80ae2c627'},
+            data:{
+                article:1,
+                comment: txt,
+            },
+            success:(res)=>{
+                if(txt==''){
+                    message('error','متن پیام را وارد کنید')
+                    return
+                }
+                else{
+                    message('sucsses','ارسال شد')
+
+                }
+            },
+            error:(err)=>{
+                message('error','شما قبلا یک دیدگاه ثبت کرده اید')
+
+            }
+            
+        })
+    }
+    function likePost(){
+        $('.heart').addClass('fas')
+        $.ajax({
+            url:"http://127.0.0.1:8000/api/articles/articles-like-add/",
+            type:"post",
+            headers: {'Authorization': 'Token 5048a5a0cc04aeb2dd2c4e995c4eaee80ae2c627'},
+            data:{
+                article:1,
+                // comment: txt,
+            },
+            success:(res)=>{
+                if(res.message == 'created') message('sucsses',res.message)
+                if(res.message == 'has been created') message('error',res.message)
+
+            },
+            error:(err)=>{
+                message('error','ارسال نشد')
+            }
+        })
+    }
+    function getComents (){
+        $.ajax({
+            url:'http://127.0.0.1:8000/api/articles/articles-comment-list/?id=1',
+            success:(res)=>{
+                $('#comments').append(`
+                    <div class="comment1">
+                        <div class="top-comment">
+                            <div class="profile">
+                                <div>
+                                    <img class="prof-pic" src="${res.results[0].user_image}" alt="">
+                                </div>
+                                <div class="name-prof">
+                                    <p>${res.results[0].user_fullname}</p>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <p> ${res.results[0].date}</p>
+                            </div>
+                        </div>
                         <div>
-                            <img class="prof-pic" src="{{ comment.user.image.url }}" alt="{{ comment.first_name }}">
-                        </div>
-                        <div class="name-prof">
-                            <p>{{ comment.first_name }} {{ comment.last_name }}</p>
+                            <p> ${res.results[0].comment}</p>
                         </div>
                     </div>
-                    <div class="date">
-                        <p>{{ comment.jdate }}</p>
-                    </div>
-                </div>
-                <div>
-                    <p>{{ comment.comment }}</p>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-
-    </div>
+                `)
+            },
+            error:(err)=>{
+            }
+        })
+    }
+    getComents()
+</script>
+<script src="{% static 'js/message.js' %}"></script>
 {% endblock %}

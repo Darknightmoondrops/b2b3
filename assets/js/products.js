@@ -1,3 +1,27 @@
+//=========================== slider main product page ==================
+new Splide('#slider1', {
+    direction: 'ttb',
+    height: '10rem',
+}).mount();
+
+//========================== slider ===========
+new Splide('#slider2', {
+    perPage: 3,
+    perMove: 1,
+}).mount();
+new Splide('#slider3', {
+    perPage: 3,
+    perMove: 1,
+}).mount();
+new Splide('#slider4', {
+    perPage: 3,
+    perMove: 1,
+}).mount();
+//======================== arrow main slider ===========================
+var PrevArrow = document.getElementsByClassName("splide__arrow--prev");
+var NextArrow = document.getElementsByClassName("splide__arrow--next");
+PrevArrow[0].style.display = "none";
+NextArrow[0].style.display = "none";
 //================================================  colors ==============================================
 function colorSelector(n) {
     var i;
@@ -7,68 +31,28 @@ function colorSelector(n) {
     }
     colorBox[n - 1].style.display = "block";
 }
+//=================== counter number ===============
+var count = 1
+var limitLengh = document.getElementById('remaining-number');
+var minLengh = 0
+console.log("count");
 
-//======================================== change page horiz ==============================================
-
-var pagenumber = 1;
-pagechenger(pagenumber);
-
-
-function pluspage(n) {
-    pagechenger(pagenumber += n)
-}
-
-function pageslide(n) {
-    pagechenger(pagenumber = n);
-}
-
-function pagechenger(n) {
-    var i;
-    var page = document.getElementsByClassName("products-page");
-
-    var number = document.getElementsByClassName("page");
-    if (n > page.length) { pagenumber = 1 }
-    if (n < 1) { pagenumber = page.length }
-    for (i = 0; i < page.length; i++) {
-        page[i].style.display = "none";
+function plus() {
+    if (count < limitLengh) {
+        document.getElementById('counter').innerHTML = ++count
+    } else {
+        alert('jjjjjjj')
     }
-    for (i = 0; i < number.length; i++) {
-        number[i].classList.remove("pageActive");
+}
+
+function minus() {
+    if (count > minLengh) {
+        document.getElementById('counter').innerHTML = --count
+    } else {
+        alert('mmmmm')
     }
-    page[pagenumber - 1].style.display = "block";
-    number[pagenumber - 1].classList.add("pageActive");
 }
 
-
-//============================== change page vert ================
-var pagenumber8 = 1;
-pagechengers(pagenumber8);
-
-
-function pluspages(n) {
-    pagechengers(pagenumber8 += n)
-}
-
-function pageslides(n) {
-    pagechengers(pagenumber8 = n);
-}
-
-function pagechengers(n) {
-    var i;
-    var pageVert = document.getElementsByClassName("products-page1");
-
-    var number1 = document.getElementsByClassName("pages");
-    if (n > pageVert.length) { pagenumber8 = 1 }
-    if (n < 1) { pagenumber8 = pageVert.length }
-    for (i = 0; i < pageVert.length; i++) {
-        pageVert[i].style.display = "none";
-    }
-    for (i = 0; i < number1.length; i++) {
-        number1[i].classList.remove("pageActive");
-    }
-    pageVert[pagenumber8 - 1].style.display = "block";
-    number1[pagenumber8 - 1].classList.add("pageActive");
-}
 //=============================price range=======================
 const rangeInput = document.querySelectorAll(".multi-range input"),
     priceInput = document.querySelectorAll(".text-violet input"),
@@ -223,4 +207,27 @@ function boxcover2(n) {
         img[2].classList.remove("rotate-img");
         indexnumberSS = 0;
     }
+}
+//============================ fast product ==========================
+function FastProduct(n) {
+    var FastCard = document.getElementsByClassName("fast-product");
+    var BTNFastProduct = document.getElementsByClassName("icon2");
+    var FastBackground = document.getElementsByClassName("background-two");
+    var i;
+    for (i = 0; i < FastCard.length; i++) {
+        FastCard[i].style.display = "none";
+    }
+    FastCard[n].style.display = "flex";
+    FastBackground[0].style.display = "block"
+}
+
+function CloseFastProduct() {
+    var FastCard = document.getElementsByClassName("fast-product");
+    var FastBackground = document.getElementsByClassName("background-two");
+    var k;
+    for (k = 0; k < FastCard.length; k++) {
+        FastCard[k].style.display = "none";
+
+    }
+    FastBackground[0].style.display = "none";
 }

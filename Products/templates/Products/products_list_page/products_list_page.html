@@ -1,446 +1,383 @@
-{% extends 'base/base.html' %}
-{% load static %}
+{% extends 'base/base.html' %} {% load static %} {% block content %}
+<!-----------------------------------------------      body       ---------------------------------------------->
+<!--header-->
 
-{% block content %}
-    <!-----------------------------------------------      body       ---------------------------------------------->
-       <!--   slider   -->
-       <section id="slider" class="">
-        <div class="container">
-            <div class="carousel-inner">
-                {% for slide in products_slides %}
-                <div class="carousel-item fade">
-                    <a class="slide" href="{{ slide.url }}"><img class="slide-img" src="{{ slide.image.url }}" alt="اسلاید"></a>
-                </div>
-                {% endfor %}
+<!--header-->
 
-
+<!--------------------------------------------   slider   --------------------------------->
+<!-- <section id="slider" class="">
+    <div class="container">
+        <div class="carousel-inner">
+            <div class="carousel-item fade">
+                <a class="slide" href="#"><img class="slide-img" src="" class="d-block" alt=""></a>
             </div>
-            <div class="all-dot-btn">
-                {% for slide in products_slides %}
-                    <button type="button" class="dot-btn slide-active" onclick="currentSlide({{ forloop.counter }})"></button>
-                {% endfor %}
+            <div class="carousel-item fade">
+                <a class="slide" href="#"><img class="slide-img" src="" class="d-block" alt=""></a>
             </div>
-        </div>
-    </section>
-
-
-    <section class="products">
-        <div class="category-bar">
-            <div class="category">
-                <a href="{% url 'Products:product_list_page' %}">محصولات</a>
+            <div class="carousel-item fade">
+                <a class="slide" href="#"><img class="slide-img" src="" class="d-block" alt=""></a>
             </div>
-            <div class="show-mode">
-                <div class="show-mode-p1" onclick="changepage(1)">
-                    <img class="show-mode-p1-img" src="{% static 'home/icons/icon-25.png' %}" alt="">
-                </div>
-                <div class="show-mode-p2 show-mode-border" onclick="changepage(2)">
-                    <img class="show-mode-p2-img" src="{% static 'home/icons/icon-24.png' %}" alt="">
-                </div>
+            <div class="carousel-item fade">
+                <a class="slide" href="#"><img class="slide-img" src="" class="d-block" alt=""></a>
             </div>
         </div>
-
-        
-        <div class="filter-bar">
-            <div class="filter-part1 filter">
-                <span class="filter-part1-txt">محصول مرتبط یافت شد {{ count }}</span>
-            </div>
-            <div class="filter-part2 filter">
-                <span class="filter-part2-btn">مرتب سازی<img src="{% static 'home/icons/icon-28.png' %}" alt=""></span>
-                <div class="filter-part2-dropdown">
-                    <span class="filter-dropdown-txt"><a href="">گرانترین</a></span>
-                    <span class="filter-dropdown-txt"><a href="">ارزان ترین</a></span>
-                    <span class="filter-dropdown-txt"><a href="">پرفروش ترین</a></span>
-                    <span class="filter-dropdown-txt"><a href="">جدید ترین</a></span>
-                </div>
-            </div>
-            <div class="filter-part3 filter">
-                <div>
-                    <span class="filter-part2-btn" onclick="filterbox(1)">فیلتر محصولات</span>
-                </div>
-            </div>
-            <div class="filter-box">
-                <div class="background" onclick="filterbox(2)"></div>
-                <div class=" filter-products-box filter-products-off">
-                    <div class="filter-products-titles-all">
-                        <p class="filter-products-title">فیلتر محصولات</p>
-                        <img class="filter-products-img" src="{% static 'home/icons/icon-29.png' %}" alt="" onclick="filterbox(2)">
-                    </div>
-                    <div class="price-filter">
-                        <div class="filter-titles">
-                            <p>محدوده قیمت</p>
-                            <img src="{% static 'home/icons/icon-30.png' %}" alt="">
-                        </div>
-                        <div class="center">
-                            <div class="price text-violet">
-                                <p>از</p><input class="show-price" type="number" value="2500">
-                                <p>تا</p><input class="show-price" type="number" value="7500">
-                            </div>
-                            <div class="slider">
-                                <div class="progress"></div>
-                            </div>
-                            <div class="multi-range">
-                                <input class="range-min" id="min" type="range" min="0" max="7500000" value="0" step="10000" />
-                                <input class="range-max" id="max" type="range" min="0" max="7500000" value="7500000" step="10000" />
-                            </div>
-                        </div>
-                        <div class="brand">
-                            <div class="filter-titles">
-                                <p>برند</p>
-                                <img src="{% static 'home/icons/icon-30.png' %}" alt="">
-                            </div>
-                            <div class="brand-searchbox">
-                                <form class="brand-searchbox-all" action="">
-                                    <input class="brand-searchbox-in" type="text" placeholder="جستوجو">
-                                    <button class="brand-searchbox-btn" type="submit"><img src="{% static 'home/icons/icon-27.png' %}" alt=""></button>
-                                </form>
-                                <div>
-                                    <div class="brand-checkbox">
-                                        <input class="checkbox-inp" type="checkbox" id="brand1">
-                                        <label for="brand1"><p class="brand-checkbox-p1">لیمون</p><p class="brand-checkbox-p2">limon</p></label>
-                                    </div>
-                                    <div class="brand-checkbox">
-                                        <input class="checkbox-inp" type="checkbox" id="brand2">
-                                        <label for="brand2"><p class="brand-checkbox-p1">ایکیا</p><p class="brand-checkbox-p2">limoka</p></label>
-                                    </div>
-                                    <div class="brand-checkbox">
-                                        <input class="checkbox-inp" type="checkbox" id="brand3">
-                                        <label for="brand3"><p class="brand-checkbox-p1">هوم کت</p><p class="brand-checkbox-p2">homeket</p></label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="color-selector">
-                            <p class="color-selector-title">رنگ</p>
-                            <div class="color-select-all">
-                                <div class="color-select">
-                                    <div class="colors">
-                                        <p>صورتی</p><span class="pink color-back"></span></div>
-                                    <div class="colors">
-                                        <p>آبی</p><span class="blue color-back"></span></div>
-                                    <div class="colors">
-                                        <p>زرد</p><span class="yellow color-back"></span></div>
-                                    <div class="colors">
-                                        <p>سبز</p><span class="green color-back"></span></div>
-                                    <div class="colors">
-                                        <p>بنفش</p><span class="purple color-back"></span></div>
-                                    <div class="colors">
-                                        <p>قرمز</p><span class="red color-back"></span></div>
-                                </div>
-                                <div class="all-colors">
-                                    <div class="color" onclick="pink()">
-                                        <p>صورتی</p><span class="pink color-back"></span></div>
-                                    <div class="color" onclick="blue()">
-                                        <p>آبی</p><span class="blue color-back"></span></div>
-                                    <div class="color" onclick="yellow()">
-                                        <p>زرد</p><span class="yellow color-back"></span></div>
-                                    <div class="color" onclick="green()">
-                                        <p>سبز</p><span class="green color-back"></span></div>
-                                    <div class="color" onclick="purple()">
-                                        <p>بنفش</p><span class="purple color-back"></span></div>
-                                    <div class="color" onclick="red()">
-                                        <p>قرمز</p><span class="red color-back"></span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <ul class="filter-titles">
-                        <li>
-                            <input type="checkbox" checked>
-                            <i></i>
-                            <h4>نوع فروشنده</h4>
-                            <p style="display: grid ">
-                            </p>
-                        </li>
-                    </ul>
-                    <ul class="filter-titles">
-                        <li>
-                            <input type="checkbox" checked>
-                            <i></i>
-                            <h4>نوع فروشنده</h4>
-                            <p style="display: grid ">
-                            </p>
-                        </li>
-                    </ul>
-                    <ul class="filter-titles">
-                        <li>
-                            <input type="checkbox" checked>
-                            <i></i>
-                            <h4>نوع فروشنده</h4>
-                            <p style="display: grid ">
-                            </p>
-                        </li>
-                    </ul>
-                    <ul class="filter-titles">
-                        <li>
-                            <input type="checkbox" checked>
-                            <i></i>
-                            <h4>نوع فروشنده</h4>
-                            <p style="display: grid ">
-                            </p>
-                        </li>
-                    </ul>
-                    <ul class="filter-titles">
-                        <li>
-                            <input type="checkbox" checked>
-                            <i></i>
-                            <h4>نوع فروشنده</h4>
-                            <p style="display: grid ">
-                            </p>
-                        </li>
-                    </ul>
-                    <ul class="filter-titles">
-                        <li>
-                            <input type="checkbox" checked>
-                            <i></i>
-                            <h4>نوع فروشنده</h4>
-                            <p style="display: grid ">
-                            </p>
-                        </li>
-                    </ul>
-                    <div class="filter-btn-all">
-                        <button class="filter-btn" type="submit">اعمال فیلتر</button>
-                    </div>
-
-                </div>
-
-                <div class="filter-part4 filter">
-                    <form action="{% url 'Products:search_products_page' %}?page={{ pages.number }}" method="get">
-                        <input class="filter-part4-btn-input" type="text" placeholder="جستوجو" name="q">
-                        <button class="filter-part4-btn" type="submit"><img src="{% static 'home/icons/icon-27.png' %}" alt=""></button>
-                    </form>
-                </div>
-            </div>
-        </div>
-<!-------- horiz list  ---------->
-<div class="hori-list">
-    <div class="products-page">
-        <div class="products-all-box">
-            {% for product in pages %}
-                <div class="product-box">
-                            <div class="image-parent">
-                                <a href="">
-                                    <img class="image" src="{{ product.image.url }}" alt="{{ product.title }}">
-                                </a>
-                                <div>
-                                    <a href="#">
-                                        <img class="icon1" src="{% static 'home/icons/icon-9.png' %}" alt="">
-                                    </a>
-                                </div>
-                                <div>
-                                    <a href="#">
-                                        <img class="icon2" src="{% static 'home/icons/icon-23.png' %}" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="details">
-
-                                <a href="">
-                                    <h2>{{ product.title }}</h2>
-                                </a>
-                                <div class="rate">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                           <div class="all-price">
-                                {% if product.discounted_price %}
-                                <div class="sec-price" >{{ product.discounted_price }} تومان</div>
-                                <div class="main-price" >{{ product.price }} تومان</div>
-                                {% else %}
-                                    <div class="sec-price" >{{ product.price }} تومان </div>
-                                {% endif %}
-                                </div>
-                            </div>
-                        </div>
-            {% endfor %}
-
+        <div class="all-dot-btn">
+            <button type="button" class="dot-btn slide-active" onclick="currentSlide(1)"></button>
+            <button type="button" class="dot-btn" onclick="currentSlide(2)"></button>
+            <button type="button" class="dot-btn" onclick="currentSlide(3)"></button>
+            <button type="button" class="dot-btn" onclick="currentSlide(4)"></button>
         </div>
     </div>
+</section> -->
+<section class="splide" id="slider1" aria-labelledby="carousel-heading">
+    <div class="splide__track">
+        <ul class="splide__list" id="mainSlider">
+
+        </ul>
     </div>
+</section>
+<!--------------------------------------------  /slider -------------------------------------------->
+<!-----------------------------------------------      body       ---------------------------------------------->
+<div class="background-two" onclick="CloseFastProduct()"></div>
+<section class="products">
+    <div class="category-bar">
 
+        <div class="show-mode">
+            <div class="show-mode-p1" onclick="changepage(1)">
+                <div class="show-mode-p1-img"></div>
+            </div>
+            <div class="show-mode-p2 show-mode-border" onclick="changepage(2)">
+                <div class="show-mode-p2-img"></div>
+            </div>
+        </div>
+    </div>
+    <div class="filter-bar">
 
-
-</div>
-        
-        <div class="vert-list">
-
-                {% for product in pages %}
-                    {% if product.inventory %}
-                        <div class="product-box-vert">
-                            <div class="image-parent-vert">
-                                <a href="">
-                                    <img class="image-vert" src="{{ product.image.url }}" alt="{{ product.title }}">
-                                    {% if product.percentage %}
-                                        <span class="token-vert">{{ product.percentage }}</span>
-                                    {% endif %}
-                                </a>
-                                <div>
-                                    <a href="#">
-                                        <img class="icon1" src="{% static 'home/icons/icon-9.png' %}" alt="">
-                                    </a>
-                                </div>
-                                <div>
-                                    <a href="#">
-                                        <img class="icon2" src="{% static 'home/icons/icon-23.png' %}" alt="">
-                                    </a>
-                                </div>
+        <div class="filter-part2 filter">
+            <span class="filter-part2-btn">مرتب سازی<div class="ordering-img"></div></span>
+            <div class="filter-part2-dropdown">
+                <div class="ordering-background">
+                    <div class="esharegar"></div>
+                    <span class="filter-dropdown-txt" id="ordering1">گرانترین</span>
+                    <span class="filter-dropdown-txt" id="ordering2">ارزانترین</span>
+                    <span class="filter-dropdown-txt" id="ordering3">پرفروش ترین</span>
+                    <span class="filter-dropdown-txt" id="ordering4">پرطرفدارترین</span>
+                    <span class="filter-dropdown-txt" id="ordering5">مرتبط ترین</span>
+                    <span class="filter-dropdown-txt" id="ordering6">جدید ترین</span>
+                </div>
+            </div>
+        </div>
+        <div class="filter-part3 filter">
+            <div>
+                <span class="filter-part2-btn" onclick="filterbox(1)">فیلتر محصولات</span>
+            </div>
+        </div>
+        <div class="filter-box">
+            <div class="background" onclick="filterbox(2)"></div>
+            <div class=" filter-products-box filter-products-off">
+                <div class="filter-products-titles-all">
+                    <p class="filter-products-title">فیلتر محصولات</p>
+                    <div class="filter-products-img" onclick="filterbox(2)"></div>
+                </div>
+                <div class="price-filter">
+                    <div class="filter-titles" onclick="clickme(1)">
+                        <p>محدوده قیمت</p>
+                        <div class="filter-title-img"></div>
+                    </div>
+                    <div class="center brand-off">
+                        <div class="price text-violet">
+                            <div class="show-price-all">
+                                <p>از</p><input class="show-price" type="number" value="0">
                             </div>
-                            <div class="details-vert">
-                                <div class="details-vert-title">
-                                    <a href="">
-                                        <h2>{{ product.title }}</h2>
-                                    </a>
-                                    <div class="rate-vert">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                </div>
-                                <div class="details-vert-text">
-                                    <p>{{ product.description | truncatechars:400 }}</p>
-                                </div>
-                                <div class="details-vert-bot">
-                                    <div class="remaining-number">تنها {{ product.inventory }} عدد باقی مانده</div>
-                                    {% if product.discounted_price %}
-                                        <div class="price-vert" >{{ product.discounted_price }} تومان </div>
-                                    {% else %}
-                                        <div class="price-vert" >{{ product.price }} تومان </div>
-                                    {% endif %}
-                                </div>
+                            <div class="show-price-all">
+                                <p>تا</p><input class="show-price" type="number" value="7500000">
                             </div>
                         </div>
-                    {% endif %}
-            {% endfor %}
+                        <div class="slider">
+                            <div class="progress"></div>
+                        </div>
+                        <div class="multi-range">
+                            <input class="range-min" id="min" type="range" min="0" max="7500000" value="0" step="10000" />
+                            <input class="range-max" id="max" type="range" min="0" max="7500000" value="7500000" step="10000" />
+                        </div>
+                    </div>
+                    <div class="brand">
+                        <div class="filter-titles" onclick="numberplus(1)">
+                            <p>برند</p>
+                            <div class="filter-title-img"></div>
+                        </div>
+                        <div class="brand-searchbox brand-off">
+                            <form class="brand-searchbox-all" action="">
+                                <input class="brand-searchbox-in" type="text" id="myInput" placeholder="جستوجو" onkeyup="searchBrand()">
+                                <button class="brand-searchbox-btn"></button>
+                            </form>
+                            <ul class="ul-search" id="myUL">
+                                <li id="cate-data">
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="color-selector">
+                        <p class="color-selector-title">رنگ</p>
+                        <div class="color-select-all">
+                            <div class="color-select" id="color-select">
 
+                                <div class="colors">
+                                    <p>صورتی</p><span style="background-color: aqua;" class="color-back-one"></span></div>
+                                <div class="colors">
+                                    <p>صورتی</p><span style="background-color: blue;" class="color-back-one"></span></div>
+                            </div>
+                            <div class="all-colors" id="all-colors">
+                                <div class="color" onclick="colorSelector(1)">
+                                    <p>صورتی</p><span style="background-color: #2ACB34;" class="color-back"></span></div>
+                                <div class="color" onclick="colorSelector(2)">
+                                    <p>آبی</p><span style="background-color: blue;" class="color-back"></span></div>
 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="brand">
+                    <div class="filter-titles" onclick="clickmepls(1)">
+                        <p>نوع فروشنده</p>
+                        <div class="filter-title-img"></div>
+                    </div>
+                    <div class="type-seller brand-off">
+                        <form class="brand-searchbox-all" action="">
+                            <input class="brand-searchbox-in" type="text" id="myInput" placeholder="جستوجو" onkeyup="searchBrand()">
+                            <button class="brand-searchbox-btn"></button>
+                        </form>
+                        <ul class="ul-search" id="myUL">
+                            <li>
+                                <div class="brand-checkbox">
+                                    <input type="checkbox" class="checkbox-inp-type" value="mehdi" name="fooby[2][]" />
+                                    <div class="textBar-search"><label for="brand1"><p class="brand-checkbox-p1">کارواش مهدی</p></label></div>
+                                </div>
+                            </li>
 
+                            <li>
+                                <div class="brand-checkbox">
+                                    <input type="checkbox" class="checkbox-inp-type" value="amir" name="fooby[2][]" />
+                                    <div class="textBar-search"><label for="brand1"><p class="brand-checkbox-p1">کارواش پسر خوب</p></label></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="brand-checkbox">
+                                    <input type="checkbox" class="checkbox-inp-type" value="arian" name="fooby[2][]" />
+                                    <div class="textBar-search"><label for="brand1"><p class="brand-checkbox-p1">هوم کت</p></label></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="filter-btn-all">
+                    <button id="filter-btn" class="filter-btn" type="submit">اعمال فیلتر</button>
+                </div>
 
+            </div>
+
+            <div class="filter-part4 filter">
+                <form action="">
+                    <input class="filter-part4-btn-input" id="filter-part4-btn-input" type="text" placeholder="جستوجو" name="search">
+                    <button class="filter-part4-btn" id="filter-part4-btn" type="submit"></button>
+                </form>
+            </div>
         </div>
-
-        <div class="page-slider">
-
+    </div>
+    <!--------products----------->
+    <div class="hori-list">
+        <div class="products-page">
+            <div class="products-list1">
+                <div class="product-slider">
+                    <section class="product">
+                        <div id="product-container-id" class="product-container">
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!----------     vetical list    ------------------------->
+    <div class="vert-list">
+        <div class="products-page1" id="products-page1">
+        </div>
+    </div>
+    <div class="page-slider">
+        <div id="go-back-card" class="page-icon"></div>
         <div class="page-number" dir="ltr">
-                {% if pages.has_previous %}
-                    <a  href="?page={{ pages.previous_page_number }}"><div class="page-icon"><img class="page-icon-img" src="{% static 'home/icons/icon-34.png' %}" alt=""></div></a>
-                    <a  href="?page={{ pages.previous_page_number }}"><span class="page1 page " style="color: black;background-color: #fff">{{ pages.previous_page_number }}</span></a>
-
-                {% endif %}
-                <a  href="?page={{ pages.number }}"><span class="page1 page" style="color: #fff;background-color: #F26A4F;">{{ pages.number }}</span></a>
-                {% if pages.has_next %}
-                    <a href="?page={{ pages.next_page_number }}"><span class="page1 page " >{{ pages.next_page_number }}</span></a>
-                    <a href="?page={{ pages.next_page_number }}"><div class="page-icon"><img class="page-icon-img" src="{% static 'home/icons/icon-35.png' %}" alt=""></div></a>
-                {% endif %}
+            <span id="page1" class="page1 page"></span>
+            <span id="page2" class="page2 page"></span>
+            <span id="page3" class="page2 page"></span>
         </div>
-
+        <div id="go-next-card" class="page-icon">
+        </div>
     </div>
+</section>
+<!------------------------------------------------------  /body  ------------------------------------------------>
+<!-------------------------------------------      product slider 1     ---------------------------------------->
+<h1 class="title1">محصولات پرفروش</h1>
+<div class="splide" id="slider2" dir="ltr">
+    <div class="splide__track">
+        <ul class="splide__list">
+            <li class="splide__slide" id="slider-one">
+            </li>
+        </ul>
+    </div>
+</div>
 
-    </section>
-    <!------------------------------------------------------  /body  ------------------------------------------------>
-    <!-------------------------------------------      product slider 1     ---------------------------------------->
-      <div class="product-slider">
-        <h1 class="title1">محصولات پرفروش</h1>
-        <section class="product">
-            <div class="nxt-btn" onclick="plusslides5(1)">
-                <img src="{% static 'home/icons/icon-15.png' %}" alt="arrow" />
-            </div>
-
-            <div class="p5-page">
-                <div id="product-container-id" class="product-container">
-
-                    {% for BestSellingProducts in best_selling_products %}
-                        <div class="product-box">
-                        <div class="image-parent">
-                            <a href="">
-                                <img class="image" src="{{ BestSellingProducts.image.url }}" alt="{{ BestSellingProducts.title }}">
+<!------------------------------------------     /product slider 1      ---------------------------------------->
+<!-------------------------------------------      product slider 2     ---------------------------------------->
+<h1 class="title1">پیشنهاد ویژه</h1>
+<div class="splide" id="slider3" dir="ltr">
+    <div class="splide__track">
+        <ul class="splide__list">
+            <li class="splide__slide" id="slider-two">
+                <div class="product-box">
+                    <div class="image-parent">
+                        <a href="#">
+                            <img class="image" src="./asset/img/pic-12.png" alt="">
+                            <span class="token-hori">20%</span>
+                        </a>
+                        <div>
+                            <a href="#">
+                                <div class="icon1 fix-icon-vert"></div>
                             </a>
-                            <div>
-                                <a href="#">
-                                    <img class="icon1" src="{% static 'home/icons/icon-9.png' %}" alt="">
-                                </a>
-                            </div>
-                            <div>
-                                <a href="#">
-                                    <img class="icon2" src="{% static 'home/icons/icon-23.png' %}" alt="">
-                                </a>
-                            </div>
                         </div>
-                        <div class="details">
-
-                            <a href="">
-                                <h2>{{ BestSellingProducts.title }}</h2>
+                        <div>
+                            <a href="#">
+                                <div class="icon2 fix-icon-vert"></div>
                             </a>
-                            <div class="rate">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            {% if BestSellingProducts.discounted_price %}
-                                <div class="price">{{ BestSellingProducts.discounted_price }} تومان </div>
-                            {% else %}
-                                <div class="price">{{ BestSellingProducts.price }} تومان </div>
-                            {% endif %}
-
-
                         </div>
-
                     </div>
-                    {% endfor %}
+                    <div class="details">
 
+                        <a href="#">
+                            <h2>میز چوبی</h2>
+                        </a>
+                        <div class="rate">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <div class="price">2.000.000T</div>
+                    </div>
                 </div>
-            </div>
-
-
-            <div class="pre-btn" onclick="plusslides5(-1)">
-                <img src="{% static 'home/icons/icon-16.png' %}" alt="arrow" />
-            </div>
-        </section>
-        <div class="all-dot" style="text-align: center" dir="ltr">
-            <button onclick="currentslide5(1)" class="dot5 dot-active"></button>
-            <button onclick="currentslide5(2)" class="dot5"></button>
-            <button onclick="currentslide5(3)" class="dot5"></button>
-            <button onclick="currentslide5(4)" class="dot5"></button>
-        </div>
+            </li>
+        </ul>
     </div>
-    <!------------------------------------------     /product slider 1      ---------------------------------------->
-    <!-------------------------------------------      product slider 2     ---------------------------------------->
-    <div class="product-slider">
-        <h1 class="title1">پیشنهاد ویژه</h1>
-        <section class="product">
-            <div class="nxt-btn" onclick="plusslides6(1)">
-                <img src="{% static 'home/icons/icon-15.png' %}" alt="arrow" />
-            </div>
+</div>
+
+<!------------------------------------------     /product slider 2      ---------------------------------------->
+<!-------------------------------------------      product slider 3     ---------------------------------------->
+<h1 class="title1">پر فروش ترین دسته بندی ها</h1>
+<div class="splide" id="slider4" dir="ltr">
+    <div class="splide__track">
+        <ul class="splide__list">
+            <li class="splide__slide" id="slider-three">
+                <div class="product-box">
+                    <div class="image-parent">
+                        <a href="#">
+                            <img class="image" src="./asset/img/pic-12.png" alt="">
+                            <span class="token-hori">20%</span>
+                        </a>
+                        <div>
+                            <a href="#">
+                                <div class="icon1 fix-icon-vert"></div>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#">
+                                <div class="icon2 fix-icon-vert"></div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="details">
+
+                        <a href="#">
+                            <h2>میز چوبی</h2>
+                        </a>
+                        <div class="rate">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <div class="price">2.000.000T</div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<!------------------------------------------     /product slider 3      ---------------------------------------->
 
 
-            <div class="p6-page">
-                <div id="product-container-id" class="product-container">
-                    {% for specialProducts in special_products %}
-                        {% if specialProducts.inventory %}
-                            <div class="product-box">
+
+
+
+<script>
+    var mainUrl = "http://127.0.0.1:8000/api/products/products-list/"
+    var mainUrlFilter = "http://127.0.0.1:8000/api/products/products-filter/"
+    var mainUrlSearchs
+    var obj = []
+    var nextUrl
+    var backUrl
+    var nextCard
+    var nextP;
+    var loc;
+    var NextPgeUrl;
+    var counter = -1;
+    var counterone = -1;
+    var countertwo = -1;
+    var counterthree = -1;
+    var UrlOrdering1 = "http://127.0.0.1:8000/api/products/products-mostexpensive/";
+    var UrlOrdering2 = "http://127.0.0.1:8000/api/products/products-cheapest/";
+    var UrlOrdering3 = "http://127.0.0.1:8000/api/products/products-bestselling/";
+    var UrlOrdering4 = "http://127.0.0.1:8000/api/products/products-bestselling/";
+    var UrlOrdering6 = "http://127.0.0.1:8000/api/products/products-newest/";
+
+    function loadData(mainUrl) {
+        console.log(mainUrl, 'kkkkkkkk');
+
+        $.ajax({
+            url: mainUrl,
+            type: "get",
+
+            success: (response) => {
+                console.log(mainUrl);
+                //  obj=(response)
+                var newResulte = []
+                newResulte.push(response.results)
+                console.log(response, 'aaarrrrrrrrrr');
+                // console.log('skk',obj);
+                $('#product-container-id').html(``)
+                newResulte[0].forEach(element => {
+
+                    var counterLimit = response.results;
+                    console.log(counterLimit, "meow meow meow");
+                    counter = counter + 1;
+                    console.log(element.id, 'dddddddd')
+                    morebtn = "http://127.0.0.1:8000/products/detail/" + element.id + "/" + element.slug;
+                    $('#product-container-id').append(`
+                    <div class="product-box product-fix">
                                 <div class="image-parent">
-                                    <a href="">
-                                        <img class="image" src="{{ specialProducts.image.url }}" alt="">
+                                    <a href="${morebtn}" id="token-hori">
+                                        <img class="image" src="${element.main_image}" alt="">
                                     </a>
                                     <div>
-                                        <a href="#">
-                                            <img class="icon1" src="{% static 'home/icons/icon-9.png' %}" alt="">
-                                        </a>
+                                            <div class="icon1 fix-icon-vert"></div>
                                     </div>
-                                    <div>
-                                        <a href="#">
-                                            <img class="icon2" src="{% static 'home/icons/icon-23.png' %}" alt="">
-                                        </a>
+                                    <div> 
+                                            <div class="icon2 fix-icon-vert" id="icon2" onclick="FastProduct(${counter})"></div>
                                     </div>
                                 </div>
                                 <div class="details">
 
-                                    <a href="">
-                                        <h2>{{ specialProducts.title }}</h2>
+                                    <a href="${morebtn}">
+                                        <h2>${element.title}</h2>
                                     </a>
                                     <div class="rate">
                                         <i class="fa fa-star"></i>
@@ -449,85 +386,749 @@
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
                                     </div>
-                                    {% if  specialProducts.discounted_price %}
-                                        <div class="price">{{ specialProducts.discounted_price }} تومان </div>
-                                    {% else %}
-                                        <div class="price">{{ specialProducts.discounted_price }} تومان </div>
-                                    {% endif %}
+                                    <div class="price">${element.price}T</div>
+                                   
                                 </div>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-
-
+                                <div class="fast-product">
+        <div class="detail-fast-product">
+            <div class="top-fast-product">
+                <div class="back-icon" onclick="CloseFastProduct()"></div>
+                <p class="title-fast-product">${element.title}</p>
+                <div class="rate fast-rate">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
                 </div>
             </div>
-
-
-            <div class="pre-btn" onclick="plusslides6(-1)">
-                <img src="{% static 'home/icons/icon-16.png' %}" alt="arrow" />
+            <p class="fast-short-description">${element.short_description}</p>
+            <div class="mid-fast-product">
+                <div class="div-style">
+                    <div class="form-item-cout">
+                        <div class="item-count">
+                            <p onclick="plus()" id="cunt-plus" class="cunt-div">+</p>
+                        </div>
+                        <div class="item-count">
+                            <p id="counter" class="cunt-div" >1</p>
+                        </div>
+                        <div class="item-count">
+                            <p onclick="minus()" id="cunt-min" class="cunt-div">-</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="price">${element.price}T</p>
             </div>
-        </section>
-        <div class="all-dot" style="text-align: center" dir="ltr">
-            <button onclick="currentslide6(1)" class="dot6 dot-active"></button>
-            <button onclick="currentslide6(2)" class="dot6"></button>
-            <button onclick="currentslide6(3)" class="dot6"></button>
-            <button onclick="currentslide6(4)" class="dot6"></button>
+            <button class="btn-fast-product">افزودن به سبد خرید</button>
+            <p class="footer-fast-product">
+                <a href="#">سباب منزل</a>/
+                <a href="#">میز و صندلی</a>
+            </p>
+        </div>
+        <div class="main-fast-img">
+            <img class="img-sec-fast-product" src="${element.main_image}" alt="">
         </div>
     </div>
-    <!------------------------------------------     /product slider 2      ---------------------------------------->
-    <!-------------------------------------------      product slider 3     ---------------------------------------->
-    <div class="product-slider">
-        <h1 class="title1">پرفروش ترین دسته بندی ها</h1>
-        <section class="product">
-            <div class="nxt-btn" onclick="plusslides7(1)">
-                <img src="{% static 'home/icons/icon-15.png' %}" alt="arrow" />
-            </div>
-
-            <div class="p7-page">
-                <div id="product-container-id" class="product-container">
-                    {% for BestSellingCategories in best_selling_categories %}
-                        <div class="product-box">
-                        <div class="image-parent">
-                            <a href="#">
-                                <img class="image" src="{{ BestSellingCategories.image.url }}" alt="{{ BestSellingCategories.name }}">
-                            </a>
-                            <div>
-                                <a href="#">
-                                    <img class="icon1" src="{% static 'home/icons/icon-9.png' %}" alt="">
-                                </a>
                             </div>
-                            <div>
-                                <a href="#">
-                                    <img class="icon2" src="{% static 'home/icons/icon-23.png' %}" alt="">
-                                </a>
-                            </div>
+                        `)
+                    if (counter == (counterLimit.length - 1)) {
+                        counter = -1
+                    }
+                })
+                $('#products-page1').html(``)
+                newResulte[0].forEach(element => {
+                    var counterLimit = response.results;
+                    console.log(counterLimit, "meow meow meow");
+                    counter = counter + 1;
+                    console.log(element.id, 'dddddddd')
+                    morebtn = "http://127.0.0.1:8000/products/detail/" + element.id + "/" + element.slug + "/";
+                    $('#products-page1').append(`
+                    <div class="product-box-vert">
+                <div class="image-parent-vert">
+                    <a href="${morebtn}" id="token-vert">
+                        <img class="image-vert" src="${element.main_image}" alt="">
+                        
+                    </a>
+                    <div>
+                            <div class="icon1 fix-icon-of"></div>
+                    </div>
+                    <div>
+                            <div class="icon2 fix-icon-of" onclick="FastProduct(${counter})"></div>
+                    </div>
+                </div>
+                <div class="details-vert">
+                    <div class="details-vert-title">
+                        <a href="${morebtn}">
+                            <h2>${element.title}</h2>
+                        </a>
+                        <div class="rate-vert">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
                         </div>
-                        <div class="details">
+                    </div>
+                    <div class="details-vert-text">
+                        <p>${element.short_description}</p>
+                    </div>
+                    <div class="details-vert-bot">
+                        <div class="remaining-number">تنها <p id="remaining-number">${element.inventory}</p> عدد باقی مانده</div>
+                        <div class="price-vert">${element.price}T</div>
+                    </div>
+                </div>
+                
+            </div>
+                        `)
+                    if (counter == (counterLimit.length - 1)) {
+                        counter = -1
+                    }
 
-                            <a href="">
-                                <h2>{{ BestSellingCategories.name }}</h2>
+                    console.log(element.percentage);
+                    if (element.percentage !== 0) {
+                        $('#token-vert').append(`<span class="token-vert">${element.percentage}</span>`)
+                        $('#token-hori').append(`<span class="token-hori">${element.percentage}</span>`)
+                    }
+                    if (element.discounted_price !== 0) {
+                        $('.details').append(` <div class="sec-price">${element.discounted_price}T</div>`)
+                        $('.details-vert-bot').append(` <div class="sec-price-vert">${element.discounted_price}T</div>`)
+                    }
+
+                    console.log(counter);
+                })
+                if (response.previous == null && response.next == null) {
+                    $('#page1').html(``);
+                    $('#page2').html('1');
+                    $('#page1').html(``);
+                }
+                if (response.previous == null && response.next !== null) {
+                    nextUrl = response.next;
+                    $('#page1').html(``);
+                    $('#page2').html('1');
+                    $('#page3').html('2');
+                }
+                if (response.previous !== null && response.next !== null) {
+                    nextUrl = response.next;
+                    backUrl = response.previous;
+                    let nUrls = new URL(response.next)
+                    let nUrlNums = nUrls.searchParams.get("page");
+                    let currentpages = Number(nUrlNums) - 1;
+                    let prevPageNums = Number(nUrlNums) - 2;
+                    $('#page1').html(`${prevPageNums}`);
+                    $('#page2').html(`${currentpages}`);
+                    $('#page3').html(`${nUrlNums}`);
+                }
+                if (response.previous !== null && response.next == null) {
+                    if (response.previous == "http://127.0.0.1:8000/api/products/products-list/") {
+                        backUrl = response.previous;
+                        $('#page1').html(`1`);
+                        $('#page2').html('2');
+                        $('#page3').html('');
+                    }
+                    if (response.previous !== "http://127.0.0.1:8000/api/products/products-list/") {
+                        backUrl = response.previous;
+                        let nUrlss = new URL(response.previous)
+                        let nUrlNumss = nUrlss.searchParams.get("page");
+                        let currentpagess = Number(nUrlNumss) + 1;
+                        $('#page1').html(`${nUrlNumss}`);
+                        $('#page2').html(`${currentpagess}`);
+                        $('#page3').html(``);
+                    }
+                }
+
+
+            },
+            error: (err) => {
+                console.log(err);
+            }
+        });
+    }
+    loadData("http://127.0.0.1:8000/api/products/products-list/");
+    loadDataTop(mainUrlTop)
+    $('#page3').on('click', function() {
+        if ($('#page3').html() !== '') {
+            $('#articles').html('')
+            loadData(nextUrl)
+        }
+    })
+    $('#page1').on('click', function() {
+        if ($('#page1').html() !== '') {
+            $('#articles').html('')
+            loadData(backUrl)
+        }
+    })
+
+    $('#go-next-card').on('click', function() {
+        if ($('#page3').html() !== '') {
+            $('#articles').html('')
+            loadData(nextUrl)
+        }
+    })
+    $('#go-back-card').on('click', function() {
+        if ($('#page1').html() !== '') {
+            $('#articles').html('')
+            loadData(backUrl)
+        }
+    })
+
+    //============== ordering ====================
+
+    $('#ordering1').on('click', function() {
+        $('#articles').html('')
+        loadData(UrlOrdering1)
+    })
+    $('#ordering2').on('click', function() {
+        $('#articles').html('')
+        loadData(UrlOrdering2)
+    })
+    $('#ordering3').on('click', function() {
+        $('#articles').html('')
+        loadData(UrlOrdering3)
+    })
+    $('#ordering4').on('click', function() {
+        $('#articles').html('')
+        loadData(UrlOrdering4)
+    })
+    $('#ordering6').on('click', function() {
+        $('#articles').html('')
+        loadData(UrlOrdering6)
+    })
+
+    //============== END ordering ====================
+    //============== search bar api ==================
+
+    function loadApi(str) {
+        mainUrlSearchs = "http://127.0.0.1:8000/api/products/search-products/?q=" + str;
+
+        console.log(mainUrlSearchs, 'vv');
+
+        $.ajax({
+            url: mainUrlSearchs,
+            type: "get",
+
+            success: (response) => {
+                var newResulteSearchs = []
+                newResulteSearchs.push(response.results)
+                console.log(response, "yoy");
+                $('#product-container-id').html(``)
+                newResulteSearchs[0].forEach(element => {
+                    console.log(element.id, 'dddddddd')
+                    morebtn = "http://127.0.0.1:8000/products/detail/" + element.id + "/" + element.slug;
+                    $('#product-container-id').append(`
+                    <div class="product-box product-fix">
+                                <div class="image-parent">
+                                    <a href="${morebtn}" id="token-hori">
+                                        <img class="image" src="${element.main_image}" alt="">
+                                    </a>
+                                    <div>
+                                            <div class="icon1 fix-icon-vert"></div>
+                                    </div>
+                                    <div> 
+                                            <div class="icon2 fix-icon-vert"></div>
+                                    </div>
+                                </div>
+                                <div class="details">
+
+                                    <a href="${morebtn}">
+                                        <h2>${element.title}</h2>
+                                    </a>
+                                    <div class="rate">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="price">${element.price}T</div>
+                                   
+                                </div>
+                            </div>
+                        `)
+                })
+                $('#products-page1').html(``)
+                newResulteSearch[0].forEach(element => {
+                    console.log(element.id, 'dddddddd')
+                    morebtn = "http://127.0.0.1:8000/products/detail/" + element.id + "/" + element.slug + "/";
+                    $('#products-page1').append(`
+                    <div class="product-box-vert">
+                <div class="image-parent-vert">
+                    <a href="${morebtn}" id="token-vert">
+                        <img class="image-vert" src="${element.main_image}" alt="">
+                        
+                    </a>
+                    <div>
+                            <div class="icon1 fix-icon-of"></div>
+                    </div>
+                    <div>
+                            <div class="icon2 fix-icon-of"></div>
+                    </div>
+                </div>
+                <div class="details-vert">
+                    <div class="details-vert-title">
+                        <a href="${morebtn}">
+                            <h2>${element.title}</h2>
+                        </a>
+                        <div class="rate-vert">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="details-vert-text">
+                        <p>${element.short_description}</p>
+                    </div>
+                    <div class="details-vert-bot">
+                        <div class="remaining-number">تنها ${element.inventory} عدد باقی مانده</div>
+                        <div class="price-vert">${element.price}T</div>
+                    </div>
+                </div>
+            </div>
+                        `)
+                    console.log(element.percentage);
+                    if (element.percentage !== 0) {
+                        $('#token-vert').append(`<span class="token-vert">${element.percentage}</span>`)
+                        $('#token-hori').append(`<span class="token-hori">${element.percentage}</span>`)
+                    }
+                    if (element.discounted_price !== 0) {
+                        $('.details').append(` <div class="sec-price">${element.discounted_price}T</div>`)
+                        $('.details-vert-bot').append(` <div class="sec-price-vert">${element.discounted_price}T</div>`)
+                    }
+                })
+                if (response.previous == null && response.next == null) {
+                    $('#page1').html(``);
+                    $('#page2').html('1');
+                    $('#page1').html(``);
+                }
+                if (response.previous == null && response.next !== null) {
+                    nextUrl = response.next;
+                    $('#page1').html(``);
+                    $('#page2').html('1');
+                    $('#page3').html('2');
+                }
+                if (response.previous !== null && response.next !== null) {
+                    nextUrl = response.next;
+                    backUrl = response.previous;
+                    let nUrls = new URL(response.next)
+                    let nUrlNums = nUrls.searchParams.get("page");
+                    let currentpages = Number(nUrlNums) - 1;
+                    let prevPageNums = Number(nUrlNums) - 2;
+                    $('#page1').html(`${prevPageNums}`);
+                    $('#page2').html(`${currentpages}`);
+                    $('#page3').html(`${nUrlNums}`);
+                }
+                if (response.previous !== null && response.next == null) {
+                    if (response.previous == "http://127.0.0.1:8000/api/products/products-list/") {
+                        backUrl = response.previous;
+                        $('#page1').html(`1`);
+                        $('#page2').html('2');
+                        $('#page3').html('');
+                    }
+                    if (response.previous !== "http://127.0.0.1:8000/api/products/products-list/") {
+                        backUrl = response.previous;
+                        let nUrlss = new URL(response.previous)
+                        let nUrlNumss = nUrlss.searchParams.get("page");
+                        let currentpagess = Number(nUrlNumss) + 1;
+                        $('#page1').html(`${nUrlNumss}`);
+                        $('#page2').html(`${currentpagess}`);
+                        $('#page3').html(``);
+                    }
+                }
+            },
+            error: (err) => {
+                console.log(err, "meow");
+            }
+        })
+    }
+    $('#filter-part4-btn').on('click', function() {
+        let searchTxt = $('#filter-part4-btn-input').val()
+        loadApi(searchTxt);
+    })
+
+    //============== END search bar api ==============
+    //============== Fliter Box Api ==================
+
+    function loadDataFitler(mainUrlFilter) {
+        var minPrice = document.getElementById('min').value;
+        var maxPrice = document.getElementById('max').value;
+        var j, k;
+        var checkedBrand;
+        mainUrlFilter = "http://127.0.0.1:8000/api/products/products-filter/?"
+        if (minPrice !== 0 || maxPrice !== 7500000) {
+            mainUrlFilter = mainUrlFilter + "&price1=" + minPrice + "&price2=" + maxPrice;
+        }
+        var FormOne = document.getElementsByClassName("checkbox-inp");
+        var FormTwo = document.getElementsByClassName("checkbox-inp-type");
+        var ColorSelector = document.getElementsByClassName("color-back-one");
+        console.log(FormOne.checked);
+        for (j = 0; j < FormOne.length; j++) {
+            if ($(".checkbox-inp").is(".checked")) {
+                var CheckedFormOne = FormOne[i].value;
+            }
+        }
+        if (CheckedFormOne !== undefined) {
+            mainUrlFilter = mainUrlFilter + "&categories=" + CheckedFormOne;
+        }
+        console.log(mainUrlFilter, "filterbox url");
+        for (j = 0; j < FormTwo.length; j++) {
+            if ($(".checkbox-inp-type").is(".checked")) {
+                var CheckedFormTwo = FormTwo[i].value;
+            }
+        }
+        if (CheckedFormTwo !== undefined) {
+            mainUrlFilter = mainUrlFilter + "&sller_type=" + CheckedFormTwo;
+        }
+        for (k = 0; k < colorSelector.length; k++) {
+            if (ColorSelector[k].style.display == "block") {
+                var currectColor = ColorSelector[k].style['background-color'];
+            }
+        }
+        if (currectColor !== null) {
+            mainUrlFilter = mainUrlFilter + "&colors=" + currectColor;
+        }
+        mainUrlFilter = mainUrlFilter + "/";
+        loadData(mainUrlFilter);
+    }
+    $('#filter-btn').on('click', function() {
+        loadDataFitler(mainUrlFilter);
+    })
+
+    //============== END Fliter Box Api ==================
+    //============== Data for FilterBox ==================
+    //=== Cata Data ===
+
+    function CateApi(CateUrl) {
+        var CateUrl = "http://127.0.0.1:8000/api/products/products-filter-category/";
+        $.ajax({
+            url: CateUrl,
+            type: "get",
+
+            success: (response) => {
+                var newResultCate = []
+                newResultCate.push(response.results)
+                $('#cate-data').html(``)
+                newResultCate[0].forEach(element => {
+                    console.log(element.id, 'dddddddd')
+                    $('#cate-data').append(`
+                                    <div class="brand-checkbox">
+                                        <input type="checkbox" class="checkbox-inp" value="keyboard" name="fooby[1][]" />
+                                        <div class="textBar-search"><label for="brand1"><p class="brand-checkbox-p1" id="cate1">لیمون</p></label></div>
+                                    </div>
+                        `)
+                })
+            },
+            error: (err) => {
+                console.log(err, "meow");
+            }
+        })
+    }
+    CateApi(CateUrl)
+
+    //=== color Data ===
+
+    function ColorApi(ColorUrl) {
+        var ColorUrl = "http://127.0.0.1:8000/api/products/products-colors/";
+        $.ajax({
+            url: CateUrl,
+            type: "get",
+
+            success: (response) => {
+                var newresultColor = []
+                newresultColor.push(response.results)
+                $('#color-select').html(``)
+                $('#all-colors').html(``)
+                newresultColor[0].forEach(element => {
+                    console.log(element.id, 'dddddddd')
+                    $('#color-select').append(`
+                                <div class="colors">
+                                    <p>صورتی</p><span style="background-color: aqua;" class="color-back-one"></span>
+                                </div>
+                        `)
+                    $('#all-colors').append(`
+                                <div class="color" onclick="colorSelector(1)">
+                                    <p>صورتی</p><span style="background-color: #2ACB34;" class="color-back"></span>
+                                </div>
+                        `)
+                })
+            },
+            error: (err) => {
+                console.log(err, "meow");
+            }
+        })
+    }
+    ColorApi(ColorUrl)
+
+    //=== sellerType Data ===
+
+    function SellerTypeApi(SellerTypeUrl) {
+        var SellerTypeUrl = "http://127.0.0.1:8000/api/products/products-sellers-types/";
+        $.ajax({
+            url: SellerTypeUrl,
+            type: "get",
+
+            success: (response) => {
+                var newResultSeller = []
+                newResultSeller.push(response.results)
+                $('#myUL').html(``)
+                newResultSeller[0].forEach(element => {
+                    $('#myUL').append(`
+                            <li>
+                                <div class="brand-checkbox">
+                                    <input type="checkbox" class="checkbox-inp-type" value="mehdi" name="fooby[2][]" />
+                                    <div class="textBar-search"><label for="brand1"><p class="brand-checkbox-p1">کارواش مهدی</p></label></div>
+                                </div>
+                            </li>
+                        `)
+                })
+            },
+            error: (err) => {
+                console.log(err);
+            }
+        })
+    }
+    SellerTypeApi(SellerTypeUrl)
+
+    //============== END Data for FilterBox ==============
+    //============== cate checkbox(select box in products filter) ================
+
+    $(".checkbox-inp").on('click', function() {
+        var $box = $(this);
+        if ($box.is(":checked")) {
+            var group = "input:checkbox[name='" + $box.attr("name") + "']";
+            $(group).prop("checked", false);
+            $box.prop("checked", true);
+        } else {
+            $box.prop("checked", false);
+        }
+    });
+
+    //================= END cate checkbox(select box in products filter) ================
+    //====================== product sliders ===================
+
+    function ProductSliderOne(UrlOrdering3) {
+        $.ajax({
+            url: UrlOrdering3,
+            type: "get",
+
+            success: (response) => {
+                var newresultSliderOne = []
+                newresultSliderOne.push(response.results)
+                console.log(response, "yoy");
+                var counteroneLimit = response.results;
+                counterone = counterone + 1;
+                $('#slider-one').html(``)
+                newresultSliderOne[0].forEach(element => {
+                    console.log(element.id, 'dddddddd')
+                    morebtn = "http://127.0.0.1:8000/products/detail/" + element.id + "/" + element.slug + "/";
+                    $('#slider-one').append(`
+                    <div class="product-box">
+                    <div class="image-parent">
+                        <a href="#">
+                            <img class="image" src="./asset/img/pic-12.png" alt="">
+                            <span class="token-hori">20%</span>
+                        </a>
+                        <div>
+                            <a href="#">
+                                <div class="icon1 fix-icon-vert"></div>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#">
+                                <div class="icon2 fix-icon-vert"></div>
                             </a>
                         </div>
                     </div>
-                    {% endfor %}
+                    <div class="details">
 
-
-
+                        <a href="#">
+                            <h2>میز چوبی</h2>
+                        </a>
+                        <div class="rate">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <div class="price">2.000.000T</div>
+                    </div>
                 </div>
-            </div>
+                        `)
+                    if (counterone == (counteroneLimit.length - 1)) {
+                        counterone = -1
+                    }
+                })
+            },
+            error: (err) => {
+                console.log(err, "meow");
+            }
+        })
+    }
+    ProductSliderOne(SliderUrlone)
 
+    function ProductSliderTwo(SliderUrlTwo) {
+        SliderUrlTwo = "http://127.0.0.1:8000/api/products/products-bestselling/";
 
-            <div class="pre-btn" onclick="plusslides7(-1)">
-                <img src="{% static 'home/icons/icon-16.png' %}" alt="arrow" />
-            </div>
-        </section>
-        <div class="all-dot" style="text-align: center" dir="ltr">
-            <button onclick="currentslide7(1)" class="dot7 dot-active"></button>
-            <button onclick="currentslide7(2)" class="dot7"></button>
-            <button onclick="currentslide7(3)" class="dot7"></button>
-            <button onclick="currentslide7(4)" class="dot7"></button>
-        </div>
-    </div>
+        console.log(SliderUrlTwo, 'vv');
+
+        $.ajax({
+            url: SliderUrlTwo,
+            type: "get",
+
+            success: (response) => {
+                var newresultSliderTwo = []
+                newresultSliderTwo.push(response.results)
+                console.log(response, "yoy");
+                var countertwoLimit = response.results;
+                countertwo = countertwo + 1;
+                $('#slider-two').html(``)
+                newresultSliderTwo[0].forEach(element => {
+                    console.log(element.id, 'dddddddd')
+                    morebtn = "http://127.0.0.1:8000/products/detail/" + element.id + "/" + element.slug;
+                    $('#slider-one').append(`
+                    <div class="product-box">
+                    <div class="image-parent">
+                        <a href="#">
+                            <img class="image" src="./asset/img/pic-12.png" alt="">
+                            <span class="token-hori">20%</span>
+                        </a>
+                        <div>
+                            <a href="#">
+                                <div class="icon1 fix-icon-vert"></div>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#">
+                                <div class="icon2 fix-icon-vert"></div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="details">
+
+                        <a href="#">
+                            <h2>میز چوبی</h2>
+                        </a>
+                        <div class="rate">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <div class="price">2.000.000T</div>
+                    </div>
+                </div>
+                        `)
+                    if (countertwo == (countertwoLimit.length - 1)) {
+                        countertwo = -1
+                    }
+                })
+            },
+            error: (err) => {
+                console.log(err, "meow");
+            }
+        })
+    }
+    ProductSliderTwo(SliderUrlTwo)
+
+    function ProductSliderThree(SliderUrlThree) {
+        SliderUrlThree = "http://127.0.0.1:8000/api/products/products-bestselling/";
+
+        console.log(SliderUrlThree, 'SliderUrlThree');
+
+        $.ajax({
+            url: SliderUrlThree,
+            type: "get",
+
+            success: (response) => {
+                var newresultSliderThree = []
+                newresultSliderThree.push(response.results)
+                console.log(response, "yoy");
+                var counterthreeLimit = response.results;
+                counterthree = counterthree + 1;
+                $('#slider-three').html(``)
+                newresultSliderThree[0].forEach(element => {
+                    console.log(element.id, 'dddddddd')
+                    morebtn = "http://127.0.0.1:8000/products/detail/" + element.id + "/" + element.slug;
+                    $('#slider-one').append(`
+                    <div class="product-box">
+                    <div class="image-parent">
+                        <a href="#">
+                            <img class="image" src="./asset/img/pic-12.png" alt="">
+                            <span class="token-hori">20%</span>
+                        </a>
+                        <div>
+                            <a href="#">
+                                <div class="icon1 fix-icon-vert"></div>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#">
+                                <div class="icon2 fix-icon-vert"></div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="details">
+
+                        <a href="#">
+                            <h2>میز چوبی</h2>
+                        </a>
+                        <div class="rate">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <div class="price">2.000.000T</div>
+                    </div>
+                </div>
+                        `)
+                    if (counterthree == (counterthreeLimit.length - 1)) {
+                        counterthree = -1
+                    }
+                })
+            },
+            error: (err) => {
+                console.log(err, "meow");
+            }
+        })
+    }
+    ProductSliderThree(SliderUrlThree);
+
+    //====================== END product sliders ===================
+    //====================== main slider ===================
+
+    function MainSliderApi(MainSliderUrl) {
+        var MainSliderUrl = "http://127.0.0.1:8000/api/products/products-sliders/"
+        console.log(MainSliderUrl, "MainSliderUrl");
+        $.ajax({
+            url: MainSliderUrl,
+            type: "get",
+
+            success: (response) => {
+                var newResultMainSlider = []
+                newResultMainSlider.push(response.results)
+                console.log(response, "yoy");
+                $('#slider-one').html(``)
+                newResultMainSlider[0].forEach(element => {
+                    console.log(element.id, 'dddddddd')
+                    $('#mainSlider').append(`
+                    <li class="splide__slide slider-main-outSplide">
+                <a class="slide" href="#"><img class="slide-img" src="./pic-19.jpg" class="d-block" alt=""></a>
+                     </li>
+                        `)
+                })
+            },
+            error: (err) => {
+                console.log(err, "meow");
+            }
+        })
+    }
+    MainSliderApi(MainSliderUrl)
+
+    //====================== END main slider ===================
+</script>
 
 {% endblock %}

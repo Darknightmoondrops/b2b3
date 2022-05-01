@@ -1,21 +1,40 @@
-const button = document.querySelector(".heart-like-button");
+const heartDOM = document.querySelector('.js-heart');
+// initialized like to false when user hasnt selected
+let liked = false;
 
-button.addEventListener("click", () => {
-    if (button.classList.contains("liked")) {
-        button.classList.remove("liked");
+heartDOM.onclick = (event) => {
+    // check if liked 
+    liked = !liked; // toggle the like ( flipping the variable)
+
+    // this is what we clicked on
+    const target = event.currentTarget;
+
+    if (liked) {
+        // remove empty heart if liked and add the full heart
+        target.classList.remove('far');
+        target.classList.add('fas', 'pulse');
     } else {
-        button.classList.add("liked");
+        // remove full heart if unliked and add empty heart
+        target.classList.remove('fas');
+        target.classList.add('far');
     }
-});
+}
+
+heartDOM.addEventListener('animationend', (event) => {
+    event.currentTarget.classList.remove('pulse');
+})
 
 
 
 
 //============ copy ============
 const shareBtn = document.querySelector('.share-btn');
-const shareOptions = document.querySelector('.share-options');
+const shareOptions = document.getElementById('share-options');
 var link = document.getElementsByClassName("link");
 link[0].innerHTML = window.location.href;
+
+
+
 
 shareBtn.addEventListener('click', () => {
     shareOptions.classList.toggle('active');

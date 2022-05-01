@@ -157,6 +157,12 @@ body {
     border-radius: 10px 10px;
     margin-top: 20px;
     width: 100%;
+    border: 1px solid #696969;
+}
+
+#counter {
+    border-right: 1px solid #696969;
+    border-left: 1px solid #696969;
 }
 
 .form-item-title {
@@ -362,9 +368,9 @@ h1 {
 .cunt-div {
     direction: ltr;
     width: 100%;
-    background-color: #F26A4F;
+    height: 30px;
     margin: auto 1px;
-    color: white;
+    color: #696969;
     cursor: pointer;
     font-family: "sansfont";
     font-weight: bolder;
@@ -396,11 +402,6 @@ h1 {
 
 
 /* Tabs menu */
-
-
-
-
-
 
 @-webkit-keyframes fadein {
     from {

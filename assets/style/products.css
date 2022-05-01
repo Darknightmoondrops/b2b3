@@ -1,10 +1,24 @@
     /**********************************   products part *******************************/
     /*****   bar part 1 ******/
     
+    .carousel-item {
+        display: block !important;
+        width: 100%;
+    }
+    
+    .slider-main-outSplide {
+        width: 100%;
+    }
+    
     .products {
         width: 90%;
         margin: auto;
         margin-top: 5%;
+    }
+    
+    #page2 {
+        background-color: #F26A4F;
+        color: #fff;
     }
     
     .category-bar {
@@ -29,7 +43,7 @@
     }
     
     .show-mode {
-        width: 66%;
+        width: 93%;
         display: flex;
         justify-content: end;
     }
@@ -70,8 +84,8 @@
     }
     
     .show-mode-p1-img {
-        width: 100%;
-        height: auto;
+        width: 50px;
+        height: 50px;
     }
     
     .show-mode-p2-a2 {
@@ -110,7 +124,7 @@
     .filter-part1-txt {
         width: 100%;
         display: block;
-        margin-top: 6%;
+        margin-top: 4%;
     }
     
     .filter-part2 {
@@ -126,14 +140,37 @@
     
     .filter-part2-dropdown {
         display: none;
-        background-image: url(../img/pic-21.png);
         width: 257px;
         height: 287px;
         position: absolute;
         border-radius: 17px;
         z-index: 1;
         padding-top: 29px;
-        left: -55%;
+        left: -45%;
+        top: 55px;
+    }
+    
+    .ordering-background {
+        background-color: #efefef;
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 30px;
+        position: relative;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    
+    .esharegar {
+        background-color: #EFEFEF;
+        width: 30px;
+        height: 30px;
+        display: block;
+        border-radius: 4px;
+        rotate: 45deg;
+        position: absolute;
+        top: -14px;
+        right: 44px;
     }
     
     .filter-part2-btn {
@@ -158,12 +195,23 @@
         line-height: 46px;
     }
     
-    .filter-part2-btn img {
+    .filter-dropdown-txt:hover {
+        background-color: #afafaf;
+    }
+    
+    .show-price-all {
+        display: flex;
+    }
+    
+    .ordering-img {
         width: 30px;
         height: 30px;
         position: absolute;
-        top: 15%;
-        left: 13%;
+        top: 21%;
+        left: 12%;
+        background-image: url(../icons/icon-28.png);
+        background-repeat: no-repeat;
+        background-size: contain;
     }
     
     .filter-part3 {
@@ -178,7 +226,6 @@
     }
     
     .filter-part4 {
-        background-color: #EFEFEF;
         border-radius: 30px;
         width: 100%;
         height: 60px;
@@ -205,14 +252,17 @@
     
     .filter-part4-btn {
         background-color: #EFEFEF;
-        width: 50px;
-        height: 50px;
+        width: 35px;
+        height: 35px;
         position: absolute;
-        top: 16%;
+        top: 18%;
         left: 0;
         border: 1px solid #EFEFEF;
+        border-radius: 0;
         cursor: pointer;
-        border-radius: 50%;
+        background-image: url(../icons/icon-27.png);
+        background-repeat: no-repeat;
+        background-size: contain;
     }
     
     .filter-part4-btn img {
@@ -263,6 +313,9 @@
         display: inline-block;
         margin-right: 21px;
         cursor: pointer;
+        background-image: url(../icons/icon-29.png);
+        background-repeat: no-repeat;
+        background-size: contain;
     }
     
     .filter-products {
@@ -272,7 +325,7 @@
         height: 100%;
         right: 0;
         top: 0;
-        z-index: 15;
+        z-index: 12;
     }
     
     .filter-products-off {
@@ -376,7 +429,9 @@
     .filter-titles {
         display: block;
         cursor: pointer;
-        transition: height .5s
+        transition: height .5s;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
     
     .filter-titles:hover {
@@ -419,6 +474,14 @@
         width: 15px;
         height: 15px;
         border-radius: 50%;
+        margin: auto;
+    }
+    
+    .color-back-one {
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
     }
     
     .pink {
@@ -453,13 +516,22 @@
     }
     
     .filter-btn {
-        width: 672px;
-        height: 86px;
+        width: 50%;
+        height: 70px;
         border-radius: 20px;
         color: #fff;
         background-color: #2ACB34;
         cursor: pointer;
-        font-size: 40px;
+        font-size: 30px;
+        border: 1px;
+        display: block;
+        margin: auto;
+        margin-bottom: 50px;
+        margin-top: 30px;
+    }
+    
+    .filter-btn:hover {
+        opacity: .9;
     }
     
     .brand-searchbox-all {
@@ -487,6 +559,9 @@
         position: absolute;
         top: 25%;
         left: 3%;
+        background-image: url(../icons/icon-27.png);
+        background-repeat: no-repeat;
+        background-size: contain;
     }
     
     .brand-searchbox-btn img {
@@ -503,7 +578,7 @@
     
     .brand-checkbox p {
         display: inline-block;
-        font-size: 30px;
+        font-size: 23px;
         color: #585858;
     }
     
@@ -542,18 +617,42 @@
     }
     
     .checkbox-inp {
+        margin: auto;
         margin-right: 5px !important;
-        width: 50px !important;
-        height: 50px !important;
-        border-radius: 5px 5px !important;
+        width: 40px !important;
+        height: 40px !important;
+        border-radius: 15px !important;
         position: relative !important;
         z-index: 0 !important;
         opacity: 1 !important;
+        -webkit-appearance: none;
+        border: 1px solid #cfcfcf;
+    }
+    
+    .checkbox-inp-type {
+        margin: auto;
+        margin-right: 5px !important;
+        width: 40px !important;
+        height: 40px !important;
+        border-radius: 15px !important;
+        position: relative !important;
+        z-index: 0 !important;
+        opacity: 1 !important;
+        -webkit-appearance: none;
+        border: 1px solid #cfcfcf;
+    }
+    
+    .checkbox-inp:checked {
+        background-color: #F26A4F;
+    }
+    
+    .checkbox-inp-type:checked {
+        background-color: #F26A4F;
     }
     
     .textBar-search {
         width: 90%;
-        padding: 3%;
+        padding: 4%;
         font-size: 25px;
         color: black !important;
     }
@@ -592,8 +691,9 @@
     }
     
     .color {
-        display: block;
+        display: flex;
         cursor: pointer;
+        justify-content: space-evenly;
     }
     
     .color:hover {
@@ -603,6 +703,7 @@
     .colors {
         display: none;
         cursor: pointer;
+        direction: rtl;
     }
     
     .current-color {
@@ -611,7 +712,7 @@
     }
     
     .color p {
-        display: inline-block;
+        display: block;
         width: 88%;
         font-size: 25px;
         line-height: 15px;
@@ -638,14 +739,18 @@
     .colors img {
         display: inline-block;
     }
+    
+    .ul-search li {
+        list-style: none;
+    }
     /******************************** page number *****************************/
     
     .products-page {
-        display: none;
+        display: block;
     }
     
     .products-page1 {
-        display: none;
+        display: block;
     }
     
     .hori-list {
@@ -658,7 +763,8 @@
         width: 370px;
         height: 60px;
         margin: auto;
-        margin-top: 7%;
+        margin-top: 28%;
+        direction: ltr;
     }
     
     .page-icon {
@@ -684,6 +790,23 @@
         font-size: 32px;
         cursor: pointer;
         transition: .3s ease;
+        line-height: 53px;
+    }
+    
+    #go-back-card {
+        background-image: url(../icons/icon-34.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 50px;
+        height: 50px;
+    }
+    
+    #go-next-card {
+        background-image: url(../icons/icon-35.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 50px;
+        height: 50px;
     }
     
     .pages {
@@ -702,6 +825,12 @@
     }
     /********************************* vertical product ***********************/
     
+    .product-box {
+        width: 98%;
+        height: 100%;
+        max-width: 350px !important;
+    }
+    
     .vert-list {
         display: none;
         margin-top: 4%;
@@ -717,7 +846,7 @@
     
     .icon1-vart {
         position: absolute;
-        top: 83%;
+        top: 73%;
         right: 53%;
         width: 15% !important;
         height: 14% !important;
@@ -727,7 +856,7 @@
     
     .icon2-vert {
         position: absolute;
-        top: 83%;
+        top: 73%;
         left: 53%;
         width: 15% !important;
         height: 14% !important;
@@ -738,7 +867,7 @@
     .image-vert {
         position: relative;
         width: 100%;
-        height: auto;
+        height: 100%;
     }
     
     .image-parent-vert {
@@ -794,7 +923,16 @@
     }
     
     .remaining-number {
+        width: 30%;
         color: #F26A4F;
+        display: flex;
+        justify-content: space-evenly;
+    }
+    
+    #remaining-number {
+        width: 5%;
+        margin: 0;
+        margin-left: 4%;
     }
     
     .token-vert {
@@ -810,9 +948,24 @@
         font-size: 27px;
     }
     
+    .token-hori {
+        position: absolute;
+        top: 5%;
+        right: -10%;
+        width: 143px;
+        height: 43px;
+        color: #fff;
+        background-color: #F26A4F;
+        border-radius: 30px 0%;
+        text-align: center;
+        font-size: 27px;
+    }
+    
     .ul-search {
         display: block;
         margin: auto;
+        margin-top: 10px !important;
+        margin-bottom: 10px !important;
     }
     
     .slider-product {
@@ -823,8 +976,10 @@
     }
     
     .splide__slide img {
-        width: 100%;
+        width: 78%;
         height: auto;
+        display: block;
+        margin: auto;
     }
     
     .brand-searchbox {
@@ -839,9 +994,34 @@
         margin: auto;
     }
     
-    @media (min-width: 300px) and (max-width: 450px) {}
-    
     @media screen and (max-width: 768px) {
+        .price-vert {
+            margin-right: 5%;
+        }
+        .filter-part4-btn {
+            left: -4px;
+            top: 8%;
+        }
+        .rate-vert {
+            margin-right: 35%;
+        }
+        .page-slider {
+            width: 80%;
+        }
+        .pages {
+            width: 50px;
+            height: 50px;
+            font-size: 30px;
+        }
+        .token-vert {
+            width: 77px !important;
+            height: 30px !important;
+            border-radius: 18px 0 !important;
+            font-size: 21px !important;
+        }
+        .token-hori {
+            right: 4%;
+        }
         .category-bar {
             display: none;
         }
@@ -857,9 +1037,298 @@
         .vert-list {
             display: block;
         }
+        .icon1-vart {
+            display: none;
+        }
+        .icon2-vert {
+            display: none;
+        }
+        .details-vert-title {
+            font-size: 10px;
+        }
+        .details-vert-text p {
+            display: none;
+        }
+        .details-vert-bot {
+            font-size: 13px;
+        }
+        .filter-part2-btn {
+            font-size: 15px;
+        }
+        .filter-part3 {
+            width: 30%;
+            font-size: 20px;
+        }
+        .filter-part4-btn-input::placeholder {
+            font-size: 15px;
+        }
+        .filter-part4-btn-input {
+            font-size: 15px;
+        }
+        .filter-part2 {
+            width: 30%;
+        }
+        .ordering-img {
+            width: 15px;
+            height: 15px;
+            top: 35%;
+            left: 3%;
+        }
+        .filter-bar {
+            width: 100%;
+        }
+        .filter-products {
+            width: 100%;
+            padding-top: 20%;
+        }
+        .filter-titles p {
+            direction: rtl;
+        }
+        .color-selector {
+            width: 88%;
+            margin: auto;
+        }
+        .color-selector-title {
+            direction: rtl;
+        }
+        .text-violet {
+            display: block !important;
+        }
+        .show-price-all p {
+            width: 20% !important;
+            direction: rtl !important;
+        }
+        .show-price {
+            width: 70%;
+        }
+        .color-selector-title {
+            width: 20%;
+        }
+        .color-select {
+            display: block;
+            width: 80%;
+            margin: auto;
+            height: 45px;
+        }
+        .all-colors {
+            width: 62%;
+            margin-right: 8%;
+            margin-top: 2px;
+        }
+        .filter-btn {
+            width: 50%;
+            height: 75px;
+            font-size: 30px;
+            display: block;
+            margin: auto;
+            margin-bottom: 2%;
+        }
+        .filter-part2-dropdown {
+            left: -70%;
+        }
+        .filter-products-title {
+            width: 78%;
+        }
+        .filter-products-img {
+            width: 25px;
+            height: 25px;
+        }
+        .filter-titles p {
+            width: 80%;
+            font-size: 20px;
+        }
+        .color-selector-title {
+            font-size: 20px;
+        }
+        .all-colors {
+            width: 68%;
+        }
+        .color p {
+            font-size: 20px;
+            direction: rtl;
+            line-height: 0;
+            margin-right: 0;
+            width: 75%;
+        }
+        .color-back {
+            margin-top: 10px;
+        }
+        .color-back-one {
+            margin-top: 10px;
+        }
+        .colors p {
+            width: 80%;
+            font-size: 20px;
+            line-height: 0;
+            direction: rtl;
+        }
+        .checkbox-inp {
+            width: 35px !important;
+            height: 35px !important;
+        }
+        .brand-checkbox p {
+            font-size: 20px;
+        }
+        .filter-part2-dropdown {
+            width: 170px;
+            padding-top: 24px;
+        }
+        .filter-dropdown-txt {
+            font-size: 15px;
+            line-height: 28px;
+        }
+        .filter-part4-btn img {
+            width: 15px !important;
+            height: 15px !important;
+        }
+    }
+    
+    @media (min-width: 300px) and (max-width: 450px) {
+        .price-vert {
+            margin-right: 0%;
+            width: 35%;
+        }
+        .remaining-number {
+            width: 70%;
+        }
+        .rate-vert {
+            margin-right: 0;
+            margin-top: 13%;
+        }
+        .image-vert {
+            margin-top: 25%;
+        }
+        .token-vert {
+            font-size: 11px !important;
+            border-radius: 9px 0 !important;
+            width: 32px !important;
+            height: 18px !important;
+            top: 23% !important;
+        }
+        .token-hori {
+            width: 48px;
+            height: 23px;
+            border-radius: 15px 0;
+            font-size: 16px;
+        }
+        .filter-part2-btn {
+            font-size: 10px !important;
+            line-height: 35px;
+        }
+        .filter-part3 {
+            height: 35px;
+            margin-top: 4px;
+        }
+        .ordering-img {
+            width: 10px !important;
+            height: 10px !important;
+            top: 23% !important;
+            left: 1% !important;
+        }
+        .filter-part2 {
+            height: 35px;
+            margin-top: 4px;
+        }
+        .filter-part4-btn {
+            width: 20px;
+            height: 20px;
+            top: 29% !important;
+            left: -2px !important;
+        }
+        .filter-part4-btn img {
+            width: 10px !important;
+            height: 10px !important;
+        }
+        .filter-part4-btn-input {
+            height: 30px;
+        }
+        .filter-part4-btn-input::placeholder {
+            font-size: 10px !important;
+        }
+        .filter-part4 {
+            height: 45px;
+        }
+        .filter-part2-dropdown {
+            width: 120px;
+            height: 287px;
+            padding-top: 14px;
+            top: 42px;
+        }
+        .filter-dropdown-txt {
+            line-height: 21px;
+            font-size: 10px;
+        }
+        .details-vert-bot {
+            font-size: 10px !important;
+        }
+        .pages {
+            width: 25px !important;
+            height: 25px !important;
+            font-size: 15px !important;
+        }
+        .page-icon-img {
+            width: 24px !important;
+            height: 26px !important;
+        }
+        .filter-products {
+            padding-top: 23% !important;
+        }
+        .filter-products-title {
+            width: 65% !important;
+            font-size: 20px;
+        }
+        .filter-products-img {
+            width: 15px !important;
+            height: 15px !important;
+        }
+        .filter-titles p {
+            font-size: 15px !important;
+        }
+        .filter-titles img {
+            width: 15px !important;
+            height: 15px !important;
+        }
+        .text-violet p {
+            margin-top: 7px !important;
+            font-size: 20px !important;
+        }
+        .show-price {
+            width: 50% !important;
+            height: 30px !important;
+        }
+        .brand-searchbox-in {
+            width: 71%;
+            height: 39px;
+            display: block;
+            margin: auto;
+            font-size: 20px;
+        }
+        .brand-searchbox-btn img {
+            width: 15px;
+            height: 15px;
+        }
+        .brand-searchbox-btn {
+            top: 21%;
+            left: 12%;
+        }
+        .brand-checkbox-p1 {
+            width: 43% !important;
+            font-size: 15px !important;
+        }
+        .filter-btn {
+            height: 50px;
+            font-size: 25px;
+        }
     }
     
     @media (min-width: 768px) and (max-width: 1024px) {
+        .token-hori {
+            right: 0;
+            width: 74px;
+            height: 34px;
+            font-size: 23px;
+            border-radius: 20px 0;
+        }
         .category-bar {
             display: none;
         }
@@ -869,15 +1338,14 @@
         .filter-part2 {
             width: 30%;
         }
-        .filter-part4-btn-input {}
-        .filter-part2-btn img {
+        .ordering-img {
             width: 25px;
             height: 25px;
             top: 25%;
             left: 7%;
         }
         .filter-box {
-            width: 30%;
+            width: 36%;
         }
         .filter-part3 {
             width: 30%;
@@ -894,6 +1362,77 @@
         .vert-list {
             display: block;
         }
+        .details-vert-text p {
+            font-size: 15px;
+            direction: rtl;
+        }
+        .details-vert-title {
+            font-size: 12px;
+        }
+        .icon1-vart {
+            display: none;
+        }
+        .icon2-vert {
+            display: none;
+        }
+        .details-vert-bot {
+            font-size: 13px;
+            margin-top: 4%;
+        }
+        .product-box-vert {
+            width: 100%;
+        }
+        .filter-bar {
+            width: 100%;
+        }
+        .filter-products {
+            width: 100%;
+            padding-top: 20%;
+        }
+        .filter-titles p {
+            direction: rtl;
+        }
+        .color-selector {
+            width: 88%;
+            margin: auto;
+        }
+        .color-selector-title {
+            direction: rtl;
+        }
+        .text-violet {
+            display: block !important;
+        }
+        .show-price-all p {
+            width: 20% !important;
+            direction: rtl !important;
+        }
+        .show-price {
+            width: 70%;
+        }
+        .color-selector-title {
+            width: 20%;
+        }
+        .color-select {
+            display: block;
+            width: 80%;
+            margin: auto;
+        }
+        .all-colors {
+            width: 62%;
+            margin-right: 8%;
+            margin-top: 2px;
+        }
+        .filter-btn {
+            width: 75%;
+            height: 75px;
+            font-size: 30px;
+            display: block;
+            margin: auto;
+            margin-bottom: 2%;
+        }
+        .filter-part2-dropdown {
+            left: -70%;
+        }
     }
     
     @media (min-width: 1024px) and (max-width: 1345px) {
@@ -903,9 +1442,9 @@
         .filter-part1 {
             font-size: 15px;
         }
-        .filter-part2-btn img {
-            width: 25px;
-            height: 25px;
+        .ordering-img {
+            width: 20px;
+            height: 20px;
             top: 26%;
             left: 6%;
         }
@@ -915,4 +1454,79 @@
         .filter-part3 {
             width: 32%;
         }
+        .token-vert {
+            width: 90px;
+            height: 30px;
+            border-radius: 18px 0;
+            font-size: 21px;
+        }
+        .details-vert-text p {
+            font-size: 13px;
+        }
+        .details-vert-title {
+            font-size: 15px;
+        }
+        .details-vert-bot {
+            font-size: 17px;
+        }
+    }
+    /***************************** icons ******************************/
+    
+    .background {
+        display: none;
+        background-color: black;
+        opacity: .4;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+    }
+    
+    .background-two {
+        display: none;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        opacity: .4;
+        z-index: 12;
+    }
+    
+    .show-mode-p1-img {
+        background-image: url(../icons/icon-25.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+    
+    .show-mode-p2-img {
+        background-image: url(../icons/icon-24.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+    
+    .filter-title-img {
+        background-image: url(../icons/icon-69.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 30px;
+        height: 30px;
+        display: block;
+        margin-left: 5%;
+        margin-top: 4%;
+    }
+    
+    .filter-titles {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .ul-search {
+        width: 87%;
+        height: 400px;
+        margin-top: 14px;
+        margin-right: 0 !important;
+        overflow-y: scroll;
+        scrollbar-width: thin;
+        scrollbar-color: #F99687 #C6C6C6;
     }
