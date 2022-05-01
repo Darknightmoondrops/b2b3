@@ -35,8 +35,8 @@
 
 <script>
     var mainUrl = "http://127.0.0.1:8000/api/articles/articles-list/"
-    var mainUrlLastest = "http://127.0.0.1:8000/api/articles/latest-articles/"
-    var mainUrlTop = "http://127.0.0.1:8000/api/articles/top-articles/"
+    var mainUrlLastest = "http://127.0.0.1:8000/api/articles/articles-latest/"
+    var mainUrlTop = "http://127.0.0.1:8000/api/articles/articles-top/"
     var mainUrlSearch
     var obj = []
     var nextUrl
@@ -96,6 +96,7 @@
             success: (response) => {
                 var newResulteTop = []
                 newResulteTop.push(response.results)
+                console.log(response,'res');
              
                 if (response.results.length == 0) {
                     $('#articles-title-two').css("display", "none")
@@ -119,6 +120,7 @@
                 })
             },
             error: (err) => {
+                console.log(err,'er');
             }
         });
     }
@@ -160,7 +162,7 @@
             success: (response) => {
                 var newResulteSearch = []
                 newResulteSearch.push(response.results)
-                console.log(newResulteSearch);
+                console.log(newResulteSearch,'ssss');
                 $('#articles').html(``)
                 newResulteSearch[0].forEach(element => {
                     morebtn = "http://127.0.0.1:8000/articles/detail/" + element.id + "/" + element.slug + "/";
