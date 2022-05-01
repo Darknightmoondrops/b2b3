@@ -21,30 +21,24 @@
     <link rel="stylesheet" href="{% static 'style/product_details_style.css' %}">
     <link rel="stylesheet" href="{% static 'js/splide-3.6.12/dist/css/splide.min.css' %}">
     <link rel="stylesheet" href="{% static 'plugins/fontawesome/css/all.min.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <!--/styles-->
 </head>
 
 <body>
     <!--header-->
-        {% include 'base/menu/menu.html' %}
+    {% include 'base/menu/menu.html' %}
     <!--header-->
 
-    {% block content %}
-    {% endblock %}
-
-
-    {% if messages %}
-        <div>
-            {% for message in messages %}
-            <div{% if message.tags %} onclick="message({{ message.tags }},{{ message }})" class="massage {{ message.tags }}"{% endif %}>
-                {{ message }}
-            </div>
-            {% endfor %}
-        </div>
-    {% endif %}
-
-
-    {% include 'base/footer/footer.html' %}
+    {% block content %} {% endblock %} {% if messages %}
+    <div>
+        {% for message in messages %}
+        <div{% if message.tags %} onclick="message({{ message.tags }},{{ message }})" class="massage {{ message.tags }}" {% endif %}>
+            {{ message }}
+    </div>
+    {% endfor %}
+    </div>
+    {% endif %} {% include 'base/footer/footer.html' %}
     <!--script-->
     <script src="{% static 'js/index.js' %}"></script>
     <script src="{% static 'js/splide-3.6.12/dist/js/splide.min.js' %}"></script>

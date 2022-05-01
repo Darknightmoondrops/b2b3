@@ -345,14 +345,11 @@
         $.ajax({
             url: mainUrl,
             type: "get",
-
             success: (response) => {
-                console.log(mainUrl);
-                //  obj=(response)
+                console.log(response, "main url");
                 var newResulte = []
                 newResulte.push(response.results)
                 console.log(response, 'aaarrrrrrrrrr');
-                // console.log('skk',obj);
                 $('#product-container-id').html(``)
                 newResulte[0].forEach(element => {
 
