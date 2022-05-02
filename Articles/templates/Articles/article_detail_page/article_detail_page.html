@@ -17,14 +17,12 @@
                     <i class="fas fa-share-alt sh-btn"></i>
                 </button>
             </div>
-            <div class="likes">
-                <p class="likes-number">100</p>
+            <div id="likenumer" class="likes">
                 <div class="container-heart" onclick="likePost()">
                     <i class=" far fa-heart js-heart heart"></i>
                 </div>
             </div>
-            <div class="likes">
-                <p class="likes-number">25</p>
+            <div id="commentnumer" class="likes">
                 <div class="icon-bot"></div>
             </div>
         </div>
@@ -70,10 +68,10 @@
 </div>
 <script>
     //========================= article detail data ====================
-
+    var likeNum 
     function getDetails() {
         $.ajax({
-                    url: "http://127.0.0.1:8000/api/articles/articles-detail/?id=1&slug=iiiiiiiiiiiiiiiiiiiiiiiiiiii",
+                    url: "http://127.0.0.1:8000/api/articles/articles-detail/?id=1&slug=ggggggggggggggg",
                     type: "get",
                     success: (response) => {
                             $('#header-article').html(`
@@ -92,7 +90,7 @@
                                     </div>
                                     <div class="header-text-d">
                                         <div class="article-icon art-ic3" ></div>
-                                        <p class="article-icon-text">${response.results[0].id}</p>
+                                        <p id="articles-hits" class="article-icon-text"></p>
                                     </div>
                                 </div>
                             </div>
@@ -114,18 +112,46 @@
             error:(err)=>{
             }
         })
+        $.ajax({
+            url: "http://127.0.0.1:8000/api/articles/articles-hits-number/",
+            headers: {'Authorization': 'Token a47ff9450484f1060192b580755f97994906e81f'},
+            type: "get",
+            success: (response) => {
+                $('#articles-hits').html(response.number)
+            },
+            error:(err)=>{}
+        })
+        $.ajax({
+            url: "http://127.0.0.1:8000/api/articles/articles-like-number/",
+            headers: {'Authorization': 'Token a47ff9450484f1060192b580755f97994906e81f'},
+            type: "get",
+            success: (response) => {
+                $('#likenumer').append(`<p class="likes-number">${response.number}</p>`)
+            },
+            error:(err)=>{}
+        })
+        $.ajax({
+            url: "http://127.0.0.1:8000/api/articles/articles-comment-number/",
+            headers: {'Authorization': 'Token a47ff9450484f1060192b580755f97994906e81f'},
+            type: "get",
+            success: (response) => {
+                $('#commentnumer').append(`<p class="likes-number">${response.number}</p>`)
+            },
+            error:(err)=>{}
+        })
     }
+    
     getDetails()
 
 //========================= article detail data ====================
 
-    setLabels()
+    // setLabels()
     function sendData(){
         let txt = $("#form-text").val()
         $.ajax({
             url:"http://127.0.0.1:8000/api/articles/articles-comment-add/",
             type:"post",
-            headers: {'Authorization': 'Token 5048a5a0cc04aeb2dd2c4e995c4eaee80ae2c627'},
+            headers: {'Authorization': 'Token a47ff9450484f1060192b580755f97994906e81f'},
             data:{
                 article:1,
                 comment: txt,
@@ -171,6 +197,8 @@
         $.ajax({
             url:'http://127.0.0.1:8000/api/articles/articles-comment-list/?id=1',
             success:(res)=>{
+                console.log('wwwww',res);
+
                 $('#comments').append(`
                     <div class="comment1">
                         <div class="top-comment">
@@ -193,6 +221,7 @@
                 `)
             },
             error:(err)=>{
+                console.log('wwwww',err);
             }
         })
     }

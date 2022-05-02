@@ -269,6 +269,7 @@ h3 {
     justify-content: center;
     align-items: center;
     margin: auto;
+    direction: ltr;
 }
 
 .sh-btn {
