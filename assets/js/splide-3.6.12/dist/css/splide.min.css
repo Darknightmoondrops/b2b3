@@ -74,10 +74,10 @@
         width: calc(87%) !important;
     }
     .icon2 {
-        display: none;
+        display: none !important;
     }
     .icon1 {
-        display: none;
+        display: none !important;
     }
     .splide__arrow {
         top: 35% !important;
@@ -103,11 +103,14 @@
     }
 }
 
-@media (min-width: 320px) and (max-width: 450px) {
+@media (min-width: 300px) and (max-width: 450px) {
+    .details {
+        font-size: 15px !important;
+    }
     .splide__arrow {
-        width: 40px !important;
-        height: 40px !important;
-        font-size: 15px;
+        width: 30px !important;
+        height: 30px !important;
+        border: 3px solid #1368AA !important;
     }
     .details {
         font-size: 15px !important;
@@ -116,10 +119,10 @@
 
 @media (min-width: 768px) and (max-width: 1024px) {
     .icon2 {
-        display: none;
+        display: none !important;
     }
     .icon1 {
-        display: none;
+        display: none !important;
     }
     .splide__arrow {
         top: 39% !important;

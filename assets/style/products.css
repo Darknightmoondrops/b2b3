@@ -166,7 +166,7 @@
         width: 30px;
         height: 30px;
         display: block;
-        border-radius: 4px;
+        border-radius: 10px 0 0 0;
         rotate: 45deg;
         position: absolute;
         top: -14px;
@@ -475,6 +475,7 @@
         height: 15px;
         border-radius: 50%;
         margin: auto;
+        margin-left: 28px;
     }
     
     .color-back-one {
@@ -614,6 +615,7 @@
     .color-select-all {
         display: inline-block;
         width: 600px;
+        height: 65px;
     }
     
     .checkbox-inp {
@@ -680,7 +682,7 @@
         width: 600px;
         height: 390px;
         z-index: 16;
-        margin-top: -8px;
+        top: 70px;
         overflow-y: scroll;
         scrollbar-width: thin;
         scrollbar-color: #F99687 #C6C6C6;
@@ -790,7 +792,7 @@
         font-size: 32px;
         cursor: pointer;
         transition: .3s ease;
-        line-height: 53px;
+        line-height: 62px;
     }
     
     #go-back-card {
@@ -828,12 +830,15 @@
     .product-box {
         width: 98%;
         height: 100%;
-        max-width: 350px !important;
     }
     
     .vert-list {
         display: none;
         margin-top: 4%;
+    }
+    
+    .product-fix {
+        max-width: 350px !important;
     }
     
     .product-box-vert {
@@ -948,12 +953,25 @@
         font-size: 27px;
     }
     
+    .token-vert-slider {
+        position: absolute;
+        top: 5%;
+        right: 0;
+        width: 143px;
+        height: 43px;
+        color: #fff;
+        background-color: #F26A4F;
+        border-radius: 30px 0%;
+        text-align: center;
+        font-size: 27px;
+    }
+    
     .token-hori {
         position: absolute;
         top: 5%;
         right: -10%;
-        width: 143px;
-        height: 43px;
+        width: 95px;
+        height: 39px;
         color: #fff;
         background-color: #F26A4F;
         border-radius: 30px 0%;
@@ -995,14 +1013,26 @@
     }
     
     @media screen and (max-width: 768px) {
-        .price-vert {
-            margin-right: 5%;
+        .remaining-number {
+            width: 70%;
+        }
+        .h2-title-cards {
+            font-size: 25px;
+            margin-right: 10px;
+        }
+        .esharegar {
+            width: 20px;
+            height: 20px;
+            top: -10px;
         }
         .filter-part4-btn {
             left: -4px;
             top: 8%;
         }
         .rate-vert {
+            height: 20px;
+            display: block;
+            margin: auto;
             margin-right: 35%;
         }
         .page-slider {
@@ -1014,6 +1044,12 @@
             font-size: 30px;
         }
         .token-vert {
+            width: 77px !important;
+            height: 30px !important;
+            border-radius: 18px 0 !important;
+            font-size: 21px !important;
+        }
+        .token-vert-slider {
             width: 77px !important;
             height: 30px !important;
             border-radius: 18px 0 !important;
@@ -1181,6 +1217,19 @@
             width: 15px !important;
             height: 15px !important;
         }
+        .page {
+            width: 45px;
+            height: 45px;
+            margin: auto;
+            font-size: 25px;
+            line-height: 48px;
+        }
+        .product-box-vert {
+            width: 100%;
+        }
+        #remaining-number {
+            margin: auto;
+        }
     }
     
     @media (min-width: 300px) and (max-width: 450px) {
@@ -1189,7 +1238,7 @@
             width: 35%;
         }
         .remaining-number {
-            width: 70%;
+            width: 48%;
         }
         .rate-vert {
             margin-right: 0;
@@ -1199,6 +1248,13 @@
             margin-top: 25%;
         }
         .token-vert {
+            font-size: 11px !important;
+            border-radius: 9px 0 !important;
+            width: 32px !important;
+            height: 18px !important;
+            top: 23% !important;
+        }
+        .token-vert-slider {
             font-size: 11px !important;
             border-radius: 9px 0 !important;
             width: 32px !important;
@@ -1455,6 +1511,12 @@
             width: 32%;
         }
         .token-vert {
+            width: 90px;
+            height: 30px;
+            border-radius: 18px 0;
+            font-size: 21px;
+        }
+        .token-vert-slider {
             width: 90px;
             height: 30px;
             border-radius: 18px 0;

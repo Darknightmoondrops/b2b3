@@ -61,8 +61,6 @@
                     <span class="filter-dropdown-txt" id="ordering1">گرانترین</span>
                     <span class="filter-dropdown-txt" id="ordering2">ارزانترین</span>
                     <span class="filter-dropdown-txt" id="ordering3">پرفروش ترین</span>
-                    <span class="filter-dropdown-txt" id="ordering4">پرطرفدارترین</span>
-                    <span class="filter-dropdown-txt" id="ordering5">مرتبط ترین</span>
                     <span class="filter-dropdown-txt" id="ordering6">جدید ترین</span>
                 </div>
             </div>
@@ -112,8 +110,7 @@
                                 <button class="brand-searchbox-btn"></button>
                             </form>
                             <ul class="ul-search" id="myUL">
-                                <li id="cate-data">
-                                </li>
+
                             </ul>
                         </div>
                     </div>
@@ -121,18 +118,8 @@
                         <p class="color-selector-title">رنگ</p>
                         <div class="color-select-all">
                             <div class="color-select" id="color-select">
-
-                                <div class="colors">
-                                    <p>صورتی</p><span style="background-color: aqua;" class="color-back-one"></span></div>
-                                <div class="colors">
-                                    <p>صورتی</p><span style="background-color: blue;" class="color-back-one"></span></div>
                             </div>
                             <div class="all-colors" id="all-colors">
-                                <div class="color" onclick="colorSelector(1)">
-                                    <p>صورتی</p><span style="background-color: #2ACB34;" class="color-back"></span></div>
-                                <div class="color" onclick="colorSelector(2)">
-                                    <p>آبی</p><span style="background-color: blue;" class="color-back"></span></div>
-
                             </div>
                         </div>
                     </div>
@@ -147,26 +134,7 @@
                             <input class="brand-searchbox-in" type="text" id="myInput" placeholder="جستوجو" onkeyup="searchBrand()">
                             <button class="brand-searchbox-btn"></button>
                         </form>
-                        <ul class="ul-search" id="myUL">
-                            <li>
-                                <div class="brand-checkbox">
-                                    <input type="checkbox" class="checkbox-inp-type" value="mehdi" name="fooby[2][]" />
-                                    <div class="textBar-search"><label for="brand1"><p class="brand-checkbox-p1">کارواش مهدی</p></label></div>
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="brand-checkbox">
-                                    <input type="checkbox" class="checkbox-inp-type" value="amir" name="fooby[2][]" />
-                                    <div class="textBar-search"><label for="brand1"><p class="brand-checkbox-p1">کارواش پسر خوب</p></label></div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="brand-checkbox">
-                                    <input type="checkbox" class="checkbox-inp-type" value="arian" name="fooby[2][]" />
-                                    <div class="textBar-search"><label for="brand1"><p class="brand-checkbox-p1">هوم کت</p></label></div>
-                                </div>
-                            </li>
+                        <ul class="ul-search" id="myULSeller">
                         </ul>
                     </div>
                 </div>
@@ -218,9 +186,8 @@
 <h1 class="title1">محصولات پرفروش</h1>
 <div class="splide" id="slider2" dir="ltr">
     <div class="splide__track">
-        <ul class="splide__list">
-            <li class="splide__slide" id="slider-one">
-            </li>
+        <ul class="splide__list" id="products-slider1">
+
         </ul>
     </div>
 </div>
@@ -230,41 +197,7 @@
 <h1 class="title1">پیشنهاد ویژه</h1>
 <div class="splide" id="slider3" dir="ltr">
     <div class="splide__track">
-        <ul class="splide__list">
-            <li class="splide__slide" id="slider-two">
-                <div class="product-box">
-                    <div class="image-parent">
-                        <a href="#">
-                            <img class="image" src="./asset/img/pic-12.png" alt="">
-                            <span class="token-hori">20%</span>
-                        </a>
-                        <div>
-                            <a href="#">
-                                <div class="icon1 fix-icon-vert"></div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <div class="icon2 fix-icon-vert"></div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="details">
-
-                        <a href="#">
-                            <h2>میز چوبی</h2>
-                        </a>
-                        <div class="rate">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="price">2.000.000T</div>
-                    </div>
-                </div>
-            </li>
+        <ul class="splide__list" id="slider-two">
         </ul>
     </div>
 </div>
@@ -274,41 +207,7 @@
 <h1 class="title1">پر فروش ترین دسته بندی ها</h1>
 <div class="splide" id="slider4" dir="ltr">
     <div class="splide__track">
-        <ul class="splide__list">
-            <li class="splide__slide" id="slider-three">
-                <div class="product-box">
-                    <div class="image-parent">
-                        <a href="#">
-                            <img class="image" src="./asset/img/pic-12.png" alt="">
-                            <span class="token-hori">20%</span>
-                        </a>
-                        <div>
-                            <a href="#">
-                                <div class="icon1 fix-icon-vert"></div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <div class="icon2 fix-icon-vert"></div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="details">
-
-                        <a href="#">
-                            <h2>میز چوبی</h2>
-                        </a>
-                        <div class="rate">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="price">2.000.000T</div>
-                    </div>
-                </div>
-            </li>
+        <ul class="splide__list" id="slider-three">
         </ul>
     </div>
 </div>
@@ -333,30 +232,29 @@
     var counterone = -1;
     var countertwo = -1;
     var counterthree = -1;
+    var SliderUrlTwo = "http://127.0.0.1:8000/api/products/products-discounts/"
+    var SliderUrlThree = "http://127.0.0.1:8000/api/products/products-main-categories/";
     var UrlOrdering1 = "http://127.0.0.1:8000/api/products/products-mostexpensive/";
     var UrlOrdering2 = "http://127.0.0.1:8000/api/products/products-cheapest/";
     var UrlOrdering3 = "http://127.0.0.1:8000/api/products/products-bestselling/";
     var UrlOrdering4 = "http://127.0.0.1:8000/api/products/products-bestselling/";
     var UrlOrdering6 = "http://127.0.0.1:8000/api/products/products-newest/";
+    var CateUrl = "http://127.0.0.1:8000/api/products/products-main-categories/";
+    var ColorUrl = "http://127.0.0.1:8000/api/products/products-colors/";
+    var SellerTypeUrl = "http://127.0.0.1:8000/api/products/products-sellers-types/";
+    var MainSliderUrl = "http://127.0.0.1:8000/api/products/products-sliders/"
 
     function loadData(mainUrl) {
-        console.log(mainUrl, 'kkkkkkkk');
-
         $.ajax({
             url: mainUrl,
             type: "get",
             success: (response) => {
-                console.log(response, "main url");
                 var newResulte = []
                 newResulte.push(response.results)
-                console.log(response, 'aaarrrrrrrrrr');
                 $('#product-container-id').html(``)
                 newResulte[0].forEach(element => {
-
                     var counterLimit = response.results;
-                    console.log(counterLimit, "meow meow meow");
                     counter = counter + 1;
-                    console.log(element.id, 'dddddddd')
                     morebtn = "http://127.0.0.1:8000/products/detail/" + element.id + "/" + element.slug;
                     $('#product-container-id').append(`
                     <div class="product-box product-fix">
@@ -371,7 +269,7 @@
                                             <div class="icon2 fix-icon-vert" id="icon2" onclick="FastProduct(${counter})"></div>
                                     </div>
                                 </div>
-                                <div class="details">
+                                <div class="details details-main">
 
                                     <a href="${morebtn}">
                                         <h2>${element.title}</h2>
@@ -435,9 +333,7 @@
                 $('#products-page1').html(``)
                 newResulte[0].forEach(element => {
                     var counterLimit = response.results;
-                    console.log(counterLimit, "meow meow meow");
                     counter = counter + 1;
-                    console.log(element.id, 'dddddddd')
                     morebtn = "http://127.0.0.1:8000/products/detail/" + element.id + "/" + element.slug + "/";
                     $('#products-page1').append(`
                     <div class="product-box-vert">
@@ -456,7 +352,7 @@
                 <div class="details-vert">
                     <div class="details-vert-title">
                         <a href="${morebtn}">
-                            <h2>${element.title}</h2>
+                            <h2 class="h2-title-cards">${element.title}</h2>
                         </a>
                         <div class="rate-vert">
                             <i class="fa fa-star"></i>
@@ -471,7 +367,9 @@
                     </div>
                     <div class="details-vert-bot">
                         <div class="remaining-number">تنها <p id="remaining-number">${element.inventory}</p> عدد باقی مانده</div>
+                       <div class="price-hori">
                         <div class="price-vert">${element.price}T</div>
+                        </div>
                     </div>
                 </div>
                 
@@ -480,18 +378,14 @@
                     if (counter == (counterLimit.length - 1)) {
                         counter = -1
                     }
-
-                    console.log(element.percentage);
                     if (element.percentage !== 0) {
                         $('#token-vert').append(`<span class="token-vert">${element.percentage}</span>`)
                         $('#token-hori').append(`<span class="token-hori">${element.percentage}</span>`)
                     }
                     if (element.discounted_price !== 0) {
-                        $('.details').append(` <div class="sec-price">${element.discounted_price}T</div>`)
-                        $('.details-vert-bot').append(` <div class="sec-price-vert">${element.discounted_price}T</div>`)
+                        $('.details-main').append(` <div class="sec-price">${element.discounted_price}T</div>`)
+                        $('.price-hori').append(` <div class="sec-price-vert">${element.discounted_price}T</div>`)
                     }
-
-                    console.log(counter);
                 })
                 if (response.previous == null && response.next == null) {
                     $('#page1').html(``);
@@ -532,8 +426,6 @@
                         $('#page3').html(``);
                     }
                 }
-
-
             },
             error: (err) => {
                 console.log(err);
@@ -541,7 +433,6 @@
         });
     }
     loadData("http://127.0.0.1:8000/api/products/products-list/");
-    loadDataTop(mainUrlTop)
     $('#page3').on('click', function() {
         if ($('#page3').html() !== '') {
             $('#articles').html('')
@@ -554,7 +445,6 @@
             loadData(backUrl)
         }
     })
-
     $('#go-next-card').on('click', function() {
         if ($('#page3').html() !== '') {
             $('#articles').html('')
@@ -571,176 +461,24 @@
     //============== ordering ====================
 
     $('#ordering1').on('click', function() {
-        $('#articles').html('')
         loadData(UrlOrdering1)
     })
     $('#ordering2').on('click', function() {
-        $('#articles').html('')
         loadData(UrlOrdering2)
     })
     $('#ordering3').on('click', function() {
-        $('#articles').html('')
         loadData(UrlOrdering3)
     })
-    $('#ordering4').on('click', function() {
-        $('#articles').html('')
-        loadData(UrlOrdering4)
-    })
     $('#ordering6').on('click', function() {
-        $('#articles').html('')
         loadData(UrlOrdering6)
     })
 
     //============== END ordering ====================
     //============== search bar api ==================
-
-    function loadApi(str) {
-        mainUrlSearchs = "http://127.0.0.1:8000/api/products/search-products/?q=" + str;
-
-        console.log(mainUrlSearchs, 'vv');
-
-        $.ajax({
-            url: mainUrlSearchs,
-            type: "get",
-
-            success: (response) => {
-                var newResulteSearchs = []
-                newResulteSearchs.push(response.results)
-                console.log(response, "yoy");
-                $('#product-container-id').html(``)
-                newResulteSearchs[0].forEach(element => {
-                    console.log(element.id, 'dddddddd')
-                    morebtn = "http://127.0.0.1:8000/products/detail/" + element.id + "/" + element.slug;
-                    $('#product-container-id').append(`
-                    <div class="product-box product-fix">
-                                <div class="image-parent">
-                                    <a href="${morebtn}" id="token-hori">
-                                        <img class="image" src="${element.main_image}" alt="">
-                                    </a>
-                                    <div>
-                                            <div class="icon1 fix-icon-vert"></div>
-                                    </div>
-                                    <div> 
-                                            <div class="icon2 fix-icon-vert"></div>
-                                    </div>
-                                </div>
-                                <div class="details">
-
-                                    <a href="${morebtn}">
-                                        <h2>${element.title}</h2>
-                                    </a>
-                                    <div class="rate">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                    <div class="price">${element.price}T</div>
-                                   
-                                </div>
-                            </div>
-                        `)
-                })
-                $('#products-page1').html(``)
-                newResulteSearch[0].forEach(element => {
-                    console.log(element.id, 'dddddddd')
-                    morebtn = "http://127.0.0.1:8000/products/detail/" + element.id + "/" + element.slug + "/";
-                    $('#products-page1').append(`
-                    <div class="product-box-vert">
-                <div class="image-parent-vert">
-                    <a href="${morebtn}" id="token-vert">
-                        <img class="image-vert" src="${element.main_image}" alt="">
-                        
-                    </a>
-                    <div>
-                            <div class="icon1 fix-icon-of"></div>
-                    </div>
-                    <div>
-                            <div class="icon2 fix-icon-of"></div>
-                    </div>
-                </div>
-                <div class="details-vert">
-                    <div class="details-vert-title">
-                        <a href="${morebtn}">
-                            <h2>${element.title}</h2>
-                        </a>
-                        <div class="rate-vert">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="details-vert-text">
-                        <p>${element.short_description}</p>
-                    </div>
-                    <div class="details-vert-bot">
-                        <div class="remaining-number">تنها ${element.inventory} عدد باقی مانده</div>
-                        <div class="price-vert">${element.price}T</div>
-                    </div>
-                </div>
-            </div>
-                        `)
-                    console.log(element.percentage);
-                    if (element.percentage !== 0) {
-                        $('#token-vert').append(`<span class="token-vert">${element.percentage}</span>`)
-                        $('#token-hori').append(`<span class="token-hori">${element.percentage}</span>`)
-                    }
-                    if (element.discounted_price !== 0) {
-                        $('.details').append(` <div class="sec-price">${element.discounted_price}T</div>`)
-                        $('.details-vert-bot').append(` <div class="sec-price-vert">${element.discounted_price}T</div>`)
-                    }
-                })
-                if (response.previous == null && response.next == null) {
-                    $('#page1').html(``);
-                    $('#page2').html('1');
-                    $('#page1').html(``);
-                }
-                if (response.previous == null && response.next !== null) {
-                    nextUrl = response.next;
-                    $('#page1').html(``);
-                    $('#page2').html('1');
-                    $('#page3').html('2');
-                }
-                if (response.previous !== null && response.next !== null) {
-                    nextUrl = response.next;
-                    backUrl = response.previous;
-                    let nUrls = new URL(response.next)
-                    let nUrlNums = nUrls.searchParams.get("page");
-                    let currentpages = Number(nUrlNums) - 1;
-                    let prevPageNums = Number(nUrlNums) - 2;
-                    $('#page1').html(`${prevPageNums}`);
-                    $('#page2').html(`${currentpages}`);
-                    $('#page3').html(`${nUrlNums}`);
-                }
-                if (response.previous !== null && response.next == null) {
-                    if (response.previous == "http://127.0.0.1:8000/api/products/products-list/") {
-                        backUrl = response.previous;
-                        $('#page1').html(`1`);
-                        $('#page2').html('2');
-                        $('#page3').html('');
-                    }
-                    if (response.previous !== "http://127.0.0.1:8000/api/products/products-list/") {
-                        backUrl = response.previous;
-                        let nUrlss = new URL(response.previous)
-                        let nUrlNumss = nUrlss.searchParams.get("page");
-                        let currentpagess = Number(nUrlNumss) + 1;
-                        $('#page1').html(`${nUrlNumss}`);
-                        $('#page2').html(`${currentpagess}`);
-                        $('#page3').html(``);
-                    }
-                }
-            },
-            error: (err) => {
-                console.log(err, "meow");
-            }
-        })
-    }
     $('#filter-part4-btn').on('click', function() {
         let searchTxt = $('#filter-part4-btn-input').val()
-        loadApi(searchTxt);
+        mainUrlSearchs = "http://127.0.0.1:8000/api/products/search-products/?q=" + searchTxt + "/";
+        loadData(mainUrlSearchs)
     })
 
     //============== END search bar api ==============
@@ -755,36 +493,34 @@
         if (minPrice !== 0 || maxPrice !== 7500000) {
             mainUrlFilter = mainUrlFilter + "&price1=" + minPrice + "&price2=" + maxPrice;
         }
-        var FormOne = document.getElementsByClassName("checkbox-inp");
-        var FormTwo = document.getElementsByClassName("checkbox-inp-type");
-        var ColorSelector = document.getElementsByClassName("color-back-one");
-        console.log(FormOne.checked);
-        for (j = 0; j < FormOne.length; j++) {
-            if ($(".checkbox-inp").is(".checked")) {
-                var CheckedFormOne = FormOne[i].value;
-            }
+        var ColorSelector = document.getElementsByClassName("colors");
+        let checkboxes = document.querySelectorAll('input[name="cate"]:checked');
+        let values = [];
+        checkboxes.forEach((checkbox) => {
+            values.push(checkbox.value);
+        });
+        if (values[0] !== undefined) {
+            mainUrlFilter = mainUrlFilter + "&categories=" + values[0];
         }
-        if (CheckedFormOne !== undefined) {
-            mainUrlFilter = mainUrlFilter + "&categories=" + CheckedFormOne;
-        }
-        console.log(mainUrlFilter, "filterbox url");
-        for (j = 0; j < FormTwo.length; j++) {
-            if ($(".checkbox-inp-type").is(".checked")) {
-                var CheckedFormTwo = FormTwo[i].value;
-            }
-        }
-        if (CheckedFormTwo !== undefined) {
-            mainUrlFilter = mainUrlFilter + "&sller_type=" + CheckedFormTwo;
+        let checkboxesTwo = document.querySelectorAll('input[name="SellerTyper"]:checked');
+        let valuesTwo = [];
+        checkboxesTwo.forEach((checkboxTwo) => {
+            valuesTwo.push(checkboxTwo.value);
+        });
+        console.log(valuesTwo[0]);
+        if (valuesTwo[0] !== undefined) {
+            mainUrlFilter = mainUrlFilter + "&sller_type=" + valuesTwo[0];
         }
         for (k = 0; k < colorSelector.length; k++) {
             if (ColorSelector[k].style.display == "block") {
-                var currectColor = ColorSelector[k].style['background-color'];
+                var currectColor = ColorSelector[k].id;
             }
         }
         if (currectColor !== null) {
             mainUrlFilter = mainUrlFilter + "&colors=" + currectColor;
         }
         mainUrlFilter = mainUrlFilter + "/";
+        console.log(mainUrlFilter);
         loadData(mainUrlFilter);
     }
     $('#filter-btn').on('click', function() {
@@ -796,7 +532,7 @@
     //=== Cata Data ===
 
     function CateApi(CateUrl) {
-        var CateUrl = "http://127.0.0.1:8000/api/products/products-filter-category/";
+
         $.ajax({
             url: CateUrl,
             type: "get",
@@ -804,14 +540,15 @@
             success: (response) => {
                 var newResultCate = []
                 newResultCate.push(response.results)
-                $('#cate-data').html(``)
+                $('#myUL').html(``)
                 newResultCate[0].forEach(element => {
-                    console.log(element.id, 'dddddddd')
-                    $('#cate-data').append(`
+                    $('#myUL').append(`
+                    <li id="cate-data">
                                     <div class="brand-checkbox">
-                                        <input type="checkbox" class="checkbox-inp" value="keyboard" name="fooby[1][]" />
-                                        <div class="textBar-search"><label for="brand1"><p class="brand-checkbox-p1" id="cate1">لیمون</p></label></div>
+                                        <input type="radio" class="checkbox-inp" id="${element.name}" value="${element.name}" name="cate" />
+                                        <div class="textBar-search"><label for="${element.name}"><p class="brand-checkbox-p1" id="">${element.name}</p></label></div>
                                     </div>
+                                </li> 
                         `)
                 })
             },
@@ -825,9 +562,9 @@
     //=== color Data ===
 
     function ColorApi(ColorUrl) {
-        var ColorUrl = "http://127.0.0.1:8000/api/products/products-colors/";
+
         $.ajax({
-            url: CateUrl,
+            url: ColorUrl,
             type: "get",
 
             success: (response) => {
@@ -838,13 +575,13 @@
                 newresultColor[0].forEach(element => {
                     console.log(element.id, 'dddddddd')
                     $('#color-select').append(`
-                                <div class="colors">
-                                    <p>صورتی</p><span style="background-color: aqua;" class="color-back-one"></span>
+                                <div class="colors" id="${element.code}">
+                                    <p>${element.code}</p><div style="background-color: ${element.code};" class="color-back-one"></div>
                                 </div>
                         `)
                     $('#all-colors').append(`
                                 <div class="color" onclick="colorSelector(1)">
-                                    <p>صورتی</p><span style="background-color: #2ACB34;" class="color-back"></span>
+                                    <p>${element.code}</p><div style="background-color: ${element.code};" class="color-back"></div>
                                 </div>
                         `)
                 })
@@ -859,7 +596,7 @@
     //=== sellerType Data ===
 
     function SellerTypeApi(SellerTypeUrl) {
-        var SellerTypeUrl = "http://127.0.0.1:8000/api/products/products-sellers-types/";
+
         $.ajax({
             url: SellerTypeUrl,
             type: "get",
@@ -867,13 +604,13 @@
             success: (response) => {
                 var newResultSeller = []
                 newResultSeller.push(response.results)
-                $('#myUL').html(``)
+                $('#myULSeller').html(``)
                 newResultSeller[0].forEach(element => {
-                    $('#myUL').append(`
+                    $('#myULSeller').append(`
                             <li>
                                 <div class="brand-checkbox">
-                                    <input type="checkbox" class="checkbox-inp-type" value="mehdi" name="fooby[2][]" />
-                                    <div class="textBar-search"><label for="brand1"><p class="brand-checkbox-p1">کارواش مهدی</p></label></div>
+                                    <input type="radio" class="checkbox-inp-type" id="${element.name}" value="${element.name}" name="SellerTyper" />
+                                    <div class="textBar-search"><label for="${element.name}"><p class="brand-checkbox-p1">${element.name}</p></label></div>
                                 </div>
                             </li>
                         `)
@@ -887,88 +624,112 @@
     SellerTypeApi(SellerTypeUrl)
 
     //============== END Data for FilterBox ==============
-    //============== cate checkbox(select box in products filter) ================
-
-    $(".checkbox-inp").on('click', function() {
-        var $box = $(this);
-        if ($box.is(":checked")) {
-            var group = "input:checkbox[name='" + $box.attr("name") + "']";
-            $(group).prop("checked", false);
-            $box.prop("checked", true);
-        } else {
-            $box.prop("checked", false);
-        }
-    });
-
-    //================= END cate checkbox(select box in products filter) ================
     //====================== product sliders ===================
 
     function ProductSliderOne(UrlOrdering3) {
         $.ajax({
             url: UrlOrdering3,
             type: "get",
-
             success: (response) => {
                 var newresultSliderOne = []
                 newresultSliderOne.push(response.results)
-                console.log(response, "yoy");
+                console.log(response, "newresultSliderOne");
                 var counteroneLimit = response.results;
                 counterone = counterone + 1;
-                $('#slider-one').html(``)
+                $('#products-slider1').html(``)
                 newresultSliderOne[0].forEach(element => {
-                    console.log(element.id, 'dddddddd')
                     morebtn = "http://127.0.0.1:8000/products/detail/" + element.id + "/" + element.slug + "/";
-                    $('#slider-one').append(`
+                    $('#products-slider1').append(`
+                    <li class="splide__slide">
                     <div class="product-box">
-                    <div class="image-parent">
-                        <a href="#">
-                            <img class="image" src="./asset/img/pic-12.png" alt="">
-                            <span class="token-hori">20%</span>
-                        </a>
-                        <div>
-                            <a href="#">
-                                <div class="icon1 fix-icon-vert"></div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <div class="icon2 fix-icon-vert"></div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="details">
+                                <div class="image-parent">
+                                    <a href="${morebtn}" id="token-hori-slider1">
+                                        <img class="image" src="${element.main_image}" alt="">
+                                    </a>
+                                    <div>
+                                            <div class="icon1"></div>
+                                    </div>
+                                    <div> 
+                                            <div class="icon2" id="icon2" onclick="FastProduct(${counterone})"></div>
+                                    </div>
+                                </div>
+                                <div class="details details-slider1">
 
-                        <a href="#">
-                            <h2>میز چوبی</h2>
-                        </a>
-                        <div class="rate">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
+                                    <a href="${morebtn}">
+                                        <h2>${element.title}</h2>
+                                    </a>
+                                    <div class="rate">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="price">${element.price}T</div>
+                                   
+                                </div>
+                                <div class="fast-product">
+        <div class="detail-fast-product">
+            <div class="top-fast-product">
+                <div class="back-icon" onclick="CloseFastProduct()"></div>
+                <p class="title-fast-product">${element.title}</p>
+                <div class="rate fast-rate">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                </div>
+            </div>
+            <p class="fast-short-description">${element.short_description}</p>
+            <div class="mid-fast-product">
+                <div class="div-style">
+                    <div class="form-item-cout">
+                        <div class="item-count">
+                            <p onclick="plus()" id="cunt-plus" class="cunt-div">+</p>
                         </div>
-                        <div class="price">2.000.000T</div>
+                        <div class="item-count">
+                            <p id="counter" class="cunt-div" >1</p>
+                        </div>
+                        <div class="item-count">
+                            <p onclick="minus()" id="cunt-min" class="cunt-div">-</p>
+                        </div>
                     </div>
                 </div>
+                <p class="price">${element.price}T</p>
+            </div>
+            <button class="btn-fast-product">افزودن به سبد خرید</button>
+            <p class="footer-fast-product">
+                <a href="#">سباب منزل</a>/
+                <a href="#">میز و صندلی</a>
+            </p>
+        </div>
+        <div class="main-fast-img">
+            <img class="img-sec-fast-product" src="${element.main_image}" alt="">
+        </div>
+    </div>
+                            </div>
+                        </li>
                         `)
                     if (counterone == (counteroneLimit.length - 1)) {
                         counterone = -1
                     }
+                    if (element.percentage !== 0) {
+                        $('#token-hori-slider1').append(`<span class="token-vert-slider">${element.percentage}</span>`)
+                    }
+                    if (element.discounted_price !== 0) {
+                        $('.details-slider1').append(` <div class="sec-price">${element.discounted_price}T</div>`)
+                    }
                 })
             },
             error: (err) => {
-                console.log(err, "meow");
+                console.log(err);
             }
         })
     }
-    ProductSliderOne(SliderUrlone)
+    ProductSliderOne(UrlOrdering3)
 
     function ProductSliderTwo(SliderUrlTwo) {
-        SliderUrlTwo = "http://127.0.0.1:8000/api/products/products-bestselling/";
-
-        console.log(SliderUrlTwo, 'vv');
-
         $.ajax({
             url: SliderUrlTwo,
             type: "get",
@@ -976,119 +737,131 @@
             success: (response) => {
                 var newresultSliderTwo = []
                 newresultSliderTwo.push(response.results)
-                console.log(response, "yoy");
                 var countertwoLimit = response.results;
                 countertwo = countertwo + 1;
                 $('#slider-two').html(``)
                 newresultSliderTwo[0].forEach(element => {
-                    console.log(element.id, 'dddddddd')
                     morebtn = "http://127.0.0.1:8000/products/detail/" + element.id + "/" + element.slug;
-                    $('#slider-one').append(`
+                    $('#slider-two').append(`
+                    <li class="splide__slide">
                     <div class="product-box">
-                    <div class="image-parent">
-                        <a href="#">
-                            <img class="image" src="./asset/img/pic-12.png" alt="">
-                            <span class="token-hori">20%</span>
-                        </a>
-                        <div>
-                            <a href="#">
-                                <div class="icon1 fix-icon-vert"></div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <div class="icon2 fix-icon-vert"></div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="details">
+                                <div class="image-parent">
+                                    <a href="${morebtn}" id="token-hori-slider2">
+                                        <img class="image" src="${element.main_image}" alt="">
+                                    </a>
+                                    <div>
+                                            <div class="icon1"></div>
+                                    </div>
+                                    <div> 
+                                            <div class="icon2" id="icon2" onclick="FastProduct(${countertwo})"></div>
+                                    </div>
+                                </div>
+                                <div class="details details-slider2">
 
-                        <a href="#">
-                            <h2>میز چوبی</h2>
-                        </a>
-                        <div class="rate">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
+                                    <a href="${morebtn}">
+                                        <h2>${element.title}</h2>
+                                    </a>
+                                    <div class="rate">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="price">${element.price}T</div>
+                                   
+                                </div>
+                                <div class="fast-product">
+        <div class="detail-fast-product">
+            <div class="top-fast-product">
+                <div class="back-icon" onclick="CloseFastProduct()"></div>
+                <p class="title-fast-product">${element.title}</p>
+                <div class="rate fast-rate">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                </div>
+            </div>
+            <p class="fast-short-description">${element.short_description}</p>
+            <div class="mid-fast-product">
+                <div class="div-style">
+                    <div class="form-item-cout">
+                        <div class="item-count">
+                            <p onclick="plus()" id="cunt-plus" class="cunt-div">+</p>
                         </div>
-                        <div class="price">2.000.000T</div>
+                        <div class="item-count">
+                            <p id="counter" class="cunt-div" >1</p>
+                        </div>
+                        <div class="item-count">
+                            <p onclick="minus()" id="cunt-min" class="cunt-div">-</p>
+                        </div>
                     </div>
                 </div>
+                <p class="price">${element.price}T</p>
+            </div>
+            <button class="btn-fast-product">افزودن به سبد خرید</button>
+            <p class="footer-fast-product">
+                <a href="#">سباب منزل</a>/
+                <a href="#">میز و صندلی</a>
+            </p>
+        </div>
+        <div class="main-fast-img">
+            <img class="img-sec-fast-product" src="${element.main_image}" alt="">
+        </div>
+    </div>
+                            </div>
+                        </li>
                         `)
                     if (countertwo == (countertwoLimit.length - 1)) {
                         countertwo = -1
                     }
+                    if (element.percentage !== 0) {
+                        $('#token-hori-slider2').append(`<span class="token-vert-slider">${element.percentage}</span>`)
+                    }
+                    if (element.discounted_price !== 0) {
+                        $('.details-slider2').append(` <div class="sec-price">${element.discounted_price}T</div>`)
+                    }
                 })
             },
             error: (err) => {
-                console.log(err, "meow");
+                console.log(err);
             }
         })
     }
     ProductSliderTwo(SliderUrlTwo)
 
     function ProductSliderThree(SliderUrlThree) {
-        SliderUrlThree = "http://127.0.0.1:8000/api/products/products-bestselling/";
-
-        console.log(SliderUrlThree, 'SliderUrlThree');
-
         $.ajax({
             url: SliderUrlThree,
             type: "get",
-
             success: (response) => {
                 var newresultSliderThree = []
                 newresultSliderThree.push(response.results)
-                console.log(response, "yoy");
-                var counterthreeLimit = response.results;
-                counterthree = counterthree + 1;
+                console.log(response.results, "response.results");
                 $('#slider-three').html(``)
                 newresultSliderThree[0].forEach(element => {
-                    console.log(element.id, 'dddddddd')
                     morebtn = "http://127.0.0.1:8000/products/detail/" + element.id + "/" + element.slug;
-                    $('#slider-one').append(`
+                    $('#slider-three').append(`
+                    <li class="splide__slide">
                     <div class="product-box">
-                    <div class="image-parent">
-                        <a href="#">
-                            <img class="image" src="./asset/img/pic-12.png" alt="">
-                            <span class="token-hori">20%</span>
-                        </a>
-                        <div>
-                            <a href="#">
-                                <div class="icon1 fix-icon-vert"></div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <div class="icon2 fix-icon-vert"></div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="details">
-
-                        <a href="#">
-                            <h2>میز چوبی</h2>
-                        </a>
-                        <div class="rate">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="price">2.000.000T</div>
-                    </div>
-                </div>
+                                <div class="image-parent">
+                                    <a href="${morebtn}" id="token-hori-slider3">
+                                        <img class="image" src="${element.image}" alt="">
+                                    </a>
+                                </div>
+                                <div class="details">
+                                    <a href="${morebtn}">
+                                        <h2>${element.name}</h2>
+                                    </a>
+                                </div>
+                        </li>
                         `)
-                    if (counterthree == (counterthreeLimit.length - 1)) {
-                        counterthree = -1
-                    }
                 })
             },
             error: (err) => {
-                console.log(err, "meow");
+                console.log(err);
             }
         })
     }
@@ -1098,19 +871,15 @@
     //====================== main slider ===================
 
     function MainSliderApi(MainSliderUrl) {
-        var MainSliderUrl = "http://127.0.0.1:8000/api/products/products-sliders/"
-        console.log(MainSliderUrl, "MainSliderUrl");
         $.ajax({
             url: MainSliderUrl,
             type: "get",
-
             success: (response) => {
                 var newResultMainSlider = []
                 newResultMainSlider.push(response.results)
-                console.log(response, "yoy");
-                $('#slider-one').html(``)
+                console.log(response, "response");
+                $('#mainSlider').html(``)
                 newResultMainSlider[0].forEach(element => {
-                    console.log(element.id, 'dddddddd')
                     $('#mainSlider').append(`
                     <li class="splide__slide slider-main-outSplide">
                 <a class="slide" href="#"><img class="slide-img" src="./pic-19.jpg" class="d-block" alt=""></a>
@@ -1119,7 +888,7 @@
                 })
             },
             error: (err) => {
-                console.log(err, "meow");
+                console.log(err);
             }
         })
     }

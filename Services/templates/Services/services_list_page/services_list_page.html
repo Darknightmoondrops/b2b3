@@ -65,33 +65,28 @@
     <!-----------------------------------------------      body       ---------------------------------------------->
     <section class="products">
         <div class="category-bar">
-            <div class="category">
-                <a href="#">محصولات</a>/
-                <a href="#">پوشاک</a>/
-                <a href="#">کیف</a>
-            </div>
             <div class="show-mode">
                 <div class="show-mode-p1" onclick="changepage(1)">
-                    <img class="show-mode-p1-img" src="{% static 'icons/icon-25.png' %}" alt="">
+                    <div class="show-mode-p1-img"></div>
                 </div>
                 <div class="show-mode-p2 show-mode-border" onclick="changepage(2)">
-                    <img class="show-mode-p2-img" src="{% static 'icons/icon-24.png' %}" alt="">
+                    <div class="show-mode-p2-img"></div>
                 </div>
             </div>
         </div>
         <div class="filter-bar">
-            <div class="filter-part1 filter">
-                <span class="filter-part1-txt">محصول مرتبط یافت شد 1400</span>
-            </div>
             <div class="filter-part2 filter">
-                <span class="filter-part2-btn">مرتب سازی<img src="{% static 'icons/icon-28.png' %}" alt=""></span>
+                <span class="filter-part2-btn">مرتب سازی<div class="ordering-img"></div></span>
                 <div class="filter-part2-dropdown">
-                    <span class="filter-dropdown-txt">گرانترین</span>
-                    <span class="filter-dropdown-txt">ارزانترین</span>
-                    <span class="filter-dropdown-txt">پرفروش ترین</span>
-                    <span class="filter-dropdown-txt">پرطرفدارترین</span>
-                    <span class="filter-dropdown-txt">مرتبط ترین</span>
-                    <span class="filter-dropdown-txt">جدید ترین</span>
+                    <div class="ordering-background">
+                        <div class="esharegar"></div>
+                        <span class="filter-dropdown-txt" id="ordering1">گرانترین</span>
+                        <span class="filter-dropdown-txt" id="ordering2">ارزانترین</span>
+                        <span class="filter-dropdown-txt" id="ordering3">پرفروش ترین</span>
+                        <span class="filter-dropdown-txt" id="ordering4">پرطرفدارترین</span>
+                        <span class="filter-dropdown-txt" id="ordering5">مرتبط ترین</span>
+                        <span class="filter-dropdown-txt" id="ordering6">جدید ترین</span>
+                    </div>
                 </div>
             </div>
             <div class="filter-part3 filter">
@@ -104,12 +99,12 @@
                 <div class=" filter-products-box filter-products-off">
                     <div class="filter-products-titles-all">
                         <p class="filter-products-title">فیلتر محصولات</p>
-                        <img class="filter-products-img" src="{% static 'icons/icon-29.png' %}" alt="" onclick="filterbox(2)">
+                        <div class="filter-products-img" onclick="filterbox(2)"></div>
                     </div>
                     <div class="price-filter">
                         <div class="filter-titles" onclick="clickme(1)">
                             <p>محدوده قیمت</p>
-                            <img class="filter-title-img" src="{% static 'icons/icon-30.png' %}" alt="">
+                            <div class="filter-title-img"></div>
                         </div>
                         <div class="center brand-off">
                             <div class="price text-violet">
@@ -131,32 +126,16 @@
                         <div class="brand">
                             <div class="filter-titles" onclick="numberplus(1)">
                                 <p>شرکت</p>
-                                <img class="filter-title-img" src="{% static 'icons/icon-30.png' %}" alt="">
+                                <div class="filter-title-img"></div>
                             </div>
                             <div class="brand-searchbox brand-off">
                                 <form class="brand-searchbox-all" action="">
                                     <input class="brand-searchbox-in" type="text" id="myInput" placeholder="جستوجو" onkeyup="searchBrand()">
-                                    <button class="brand-searchbox-btn"><img src="{% static 'icons/icon-27.png' %}" alt=""></button>
+                                    <button class="brand-searchbox-btn"></button>
                                 </form>
                                 <ul class="ul-search" id="myUL">
-                                    <li>
-                                        <div class="brand-checkbox">
-                                            <div class="tik-box"><input class="checkbox-inp" type="checkbox" id="brand1"></div>
-                                            <div class="textBar-search"><label for="brand1"><p class="brand-checkbox-p1">کارواش مهدی</p></label></div>
-                                        </div>
-                                    </li>
+                                    <li id="cate-data">
 
-                                    <li>
-                                        <div class="brand-checkbox">
-                                            <div class="tik-box"><input class="checkbox-inp" type="checkbox" id="brand1"></div>
-                                            <div class="textBar-search"><label for="brand1"><p class="brand-checkbox-p1">کارواش پسر خوب</p></label></div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="brand-checkbox">
-                                            <div class="tik-box"><input class="checkbox-inp" type="checkbox" id="brand1"></div>
-                                            <div class="textBar-search"><label for="brand1"><p class="brand-checkbox-p1">هوم کت</p></label></div>
-                                        </div>
                                     </li>
                                 </ul>
                             </div>
@@ -165,23 +144,23 @@
                         <div class="color-selector">
                             <div class="title-space-selector">نوع فضای نظافتی</div>
                             <label class="select" for="slct">
-    <select id="slct" required="required">
-      <option value="" disabled="disabled" selected="selected">نوع فضای نظافتی</option>
-      <option value="#">شرکتی / تجاری</option>
-      <option value="#">مسکونی</option>
-      <option value="#">راه پله</option>
-      <option value="#">تخلیه / نوساز / بازسازی شده</option>
-    </select>
-    <svg>
-      <use xlink:href="#select-arrow-down"></use>
-    </svg>
-  </label>
+                            <select id="slct" required="required">
+                               <option value="" disabled="disabled" selected="selected">نوع فضای نظافتی</option>
+                               <option value="#">شرکتی / تجاری</option>
+                               <option value="#">مسکونی</option>
+                               <option value="#">راه پله</option>
+                               <option value="#">تخلیه / نوساز / بازسازی شده</option>
+                             </select>
+                               <svg>
+                                   <use xlink:href="#select-arrow-down"></use>
+                               </svg>
+                            </label>
                             <!-- SVG Sprites-->
                             <svg class="sprites">
-    <symbol id="select-arrow-down" viewbox="0 0 10 6">
-      <polyline points="1 1 5 5 9 1"></polyline>
-    </symbol>
-  </svg>
+                               <symbol id="select-arrow-down" viewbox="0 0 10 6">
+                               <polyline points="1 1 5 5 9 1"></polyline>
+                               </symbol>
+                            </svg>
                         </div>
                     </div>
                     <br>
@@ -227,12 +206,12 @@
                     <div class="brand">
                         <div class="filter-titles" onclick="clickmepls(1)">
                             <p>نوع فروشنده</p>
-                            <img class="filter-title-img" src="./asset/icons/icon-30.png" alt="">
+                            <div class="filter-title-img"></div>
                         </div>
                         <div class="type-seller brand-off">
                             <form class="brand-searchbox-all" action="">
                                 <input class="brand-searchbox-in" type="text" id="myInput" placeholder="جستوجو" onkeyup="searchBrand()">
-                                <button class="brand-searchbox-btn"><img src="./asset/icons/icon-27.png" alt=""></button>
+                                <button class="brand-searchbox-btn"></button>
                             </form>
                             <ul class="ul-search" id="myUL">
                                 <li>
@@ -418,8 +397,8 @@
                 <div class="title-space-selector1">خدمات خاص</div>
                 <label class="select1" for="slct">
                  <select id="slct" required="required">
-                        <option value="" disabled="disabled" selected="selected">خدمات خاص</option>
-                      <option value="#">شستشوی سقف</option>
+                          <option value="" disabled="disabled" selected="selected">خدمات خاص</option>
+                          <option value="#">شستشوی سقف</option>
                           <option value="#">اسباب کشی</option>
                           <option value="#">نصب  و باز کردن پرده</option>
                           <option value="#">اتوکشی لباس</option>
@@ -620,552 +599,15 @@
                                         <div class="price">2.000.000T</div>
                                     </div>
                                 </div>
-
-                                <div class="product-box product-fix">
-                                    <div class="image-parent">
-                                        <a href="#">
-                                            <img class="image" src="./asset/img/pic-12.png" alt="">
-                                            <span class="token-hori">20%</span>
-                                        </a>
-                                        <div>
-                                            <a href="#">
-                                                <div class="icon1 fix-icon-vert"></div>
-                                            </a>
-                                        </div>
-                                        <div>
-                                            <a href="#">
-                                                <div class="icon2 fix-icon-vert"></div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="details">
-
-                                        <a href="#">
-                                            <h2>میز چوبی</h2>
-                                        </a>
-                                        <div class="rate">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <div class="price">2.000.000T</div>
-                                    </div>
-                                </div>
-                                <div class="product-box product-fix">
-                                    <div class="image-parent">
-                                        <a href="#">
-                                            <img class="image" src="./asset/img/pic-12.png" alt="">
-                                            <span class="token-hori">20%</span>
-                                        </a>
-                                        <div>
-                                            <a href="#">
-                                                <div class="icon1 fix-icon-vert"></div>
-                                            </a>
-                                        </div>
-                                        <div>
-                                            <a href="#">
-                                                <div class="icon2 fix-icon-vert"></div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="details">
-
-                                        <a href="#">
-                                            <h2>میز چوبی</h2>
-                                        </a>
-                                        <div class="rate">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <div class="price">2.000.000T</div>
-                                    </div>
-                                </div>
-                                <div class="product-box product-fix">
-                                    <div class="image-parent">
-                                        <a href="#">
-                                            <img class="image" src="./asset/img/pic-12.png" alt="">
-                                            <span class="token-hori">20%</span>
-                                        </a>
-                                        <div>
-                                            <a href="#">
-                                                <div class="icon1 fix-icon-vert"></div>
-                                            </a>
-                                        </div>
-                                        <div>
-                                            <a href="#">
-                                                <div class="icon2 fix-icon-vert"></div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="details">
-
-                                        <a href="#">
-                                            <h2>میز چوبی</h2>
-                                        </a>
-                                        <div class="rate">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <div class="price">2.000.000T</div>
-                                    </div>
-                                </div>
                             </div>
                         </section>
                     </div>
                 </div>
-
-            </div>
-            <!------------- page 2 --------------------->
-            <div class="products-page">
-                <div class="products-list1">
-                    <div class="product-slider">
-                        <section class="product">
-                            <div id="product-container-id" class="product-container">
-                                <div class="product-box product-fix">
-                                    <div class="image-parent">
-                                        <a href="#">
-                                            <img class="image" src="./asset/img/pic-12.png" alt="">
-                                            <span class="token-hori">20%</span>
-                                        </a>
-                                        <div>
-                                            <a href="#">
-                                                <div class="icon1 fix-icon-vert"></div>
-                                            </a>
-                                        </div>
-                                        <div>
-                                            <a href="#">
-                                                <div class="icon2 fix-icon-vert"></div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="details">
-
-                                        <a href="#">
-                                            <h2>میز چوبی</h2>
-                                        </a>
-                                        <div class="rate">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <div class="price">2.000.000T</div>
-                                    </div>
-                                </div>
-
-                                <div class="product-box product-fix">
-                                    <div class="image-parent">
-                                        <a href="#">
-                                            <img class="image" src="./asset/img/pic-12.png" alt="">
-                                            <span class="token-hori">20%</span>
-                                        </a>
-                                        <div>
-                                            <a href="#">
-                                                <div class="icon1 fix-icon-vert"></div>
-                                            </a>
-                                        </div>
-                                        <div>
-                                            <a href="#">
-                                                <div class="icon2 fix-icon-vert"></div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="details">
-
-                                        <a href="#">
-                                            <h2>میز چوبی</h2>
-                                        </a>
-                                        <div class="rate">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <div class="price">2.000.000T</div>
-                                    </div>
-                                </div>
-                                <div class="product-box product-fix">
-                                    <div class="image-parent">
-                                        <a href="#">
-                                            <img class="image" src="./asset/img/pic-12.png" alt="">
-                                            <span class="token-hori">20%</span>
-                                        </a>
-                                        <div>
-                                            <a href="#">
-                                                <div class="icon1 fix-icon-vert"></div>
-                                            </a>
-                                        </div>
-                                        <div>
-                                            <a href="#">
-                                                <div class="icon2 fix-icon-vert"></div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="details">
-
-                                        <a href="#">
-                                            <h2>میز چوبی</h2>
-                                        </a>
-                                        <div class="rate">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <div class="price">2.000.000T</div>
-                                    </div>
-                                </div>
-                                <div class="product-box product-fix">
-                                    <div class="image-parent">
-                                        <a href="#">
-                                            <img class="image" src="./asset/img/pic-12.png" alt="">
-                                            <span class="token-hori">20%</span>
-                                        </a>
-                                        <div>
-                                            <a href="#">
-                                                <div class="icon1 fix-icon-vert"></div>
-                                            </a>
-                                        </div>
-                                        <div>
-                                            <a href="#">
-                                                <div class="icon2 fix-icon-vert"></div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="details">
-
-                                        <a href="#">
-                                            <h2>میز چوبی</h2>
-                                        </a>
-                                        <div class="rate">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <div class="price">2.000.000T</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-                </div>
-
-                <div class="products-list2">
-                    <div class="product-slider">
-                        <section class="product">
-                            <div id="product-container-id" class="product-container">
-                                <div class="product-box product-fix">
-                                    <div class="image-parent">
-                                        <a href="#">
-                                            <img class="image" src="./asset/img/pic-12.png" alt="">
-                                            <span class="token-hori">20%</span>
-                                        </a>
-                                        <div>
-                                            <a href="#">
-                                                <div class="icon1 fix-icon-vert"></div>
-                                            </a>
-                                        </div>
-                                        <div>
-                                            <a href="#">
-                                                <div class="icon2 fix-icon-vert"></div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="details">
-
-                                        <a href="#">
-                                            <h2>میز چوبی</h2>
-                                        </a>
-                                        <div class="rate">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <div class="price">2.000.000T</div>
-                                    </div>
-                                </div>
-
-                                <div class="product-box product-fix">
-                                    <div class="image-parent">
-                                        <a href="#">
-                                            <img class="image" src="./asset/img/pic-12.png" alt="">
-                                            <span class="token-hori">20%</span>
-                                        </a>
-                                        <div>
-                                            <a href="#">
-                                                <div class="icon1 fix-icon-vert"></div>
-                                            </a>
-                                        </div>
-                                        <div>
-                                            <a href="#">
-                                                <div class="icon2 fix-icon-vert"></div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="details">
-
-                                        <a href="#">
-                                            <h2>میز چوبی</h2>
-                                        </a>
-                                        <div class="rate">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <div class="price">2.000.000T</div>
-                                    </div>
-                                </div>
-                                <div class="product-box product-fix">
-                                    <div class="image-parent">
-                                        <a href="#">
-                                            <img class="image" src="./asset/img/pic-12.png" alt="">
-                                            <span class="token-hori">20%</span>
-                                        </a>
-                                        <div>
-                                            <a href="#">
-                                                <div class="icon1 fix-icon-vert"></div>
-                                            </a>
-                                        </div>
-                                        <div>
-                                            <a href="#">
-                                                <div class="icon2 fix-icon-vert"></div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="details">
-
-                                        <a href="#">
-                                            <h2>میز چوبی</h2>
-                                        </a>
-                                        <div class="rate">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <div class="price">2.000.000T</div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </section>
-                    </div>
-                </div>
-                <div class="products-list3">
-                    <div class="product-slider">
-                        <section class="product">
-                            <div id="product-container-id" class="product-container">
-                                <div class="product-box">
-                                    <div class="image-parent">
-                                        <a href="#">
-                                            <img class="image" src="./asset/img/pic-12.png" alt="">
-                                        </a>
-                                        <div>
-                                            <a href="#">
-                                                <img class="icon1" src="./asset/icons/icon-9.png" alt="">
-                                            </a>
-                                        </div>
-                                        <div>
-                                            <a href="#">
-                                                <img class="icon2" src="./asset/icons/icon-23.png" alt="">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="details">
-
-                                        <a href="#">
-                                            <h2>میز چوبی</h2>
-                                        </a>
-                                        <div class="rate">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <div class="price">2.000.000T</div>
-                                    </div>
-                                </div>
-                                <div class="product-box">
-                                    <div class="image-parent">
-                                        <a href="#">
-                                            <img class="image" src="./asset/img/pic-12.png" alt="">
-                                        </a>
-                                        <div>
-                                            <a href="#">
-                                                <img class="icon1" src="./asset/icons/icon-9.png" alt="">
-                                            </a>
-                                        </div>
-                                        <div>
-                                            <a href="#">
-                                                <img class="icon2" src="./asset/icons/icon-23.png" alt="">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="details">
-
-                                        <a href="#">
-                                            <h2>میز چوبی</h2>
-                                        </a>
-                                        <div class="rate">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <div class="price">2.000.000T</div>
-                                    </div>
-                                </div>
-                                <div class="product-box">
-                                    <div class="image-parent">
-                                        <a href="#">
-                                            <img class="image" src="./asset/img/pic-12.png" alt="">
-                                        </a>
-                                        <div>
-                                            <a href="#">
-                                                <img class="icon1" src="./asset/icons/icon-9.png" alt="">
-                                            </a>
-                                        </div>
-                                        <div>
-                                            <a href="#">
-                                                <img class="icon2" src="./asset/icons/icon-23.png" alt="">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="details">
-
-                                        <a href="#">
-                                            <h2>میز چوبی</h2>
-                                        </a>
-                                        <div class="rate">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <div class="price">2.000.000T</div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </section>
-                    </div>
-                </div>
-
-            </div>
-            <div class="page-slider">
-                <div class="page-icon" onclick="pluspage(1)"><img class="page-icon-img" src="./asset/icons/icon-35.png" alt=""></div>
-                <div class="page-number" dir="ltr">
-                    <span class="page1 page pageActive" onclick="pageslide(1)">1</span>
-                    <span class="page2 page" onclick="pageslide(2)">2</span>
-                </div>
-                <div class="page-icon" onclick="pluspage(-1)"><img class="page-icon-img" src="./asset/icons/icon-34.png" alt=""></div>
             </div>
         </div>
         <!----------     vetical list    ------------------------->
         <div class="vert-list">
-            <!-------- page 1 -------------->
-            <div class="products-page1">
-                <!----1---->
-                <div class="product-box-vert">
-                    <div class="image-parent-vert">
-                        <a href="#">
-                            <img class="image-vert" src="./asset/img/pic-25.png" alt="">
-                            <span class="token-vert">20%</span>
-                        </a>
-                        <div>
-                            <a href="#">
-                                <img class="icon1-vart" src="./asset/icons/icon-9.png" alt="">
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <img class="icon2-vert" src="./asset/icons/icon-23.png" alt="">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="details-vert">
-                        <div class="details-vert-title">
-                            <a href="#">
-                                <h2>شستشوی اتومبیل</h2>
-                            </a>
-                            <div class="rate-vert">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                        </div>
-                        <div class="details-vert-text">
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
-                        </div>
-                        <div class="details-vert-bot">
-                            <div class="remaining-number"></div>
-                            <div class="price-vert"></div>
-                        </div>
-                    </div>
-                </div>
-                <!----2---->
-                <div class="product-box-vert">
-                    <div class="image-parent-vert">
-                        <a href="#">
-                            <img class="image-vert" src="./asset/img/pic-26.png" alt="">
-                        </a>
-                        <div>
-                            <a href="#">
-                                <img class="icon1-vart" src="./asset/icons/icon-9.png" alt="">
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <img class="icon2-vert" src="./asset/icons/icon-23.png" alt="">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="details-vert">
-                        <div class="details-vert-title">
-                            <a href="#">
-                                <h2>شستشوی اتومبیل</h2>
-                            </a>
-                            <div class="rate-vert">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                        </div>
-                        <div class="details-vert-text">
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
-                        </div>
-                        <div class="details-vert-bot">
-                            <div class="remaining-number"></div>
-                            <div class="price-vert"></div>
-                        </div>
-                    </div>
-                </div>
-                <!----3---->
+            <div class="products-page1" id="products-page1">
                 <div class="product-box-vert">
                     <div class="image-parent-vert">
                         <a href="#">
@@ -1205,217 +647,18 @@
                         </div>
                     </div>
                 </div>
-                <!----4---->
-                <div class="product-box-vert">
-                    <div class="image-parent-vert">
-                        <a href="#">
-                            <img class="image-vert" src="./asset/img/pic-23.png" alt="">
-                        </a>
-                        <div>
-                            <a href="#">
-                                <img class="icon1-vart" src="./asset/icons/icon-9.png" alt="">
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <img class="icon2-vert" src="./asset/icons/icon-23.png" alt="">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="details-vert">
-                        <div class="details-vert-title">
-                            <a href="#">
-                                <h2>شستشوی اتومبیل</h2>
-                            </a>
-                            <div class="rate-vert">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                        </div>
-                        <div class="details-vert-text">
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
-                        </div>
-                        <div class="details-vert-bot">
-                            <div class="remaining-number"></div>
-                            <div class="price-vert"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!----------- page 2 ------------------>
-            <div class="products-page1">
-                <!----1---->
-                <div class="product-box-vert">
-                    <div class="image-parent-vert">
-                        <a href="#">
-                            <img class="image-vert" src="./asset/img/pic-25.png" alt="">
-                            <span class="token-vert">20%</span>
-                        </a>
-                        <div>
-                            <a href="#">
-                                <img class="icon1-vart" src="./asset/icons/icon-9.png" alt="">
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <img class="icon2-vert" src="./asset/icons/icon-23.png" alt="">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="details-vert">
-                        <div class="details-vert-title">
-                            <a href="#">
-                                <h2>شستشوی اتومبیل</h2>
-                            </a>
-                            <div class="rate-vert">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                        </div>
-                        <div class="details-vert-text">
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
-                        </div>
-                        <div class="details-vert-bot">
-                            <div class="remaining-number"></div>
-                            <div class="price-vert"></div>
-                        </div>
-                    </div>
-                </div>
-                <!----2---->
-                <div class="product-box-vert">
-                    <div class="image-parent-vert">
-                        <a href="#">
-                            <img class="image-vert" src="./asset/img/pic-26.png" alt="">
-                        </a>
-                        <div>
-                            <a href="#">
-                                <img class="icon1-vart" src="./asset/icons/icon-9.png" alt="">
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <img class="icon2-vert" src="./asset/icons/icon-23.png" alt="">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="details-vert">
-                        <div class="details-vert-title">
-                            <a href="#">
-                                <h2>شستشوی اتومبیل</h2>
-                            </a>
-                            <div class="rate-vert">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                        </div>
-                        <div class="details-vert-text">
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
-                        </div>
-                        <div class="details-vert-bot">
-                            <div class="remaining-number"></div>
-                            <div class="price-vert"></div>
-                        </div>
-                    </div>
-                </div>
-                <!----3---->
-                <div class="product-box-vert">
-                    <div class="image-parent-vert">
-                        <a href="#">
-                            <img class="image-vert" src="./asset/img/pic-22.png" alt="">
-                            <span class="token-vert">20%</span>
-                        </a>
-                        <div>
-                            <a href="#">
-                                <img class="icon1-vart" src="./asset/icons/icon-9.png" alt="">
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <img class="icon2-vert" src="./asset/icons/icon-23.png" alt="">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="details-vert">
-                        <div class="details-vert-title">
-                            <a href="#">
-                                <h2>شستشوی اتومبیل</h2>
-                            </a>
-                            <div class="rate-vert">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                        </div>
-                        <div class="details-vert-text">
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
-                        </div>
-                        <div class="details-vert-bot">
-                            <div class="remaining-number"></div>
-                            <div class="price-vert"></div>
-                        </div>
-                    </div>
-                </div>
-                <!----4---->
-                <div class="product-box-vert">
-                    <div class="image-parent-vert">
-                        <a href="#">
-                            <img class="image-vert" src="./asset/img/pic-23.png" alt="">
-                        </a>
-                        <div>
-                            <a href="#">
-                                <img class="icon1-vart" src="./asset/icons/icon-9.png" alt="">
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <img class="icon2-vert" src="./asset/icons/icon-23.png" alt="">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="details-vert">
-                        <div class="details-vert-title">
-                            <a href="#">
-                                <h2>شستشوی اتومبیل</h2>
-                            </a>
-                            <div class="rate-vert">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                        </div>
-                        <div class="details-vert-text">
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
-                        </div>
-                        <div class="details-vert-bot">
-                            <div class="remaining-number"></div>
-                            <div class="price-vert"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="page-slider">
-                <div class="page-icon" onclick="pluspages(1)"><img class="page-icon-img" src="./asset/icons/icon-35.png" alt=""></div>
-                <div class="page-number" dir="ltr">
-                    <span class="page1 pages pageActive" onclick="pageslides(1)">1</span>
-                    <span class="page2 pages" onclick="pageslides(2)">2</span>
-                </div>
-                <div class="page-icon" onclick="pluspages(-1)"><img class="page-icon-img" src="./asset/icons/icon-34.png" alt=""></div>
             </div>
         </div>
-
+        <div class="page-slider">
+            <div id="go-back-card" class="page-icon"></div>
+            <div class="page-number" dir="ltr">
+                <span id="page1" class="page1 page"></span>
+                <span id="page2" class="page2 page"></span>
+                <span id="page3" class="page2 page"></span>
+            </div>
+            <div id="go-next-card" class="page-icon">
+            </div>
+        </div>
     </section>
     <!------------------------------------------------------  /body  ------------------------------------------------>
     <div class="section-p1-service">
@@ -1432,108 +675,6 @@
     <div class="splide" dir="ltr">
         <div class="splide__track">
             <ul class="splide__list">
-                <li class="splide__slide">
-                    <div class="product-box">
-                        <div class="image-parent">
-                            <a href="#">
-                                <img class="image" src="./asset/img/pic-12.png" alt="">
-                                <span class="token-hori">20%</span>
-                            </a>
-                            <div>
-                                <a href="#">
-                                    <div class="icon1 fix-icon-vert"></div>
-                                </a>
-                            </div>
-                            <div>
-                                <a href="#">
-                                    <div class="icon2 fix-icon-vert"></div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="details">
-
-                            <a href="#">
-                                <h2>میز چوبی</h2>
-                            </a>
-                            <div class="rate">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="price">2.000.000T</div>
-                        </div>
-                    </div>
-                </li>
-                <li class="splide__slide">
-                    <div class="product-box">
-                        <div class="image-parent">
-                            <a href="#">
-                                <img class="image" src="./asset/img/pic-12.png" alt="">
-                                <span class="token-hori">20%</span>
-                            </a>
-                            <div>
-                                <a href="#">
-                                    <div class="icon1 fix-icon-vert"></div>
-                                </a>
-                            </div>
-                            <div>
-                                <a href="#">
-                                    <div class="icon2 fix-icon-vert"></div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="details">
-
-                            <a href="#">
-                                <h2>میز چوبی</h2>
-                            </a>
-                            <div class="rate">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="price">2.000.000T</div>
-                        </div>
-                    </div>
-                </li>
-                <li class="splide__slide">
-                    <div class="product-box">
-                        <div class="image-parent">
-                            <a href="#">
-                                <img class="image" src="./asset/img/pic-12.png" alt="">
-                                <span class="token-hori">20%</span>
-                            </a>
-                            <div>
-                                <a href="#">
-                                    <div class="icon1 fix-icon-vert"></div>
-                                </a>
-                            </div>
-                            <div>
-                                <a href="#">
-                                    <div class="icon2 fix-icon-vert"></div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="details">
-
-                            <a href="#">
-                                <h2>میز چوبی</h2>
-                            </a>
-                            <div class="rate">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="price">2.000.000T</div>
-                        </div>
-                    </div>
-                </li>
                 <li class="splide__slide">
                     <div class="product-box">
                         <div class="image-parent">
@@ -1613,112 +754,816 @@
                         </div>
                     </div>
                 </li>
-                <li class="splide__slide">
-                    <div class="product-box">
-                        <div class="image-parent">
-                            <a href="#">
-                                <img class="image" src="./asset/img/pic-12.png" alt="">
-                                <span class="token-hori">20%</span>
-                            </a>
-                            <div>
-                                <a href="#">
-                                    <div class="icon1 fix-icon-vert"></div>
-                                </a>
-                            </div>
-                            <div>
-                                <a href="#">
-                                    <div class="icon2 fix-icon-vert"></div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="details">
-
-                            <a href="#">
-                                <h2>میز چوبی</h2>
-                            </a>
-                            <div class="rate">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="price">2.000.000T</div>
-                        </div>
-                    </div>
-                </li>
-                <li class="splide__slide">
-                    <div class="product-box">
-                        <div class="image-parent">
-                            <a href="#">
-                                <img class="image" src="./asset/img/pic-12.png" alt="">
-                                <span class="token-hori">20%</span>
-                            </a>
-                            <div>
-                                <a href="#">
-                                    <div class="icon1 fix-icon-vert"></div>
-                                </a>
-                            </div>
-                            <div>
-                                <a href="#">
-                                    <div class="icon2 fix-icon-vert"></div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="details">
-
-                            <a href="#">
-                                <h2>میز چوبی</h2>
-                            </a>
-                            <div class="rate">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="price">2.000.000T</div>
-                        </div>
-                    </div>
-                </li>
-                <li class="splide__slide">
-                    <div class="product-box">
-                        <div class="image-parent">
-                            <a href="#">
-                                <img class="image" src="./asset/img/pic-12.png" alt="">
-                                <span class="token-hori">20%</span>
-                            </a>
-                            <div>
-                                <a href="#">
-                                    <div class="icon1 fix-icon-vert"></div>
-                                </a>
-                            </div>
-                            <div>
-                                <a href="#">
-                                    <div class="icon2 fix-icon-vert"></div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="details">
-
-                            <a href="#">
-                                <h2>میز چوبی</h2>
-                            </a>
-                            <div class="rate">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="price">2.000.000T</div>
-                        </div>
-                    </div>
-                </li>
             </ul>
         </div>
     </div>
+    <script>
+        var mainUrl = "http://127.0.0.1:8000/api/products/products-list/"
+        var mainUrlFilter = "http://127.0.0.1:8000/api/products/products-filter/"
+        var mainUrlSearchs
+        var obj = []
+        var nextUrl
+        var backUrl
+        var nextCard
+        var nextP;
+        var loc;
+        var NextPgeUrl;
+        var counter = -1;
+        var counterone = -1;
+        var countertwo = -1;
+        var counterthree = -1;
+        var UrlOrdering1 = "http://127.0.0.1:8000/api/products/products-mostexpensive/";
+        var UrlOrdering2 = "http://127.0.0.1:8000/api/products/products-cheapest/";
+        var UrlOrdering3 = "http://127.0.0.1:8000/api/products/products-bestselling/";
+        var UrlOrdering4 = "http://127.0.0.1:8000/api/products/products-bestselling/";
+        var UrlOrdering5 = "http://127.0.0.1:8000/api/products/products-bestselling/";
+        var UrlOrdering6 = "http://127.0.0.1:8000/api/products/products-bestselling/";
 
+        function loadData(mainUrl) {
+            $.ajax({
+                url: mainUrl,
+                type: "get",
+                success: (response) => {
+                    var newResulte = []
+                    newResulte.push(response.results)
+                    $('#product-container-id').html(``)
+                    newResulte[0].forEach(element => {
+                        var counterLimit = response.results;
+                        counter = counter + 1;
+                        morebtn = "http://127.0.0.1:8000/products/detail/" + element.id + "/" + element.slug;
+                        $('#product-container-id').append(`
+                    <div class="product-box product-fix">
+                                <div class="image-parent">
+                                    <a href="${morebtn}" id="token-hori">
+                                        <img class="image" src="${element.main_image}" alt="">
+                                    </a>
+                                    <div>
+                                            <div class="icon1 fix-icon-vert"></div>
+                                    </div>
+                                    <div> 
+                                            <div class="icon2 fix-icon-vert" id="icon2" onclick="FastProduct(${counter})"></div>
+                                    </div>
+                                </div>
+                                <div class="details">
+
+                                    <a href="${morebtn}">
+                                        <h2>${element.title}</h2>
+                                    </a>
+                                    <div class="rate">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="price">${element.price}T</div>
+                                   
+                                </div>
+                                <div class="fast-product">
+                                <div class="detail-fast-product">
+                                <div class="top-fast-product">
+                                <div class="back-icon" onclick="CloseFastProduct()"></div>
+                                <p class="title-fast-product">${element.title}</p>
+                                <div class="rate fast-rate">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                </div>
+                                </div>
+                                <p class="fast-short-description">${element.short_description}</p>
+                                <div class="mid-fast-product">
+                                <div class="div-style">
+                                <div class="form-item-cout">
+                                <div class="item-count">
+                                <p onclick="plus()" id="cunt-plus" class="cunt-div">+</p>
+                                </div>
+                        <div class="item-count">
+                            <p id="counter" class="cunt-div" >1</p>
+                        </div>
+                        <div class="item-count">
+                            <p onclick="minus()" id="cunt-min" class="cunt-div">-</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="price">${element.price}T</p>
+            </div>
+            <button class="btn-fast-product">افزودن به سبد خرید</button>
+            <p class="footer-fast-product">
+                <a href="#">سباب منزل</a>/
+                <a href="#">میز و صندلی</a>
+            </p>
+        </div>
+        <div class="main-fast-img">
+            <img class="img-sec-fast-product" src="${element.main_image}" alt="">
+        </div>
+    </div>
+                            </div>
+                        `)
+                        if (counter == (counterLimit.length - 1)) {
+                            counter = -1
+                        }
+                    })
+                    $('#products-page1').html(``)
+                    newResulte[0].forEach(element => {
+                        var counterLimit = response.results;
+                        console.log(counterLimit, "meow meow meow");
+                        counter = counter + 1;
+                        console.log(element.id, 'dddddddd')
+                        morebtn = "http://127.0.0.1:8000/products/detail/" + element.id + "/" + element.slug + "/";
+                        $('#products-page1').append(`
+                    <div class="product-box-vert">
+                <div class="image-parent-vert">
+                    <a href="${morebtn}" id="token-vert">
+                        <img class="image-vert" src="${element.main_image}" alt="">
+                        
+                    </a>
+                    <div>
+                            <div class="icon1 fix-icon-of"></div>
+                    </div>
+                    <div>
+                            <div class="icon2 fix-icon-of" onclick="FastProduct(${counter})"></div>
+                    </div>
+                </div>
+                <div class="details-vert">
+                    <div class="details-vert-title">
+                        <a href="${morebtn}">
+                            <h2>${element.title}</h2>
+                        </a>
+                        <div class="rate-vert">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="details-vert-text">
+                        <p>${element.short_description}</p>
+                    </div>
+                    <div class="details-vert-bot">
+                        <div class="remaining-number">تنها <p id="remaining-number">${element.inventory}</p> عدد باقی مانده</div>
+                        <div class="price-vert">${element.price}T</div>
+                    </div>
+                </div>
+                
+            </div>
+                        `)
+                        if (counter == (counterLimit.length - 1)) {
+                            counter = -1
+                        }
+
+                        console.log(element.percentage);
+                        if (element.percentage !== 0) {
+                            $('#token-vert').append(`<span class="token-vert">${element.percentage}</span>`)
+                            $('#token-hori').append(`<span class="token-hori">${element.percentage}</span>`)
+                        }
+                        if (element.discounted_price !== 0) {
+                            $('.details').append(` <div class="sec-price">${element.discounted_price}T</div>`)
+                            $('.details-vert-bot').append(` <div class="sec-price-vert">${element.discounted_price}T</div>`)
+                        }
+
+                        console.log(counter);
+                    })
+                    if (response.previous == null && response.next == null) {
+                        $('#page1').html(``);
+                        $('#page2').html('1');
+                        $('#page1').html(``);
+                    }
+                    if (response.previous == null && response.next !== null) {
+                        nextUrl = response.next;
+                        $('#page1').html(``);
+                        $('#page2').html('1');
+                        $('#page3').html('2');
+                    }
+                    if (response.previous !== null && response.next !== null) {
+                        nextUrl = response.next;
+                        backUrl = response.previous;
+                        let nUrls = new URL(response.next)
+                        let nUrlNums = nUrls.searchParams.get("page");
+                        let currentpages = Number(nUrlNums) - 1;
+                        let prevPageNums = Number(nUrlNums) - 2;
+                        $('#page1').html(`${prevPageNums}`);
+                        $('#page2').html(`${currentpages}`);
+                        $('#page3').html(`${nUrlNums}`);
+                    }
+                    if (response.previous !== null && response.next == null) {
+                        if (response.previous == "http://127.0.0.1:8000/api/products/products-list/") {
+                            backUrl = response.previous;
+                            $('#page1').html(`1`);
+                            $('#page2').html('2');
+                            $('#page3').html('');
+                        }
+                        if (response.previous !== "http://127.0.0.1:8000/api/products/products-list/") {
+                            backUrl = response.previous;
+                            let nUrlss = new URL(response.previous)
+                            let nUrlNumss = nUrlss.searchParams.get("page");
+                            let currentpagess = Number(nUrlNumss) + 1;
+                            $('#page1').html(`${nUrlNumss}`);
+                            $('#page2').html(`${currentpagess}`);
+                            $('#page3').html(``);
+                        }
+                    }
+
+
+                },
+                error: (err) => {
+                    console.log(err);
+                }
+            });
+        }
+        loadData("http://127.0.0.1:8000/api/products/products-list/");
+        loadDataTop(mainUrlTop)
+        $('#page3').on('click', function() {
+            if ($('#page3').html() !== '') {
+                $('#articles').html('')
+                loadData(nextUrl)
+            }
+        })
+        $('#page1').on('click', function() {
+            if ($('#page1').html() !== '') {
+                $('#articles').html('')
+                loadData(backUrl)
+            }
+        })
+
+        $('#go-next-card').on('click', function() {
+            if ($('#page3').html() !== '') {
+                $('#articles').html('')
+                loadData(nextUrl)
+            }
+        })
+        $('#go-back-card').on('click', function() {
+            if ($('#page1').html() !== '') {
+                $('#articles').html('')
+                loadData(backUrl)
+            }
+        })
+
+        //============== ordering ====================
+
+        $('#ordering1').on('click', function() {
+            $('#articles').html('')
+            loadData(UrlOrdering1)
+        })
+        $('#ordering2').on('click', function() {
+            $('#articles').html('')
+            loadData(UrlOrdering2)
+        })
+        $('#ordering3').on('click', function() {
+            $('#articles').html('')
+            loadData(UrlOrdering3)
+        })
+        $('#ordering4').on('click', function() {
+            $('#articles').html('')
+            loadData(UrlOrdering4)
+        })
+        $('#ordering5').on('click', function() {
+            $('#articles').html('')
+            loadData(UrlOrdering5)
+        })
+        $('#ordering6').on('click', function() {
+            $('#articles').html('')
+            loadData(UrlOrdering6)
+        })
+
+        //============== END ordering ====================
+        //============== search bar api ==================
+
+        function loadApi(str) {
+            mainUrlSearchs = "http://127.0.0.1:8000/api/products/search-products/?q=" + str;
+
+            console.log(mainUrlSearchs, 'vv');
+
+            $.ajax({
+                url: mainUrlSearchs,
+                type: "get",
+
+                success: (response) => {
+                    var newResulteSearchs = []
+                    newResulteSearchs.push(response.results)
+                    console.log(response, "yoy");
+                    $('#product-container-id').html(``)
+                    newResulteSearchs[0].forEach(element => {
+                        console.log(element.id, 'dddddddd')
+                        morebtn = "http://127.0.0.1:8000/products/detail/" + element.id + "/" + element.slug;
+                        $('#product-container-id').append(`
+                    <div class="product-box product-fix">
+                                <div class="image-parent">
+                                    <a href="${morebtn}" id="token-hori">
+                                        <img class="image" src="${element.main_image}" alt="">
+                                    </a>
+                                    <div>
+                                            <div class="icon1 fix-icon-vert"></div>
+                                    </div>
+                                    <div> 
+                                            <div class="icon2 fix-icon-vert"></div>
+                                    </div>
+                                </div>
+                                <div class="details">
+
+                                    <a href="${morebtn}">
+                                        <h2>${element.title}</h2>
+                                    </a>
+                                    <div class="rate">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="price">${element.price}T</div>
+                                   
+                                </div>
+                            </div>
+                        `)
+                    })
+                    $('#products-page1').html(``)
+                    newResulteSearch[0].forEach(element => {
+                        console.log(element.id, 'dddddddd')
+                        morebtn = "http://127.0.0.1:8000/products/detail/" + element.id + "/" + element.slug + "/";
+                        $('#products-page1').append(`
+                    <div class="product-box-vert">
+                <div class="image-parent-vert">
+                    <a href="${morebtn}" id="token-vert">
+                        <img class="image-vert" src="${element.main_image}" alt="">
+                        
+                    </a>
+                    <div>
+                            <div class="icon1 fix-icon-of"></div>
+                    </div>
+                    <div>
+                            <div class="icon2 fix-icon-of"></div>
+                    </div>
+                </div>
+                <div class="details-vert">
+                    <div class="details-vert-title">
+                        <a href="${morebtn}">
+                            <h2>${element.title}</h2>
+                        </a>
+                        <div class="rate-vert">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="details-vert-text">
+                        <p>${element.short_description}</p>
+                    </div>
+                    <div class="details-vert-bot">
+                        <div class="remaining-number">تنها ${element.inventory} عدد باقی مانده</div>
+                        <div class="price-vert">${element.price}T</div>
+                    </div>
+                </div>
+            </div>
+                        `)
+                        console.log(element.percentage);
+                        if (element.percentage !== 0) {
+                            $('#token-vert').append(`<span class="token-vert">${element.percentage}</span>`)
+                            $('#token-hori').append(`<span class="token-hori">${element.percentage}</span>`)
+                        }
+                        if (element.discounted_price !== 0) {
+                            $('.details').append(` <div class="sec-price">${element.discounted_price}T</div>`)
+                            $('.details-vert-bot').append(` <div class="sec-price-vert">${element.discounted_price}T</div>`)
+                        }
+                    })
+                    if (response.previous == null && response.next == null) {
+                        $('#page1').html(``);
+                        $('#page2').html('1');
+                        $('#page1').html(``);
+                    }
+                    if (response.previous == null && response.next !== null) {
+                        nextUrl = response.next;
+                        $('#page1').html(``);
+                        $('#page2').html('1');
+                        $('#page3').html('2');
+                    }
+                    if (response.previous !== null && response.next !== null) {
+                        nextUrl = response.next;
+                        backUrl = response.previous;
+                        let nUrls = new URL(response.next)
+                        let nUrlNums = nUrls.searchParams.get("page");
+                        let currentpages = Number(nUrlNums) - 1;
+                        let prevPageNums = Number(nUrlNums) - 2;
+                        $('#page1').html(`${prevPageNums}`);
+                        $('#page2').html(`${currentpages}`);
+                        $('#page3').html(`${nUrlNums}`);
+                    }
+                    if (response.previous !== null && response.next == null) {
+                        if (response.previous == "http://127.0.0.1:8000/api/products/products-list/") {
+                            backUrl = response.previous;
+                            $('#page1').html(`1`);
+                            $('#page2').html('2');
+                            $('#page3').html('');
+                        }
+                        if (response.previous !== "http://127.0.0.1:8000/api/products/products-list/") {
+                            backUrl = response.previous;
+                            let nUrlss = new URL(response.previous)
+                            let nUrlNumss = nUrlss.searchParams.get("page");
+                            let currentpagess = Number(nUrlNumss) + 1;
+                            $('#page1').html(`${nUrlNumss}`);
+                            $('#page2').html(`${currentpagess}`);
+                            $('#page3').html(``);
+                        }
+                    }
+                },
+                error: (err) => {
+                    console.log(err, "meow");
+                }
+            })
+        }
+        $('#filter-part4-btn').on('click', function() {
+            let searchTxt = $('#filter-part4-btn-input').val()
+            loadApi(searchTxt);
+        })
+
+        //============== END search bar api ==============
+        //============== Fliter Box Api ==================
+
+        function loadDataFitler(mainUrlFilter) {
+            var minPrice = document.getElementById('min').value;
+            var maxPrice = document.getElementById('max').value;
+            var j, k;
+            var checkedBrand;
+            mainUrlFilter = "http://127.0.0.1:8000/api/products/products-filter/?"
+            if (minPrice !== 0 || maxPrice !== 7500000) {
+                mainUrlFilter = mainUrlFilter + "&price1=" + minPrice + "&price2=" + maxPrice;
+            }
+            var FormOne = document.getElementsByClassName("checkbox-inp");
+            var FormTwo = document.getElementsByClassName("checkbox-inp-type");
+            var ColorSelector = document.getElementsByClassName("color-back-one");
+            console.log(FormOne.checked);
+            for (j = 0; j < FormOne.length; j++) {
+                if ($(".checkbox-inp").is(".checked")) {
+                    var CheckedFormOne = FormOne[i].value;
+                }
+            }
+            if (CheckedFormOne !== undefined) {
+                mainUrlFilter = mainUrlFilter + "&categories=" + CheckedFormOne;
+            }
+            console.log(mainUrlFilter, "filterbox url");
+            for (j = 0; j < FormTwo.length; j++) {
+                if ($(".checkbox-inp-type").is(".checked")) {
+                    var CheckedFormTwo = FormTwo[i].value;
+                }
+            }
+            if (CheckedFormTwo !== undefined) {
+                mainUrlFilter = mainUrlFilter + "&sller_type=" + CheckedFormTwo;
+            }
+            for (k = 0; k < colorSelector.length; k++) {
+                if (ColorSelector[k].style.display == "block") {
+                    var currectColor = ColorSelector[k].style['background-color'];
+                }
+            }
+            if (currectColor !== null) {
+                mainUrlFilter = mainUrlFilter + "&colors=" + currectColor;
+            }
+            mainUrlFilter = mainUrlFilter + "/";
+            loadData(mainUrlFilter);
+        }
+        $('#filter-btn').on('click', function() {
+            loadDataFitler(mainUrlFilter);
+        })
+
+        //============== END Fliter Box Api ==================
+        //============== Data for FilterBox ==================
+        //=== Cata Data ===
+
+        function CateApi(CateUrl) {
+            var CateUrl;
+            $.ajax({
+                url: CateUrl,
+                type: "get",
+
+                success: (response) => {
+                    var newResultCate = []
+                    newResultCate.push(response.results)
+                    $('#cate-data').html(``)
+                    newResultCate[0].forEach(element => {
+                        console.log(element.id, 'dddddddd')
+                        $('#cate-data').append(`
+                                    <div class="brand-checkbox">
+                                        <input type="checkbox" class="checkbox-inp" value="keyboard" name="fooby[1][]" />
+                                        <div class="textBar-search"><label for="brand1"><p class="brand-checkbox-p1" id="cate1">لیمون</p></label></div>
+                                    </div>
+                        `)
+                    })
+                },
+                error: (err) => {
+                    console.log(err, "meow");
+                }
+            })
+        }
+        CateApi(CateUrl)
+
+        //=== color Data ===
+
+        function ColorApi(ColorUrl) {
+            var ColorUrl;
+            $.ajax({
+                url: CateUrl,
+                type: "get",
+
+                success: (response) => {
+                    var newresultColor = []
+                    newresultColor.push(response.results)
+                    $('#color-select').html(``)
+                    $('#all-colors').html(``)
+                    newresultColor[0].forEach(element => {
+                        console.log(element.id, 'dddddddd')
+                        $('#color-select').append(`
+                                <div class="colors">
+                                    <p>صورتی</p><span style="background-color: aqua;" class="color-back-one"></span>
+                                </div>
+                        `)
+                        $('#all-colors').append(`
+                                <div class="color" onclick="colorSelector(1)">
+                                    <p>صورتی</p><span style="background-color: #2ACB34;" class="color-back"></span>
+                                </div>
+                        `)
+                    })
+                },
+                error: (err) => {
+                    console.log(err, "meow");
+                }
+            })
+        }
+        ColorApi(ColorUrl)
+
+        //=== sellerType Data ===
+
+        function SellerTypeApi(SellerTypeUrl) {
+            var SellerTypeUrl;
+            $.ajax({
+                url: SellerTypeUrl,
+                type: "get",
+
+                success: (response) => {
+                    var newResultSeller = []
+                    newResultSeller.push(response.results)
+                    $('#myUL').html(``)
+                    newResultSeller[0].forEach(element => {
+                        $('#myUL').append(`
+                            <li>
+                                <div class="brand-checkbox">
+                                    <input type="checkbox" class="checkbox-inp-type" value="mehdi" name="fooby[2][]" />
+                                    <div class="textBar-search"><label for="brand1"><p class="brand-checkbox-p1">کارواش مهدی</p></label></div>
+                                </div>
+                            </li>
+                        `)
+                    })
+                },
+                error: (err) => {
+                    console.log(err);
+                }
+            })
+        }
+        SellerTypeApi(SellerTypeUrl)
+
+        //============== END Data for FilterBox ==============
+        //============== cate checkbox(select box in products filter) ================
+
+        $(".checkbox-inp").on('click', function() {
+            var $box = $(this);
+            if ($box.is(":checked")) {
+                var group = "input:checkbox[name='" + $box.attr("name") + "']";
+                $(group).prop("checked", false);
+                $box.prop("checked", true);
+            } else {
+                $box.prop("checked", false);
+            }
+        });
+
+        //================= END cate checkbox(select box in products filter) ================
+        //====================== product sliders ===================
+
+        function ProductSliderOne(UrlOrdering3) {
+            $.ajax({
+                url: UrlOrdering3,
+                type: "get",
+
+                success: (response) => {
+                    var newresultSliderOne = []
+                    newresultSliderOne.push(response.results)
+                    console.log(response, "yoy");
+                    var counteroneLimit = response.results;
+                    counterone = counterone + 1;
+                    $('#slider-one').html(``)
+                    newresultSliderOne[0].forEach(element => {
+                        console.log(element.id, 'dddddddd')
+                        morebtn = "http://127.0.0.1:8000/products/detail/" + element.id + "/" + element.slug + "/";
+                        $('#slider-one').append(`
+                    <div class="product-box">
+                    <div class="image-parent">
+                        <a href="#">
+                            <img class="image" src="./asset/img/pic-12.png" alt="">
+                            <span class="token-hori">20%</span>
+                        </a>
+                        <div>
+                            <a href="#">
+                                <div class="icon1 fix-icon-vert"></div>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#">
+                                <div class="icon2 fix-icon-vert"></div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="details">
+
+                        <a href="#">
+                            <h2>میز چوبی</h2>
+                        </a>
+                        <div class="rate">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <div class="price">2.000.000T</div>
+                    </div>
+                </div>
+                        `)
+                        if (counterone == (counteroneLimit.length - 1)) {
+                            counterone = -1
+                        }
+                    })
+                },
+                error: (err) => {
+                    console.log(err, "meow");
+                }
+            })
+        }
+        ProductSliderOne(SliderUrlone)
+
+        function ProductSliderTwo(SliderUrlTwo) {
+            SliderUrlTwo = "http://127.0.0.1:8000/api/products/products-bestselling/";
+
+            console.log(SliderUrlTwo, 'vv');
+
+            $.ajax({
+                url: SliderUrlTwo,
+                type: "get",
+
+                success: (response) => {
+                    var newresultSliderTwo = []
+                    newresultSliderTwo.push(response.results)
+                    console.log(response, "yoy");
+                    var countertwoLimit = response.results;
+                    countertwo = countertwo + 1;
+                    $('#slider-two').html(``)
+                    newresultSliderTwo[0].forEach(element => {
+                        console.log(element.id, 'dddddddd')
+                        morebtn = "http://127.0.0.1:8000/products/detail/" + element.id + "/" + element.slug;
+                        $('#slider-one').append(`
+                    <div class="product-box">
+                    <div class="image-parent">
+                        <a href="#">
+                            <img class="image" src="./asset/img/pic-12.png" alt="">
+                            <span class="token-hori">20%</span>
+                        </a>
+                        <div>
+                            <a href="#">
+                                <div class="icon1 fix-icon-vert"></div>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#">
+                                <div class="icon2 fix-icon-vert"></div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="details">
+
+                        <a href="#">
+                            <h2>میز چوبی</h2>
+                        </a>
+                        <div class="rate">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <div class="price">2.000.000T</div>
+                    </div>
+                </div>
+                        `)
+                        if (countertwo == (countertwoLimit.length - 1)) {
+                            countertwo = -1
+                        }
+                    })
+                },
+                error: (err) => {
+                    console.log(err, "meow");
+                }
+            })
+        }
+        ProductSliderTwo(SliderUrlTwo)
+
+        function ProductSliderThree(SliderUrlThree) {
+            SliderUrlThree = "http://127.0.0.1:8000/api/products/products-bestselling/";
+
+            console.log(SliderUrlThree, 'SliderUrlThree');
+
+            $.ajax({
+                url: SliderUrlThree,
+                type: "get",
+
+                success: (response) => {
+                    var newresultSliderThree = []
+                    newresultSliderThree.push(response.results)
+                    console.log(response, "yoy");
+                    var counterthreeLimit = response.results;
+                    counterthree = counterthree + 1;
+                    $('#slider-three').html(``)
+                    newresultSliderThree[0].forEach(element => {
+                        console.log(element.id, 'dddddddd')
+                        morebtn = "http://127.0.0.1:8000/products/detail/" + element.id + "/" + element.slug;
+                        $('#slider-one').append(`
+                    <div class="product-box">
+                    <div class="image-parent">
+                        <a href="#">
+                            <img class="image" src="./asset/img/pic-12.png" alt="">
+                            <span class="token-hori">20%</span>
+                        </a>
+                        <div>
+                            <a href="#">
+                                <div class="icon1 fix-icon-vert"></div>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#">
+                                <div class="icon2 fix-icon-vert"></div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="details">
+
+                        <a href="#">
+                            <h2>میز چوبی</h2>
+                        </a>
+                        <div class="rate">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <div class="price">2.000.000T</div>
+                    </div>
+                </div>
+                        `)
+                        if (counterthree == (counterthreeLimit.length - 1)) {
+                            counterthree = -1
+                        }
+                    })
+                },
+                error: (err) => {
+                    console.log(err, "meow");
+                }
+            })
+        }
+        ProductSliderThree(SliderUrlThree);
+
+        //====================== END product sliders ===================
+        //====================== main slider ===================
+
+        function MainSliderApi(MainSliderUrl) {
+            var MainSliderUrl = "http://127.0.0.1:8000/api/products/products-sliders/"
+            console.log(MainSliderUrl, "MainSliderUrl");
+            $.ajax({
+                url: MainSliderUrl,
+                type: "get",
+
+                success: (response) => {
+                    var newResultMainSlider = []
+                    newResultMainSlider.push(response.results)
+                    console.log(response, "yoy");
+                    $('#slider-one').html(``)
+                    newResultMainSlider[0].forEach(element => {
+                        console.log(element.id, 'dddddddd')
+                        $('#mainSlider').append(`
+                    <li class="splide__slide slider-main-outSplide">
+                <a class="slide" href="#"><img class="slide-img" src="./pic-19.jpg" class="d-block" alt=""></a>
+                     </li>
+                        `)
+                    })
+                },
+                error: (err) => {
+                    console.log(err, "meow");
+                }
+            })
+        }
+        MainSliderApi(MainSliderUrl)
+
+        //====================== END main slider ===================
+    </script>
     <!------------------------------------------     /product slider 2      ---------------------------------------->
 
     <!-------------------------------footer ----------------------------------------->
