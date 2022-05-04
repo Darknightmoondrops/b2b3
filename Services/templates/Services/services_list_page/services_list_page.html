@@ -779,6 +779,23 @@
         var UrlOrdering5 = "http://127.0.0.1:8000/api/products/products-bestselling/";
         var UrlOrdering6 = "http://127.0.0.1:8000/api/products/products-bestselling/";
 
+
+        const sNum = 5
+        
+        const ammm= []
+        var za
+        console.log('aaaaaaaaa');
+         var rateLen
+ 
+         function ddd(){
+                     for( za =0 ;za<sNum ;za++){
+                    ammm.push(za)
+                    console.log('lll',ammm);
+                        }
+            
+                    }
+        ddd()
+
         function loadData(mainUrl) {
             $.ajax({
                 url: mainUrl,
@@ -810,11 +827,9 @@
                                         <h2>${element.title}</h2>
                                     </a>
                                     <div class="rate">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
+                                        ${ammm.map( item =>{
+                                            return ` <i class="fa fa-star" aria-hidden="true"></i>`
+                                        })}
                                     </div>
                                     <div class="price">${element.price}T</div>
                                    

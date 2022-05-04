@@ -924,7 +924,7 @@
     .price-vert {
         margin-top: 0%;
         color: #585858;
-        margin-right: 45%;
+        margin-right: 0 !important;
     }
     
     .remaining-number {
@@ -1228,7 +1228,7 @@
             width: 100%;
         }
         #remaining-number {
-            margin: auto;
+            margin: 0;
         }
     }
     
@@ -1591,4 +1591,7 @@
         overflow-y: scroll;
         scrollbar-width: thin;
         scrollbar-color: #F99687 #C6C6C6;
+    }
+    .title-fast-product{
+        width: 45%;
     }

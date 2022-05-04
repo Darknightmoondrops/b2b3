@@ -32,26 +32,6 @@ function colorSelector(n) {
     colorBox[n - 1].style.display = "block";
 }
 //=================== counter number ===============
-var count = 1
-var limitLengh = document.getElementById('remaining-number');
-var minLengh = 0
-console.log("count");
-
-function plus() {
-    if (count < limitLengh) {
-        document.getElementById('counter').innerHTML = ++count
-    } else {
-        alert('jjjjjjj')
-    }
-}
-
-function minus() {
-    if (count > minLengh) {
-        document.getElementById('counter').innerHTML = --count
-    } else {
-        alert('mmmmm')
-    }
-}
 
 //=============================price range=======================
 const rangeInput = document.querySelectorAll(".multi-range input"),

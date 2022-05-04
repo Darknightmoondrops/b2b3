@@ -182,6 +182,7 @@
     </div>
 </section>
 <!------------------------------------------------------  /body  ------------------------------------------------>
+<div id="mmm">3</div>
 <!-------------------------------------------      product slider 1     ---------------------------------------->
 <h1 class="title1">محصولات پرفروش</h1>
 <div class="splide" id="slider2" dir="ltr">
@@ -302,13 +303,13 @@
                 <div class="div-style">
                     <div class="form-item-cout">
                         <div class="item-count">
-                            <p onclick="plus()" id="cunt-plus" class="cunt-div">+</p>
+                            <p id="cunt-plus" class="cunt-div">+</p>
                         </div>
                         <div class="item-count">
-                            <p id="counter" class="cunt-div" >1</p>
+                            <p id="counter2" class="cunt-div" >1</p>
                         </div>
                         <div class="item-count">
-                            <p onclick="minus()" id="cunt-min" class="cunt-div">-</p>
+                            <p id="cunt-min" class="cunt-div">-</p>
                         </div>
                     </div>
                 </div>
@@ -366,7 +367,7 @@
                         <p>${element.short_description}</p>
                     </div>
                     <div class="details-vert-bot">
-                        <div class="remaining-number">تنها <p id="remaining-number">${element.inventory}</p> عدد باقی مانده</div>
+                        <div class="remaining-number">تنها <div id="remainingnumber">${element.inventory}</div> عدد باقی مانده</div>
                        <div class="price-hori">
                         <div class="price-vert">${element.price}T</div>
                         </div>
@@ -375,6 +376,28 @@
                 
             </div>
                         `)
+
+                        var count = 1
+                        var limitLengh = document.getElementById('remainingnumber').innerHTML;
+                        var minLengh = 0
+                        console.log("count" );
+                        $('#cunt-plus').click(function(){
+                            if (count < Number(limitLengh)) {
+                                document.getElementById('counter2').innerHTML = ++count
+                                // alert('hhh')
+                            } else {
+                                alert('jjjjjjj')
+                            }
+                        })
+                        $('#cunt-min').click(function(){
+                            if (count>0) {
+                                document.getElementById('counter2').innerHTML = --count
+                            } else {
+                                alert('mmmmm')
+                            }
+                        })
+                    
+
                     if (counter == (counterLimit.length - 1)) {
                         counter = -1
                     }
